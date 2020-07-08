@@ -12,6 +12,13 @@ final class FormulaTabBarController: UITabBarController {
     
     // MARK: Public Methods
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.shadowImage = UIImage()
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,10 +28,22 @@ final class FormulaTabBarController: UITabBarController {
     
     // MARK: Private Methods
     
-    private func createNavController(vc: UIViewController, title: String) -> UIViewController {//, image: UIImage) -> UIViewController {
+    private func createNavController(vc: UIViewController, title: String) -> UIViewController { //, image: UIImage) -> UIViewController {
         let navigationController = UINavigationController(rootViewController: vc)
         navigationController.tabBarItem.title = title
 //        navigationController.tabBarItem.image = image
+        
+        let titleFontAttrs = [
+            NSAttributedString.Key.font: UIFont(name: "AvenirNext-Bold", size: 25)!,
+            NSAttributedString.Key.foregroundColor: UIColor.white
+        ]
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = .red
+        appearance.titleTextAttributes = titleFontAttrs
+        appearance.shadowColor = UIColor.clear
+        
+        navigationController.navigationBar.standardAppearance = appearance
         
         vc.navigationItem.title = title
         

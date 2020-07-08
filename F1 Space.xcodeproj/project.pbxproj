@@ -15,6 +15,8 @@
 		5E419EE924B5A9AA006421F6 /* StandingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E419EE824B5A9AA006421F6 /* StandingsViewController.swift */; };
 		5E419EED24B5AB86006421F6 /* FormulaTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E419EEC24B5AB86006421F6 /* FormulaTabBarController.swift */; };
 		5E419EF124B5B433006421F6 /* UIView + Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E419EF024B5B433006421F6 /* UIView + Layout.swift */; };
+		5E419EF624B5DBB0006421F6 /* StandingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E419EF524B5DBB0006421F6 /* StandingsCell.swift */; };
+		5E419EF924B5DEC7006421F6 /* DriversStandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E419EF824B5DEC7006421F6 /* DriversStandingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,8 @@
 		5E419EE824B5A9AA006421F6 /* StandingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsViewController.swift; sourceTree = "<group>"; };
 		5E419EEC24B5AB86006421F6 /* FormulaTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaTabBarController.swift; sourceTree = "<group>"; };
 		5E419EF024B5B433006421F6 /* UIView + Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Layout.swift"; sourceTree = "<group>"; };
+		5E419EF524B5DBB0006421F6 /* StandingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsCell.swift; sourceTree = "<group>"; };
+		5E419EF824B5DEC7006421F6 /* DriversStandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriversStandingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,7 +85,9 @@
 		5E419EC524B5A855006421F6 /* F1 Space */ = {
 			isa = PBXGroup;
 			children = (
+				5E419EF724B5DC7B006421F6 /* Views */,
 				5E419EE824B5A9AA006421F6 /* StandingsViewController.swift */,
+				5E419EF824B5DEC7006421F6 /* DriversStandingViewController.swift */,
 				5E419EEC24B5AB86006421F6 /* FormulaTabBarController.swift */,
 				5E419EF224B5B44A006421F6 /* Helpers */,
 				5E419EEA24B5AA48006421F6 /* Supports Files */,
@@ -124,6 +130,14 @@
 				5E419EF024B5B433006421F6 /* UIView + Layout.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		5E419EF724B5DC7B006421F6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5E419EF524B5DBB0006421F6 /* StandingsCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,10 +241,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E419EC724B5A855006421F6 /* AppDelegate.swift in Sources */,
+				5E419EF924B5DEC7006421F6 /* DriversStandingViewController.swift in Sources */,
 				5E419EC924B5A855006421F6 /* SceneDelegate.swift in Sources */,
 				5E419EF124B5B433006421F6 /* UIView + Layout.swift in Sources */,
 				5E419EED24B5AB86006421F6 /* FormulaTabBarController.swift in Sources */,
 				5E419EE924B5A9AA006421F6 /* StandingsViewController.swift in Sources */,
+				5E419EF624B5DBB0006421F6 /* StandingsCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
