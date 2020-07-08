@@ -9,11 +9,12 @@
 /* Begin PBXBuildFile section */
 		5E419EC724B5A855006421F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E419EC624B5A855006421F6 /* AppDelegate.swift */; };
 		5E419EC924B5A855006421F6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E419EC824B5A855006421F6 /* SceneDelegate.swift */; };
-		5E419ECB24B5A855006421F6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E419ECA24B5A855006421F6 /* ViewController.swift */; };
-		5E419ECE24B5A855006421F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E419ECC24B5A855006421F6 /* Main.storyboard */; };
 		5E419ED024B5A858006421F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E419ECF24B5A858006421F6 /* Assets.xcassets */; };
 		5E419ED324B5A858006421F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E419ED124B5A858006421F6 /* LaunchScreen.storyboard */; };
 		5E419EDE24B5A858006421F6 /* F1_SpaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E419EDD24B5A858006421F6 /* F1_SpaceTests.swift */; };
+		5E419EE924B5A9AA006421F6 /* StandingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E419EE824B5A9AA006421F6 /* StandingsViewController.swift */; };
+		5E419EED24B5AB86006421F6 /* FormulaTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E419EEC24B5AB86006421F6 /* FormulaTabBarController.swift */; };
+		5E419EF124B5B433006421F6 /* UIView + Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E419EF024B5B433006421F6 /* UIView + Layout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,14 +31,15 @@
 		5E419EC324B5A855006421F6 /* F1 Space.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "F1 Space.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E419EC624B5A855006421F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5E419EC824B5A855006421F6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		5E419ECA24B5A855006421F6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		5E419ECD24B5A855006421F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5E419ECF24B5A858006421F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5E419ED224B5A858006421F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5E419ED424B5A858006421F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5E419ED924B5A858006421F6 /* F1 SpaceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "F1 SpaceTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E419EDD24B5A858006421F6 /* F1_SpaceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = F1_SpaceTests.swift; sourceTree = "<group>"; };
 		5E419EDF24B5A858006421F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5E419EE824B5A9AA006421F6 /* StandingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsViewController.swift; sourceTree = "<group>"; };
+		5E419EEC24B5AB86006421F6 /* FormulaTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaTabBarController.swift; sourceTree = "<group>"; };
+		5E419EF024B5B433006421F6 /* UIView + Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Layout.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,13 +81,10 @@
 		5E419EC524B5A855006421F6 /* F1 Space */ = {
 			isa = PBXGroup;
 			children = (
-				5E419EC624B5A855006421F6 /* AppDelegate.swift */,
-				5E419EC824B5A855006421F6 /* SceneDelegate.swift */,
-				5E419ECA24B5A855006421F6 /* ViewController.swift */,
-				5E419ECC24B5A855006421F6 /* Main.storyboard */,
-				5E419ECF24B5A858006421F6 /* Assets.xcassets */,
-				5E419ED124B5A858006421F6 /* LaunchScreen.storyboard */,
-				5E419ED424B5A858006421F6 /* Info.plist */,
+				5E419EE824B5A9AA006421F6 /* StandingsViewController.swift */,
+				5E419EEC24B5AB86006421F6 /* FormulaTabBarController.swift */,
+				5E419EF224B5B44A006421F6 /* Helpers */,
+				5E419EEA24B5AA48006421F6 /* Supports Files */,
 			);
 			path = "F1 Space";
 			sourceTree = "<group>";
@@ -93,10 +92,38 @@
 		5E419EDC24B5A858006421F6 /* F1 SpaceTests */ = {
 			isa = PBXGroup;
 			children = (
+				5E419EEB24B5AAC6006421F6 /* StartingTestFiles */,
+			);
+			path = "F1 SpaceTests";
+			sourceTree = "<group>";
+		};
+		5E419EEA24B5AA48006421F6 /* Supports Files */ = {
+			isa = PBXGroup;
+			children = (
+				5E419EC624B5A855006421F6 /* AppDelegate.swift */,
+				5E419EC824B5A855006421F6 /* SceneDelegate.swift */,
+				5E419ECF24B5A858006421F6 /* Assets.xcassets */,
+				5E419ED124B5A858006421F6 /* LaunchScreen.storyboard */,
+				5E419ED424B5A858006421F6 /* Info.plist */,
+			);
+			path = "Supports Files";
+			sourceTree = "<group>";
+		};
+		5E419EEB24B5AAC6006421F6 /* StartingTestFiles */ = {
+			isa = PBXGroup;
+			children = (
 				5E419EDD24B5A858006421F6 /* F1_SpaceTests.swift */,
 				5E419EDF24B5A858006421F6 /* Info.plist */,
 			);
-			path = "F1 SpaceTests";
+			path = StartingTestFiles;
+			sourceTree = "<group>";
+		};
+		5E419EF224B5B44A006421F6 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				5E419EF024B5B433006421F6 /* UIView + Layout.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -182,7 +209,6 @@
 			files = (
 				5E419ED324B5A858006421F6 /* LaunchScreen.storyboard in Resources */,
 				5E419ED024B5A858006421F6 /* Assets.xcassets in Resources */,
-				5E419ECE24B5A855006421F6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,9 +226,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E419ECB24B5A855006421F6 /* ViewController.swift in Sources */,
 				5E419EC724B5A855006421F6 /* AppDelegate.swift in Sources */,
 				5E419EC924B5A855006421F6 /* SceneDelegate.swift in Sources */,
+				5E419EF124B5B433006421F6 /* UIView + Layout.swift in Sources */,
+				5E419EED24B5AB86006421F6 /* FormulaTabBarController.swift in Sources */,
+				5E419EE924B5A9AA006421F6 /* StandingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,14 +253,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		5E419ECC24B5A855006421F6 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5E419ECD24B5A855006421F6 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		5E419ED124B5A858006421F6 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -364,7 +384,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q4947V4853;
-				INFOPLIST_FILE = "F1 Space/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/F1 Space/Supports Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -372,7 +392,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "skynetherside.F1-Space";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -382,7 +402,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q4947V4853;
-				INFOPLIST_FILE = "F1 Space/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/F1 Space/Supports Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -390,7 +410,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "skynetherside.F1-Space";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
