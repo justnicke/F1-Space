@@ -11,6 +11,12 @@ import UIKit
 final class DriversStandingViewController: UIViewController {
     
     var collectionView: UICollectionView!
+
+    var drivers = [
+        Driver(firstName: nil, lastName: nil, position: "1", pts: nil, team: nil, teamColor: nil),
+        Driver(firstName: nil, lastName: nil, position: "2", pts: nil, team: nil, teamColor: nil),
+        Driver(firstName: nil, lastName: nil, position: "3", pts: nil, team: nil, teamColor: nil),
+        Driver(firstName: nil, lastName: nil, position: "4", pts: nil, team: nil, teamColor: nil)]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,7 +24,6 @@ final class DriversStandingViewController: UIViewController {
         view.backgroundColor = .white
                 
         setupCollectionView()
-    
     }
     
     private func setupCollectionView() {
@@ -30,7 +35,7 @@ final class DriversStandingViewController: UIViewController {
         collectionView.showsHorizontalScrollIndicator = false
         view.addSubview(collectionView)
         
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.register(DriversCell.self, forCellWithReuseIdentifier: DriversCell.reusId)
     }
 }
 
@@ -39,12 +44,15 @@ final class DriversStandingViewController: UIViewController {
 extension DriversStandingViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return drivers.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-        cell.backgroundColor = .white
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DriversCell.reusId, for: indexPath) as! DriversCell
+        
+        let driver = drivers[indexPath.item]
+        cell.configure(driver: driver)
+        
         return cell
     }
 }
@@ -53,7 +61,7 @@ extension DriversStandingViewController: UICollectionViewDataSource, UICollectio
 
 extension DriversStandingViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: view.frame.width, height: 75)
+        return .init(width: view.frame.width, height: 90)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

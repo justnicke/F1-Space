@@ -22,7 +22,7 @@ final class FormulaTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewControllers = [createNavController(vc: StandingsViewController(), title: "Standings"),
+        viewControllers = [createNavController(vc: StandingsViewController(), title: "STANDINGS"),
                            createNavController(vc: UIViewController(), title: "News")]
     }
     
@@ -31,10 +31,10 @@ final class FormulaTabBarController: UITabBarController {
     private func createNavController(vc: UIViewController, title: String) -> UIViewController { //, image: UIImage) -> UIViewController {
         let navigationController = UINavigationController(rootViewController: vc)
         navigationController.tabBarItem.title = title
-//        navigationController.tabBarItem.image = image
+        //        navigationController.tabBarItem.image = image
         
         let titleFontAttrs = [
-            NSAttributedString.Key.font: UIFont(name: "AvenirNext-Bold", size: 25)!,
+            NSAttributedString.Key.font: UIFont(name: "Formula1-Display-Bold", size: 25)!,
             NSAttributedString.Key.foregroundColor: UIColor.white
         ]
         

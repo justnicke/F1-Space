@@ -17,6 +17,14 @@
 		5E419EF124B5B433006421F6 /* UIView + Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E419EF024B5B433006421F6 /* UIView + Layout.swift */; };
 		5E419EF624B5DBB0006421F6 /* StandingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E419EF524B5DBB0006421F6 /* StandingsCell.swift */; };
 		5E419EF924B5DEC7006421F6 /* DriversStandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E419EF824B5DEC7006421F6 /* DriversStandingViewController.swift */; };
+		5E419EFB24B5F3C3006421F6 /* DriversCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E419EFA24B5F3C3006421F6 /* DriversCell.swift */; };
+		5E419EFE24B5FAF6006421F6 /* Formula1-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E419EFD24B5FAF6006421F6 /* Formula1-Regular.ttf */; };
+		5E419F0024B5FB01006421F6 /* Formula1-Wide.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E419EFF24B5FB01006421F6 /* Formula1-Wide.ttf */; };
+		5E419F0224B5FB08006421F6 /* Formula1-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E419F0124B5FB08006421F6 /* Formula1-Bold.ttf */; };
+		5E419F0424B5FB0D006421F6 /* Formula1-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E419F0324B5FB0D006421F6 /* Formula1-Black.ttf */; };
+		5E419F0624B5FBD0006421F6 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E419F0524B5FBD0006421F6 /* Storyboard.storyboard */; };
+		5E419F0824B604CE006421F6 /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E419F0724B604CE006421F6 /* Driver.swift */; };
+		5E419F0A24B60E1F006421F6 /* Extension + StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E419F0924B60E1F006421F6 /* Extension + StackView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +52,14 @@
 		5E419EF024B5B433006421F6 /* UIView + Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Layout.swift"; sourceTree = "<group>"; };
 		5E419EF524B5DBB0006421F6 /* StandingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsCell.swift; sourceTree = "<group>"; };
 		5E419EF824B5DEC7006421F6 /* DriversStandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriversStandingViewController.swift; sourceTree = "<group>"; };
+		5E419EFA24B5F3C3006421F6 /* DriversCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriversCell.swift; sourceTree = "<group>"; };
+		5E419EFD24B5FAF6006421F6 /* Formula1-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Formula1-Regular.ttf"; path = "../../../../Formula1-Regular.ttf"; sourceTree = "<group>"; };
+		5E419EFF24B5FB01006421F6 /* Formula1-Wide.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Formula1-Wide.ttf"; path = "../../../../Formula1-Wide.ttf"; sourceTree = "<group>"; };
+		5E419F0124B5FB08006421F6 /* Formula1-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Formula1-Bold.ttf"; path = "../../../../Formula1-Bold.ttf"; sourceTree = "<group>"; };
+		5E419F0324B5FB0D006421F6 /* Formula1-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Formula1-Black.ttf"; path = "../../../../Formula1-Black.ttf"; sourceTree = "<group>"; };
+		5E419F0524B5FBD0006421F6 /* Storyboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		5E419F0724B604CE006421F6 /* Driver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Driver.swift; sourceTree = "<group>"; };
+		5E419F0924B60E1F006421F6 /* Extension + StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + StackView.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +101,8 @@
 		5E419EC524B5A855006421F6 /* F1 Space */ = {
 			isa = PBXGroup;
 			children = (
+				5E419F0724B604CE006421F6 /* Driver.swift */,
+				5E419EFC24B5FAC9006421F6 /* Fonts */,
 				5E419EF724B5DC7B006421F6 /* Views */,
 				5E419EE824B5A9AA006421F6 /* StandingsViewController.swift */,
 				5E419EF824B5DEC7006421F6 /* DriversStandingViewController.swift */,
@@ -128,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				5E419EF024B5B433006421F6 /* UIView + Layout.swift */,
+				5E419F0924B60E1F006421F6 /* Extension + StackView.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -135,9 +154,22 @@
 		5E419EF724B5DC7B006421F6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5E419F0524B5FBD0006421F6 /* Storyboard.storyboard */,
 				5E419EF524B5DBB0006421F6 /* StandingsCell.swift */,
+				5E419EFA24B5F3C3006421F6 /* DriversCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		5E419EFC24B5FAC9006421F6 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				5E419F0324B5FB0D006421F6 /* Formula1-Black.ttf */,
+				5E419F0124B5FB08006421F6 /* Formula1-Bold.ttf */,
+				5E419EFF24B5FB01006421F6 /* Formula1-Wide.ttf */,
+				5E419EFD24B5FAF6006421F6 /* Formula1-Regular.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -222,7 +254,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E419ED324B5A858006421F6 /* LaunchScreen.storyboard in Resources */,
+				5E419F0424B5FB0D006421F6 /* Formula1-Black.ttf in Resources */,
 				5E419ED024B5A858006421F6 /* Assets.xcassets in Resources */,
+				5E419F0224B5FB08006421F6 /* Formula1-Bold.ttf in Resources */,
+				5E419F0024B5FB01006421F6 /* Formula1-Wide.ttf in Resources */,
+				5E419F0624B5FBD0006421F6 /* Storyboard.storyboard in Resources */,
+				5E419EFE24B5FAF6006421F6 /* Formula1-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,8 +280,11 @@
 				5E419EC724B5A855006421F6 /* AppDelegate.swift in Sources */,
 				5E419EF924B5DEC7006421F6 /* DriversStandingViewController.swift in Sources */,
 				5E419EC924B5A855006421F6 /* SceneDelegate.swift in Sources */,
+				5E419EFB24B5F3C3006421F6 /* DriversCell.swift in Sources */,
 				5E419EF124B5B433006421F6 /* UIView + Layout.swift in Sources */,
 				5E419EED24B5AB86006421F6 /* FormulaTabBarController.swift in Sources */,
+				5E419F0824B604CE006421F6 /* Driver.swift in Sources */,
+				5E419F0A24B60E1F006421F6 /* Extension + StackView.swift in Sources */,
 				5E419EE924B5A9AA006421F6 /* StandingsViewController.swift in Sources */,
 				5E419EF624B5DBB0006421F6 /* StandingsCell.swift in Sources */,
 			);
