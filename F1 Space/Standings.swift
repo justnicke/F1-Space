@@ -8,6 +8,11 @@
 
 import UIKit
 
+struct Standings {
+    var drivers: [Driver]
+    var constructors: [Constructor]
+}
+
 struct Driver {
     let firstName: String?
     let lastName: String?
@@ -16,3 +21,12 @@ struct Driver {
     let team: String?
     let teamColor: UIColor?
 }
+
+struct Constructor {
+    let position: String?
+    let pts: String?
+    let team: String?
+    let teamColor: UIColor?
+}
+
+

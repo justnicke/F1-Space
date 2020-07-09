@@ -8,24 +8,29 @@
 
 import UIKit
 
-final class StandingsCell: UICollectionViewCell {
+final class StandingDriverCell: UICollectionViewCell {
     
     // MARK: Public Properties
     
-    static let reusId = String(describing: StandingsCell.self)
+    static let reusId = String(describing: StandingDriverCell.self)
     
-    let driversStandingViewController = DriversStandingViewController()
+    let driversViewController = DriverViewController()
     
     // MARK: - Constructor
     
     override init(frame: CGRect) {
         super.init(frame: frame)
             
-        addSubview(driversStandingViewController.view)
-        driversStandingViewController.view.fillSuperview()
+        addSubview(driversViewController.view)
+        driversViewController.view.fillSuperview()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configure(driver: Standings?) {
+        driversViewController.driver = driver
+        driversViewController.collectionView.reloadData()
     }
 }
