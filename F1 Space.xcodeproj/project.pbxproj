@@ -84,6 +84,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5E40ECFB24B7551500E3AF1F /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				5E40ECFC24B7552500E3AF1F /* Standings */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		5E40ECFC24B7552500E3AF1F /* Standings */ = {
+			isa = PBXGroup;
+			children = (
+				5E419EF524B5DBB0006421F6 /* StandingDriverCell.swift */,
+				5E40ECF524B7400700E3AF1F /* StandingConstructorCell.swift */,
+				5E40ECFD24B7552E00E3AF1F /* DriverAndConstructor */,
+			);
+			path = Standings;
+			sourceTree = "<group>";
+		};
+		5E40ECFD24B7552E00E3AF1F /* DriverAndConstructor */ = {
+			isa = PBXGroup;
+			children = (
+				5E419EFA24B5F3C3006421F6 /* DriversCell.swift */,
+				5E40ECF924B74BA100E3AF1F /* ConstructorCell.swift */,
+			);
+			path = DriverAndConstructor;
+			sourceTree = "<group>";
+		};
 		5E419EBA24B5A855006421F6 = {
 			isa = PBXGroup;
 			children = (
@@ -159,10 +186,7 @@
 		5E419EF724B5DC7B006421F6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5E419EF524B5DBB0006421F6 /* StandingDriverCell.swift */,
-				5E40ECF524B7400700E3AF1F /* StandingConstructorCell.swift */,
-				5E419EFA24B5F3C3006421F6 /* DriversCell.swift */,
-				5E40ECF924B74BA100E3AF1F /* ConstructorCell.swift */,
+				5E40ECFB24B7551500E3AF1F /* Cells */,
 			);
 			path = Views;
 			sourceTree = "<group>";

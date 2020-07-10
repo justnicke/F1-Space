@@ -31,6 +31,6 @@ final class StandingConstructorCell: UICollectionViewCell {
     
     func configure(constructor: Standings?) {
         constructorViewController.constructor = constructor
-        constructorViewController.collectionView.reloadData()
+//        constructorViewController.collectionView.reloadData()
     }
 }

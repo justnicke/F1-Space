@@ -31,6 +31,6 @@ final class StandingDriverCell: UICollectionViewCell {
     
     func configure(driver: Standings?) {
         driversViewController.driver = driver
-        driversViewController.collectionView.reloadData()
+//        driversViewController.collectionView.reloadData()
     }
 }

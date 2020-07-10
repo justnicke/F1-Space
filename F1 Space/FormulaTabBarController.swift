@@ -11,14 +11,7 @@ import UIKit
 final class FormulaTabBarController: UITabBarController {
     
     // MARK: Public Methods
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.shadowImage = UIImage()
-    }
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
