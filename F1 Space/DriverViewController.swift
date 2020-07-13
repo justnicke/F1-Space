@@ -10,17 +10,19 @@ import UIKit
 
 final class DriverViewController: UIViewController {
     
+    // MARK: - Public Properties
     var collectionView: UICollectionView!
-
     var driver: Standings?
+    
+    // MARK: - Public Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = .white
-                
+    
         setupCollectionView()
     }
+    
+    // MARK: - Private Methods
     
     private func setupCollectionView() {
         collectionView = UICollectionView(frame: view.frame, collectionViewLayout: UICollectionViewFlowLayout())
@@ -38,14 +40,12 @@ final class DriverViewController: UIViewController {
 // MARK: - CollectionViewDataSource & CollectionViewDelegate
 
 extension DriverViewController: UICollectionViewDataSource, UICollectionViewDelegate {
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return driver?.drivers.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DriversCell.reusId, for: indexPath) as! DriversCell
-        
         let onlyDriver = driver?.drivers[indexPath.item]
         cell.configure(driver: onlyDriver)
         
@@ -53,7 +53,7 @@ extension DriverViewController: UICollectionViewDataSource, UICollectionViewDele
     }
 }
 
-// MARK: - Extension UICollectionViewDelegateFlowLayout
+// MARK: - Extension CollectionViewDelegateFlowLayout
 
 extension DriverViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -67,5 +67,4 @@ extension DriverViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return .init(top: 10, left: 0, bottom: 10, right: 0)
     }
-    
 }

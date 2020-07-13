@@ -14,6 +14,8 @@ final class StandingDriverCell: UICollectionViewCell {
     
     static let reusId = String(describing: StandingDriverCell.self)
     
+    // MARK: Private Properties
+    
     let driversViewController = DriverViewController()
     
     // MARK: - Constructor
@@ -29,8 +31,9 @@ final class StandingDriverCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Public Methods
+    
     func configure(driver: Standings?) {
         driversViewController.driver = driver
-//        driversViewController.collectionView.reloadData()
     }
 }

@@ -10,17 +10,19 @@ import UIKit
 
 final class ConstructorViewController: UIViewController {
     
+    // MARK: - Public Properties
     var collectionView: UICollectionView!
-
     var constructor: Standings?
+    
+    // MARK: - Public Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
-                
         setupCollectionView()
     }
+    
+    // MARK: - Private Methods
     
     private func setupCollectionView() {
         collectionView = UICollectionView(frame: view.frame, collectionViewLayout: UICollectionViewFlowLayout())
@@ -38,14 +40,12 @@ final class ConstructorViewController: UIViewController {
 // MARK: - CollectionViewDataSource & CollectionViewDelegate
 
 extension ConstructorViewController: UICollectionViewDataSource, UICollectionViewDelegate {
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return constructor?.constructors.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ConstructorCell.reusId, for: indexPath) as! ConstructorCell
-        
         let onlyConstructor = constructor?.constructors[indexPath.item]
         cell.configure(constructor: onlyConstructor)
         
@@ -53,7 +53,7 @@ extension ConstructorViewController: UICollectionViewDataSource, UICollectionVie
     }
 }
 
-// MARK: - Extension UICollectionViewDelegateFlowLayout
+// MARK: - Extension CollectionViewDelegateFlowLayout
 
 extension ConstructorViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

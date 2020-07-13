@@ -37,7 +37,7 @@ final class ConstructorCell: UICollectionViewCell {
         label.textColor = .black
         return label
     }()
-    private let helperView: UIView = {
+    private let roundingPtsView: UIView = {
         let view = UIView()
         view.backgroundColor = #colorLiteral(red: 0.9259110093, green: 0.9457291961, blue: 0.9495975375, alpha: 1)
         view.widthAnchor.constraint(equalToConstant: 90).isActive = true
@@ -86,39 +86,53 @@ final class ConstructorCell: UICollectionViewCell {
     // MARK: - Private Methods
     
     private func setupLayout() {
-        let teamViewsHelper = UIStackView(arrangedSubviews: [UIView(), teamColorView, UIView()], axis: .vertical)
-        teamViewsHelper.distribution = .equalCentering
+        // StackViews
+        let teamColor = UIStackView(
+            arrangedSubviews: [UIView(), teamColorView, UIView()],
+            axis: .vertical,
+            distribution: .equalCentering
+        )
+        let positionLabelAndTeamColor = UIStackView(
+            arrangedSubviews: [positionLabel, teamColor],
+            axis: .horizontal,
+            spacing: 20
+        )
+        let teamName = UIStackView(
+            arrangedSubviews: [UIView(), teamNameLabel, UIView()],
+            axis: .vertical,
+            spacing: 10,
+            distribution: .equalCentering
+        )
+        let ptsNumAndWord = UIStackView(
+            arrangedSubviews: [numberPtsLabel, ptsWordLabel],
+            axis: .horizontal,
+            spacing: 5
+        )
+        let roundingPtsStackView = UIStackView(
+            arrangedSubviews: [UIView(), roundingPtsView, UIView()],
+            axis: .vertical,
+            distribution: .equalCentering
+        )
+        let mergeTeamNameAndRoundingPtsStackView = UIStackView(
+            arrangedSubviews: [teamName, UIView(), roundingPtsStackView],
+            axis: .horizontal
+        )
+        let mainStackView = UIStackView(
+            arrangedSubviews: [positionLabelAndTeamColor, mergeTeamNameAndRoundingPtsStackView],
+            axis: .horizontal,
+            spacing: 10)
         
-        let positionAndTeamColorStackView = UIStackView(arrangedSubviews: [positionLabel, teamViewsHelper],
-                                                        axis: .horizontal,
-                                                        spacing: 20)
+        // addSubView and constaints
+        roundingPtsView.addSubview(ptsNumAndWord)
+        ptsNumAndWord.centerInSuperview()
         
-//        let fullNameStackView = UIStackView(arrangedSubviews: [firstNameLabel, lastNameLabel],
-//                                            axis: .horizontal,
-//                                            spacing: 3)
-        
-        let fullNameAndTeamNameStackView = UIStackView(arrangedSubviews: [UIView(), teamNameLabel, UIView()],
-                                                       axis: .vertical,
-                                                       spacing: 10)
-        fullNameAndTeamNameStackView.distribution = .equalCentering
-        
-        let numPtsAndPtsWordStackView = UIStackView(arrangedSubviews: [numberPtsLabel, ptsWordLabel],
-                                                    axis: .horizontal,
-                                                    spacing: 5)
-        
-        helperView.addSubview(numPtsAndPtsWordStackView)
-        numPtsAndPtsWordStackView.centerInSuperview()
-        
-        let helperStackView = UIStackView(arrangedSubviews: [UIView(), helperView, UIView()], axis: .vertical)
-        helperStackView.distribution = .equalCentering
-        
-        
-        let allyStackView = UIStackView(arrangedSubviews: [fullNameAndTeamNameStackView, UIView(), helperStackView],
-                                        axis: .horizontal)
-        
-        let stackview = UIStackView(arrangedSubviews: [positionAndTeamColorStackView, allyStackView], axis: .horizontal, spacing: 10)
-        addSubview(stackview)
-        stackview.anchor(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor,
-                         padding: .init(top: 10, left: 20, bottom: 10, right: 20))
+        addSubview(mainStackView)
+        mainStackView.anchor(
+            top: topAnchor,
+            leading: leadingAnchor,
+            bottom: bottomAnchor,
+            trailing: trailingAnchor,
+            padding: .init(top: 10, left: 20, bottom: 10, right: 20)
+        )
     }
 }

@@ -183,7 +183,7 @@ extension StandingsViewController: UICollectionViewDataSource, UICollectionViewD
     }
 }
 
-// MARK: - Extension UICollectionViewDelegateFlowLayout
+// MARK: - Extension CollectionViewDelegateFlowLayout
 
 extension StandingsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

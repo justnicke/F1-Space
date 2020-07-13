@@ -14,7 +14,9 @@ final class StandingConstructorCell: UICollectionViewCell {
     
     static let reusId = String(describing: StandingConstructorCell.self)
     
-    let constructorViewController = ConstructorViewController()
+    // MARK: Private Properties
+    
+    private let constructorViewController = ConstructorViewController()
     
     // MARK: - Constructor
     
@@ -29,8 +31,9 @@ final class StandingConstructorCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Public Methods
+    
     func configure(constructor: Standings?) {
         constructorViewController.constructor = constructor
-//        constructorViewController.collectionView.reloadData()
     }
 }

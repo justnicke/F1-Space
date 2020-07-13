@@ -32,28 +32,27 @@ final class DriversCell: UICollectionViewCell {
         return view
     }()
     private let firstNameLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.text = "Lando"
         label.font = UIFont(name: "Formula1-Display-Regular", size: 18)
         label.textColor = .black
         return label
     }()
     private let lastNameLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.text = "NORRIS"
         label.font = UIFont(name: "Formula1-Display-Bold", size: 18)
         label.textColor = .black
         return label
     }()
     private let teamNameLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.text = "McLaren"
         label.font = UIFont(name: "AvenirNext-Medium", size: 17)
         label.textColor = #colorLiteral(red: 0.3976586461, green: 0.411819607, blue: 0.4419828057, alpha: 1)
-//        label.heightAnchor.constraint(equalToConstant: 15).isActive = true
         return label
     }()
-    private let helperView: UIView = {
+    private let roundingPtsView: UIView = {
         let view = UIView()
         view.backgroundColor = #colorLiteral(red: 0.9259110093, green: 0.9457291961, blue: 0.9495975375, alpha: 1)
         view.widthAnchor.constraint(equalToConstant: 90).isActive = true
@@ -62,14 +61,14 @@ final class DriversCell: UICollectionViewCell {
         return view
     }()
     private let numberPtsLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.text = "15"
         label.font = UIFont(name: "AvenirNext-Bold", size: 15)
         label.textColor = .black
         return label
     }()
     private let ptsWordLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.text = "PTS"
         label.font = UIFont(name: "AvenirNext-Medium", size: 15)
         label.textColor = .black
@@ -104,61 +103,58 @@ final class DriversCell: UICollectionViewCell {
     // MARK: - Private Methods
     
     private func setupLayout() {
-        let teamViewsHelper = UIStackView(arrangedSubviews: [UIView(), teamColorView, UIView()], axis: .vertical)
-        teamViewsHelper.distribution = .equalCentering
+        // StackViews
+        let teamColor = UIStackView(
+            arrangedSubviews: [UIView(), teamColorView, UIView()],
+            axis: .vertical,
+            distribution: .equalCentering
+        )
+        let positionLabelAndTeamColor = UIStackView(
+            arrangedSubviews: [positionLabel, teamColor],
+            axis: .horizontal,
+            spacing: 20
+        )
+        let fullNameLabels = UIStackView(
+            arrangedSubviews: [firstNameLabel, lastNameLabel],
+            axis: .horizontal,
+            spacing: 3
+        )
+        let fullNameAndTeamNameLabel = UIStackView(
+            arrangedSubviews: [UIView(), fullNameLabels, teamNameLabel, UIView()],
+            axis: .vertical,
+            spacing: 10
+        )
+        let ptsNumAndWord = UIStackView(
+            arrangedSubviews: [numberPtsLabel, ptsWordLabel],
+            axis: .horizontal,
+            spacing: 5
+        )
+        let roundingPtsStackView = UIStackView(
+            arrangedSubviews: [UIView(), roundingPtsView, UIView()],
+            axis: .vertical,
+            distribution: .equalCentering
+        )
+        let mergeFullNameAndTeamNameLabelAndRoundingPtsStackView = UIStackView(
+            arrangedSubviews: [fullNameAndTeamNameLabel, UIView(), roundingPtsStackView],
+            axis: .horizontal
+        )
+        let mainStackView = UIStackView(
+            arrangedSubviews: [positionLabelAndTeamColor, mergeFullNameAndTeamNameLabelAndRoundingPtsStackView],
+            axis: .horizontal,
+            spacing: 10
+        )
         
-        let positionAndTeamColorStackView = UIStackView(arrangedSubviews: [positionLabel, teamViewsHelper],
-                                                        axis: .horizontal,
-                                                        spacing: 20)
-
-        let fullNameStackView = UIStackView(arrangedSubviews: [firstNameLabel, lastNameLabel],
-                                            axis: .horizontal,
-                                            spacing: 3)
-
-        let fullNameAndTeamNameStackView = UIStackView(arrangedSubviews: [UIView(), fullNameStackView, teamNameLabel, UIView()],
-                                                       axis: .vertical,
-                                                       spacing: 10)
+        // addSubView and constaints
+        roundingPtsView.addSubview(ptsNumAndWord)
+        ptsNumAndWord.centerInSuperview()
         
-        let numPtsAndPtsWordStackView = UIStackView(arrangedSubviews: [numberPtsLabel, ptsWordLabel],
-                                                    axis: .horizontal,
-                                                    spacing: 5)
-        
-        helperView.addSubview(numPtsAndPtsWordStackView)
-        numPtsAndPtsWordStackView.centerInSuperview()
-    
-        let helperStackView = UIStackView(arrangedSubviews: [UIView(), helperView, UIView()], axis: .vertical)
-        helperStackView.distribution = .equalCentering
-        
-        
-        let allyStackView = UIStackView(arrangedSubviews: [fullNameAndTeamNameStackView, UIView(), helperStackView],
-                                        axis: .horizontal)
-
-        let stackview = UIStackView(arrangedSubviews: [positionAndTeamColorStackView, allyStackView], axis: .horizontal, spacing: 10)
-        addSubview(stackview)
-        stackview.anchor(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor,
-                         padding: .init(top: 10, left: 20, bottom: 10, right: 20))
+        addSubview(mainStackView)
+        mainStackView.anchor(
+            top: topAnchor,
+            leading: leadingAnchor,
+            bottom: bottomAnchor,
+            trailing: trailingAnchor,
+            padding: .init(top: 10, left: 20, bottom: 10, right: 20)
+        )
     }
 }
-
-// FontName
-
-//Formula1
-//== Formula1-Display-Bold
-//== Formula1-Display-Regular
-//== Formula1-Display-Wide
-//== Formula1-Display-Black
-//Formula1
-//== Formula1-Display-Bold
-//== Formula1-Display-Regular
-//== Formula1-Display-Wide
-//== Formula1-Display-Black
-//Formula1
-//== Formula1-Display-Bold
-//== Formula1-Display-Regular
-//== Formula1-Display-Wide
-//== Formula1-Display-Black
-//Formula1
-//== Formula1-Display-Bold
-//== Formula1-Display-Regular
-//== Formula1-Display-Wide
-//== Formula1-Display-Black
