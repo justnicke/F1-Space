@@ -115,40 +115,25 @@ final class StandingsViewController: UIViewController {
         trailingConstant.isActive = true
 
     }
-//    https://stackoverflow.com/questions/39693434/move-collection-view-on-button-click-swift
     
     @objc func driverButtonAction(_ sender: UIButton) {
-        
-//        let indexPath = IndexPath(item: currentPage - 1, section: 0)
-//        collectionView.scrollToItem(at: indexPath, at: .left, animated: true)
-        
-        guard let indexPath = collectionView.indexPathsForVisibleItems.first.flatMap({
-            IndexPath(item: $0.row + 1, section: $0.section)
-        }), collectionView.cellForItem(at: indexPath) != nil else {
-            return
-        }
-        
-        collectionView.scrollToItem(at: indexPath, at: .right, animated: true)
+        let nextItem = NSIndexPath(row: 0, section: 0)
+        self.collectionView.scrollToItem(at: nextItem as IndexPath, at: .centeredHorizontally, animated: true)
         
         driversButton.titleLabel?.font = UIFont(name: "AvenirNext-Bold", size: 18)
         constructorsButton.titleLabel?.font = UIFont(name: "AvenirNext-Medium", size: 18)
         
         leadingConstant.constant = 0
         trailingConstant.constant = -view.frame.width / 2
-        UIView.animate(withDuration: 0.5) {
+        UIView.animate(withDuration: 0.3) {
             self.view.layoutIfNeeded()
         }
         
     }
     
     @objc func constructorButtonAction(_ sender: UIButton) {
-//        guard let indexPath = collectionView.indexPathsForVisibleItems.first.flatMap({
-//               IndexPath(item: $0.row + 1, section: $0.section)
-//           }), collectionView.cellForItem(at: indexPath) != nil else {
-//               return
-//           }
-
-//           collectionView.scrollToItem(at: indexPath, at: .left, animated: true)
+        let nextItem = NSIndexPath(row: 1, section: 0)
+        self.collectionView.scrollToItem(at: nextItem as IndexPath, at: .centeredHorizontally, animated: true)
         
         
         constructorsButton.titleLabel?.font = UIFont(name: "AvenirNext-Bold", size: 18)
@@ -156,7 +141,7 @@ final class StandingsViewController: UIViewController {
 
         leadingConstant.constant = view.frame.width / 2
         trailingConstant.constant = 0
-        UIView.animate(withDuration: 0.5) {
+        UIView.animate(withDuration: 0.3) {
             self.view.layoutIfNeeded()
         }
     }
@@ -170,29 +155,23 @@ extension StandingsViewController: UICollectionViewDataSource, UICollectionViewD
         let visibleRect: CGRect = CGRect(origin: self.collectionView!.contentOffset, size: self.collectionView!.bounds.size)
         let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
         let visibleIndexPath = self.collectionView?.indexPathForItem(at: visiblePoint)
-//        print(visibleIndexPath)
-        
         if visibleIndexPath?.item == 0 {
-            print("Drivers Cell")
             driversButton.titleLabel?.font = UIFont(name: "AvenirNext-Bold", size: 18)
             constructorsButton.titleLabel?.font = UIFont(name: "AvenirNext-Medium", size: 18)
-            
             leadingConstant.constant = 0
             trailingConstant.constant = -view.frame.width / 2
             UIView.animate(withDuration: 0.3) {
                 self.view.layoutIfNeeded()
             }
-            
         } else {
             constructorsButton.titleLabel?.font = UIFont(name: "AvenirNext-Bold", size: 18)
             driversButton.titleLabel?.font = UIFont(name: "AvenirNext-Medium", size: 18)
-
+            
             leadingConstant.constant = view.frame.width / 2
             trailingConstant.constant = 0
             UIView.animate(withDuration: 0.3) {
                 self.view.layoutIfNeeded()
             }
-            print("Constructors Cell")
         }
     }
     
