@@ -33,7 +33,7 @@ final class StandingConstructorCell: UICollectionViewCell {
     
     // MARK: - Public Methods
     
-    func configure(constructor: Standings?) {
+    func configure(constructor: StandingsTest?) {
         constructorViewController.constructor = constructor
     }
 }

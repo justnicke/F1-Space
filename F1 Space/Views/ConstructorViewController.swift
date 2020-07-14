@@ -12,7 +12,7 @@ final class ConstructorViewController: UIViewController {
     
     // MARK: - Public Properties
     var collectionView: UICollectionView!
-    var constructor: Standings?
+    var constructor: StandingsTest?
     
     // MARK: - Public Methods
     

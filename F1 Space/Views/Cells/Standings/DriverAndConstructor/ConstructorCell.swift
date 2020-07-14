@@ -76,7 +76,7 @@ final class ConstructorCell: UICollectionViewCell {
     
     // MARK: - Public Methods
     
-    func configure(constructor: Constructor?) {
+    func configure(constructor: Constructorz?) {
         positionLabel.text = constructor?.position
         teamColorView.backgroundColor = constructor?.teamColor
         teamNameLabel.text = constructor?.team

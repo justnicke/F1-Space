@@ -92,12 +92,8 @@ final class DriversCell: UICollectionViewCell {
     // MARK: - Public Methods
     
     func configure(driver: Driver?) {
-        positionLabel.text = driver?.position
-        teamColorView.backgroundColor = driver?.teamColor
-        firstNameLabel.text = driver?.firstName
-        lastNameLabel.text = driver?.lastName
-        teamNameLabel.text = driver?.team
-        numberPtsLabel.text = driver?.pts
+        firstNameLabel.text = driver?.givenName
+        lastNameLabel.text = driver?.familyName
     }
     
     // MARK: - Private Methods
