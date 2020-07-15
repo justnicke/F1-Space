@@ -13,7 +13,7 @@ final class StandingsViewController: UIViewController {
     // MARK: - Public Properties
     
     var drivers: [DriverStandings]?
-//    var constructors: [ConstructorStandings]?
+    var constructors: [ConstructorStandings]?
     
     // MARK: - Private Properties
     
@@ -67,21 +67,20 @@ final class StandingsViewController: UIViewController {
         constructorsButton.addTarget(self, action: #selector(constructorButtonAction(_:)), for: .touchUpInside)
         
         API.requestDriverStandings { [weak self] (driversPeople, err) in
-            let convert = driversPeople?.mrData.standingsTable.standingsLists.compactMap { $0.driverStandings }
+            let convert = driversPeople?.driverData.driverStandingsTable.driverStandingsLists.compactMap { $0.driverStandings }
             let test = convert?.reduce([], +)
-//            print(test)
             self?.drivers = test
             self?.collectionView.reloadData()
         }
         
-//        API.requestconstructorStandings { (constTeam, err) in
-////            let convert = driversPeople?.mrData.standingsTable.standingsLists.compactMap { $0.driverStandings }
-//            let convert = constTeam?.mrData.standingsTable.standingsLists.compactMap { $0.constructorStandings }
-//            let test = convert?.reduce([], +)
+        API.requestconstructorStandings { [weak self] (constTeam, err) in
+//            let convert = driversPeople?.mrData.standingsTable.standingsLists.compactMap { $0.driverStandings }
+            let convert = constTeam?.constructorData.constructorStandingsTable.constructorStandingsLists.compactMap { $0.constructorStandings }
+            let test = convert?.reduce([], +)
 //            print(test)
-////            self?.drivers = test
-////            self?.collectionView.reloadData()
-//        }
+            self?.constructors = test
+            self?.collectionView.reloadData()
+        }
         
     }
 
@@ -182,6 +181,7 @@ extension StandingsViewController: UICollectionViewDataSource, UICollectionViewD
             return drivingCell
         } else {
             let constructorCell = collectionView.dequeueReusableCell(withReuseIdentifier: StandingConstructorCell.reusId, for: indexPath) as! StandingConstructorCell
+            constructorCell.configure(constructor: constructors)
             
             return constructorCell
         }

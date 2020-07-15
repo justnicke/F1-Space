@@ -25,11 +25,11 @@ final class API {
         }
     }
     // MARK: - Public Methods
-    static func requestDriverStandings(completion: @escaping (FormulaGroup?, Error?) -> Void) {
+    static func requestDriverStandings(completion: @escaping (DriverGroup?, Error?) -> Void) {
         request(endpoint: .driverStandings, completion: completion)
     }
     
-    static func requestconstructorStandings(completion: @escaping (FormulaGroup?, Error?) -> Void) {
+    static func requestconstructorStandings(completion: @escaping (ConstructorGroup?, Error?) -> Void) {
         request(endpoint: .constructorStandings, completion: completion)
     }
     

@@ -8,9 +8,9 @@
 
 import Foundation
 
-struct StandingsLists: Codable {
+struct DriverStandingsLists: Codable {
     var driverStandings: [DriverStandings]
-
+    
     enum CodingKeys: String, CodingKey {
         case driverStandings = "DriverStandings"
     }
@@ -20,13 +20,13 @@ struct DriverStandings: Codable {
     var position: String?
     var points: String?
     var driver: Driver
-    var constructors: [Constructors]
+    var team: [Team]
     
     enum CodingKeys: String, CodingKey {
         case position = "position"
         case points = "points"
         case driver = "Driver"
-        case constructors = "Constructors"
+        case team = "Constructors"
     }
 }
 
@@ -35,6 +35,6 @@ struct Driver: Codable {
     var familyName: String
 }
 
-struct Constructors: Codable {
+struct Team: Codable {
     let name: String
 }

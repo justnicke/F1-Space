@@ -20,7 +20,7 @@ struct ConstructorsColor {
     static let HaasF1Team   = #colorLiteral(red: 0.4391747117, green: 0.4392418861, blue: 0.4391601086, alpha: 1)
     static let Williams     = #colorLiteral(red: 0, green: 0.5114021897, blue: 0.9768144488, alpha: 1)
     
-    func teamColor(for constructor: String?) -> UIColor {
+    static func teamColor(for constructor: String?) -> UIColor {
         switch constructor {
         case "Mercedes":
             return ConstructorsColor.Mercedes

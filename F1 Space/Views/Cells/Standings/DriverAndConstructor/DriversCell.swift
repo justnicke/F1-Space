@@ -95,9 +95,9 @@ final class DriversCell: UICollectionViewCell {
         positionLabel.text = driver?.position
         firstNameLabel.text = driver?.driver.givenName
         lastNameLabel.text = driver?.driver.familyName.uppercased()
-        teamNameLabel.text = driver?.constructors.first?.name
+        teamNameLabel.text = driver?.team.first?.name
         numberPtsLabel.text = driver?.points
-        teamColorView.backgroundColor = teamColor(for: driver?.constructors.first?.name)
+        teamColorView.backgroundColor = teamColor(for: driver?.team.first?.name)
     }
     
     // MARK: - Private Methods
