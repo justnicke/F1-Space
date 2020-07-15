@@ -29,7 +29,7 @@ final class StandingsViewController: UIViewController {
             Constructorz(position: "4", pts: "12", team: "Mercedes", teamColor: #colorLiteral(red: 0, green: 0.8169876933, blue: 0.7409536242, alpha: 1))]
     )
     
-    var drivers: [Driver]?
+    var drivers: [DriverStanding]?
     
     // MARK: - Private Properties
     
@@ -83,8 +83,9 @@ final class StandingsViewController: UIViewController {
         constructorsButton.addTarget(self, action: #selector(constructorButtonAction(_:)), for: .touchUpInside)
         
         API.requestDriverStandings { [weak self] (driversPeople, err) in
-            let convert = driversPeople?.mrData.standingsTable.standingsLists.compactMap {$0.driverStandings.compactMap{$0.driver}}
+            let convert = driversPeople?.mrData.standingsTable.standingsLists.compactMap { $0.driverStandings }
             let test = convert?.reduce([], +)
+//            print(test)
             self?.drivers = test
             self?.collectionView.reloadData()
         }
@@ -187,7 +188,7 @@ extension StandingsViewController: UICollectionViewDataSource, UICollectionViewD
             return drivingCell
         } else {
             let constructorCell = collectionView.dequeueReusableCell(withReuseIdentifier: StandingConstructorCell.reusId, for: indexPath) as! StandingConstructorCell
-            constructorCell.configure(constructor: standings)
+            
             return constructorCell
         }
     }

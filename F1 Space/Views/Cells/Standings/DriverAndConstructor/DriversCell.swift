@@ -91,12 +91,43 @@ final class DriversCell: UICollectionViewCell {
     
     // MARK: - Public Methods
     
-    func configure(driver: Driver?) {
-        firstNameLabel.text = driver?.givenName
-        lastNameLabel.text = driver?.familyName
+    func configure(driver: DriverStanding?) {
+        positionLabel.text = driver?.position
+        firstNameLabel.text = driver?.driver.givenName
+        lastNameLabel.text = driver?.driver.familyName
+        teamNameLabel.text = driver?.constructors.first?.name
+        numberPtsLabel.text = driver?.points
+        teamColorView.backgroundColor = teamColor(for: driver?.constructors.first?.name)
     }
     
     // MARK: - Private Methods
+    
+    private func teamColor(for constructor: String?) -> UIColor {
+        switch constructor {
+        case "Mercedes":
+            return ConstructorsColor.Mercedes
+        case "Ferrari":
+            return ConstructorsColor.Ferrari
+        case "Red Bull":
+            return ConstructorsColor.RedBull
+        case "McLaren":
+            return ConstructorsColor.McLaren
+        case "Racing Point":
+            return ConstructorsColor.RacingPoint
+        case "Renault":
+            return ConstructorsColor.Renault
+        case "AlphaTauri":
+            return ConstructorsColor.AlphaTauri
+        case "Williams":
+            return ConstructorsColor.Williams
+        case "Alfa Romeo":
+            return ConstructorsColor.AlfaRomeo
+        case "Haas F1 Team":
+            return ConstructorsColor.HaasF1Team
+        default:
+            return .black
+        }
+    }
     
     private func setupLayout() {
         // StackViews
@@ -104,11 +135,6 @@ final class DriversCell: UICollectionViewCell {
             arrangedSubviews: [UIView(), teamColorView, UIView()],
             axis: .vertical,
             distribution: .equalCentering
-        )
-        let positionLabelAndTeamColor = UIStackView(
-            arrangedSubviews: [positionLabel, teamColor],
-            axis: .horizontal,
-            spacing: 20
         )
         let fullNameLabels = UIStackView(
             arrangedSubviews: [firstNameLabel, lastNameLabel],
@@ -139,6 +165,12 @@ final class DriversCell: UICollectionViewCell {
             axis: .horizontal,
             spacing: 10
         )
+        let positionLabelAndTeamColor = UIStackView(
+            arrangedSubviews: [positionLabel, teamColor],
+            axis: .horizontal,
+            spacing: 20
+        )
+        
         
         // addSubView and constaints
         roundingPtsView.addSubview(ptsNumAndWord)

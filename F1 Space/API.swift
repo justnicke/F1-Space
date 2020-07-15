@@ -1,5 +1,5 @@
 //
-//  Api.swift
+//  API.swift
 //  F1 Space
 //
 //  Created by Nikita Sukachev on 13.07.2020.
@@ -11,7 +11,7 @@ import Foundation
 final class API {
     enum EndPoint {
         case driverStandings
-//        case driverStandings(season: String)
+        //        case driverStandings(season: String)
         case constructorStandings(season: String)
         
         var urlComponents: URLComponents? {
@@ -29,13 +29,13 @@ final class API {
     static func requestDriverStandings(completion: @escaping (Welcome?, Error?) -> Void) {
         request(endpoint: .driverStandings, completion: completion)
     }
-//    static func requestDriverStandings(season: String, completion: @escaping (Driver?, Error?) -> Void) {
-//        request(endpoint: .driverStandings(season: season), completion: completion)
-//    }
+    //    static func requestDriverStandings(season: String, completion: @escaping (Driver?, Error?) -> Void) {
+    //        request(endpoint: .driverStandings(season: season), completion: completion)
+    //    }
     
-//    static func requestConstructorStandings(season: String, completion: @escaping (Data?, Error?) -> Void) {
-//        request(endpoint: .constructorStandings(season: season), completion: completion)
-//    }
+    //    static func requestConstructorStandings(season: String, completion: @escaping (Data?, Error?) -> Void) {
+    //        request(endpoint: .constructorStandings(season: season), completion: completion)
+    //    }
     
     // MARK: - Private Methods
     

@@ -12,7 +12,7 @@ final class DriverViewController: UIViewController {
     
     // MARK: - Public Properties
     var collectionView: UICollectionView!
-    var drivers: [Driver]?
+    var drivers: [DriverStanding]?
     
     // MARK: - Public Methods
     
@@ -41,7 +41,7 @@ final class DriverViewController: UIViewController {
 
 extension DriverViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return drivers?.count ?? 1
+        return drivers?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

@@ -20,7 +20,6 @@ struct Welcome: Codable {
 
 // MARK: - MRData
 struct MRData: Codable {
-
     var standingsTable: StandingsTable
 
     enum CodingKeys: String, CodingKey {
@@ -48,10 +47,16 @@ struct StandingsList: Codable {
 
 // MARK: - DriverStanding
 struct DriverStanding: Codable {
+    let position: String?
+    var points: String?
     var driver: Driver
+    var constructors: [Constructors]
     
     enum CodingKeys: String, CodingKey {
+        case position = "position"
+        case points = "points"
         case driver = "Driver"
+        case constructors = "Constructors"
     }
 }
 
@@ -61,6 +66,15 @@ struct Driver: Codable {
 
     enum CodingKeys: String, CodingKey {
         case givenName, familyName
+    }
+}
+
+// MARK: - Constructor
+struct Constructors: Codable {
+    let name: String
+
+    enum CodingKeys: String, CodingKey {
+        case name
     }
 }
 
