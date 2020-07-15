@@ -33,7 +33,7 @@ final class StandingDriverCell: UICollectionViewCell {
     
     // MARK: - Public Methods
     
-    func configure(driver: [DriverStanding]?) {
+    func configure(driver: [DriverStandings]?) {
         driversViewController.drivers = driver
         driversViewController.collectionView.reloadData()
     }

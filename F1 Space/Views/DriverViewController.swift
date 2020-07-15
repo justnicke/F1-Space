@@ -12,7 +12,7 @@ final class DriverViewController: UIViewController {
     
     // MARK: - Public Properties
     var collectionView: UICollectionView!
-    var drivers: [DriverStanding]?
+    var drivers: [DriverStandings]?
     
     // MARK: - Public Methods
     
@@ -57,11 +57,11 @@ extension DriverViewController: UICollectionViewDataSource, UICollectionViewDele
 
 extension DriverViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: view.frame.width, height: 90)
+        return .init(width: view.frame.width, height: 75)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
+        return 5
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

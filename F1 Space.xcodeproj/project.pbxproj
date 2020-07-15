@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		5E05CD8A24BEF23900EB2EF3 /* ConstructorsColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E05CD8924BEF23900EB2EF3 /* ConstructorsColor.swift */; };
+		5E05CD8C24BF28E600EB2EF3 /* CommonStanding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E05CD8B24BF28E600EB2EF3 /* CommonStanding.swift */; };
+		5E05CD8E24BF2B8700EB2EF3 /* Constructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E05CD8D24BF2B8700EB2EF3 /* Constructor.swift */; };
+		5E05CD9024BF2B8F00EB2EF3 /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E05CD8F24BF2B8F00EB2EF3 /* Driver.swift */; };
 		5E14A14424BCA1A90058305B /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E14A14324BCA1A90058305B /* API.swift */; };
 		5E40ECF624B7400700E3AF1F /* StandingConstructorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E40ECF524B7400700E3AF1F /* StandingConstructorCell.swift */; };
 		5E40ECF824B74B8100E3AF1F /* ConstructorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E40ECF724B74B8100E3AF1F /* ConstructorViewController.swift */; };
@@ -43,6 +46,9 @@
 
 /* Begin PBXFileReference section */
 		5E05CD8924BEF23900EB2EF3 /* ConstructorsColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorsColor.swift; sourceTree = "<group>"; };
+		5E05CD8B24BF28E600EB2EF3 /* CommonStanding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonStanding.swift; sourceTree = "<group>"; };
+		5E05CD8D24BF2B8700EB2EF3 /* Constructor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constructor.swift; sourceTree = "<group>"; };
+		5E05CD8F24BF2B8F00EB2EF3 /* Driver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Driver.swift; sourceTree = "<group>"; };
 		5E14A14324BCA1A90058305B /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		5E40ECF524B7400700E3AF1F /* StandingConstructorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingConstructorCell.swift; sourceTree = "<group>"; };
 		5E40ECF724B74B8100E3AF1F /* ConstructorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorViewController.swift; sourceTree = "<group>"; };
@@ -92,6 +98,9 @@
 			isa = PBXGroup;
 			children = (
 				5E419F0724B604CE006421F6 /* StandingsTest.swift */,
+				5E05CD8B24BF28E600EB2EF3 /* CommonStanding.swift */,
+				5E05CD8F24BF2B8F00EB2EF3 /* Driver.swift */,
+				5E05CD8D24BF2B8700EB2EF3 /* Constructor.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -320,6 +329,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E05CD8C24BF28E600EB2EF3 /* CommonStanding.swift in Sources */,
 				5E419EC724B5A855006421F6 /* AppDelegate.swift in Sources */,
 				5E419EF924B5DEC7006421F6 /* DriverViewController.swift in Sources */,
 				5E419EC924B5A855006421F6 /* SceneDelegate.swift in Sources */,
@@ -330,9 +340,11 @@
 				5E40ECFA24B74BA100E3AF1F /* ConstructorCell.swift in Sources */,
 				5E419F0824B604CE006421F6 /* StandingsTest.swift in Sources */,
 				5E40ECF624B7400700E3AF1F /* StandingConstructorCell.swift in Sources */,
+				5E05CD8E24BF2B8700EB2EF3 /* Constructor.swift in Sources */,
 				5E419F0A24B60E1F006421F6 /* Extension + StackView.swift in Sources */,
 				5E419EE924B5A9AA006421F6 /* StandingsViewController.swift in Sources */,
 				5E419EF624B5DBB0006421F6 /* StandingDriverCell.swift in Sources */,
+				5E05CD9024BF2B8F00EB2EF3 /* Driver.swift in Sources */,
 				5E14A14424BCA1A90058305B /* API.swift in Sources */,
 				5E40ECF824B74B8100E3AF1F /* ConstructorViewController.swift in Sources */,
 			);

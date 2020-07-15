@@ -20,7 +20,7 @@ final class DriversCell: UICollectionViewCell {
     private let positionLabel: UILabel = {
         let label = UILabel()
         label.text = "44"
-        label.font = UIFont(name: "Formula1-Display-Bold", size: 23)
+        label.font = UIFont(name: "Formula1-Display-Bold", size: 19)
         label.textColor = .black
         return label
     }()
@@ -34,28 +34,28 @@ final class DriversCell: UICollectionViewCell {
     private let firstNameLabel: UILabel = {
         let label = UILabel()
         label.text = "Lando"
-        label.font = UIFont(name: "Formula1-Display-Regular", size: 18)
+        label.font = UIFont(name: "Formula1-Display-Regular", size: 16)
         label.textColor = .black
         return label
     }()
     private let lastNameLabel: UILabel = {
         let label = UILabel()
         label.text = "NORRIS"
-        label.font = UIFont(name: "Formula1-Display-Bold", size: 18)
+        label.font = UIFont(name: "Formula1-Display-Bold", size: 16)
         label.textColor = .black
         return label
     }()
     private let teamNameLabel: UILabel = {
         let label = UILabel()
         label.text = "McLaren"
-        label.font = UIFont(name: "AvenirNext-Medium", size: 17)
+        label.font = UIFont(name: "AvenirNext-Medium", size: 15)
         label.textColor = #colorLiteral(red: 0.3976586461, green: 0.411819607, blue: 0.4419828057, alpha: 1)
         return label
     }()
     private let roundingPtsView: UIView = {
         let view = UIView()
         view.backgroundColor = #colorLiteral(red: 0.9259110093, green: 0.9457291961, blue: 0.9495975375, alpha: 1)
-        view.widthAnchor.constraint(equalToConstant: 90).isActive = true
+        view.widthAnchor.constraint(equalToConstant: 80).isActive = true
         view.heightAnchor.constraint(equalToConstant: 30).isActive = true
         view.layer.cornerRadius =  15
         return view
@@ -91,10 +91,10 @@ final class DriversCell: UICollectionViewCell {
     
     // MARK: - Public Methods
     
-    func configure(driver: DriverStanding?) {
+    func configure(driver: DriverStandings?) {
         positionLabel.text = driver?.position
         firstNameLabel.text = driver?.driver.givenName
-        lastNameLabel.text = driver?.driver.familyName
+        lastNameLabel.text = driver?.driver.familyName.uppercased()
         teamNameLabel.text = driver?.constructors.first?.name
         numberPtsLabel.text = driver?.points
         teamColorView.backgroundColor = teamColor(for: driver?.constructors.first?.name)
@@ -160,29 +160,34 @@ final class DriversCell: UICollectionViewCell {
             arrangedSubviews: [fullNameAndTeamNameLabel, UIView(), roundingPtsStackView],
             axis: .horizontal
         )
-        let mainStackView = UIStackView(
-            arrangedSubviews: [positionLabelAndTeamColor, mergeFullNameAndTeamNameLabelAndRoundingPtsStackView],
-            axis: .horizontal,
-            spacing: 10
-        )
         let positionLabelAndTeamColor = UIStackView(
             arrangedSubviews: [positionLabel, teamColor],
             axis: .horizontal,
-            spacing: 20
+            spacing: 5, distribution: .equalCentering
         )
         
-        
         // addSubView and constaints
-        roundingPtsView.addSubview(ptsNumAndWord)
-        ptsNumAndWord.centerInSuperview()
-        
-        addSubview(mainStackView)
-        mainStackView.anchor(
+        addSubview(positionLabelAndTeamColor)
+        positionLabelAndTeamColor.anchor(
             top: topAnchor,
             leading: leadingAnchor,
             bottom: bottomAnchor,
+            trailing: nil,
+            padding: .init(top: 5, left: 20, bottom: 5, right: 0),
+            size: . init(width: 45, height: 0)
+        )
+        
+        roundingPtsView.addSubview(ptsNumAndWord)
+        ptsNumAndWord.centerInSuperview()
+        
+        addSubview(mergeFullNameAndTeamNameLabelAndRoundingPtsStackView)
+        mergeFullNameAndTeamNameLabelAndRoundingPtsStackView.anchor(
+            top: topAnchor,
+            leading: positionLabelAndTeamColor.trailingAnchor,
+            bottom: bottomAnchor,
             trailing: trailingAnchor,
-            padding: .init(top: 10, left: 20, bottom: 10, right: 20)
+            padding: .init(top: 5, left: 10, bottom: 5, right: 20)
         )
     }
 }
+

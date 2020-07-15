@@ -12,24 +12,8 @@ final class StandingsViewController: UIViewController {
     
     // MARK: - Public Properties
     
-    var standings = StandingsTest(
-        drivers: [
-            Drivers(firstName: "Valtteri", lastName: "BOTTAS", position: "1", pts: "25", team: "Mercedes", teamColor: #colorLiteral(red: 0, green: 0.8169876933, blue: 0.7409536242, alpha: 1)),
-            Drivers(firstName: "Charles", lastName: "LECLERC", position: "2", pts: "18", team: "Ferrari", teamColor: #colorLiteral(red: 0.8402977586, green: 0.02978832088, blue: 0.01825268567, alpha: 1)),
-            Drivers(firstName: "Lando", lastName: "NORRIS", position: "3", pts: "16", team: "McLaren", teamColor: #colorLiteral(red: 0.978580296, green: 0.5295285583, blue: 0.006929721218, alpha: 1)),
-            Drivers(firstName: "Lewis", lastName: "HAMILTON", position: "4", pts: "12", team: "Mercedes", teamColor: #colorLiteral(red: 0, green: 0.8169876933, blue: 0.7409536242, alpha: 1)),
-            Drivers(firstName: "Carlos", lastName: "SAINZ", position: "5", pts: "10", team: "McLaren", teamColor: #colorLiteral(red: 0.978580296, green: 0.5295285583, blue: 0.006929721218, alpha: 1)),
-            Drivers(firstName: "Sergio", lastName: "PEREZ", position: "6", pts: "8", team: "Racing Point", teamColor: #colorLiteral(red: 0.9427306056, green: 0.5931260586, blue: 0.78516078, alpha: 1)),
-            Drivers(firstName: "Pierre", lastName: "GASLY", position: "7", pts: "6", team: "AlphaTauri", teamColor: #colorLiteral(red: 0.9872925878, green: 0.9923736453, blue: 0.9921157956, alpha: 1)),
-            Drivers(firstName: "Esteban", lastName: "OKON", position: "8", pts: "4", team: "Renault", teamColor: #colorLiteral(red: 0.9814451337, green: 0.9618824124, blue: 0.02284554951, alpha: 1))],
-        constructors: [
-            Constructorz(position: "1", pts: "25", team: "Mercedes", teamColor: #colorLiteral(red: 0, green: 0.8169876933, blue: 0.7409536242, alpha: 1)),
-            Constructorz(position: "2", pts: "18", team: "Ferrari", teamColor: #colorLiteral(red: 0.8402977586, green: 0.02978832088, blue: 0.01825268567, alpha: 1)),
-            Constructorz(position: "3", pts: "16", team: "McLaren", teamColor: #colorLiteral(red: 0.978580296, green: 0.5295285583, blue: 0.006929721218, alpha: 1)),
-            Constructorz(position: "4", pts: "12", team: "Mercedes", teamColor: #colorLiteral(red: 0, green: 0.8169876933, blue: 0.7409536242, alpha: 1))]
-    )
-    
-    var drivers: [DriverStanding]?
+    var drivers: [DriverStandings]?
+//    var constructors: [ConstructorStandings]?
     
     // MARK: - Private Properties
     
@@ -89,6 +73,16 @@ final class StandingsViewController: UIViewController {
             self?.drivers = test
             self?.collectionView.reloadData()
         }
+        
+//        API.requestconstructorStandings { (constTeam, err) in
+////            let convert = driversPeople?.mrData.standingsTable.standingsLists.compactMap { $0.driverStandings }
+//            let convert = constTeam?.mrData.standingsTable.standingsLists.compactMap { $0.constructorStandings }
+//            let test = convert?.reduce([], +)
+//            print(test)
+////            self?.drivers = test
+////            self?.collectionView.reloadData()
+//        }
+        
     }
 
     // MARK: - Private Methods
