@@ -74,14 +74,11 @@ final class StandingsViewController: UIViewController {
         }
         
         API.requestconstructorStandings { [weak self] (constTeam, err) in
-//            let convert = driversPeople?.mrData.standingsTable.standingsLists.compactMap { $0.driverStandings }
             let convert = constTeam?.constructorData.constructorStandingsTable.constructorStandingsLists.compactMap { $0.constructorStandings }
             let test = convert?.reduce([], +)
-//            print(test)
             self?.constructors = test
             self?.collectionView.reloadData()
         }
-        
     }
 
     // MARK: - Private Methods
@@ -115,12 +112,12 @@ final class StandingsViewController: UIViewController {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
-
+        
         buttonStackView.topAnchor.constraint(equalTo: segmentedView.topAnchor).isActive = true
         buttonStackView.leadingAnchor.constraint(equalTo: segmentedView.leadingAnchor).isActive = true
         buttonStackView.trailingAnchor.constraint(equalTo: segmentedView.trailingAnchor).isActive = true
         buttonStackView.heightAnchor.constraint(equalTo: segmentedView.heightAnchor, multiplier: 0.9).isActive = true
-                
+        
         lineSelectedSegmentedView.topAnchor.constraint(equalTo: buttonStackView.bottomAnchor).isActive = true
         lineSelectedSegmentedView.bottomAnchor.constraint(equalTo: segmentedView.bottomAnchor).isActive = true
         leadingConstant.isActive = true
@@ -175,12 +172,14 @@ extension StandingsViewController: UICollectionViewDataSource, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.item == 0 {
-            let drivingCell = collectionView.dequeueReusableCell(withReuseIdentifier: StandingDriverCell.reusId, for: indexPath) as! StandingDriverCell
+            let drivingCell = collectionView.dequeueReusableCell(withReuseIdentifier: StandingDriverCell.reusId,
+                                                                 for: indexPath) as! StandingDriverCell
             drivingCell.configure(driver: drivers)
             
             return drivingCell
         } else {
-            let constructorCell = collectionView.dequeueReusableCell(withReuseIdentifier: StandingConstructorCell.reusId, for: indexPath) as! StandingConstructorCell
+            let constructorCell = collectionView.dequeueReusableCell(withReuseIdentifier: StandingConstructorCell.reusId,
+                                                                     for: indexPath) as! StandingConstructorCell
             constructorCell.configure(constructor: constructors)
             
             return constructorCell

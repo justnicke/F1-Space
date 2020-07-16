@@ -14,17 +14,18 @@ final class FormulaTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        viewControllers = [createNavController(vc: StandingsViewController(), title: "STANDINGS"),
-                           createNavController(vc: UIViewController(), title: "News")]
+        tabBar.tintColor = .red
+        tabBar.backgroundColor = .white
+        viewControllers = [createNavController(vc: StandingsViewController(), title: "Standings", image: #imageLiteral(resourceName: "helmet-2")),
+                           createNavController(vc: UIViewController(), title: "News", image: #imageLiteral(resourceName: "helmet-2"))]
     }
     
     // MARK: Private Methods
     
-    private func createNavController(vc: UIViewController, title: String) -> UIViewController { //, image: UIImage) -> UIViewController {
+    private func createNavController(vc: UIViewController, title: String, image: UIImage) -> UIViewController {
         let navigationController = UINavigationController(rootViewController: vc)
         navigationController.tabBarItem.title = title
-        //        navigationController.tabBarItem.image = image
+        navigationController.tabBarItem.image = image
         
         let titleFontAttrs = [
             NSAttributedString.Key.font: UIFont(name: "Formula1-Display-Bold", size: 25)!,

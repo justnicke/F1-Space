@@ -32,26 +32,3 @@ struct ConstructorStandingsTable: Codable {
     }
 }
 
-struct ConstructorStandingsLists: Codable {
-    var constructorStandings: [ConstructorStandings]
-
-    enum CodingKeys: String, CodingKey {
-        case constructorStandings = "ConstructorStandings"
-    }
-}
-
-struct ConstructorStandings: Codable {
-    var position: String?
-    var points: String?
-    var constructor: Constructor
-    
-    enum CodingKeys: String, CodingKey {
-        case position = "position"
-        case points = "points"
-        case constructor =  "Constructor"
-    }
-}
-
-struct Constructor: Codable {
-    let name: String
-}

@@ -22,7 +22,7 @@ final class StandingDriverCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-            
+        
         addSubview(driversViewController.view)
         driversViewController.view.fillSuperview()
     }

@@ -11,6 +11,7 @@ import UIKit
 final class DriverViewController: UIViewController {
     
     // MARK: - Public Properties
+    
     var collectionView: UICollectionView!
     var drivers: [DriverStandings]?
     

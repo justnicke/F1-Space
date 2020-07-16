@@ -19,7 +19,7 @@ final class ConstructorCell: UICollectionViewCell {
     private let positionLabel: UILabel = {
         let label = UILabel()
         label.text = "44"
-        label.font = UIFont(name: "Formula1-Display-Bold", size: 23)
+        label.font = UIFont(name: "Formula1-Display-Bold", size: 19)
         label.textColor = .black
         return label
     }()
@@ -40,7 +40,7 @@ final class ConstructorCell: UICollectionViewCell {
     private let roundingPtsView: UIView = {
         let view = UIView()
         view.backgroundColor = #colorLiteral(red: 0.9259110093, green: 0.9457291961, blue: 0.9495975375, alpha: 1)
-        view.widthAnchor.constraint(equalToConstant: 90).isActive = true
+        view.widthAnchor.constraint(equalToConstant: 80).isActive = true
         view.heightAnchor.constraint(equalToConstant: 30).isActive = true
         view.layer.cornerRadius =  15
         return view
@@ -80,8 +80,7 @@ final class ConstructorCell: UICollectionViewCell {
         teamNameLabel.text = constructor?.constructor.name
         positionLabel.text = constructor?.position
         numberPtsLabel.text = constructor?.points
-        teamColorView.backgroundColor = ConstructorsColor.teamColor(for: constructor?.constructor.name)
-        
+        teamColorView.backgroundColor = ConstructorsColor.teamColor(constructor: constructor?.constructor.name)
     }
     
     // MARK: - Private Methods
@@ -92,11 +91,6 @@ final class ConstructorCell: UICollectionViewCell {
             arrangedSubviews: [UIView(), teamColorView, UIView()],
             axis: .vertical,
             distribution: .equalCentering
-        )
-        let positionLabelAndTeamColor = UIStackView(
-            arrangedSubviews: [positionLabel, teamColor],
-            axis: .horizontal,
-            spacing: 20
         )
         let teamName = UIStackView(
             arrangedSubviews: [UIView(), teamNameLabel, UIView()],
@@ -118,22 +112,35 @@ final class ConstructorCell: UICollectionViewCell {
             arrangedSubviews: [teamName, UIView(), roundingPtsStackView],
             axis: .horizontal
         )
-        let mainStackView = UIStackView(
-            arrangedSubviews: [positionLabelAndTeamColor, mergeTeamNameAndRoundingPtsStackView],
+        let positionLabelAndTeamColor = UIStackView(
+            arrangedSubviews: [positionLabel, teamColor],
             axis: .horizontal,
-            spacing: 10)
+            spacing: 5,
+            distribution: .equalCentering
+        )
         
         // addSubView and constaints
-        roundingPtsView.addSubview(ptsNumAndWord)
-        ptsNumAndWord.centerInSuperview()
-        
-        addSubview(mainStackView)
-        mainStackView.anchor(
+        addSubview(positionLabelAndTeamColor)
+        positionLabelAndTeamColor.anchor(
             top: topAnchor,
             leading: leadingAnchor,
             bottom: bottomAnchor,
+            trailing: nil,
+            padding: .init(top: 5, left: 20, bottom: 5, right: 0),
+            size: . init(width: 45, height: 0)
+        )
+        
+        
+        roundingPtsView.addSubview(ptsNumAndWord)
+        ptsNumAndWord.centerInSuperview()
+        
+        addSubview(mergeTeamNameAndRoundingPtsStackView)
+        mergeTeamNameAndRoundingPtsStackView.anchor(
+            top: topAnchor,
+            leading: positionLabelAndTeamColor.trailingAnchor,
+            bottom: bottomAnchor,
             trailing: trailingAnchor,
-            padding: .init(top: 10, left: 20, bottom: 10, right: 20)
+            padding: .init(top: 5, left: 10, bottom: 5, right: 20)
         )
     }
 }

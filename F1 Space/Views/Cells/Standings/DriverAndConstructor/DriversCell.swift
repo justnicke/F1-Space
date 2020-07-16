@@ -97,37 +97,10 @@ final class DriversCell: UICollectionViewCell {
         lastNameLabel.text = driver?.driver.familyName.uppercased()
         teamNameLabel.text = driver?.team.first?.name
         numberPtsLabel.text = driver?.points
-        teamColorView.backgroundColor = teamColor(for: driver?.team.first?.name)
+        teamColorView.backgroundColor = ConstructorsColor.teamColor(constructor: driver?.team.first?.name)
     }
     
     // MARK: - Private Methods
-    
-    private func teamColor(for constructor: String?) -> UIColor {
-        switch constructor {
-        case "Mercedes":
-            return ConstructorsColor.Mercedes
-        case "Ferrari":
-            return ConstructorsColor.Ferrari
-        case "Red Bull":
-            return ConstructorsColor.RedBull
-        case "McLaren":
-            return ConstructorsColor.McLaren
-        case "Racing Point":
-            return ConstructorsColor.RacingPoint
-        case "Renault":
-            return ConstructorsColor.Renault
-        case "AlphaTauri":
-            return ConstructorsColor.AlphaTauri
-        case "Williams":
-            return ConstructorsColor.Williams
-        case "Alfa Romeo":
-            return ConstructorsColor.AlfaRomeo
-        case "Haas F1 Team":
-            return ConstructorsColor.HaasF1Team
-        default:
-            return .black
-        }
-    }
     
     private func setupLayout() {
         // StackViews
@@ -163,7 +136,8 @@ final class DriversCell: UICollectionViewCell {
         let positionLabelAndTeamColor = UIStackView(
             arrangedSubviews: [positionLabel, teamColor],
             axis: .horizontal,
-            spacing: 5, distribution: .equalCentering
+            spacing: 5,
+            distribution: .equalCentering
         )
         
         // addSubView and constaints

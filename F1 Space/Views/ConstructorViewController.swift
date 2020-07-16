@@ -11,6 +11,7 @@ import UIKit
 final class ConstructorViewController: UIViewController {
     
     // MARK: - Public Properties
+    
     var collectionView: UICollectionView!
     var constructors: [ConstructorStandings]?
     
@@ -57,11 +58,11 @@ extension ConstructorViewController: UICollectionViewDataSource, UICollectionVie
 
 extension ConstructorViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: view.frame.width, height: 90)
+        return .init(width: view.frame.width, height: 75)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
+        return 5
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

@@ -8,26 +8,26 @@
 
 import Foundation
 
-////MARK: - Constructor Standing
-//struct ConstructorStandings: Codable {
-//    var position: String?
-//    var points: String?
-//    var constructors: Constructor
-//
-//
-//    enum CodingKeys: String, CodingKey {
-//        case position = "position"
-//        case points = "points"
-//        case constructors = "Constructor"
-//    }
-//}
+struct ConstructorStandingsLists: Codable {
+    var constructorStandings: [ConstructorStandings]
+    
+    enum CodingKeys: String, CodingKey {
+        case constructorStandings = "ConstructorStandings"
+    }
+}
 
-//// MARK: - Constructor
-//struct Constructor: Codable {
-//    let name: String
-//
-//    enum CodingKeys: String, CodingKey {
-//        case name
-//    }
-//}
+struct ConstructorStandings: Codable {
+    var position: String?
+    var points: String?
+    var constructor: Constructor
+    
+    enum CodingKeys: String, CodingKey {
+        case position = "position"
+        case points = "points"
+        case constructor =  "Constructor"
+    }
+}
 
+struct Constructor: Codable {
+    let name: String
+}
