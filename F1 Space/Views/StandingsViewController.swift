@@ -12,7 +12,6 @@ final class StandingsViewController: UIViewController {
     
     // MARK: - Public Properties
     
-    var drivers: [DriverStandings]?
     var constructors: [ConstructorStandings]?
     var standingsViewModel: StandingsViewModel?
     
@@ -61,24 +60,14 @@ final class StandingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        standingsViewModel = StandingsViewModel()
-        
         setupCollectionView()
         setupLayoutSegmentedView()
         
+        initAndUpdateVM()
+        
         driversButton.addTarget(self, action: #selector(driverButtonAction(_:)), for: .touchUpInside)
         constructorsButton.addTarget(self, action: #selector(constructorButtonAction(_:)), for: .touchUpInside)
-        
-        standingsViewModel?.fetchData2()
-    
-        
-//        API.requestDriverStandings { [weak self] (driversPeople, err) in
-//            let convert = driversPeople?.driverData.driverStandingsTable.driverStandingsLists.compactMap { $0.driverStandings }
-//            let test = convert?.reduce([], +)
-//            self?.drivers = test
-//            self?.collectionView.reloadData()
-//        }
-        
+                
         API.requestconstructorStandings { [weak self] (constTeam, err) in
             let convert = constTeam?.constructorData.constructorStandingsTable.constructorStandingsLists.compactMap { $0.constructorStandings }
             let test = convert?.reduce([], +)
@@ -131,6 +120,13 @@ final class StandingsViewController: UIViewController {
         trailingConstant.isActive = true
     }
     
+    private func initAndUpdateVM() {
+        standingsViewModel = StandingsViewModel()
+        standingsViewModel?.fetchData(compeletion: { [weak self] in
+            self?.collectionView.reloadData()
+        })
+    }
+    
     private func visibleCell(row: Int, section: Int) {
         let nextItem = NSIndexPath(row: row, section: section)
         self.collectionView.scrollToItem(at: nextItem as IndexPath, at: .centeredHorizontally, animated: true)
@@ -174,7 +170,7 @@ final class StandingsViewController: UIViewController {
 
 extension StandingsViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+        return standingsViewModel?.numberOfItems() ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -182,7 +178,7 @@ extension StandingsViewController: UICollectionViewDataSource, UICollectionViewD
             let drivingCell = collectionView.dequeueReusableCell(withReuseIdentifier: StandingDriverCell.reusId,
                                                                  for: indexPath) as! StandingDriverCell
             
-            let standingDriverCellViewModel = standingsViewModel?.collectionForCell()
+            let standingDriverCellViewModel = standingsViewModel?.cellForItemAt(indexPath: nil)
             drivingCell.confugureViewModel(viewModel: standingDriverCellViewModel)
 
             

@@ -8,29 +8,32 @@
 
 import Foundation
 
-final class StandingsViewModel: NSObject {
-    
-    var drivers: [DriverStandings]?
-    
-    override init() {
-        super.init()
-        fetchData2()
-    }
-     
-    func fetchData2() {
+protocol CollectionDataSourceViewModelType {
+    associatedtype CellItem
+    func numberOfItems() -> Int
+    func cellForItemAt(indexPath: Int?) -> CellItem?
+}
+
+final class StandingsViewModel: CollectionDataSourceViewModelType {
+
+    private var drivers: [DriverStandings]?
+         
+    func fetchData(compeletion: @escaping () ->()) {
         API.requestDriverStandings { [weak self] (driver, err) in
             let convert = driver?.driverData.driverStandingsTable.driverStandingsLists.compactMap { $0.driverStandings }
             let convertedDrivers = convert?.reduce([], +)
             self?.drivers = convertedDrivers
-//            print(self?.drivers)
+            compeletion()
         }
     }
-       
-    func collectionForCell() -> StandingsCellViewModel? {
-        print(drivers)
+    
+    func numberOfItems() -> Int {
+        return 2
+    }
+    
+    func cellForItemAt(indexPath: Int?) -> StandingsCellViewModel? {
         return StandingsCellViewModel(drivers: drivers)
     }
-       
 }
 
 

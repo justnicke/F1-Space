@@ -8,16 +8,16 @@
 
 import Foundation
 
-final class DriverViewModel: NSObject {
+final class DriverViewModel: CollectionDataSourceViewModelType {
     
-    var drivers: [DriverStandings]? 
+    var drivers: [DriverStandings]?
     
     func numberOfItems() -> Int {
         return drivers?.count ?? 0
       }
       
-    func collectionForCell2(indexPath: Int) -> DriverCellViewModel? {
-        let driver = drivers?[indexPath]
+    func cellForItemAt(indexPath: Int?) -> DriverCellViewModel? {
+        let driver = drivers?[indexPath ?? 0]
         return DriverCellViewModel(driver: driver)
     }
 }

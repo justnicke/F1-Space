@@ -51,7 +51,7 @@ extension DriverViewController: UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DriversCell.reusId, for: indexPath) as! DriversCell
         
-        let driverCellViewModel = driverViewModel?.collectionForCell2(indexPath: indexPath.item)
+        let driverCellViewModel = driverViewModel?.cellForItemAt(indexPath: indexPath.item)
         cell.configureViewModel(cellViewModel: driverCellViewModel)
         
 //        let driver = drivers?[indexPath.item]

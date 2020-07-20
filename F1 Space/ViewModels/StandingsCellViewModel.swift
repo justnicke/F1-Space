@@ -8,8 +8,7 @@
 
 import Foundation
 
-
-final class StandingsCellViewModel: NSObject {
+final class StandingsCellViewModel {
     
     var driverViewModel = DriverViewModel()
     
