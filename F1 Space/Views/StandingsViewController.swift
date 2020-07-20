@@ -14,6 +14,7 @@ final class StandingsViewController: UIViewController {
     
     var drivers: [DriverStandings]?
     var constructors: [ConstructorStandings]?
+    var standingsViewModel: StandingsViewModel?
     
     // MARK: - Private Properties
     
@@ -60,18 +61,23 @@ final class StandingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        standingsViewModel = StandingsViewModel()
+        
         setupCollectionView()
         setupLayoutSegmentedView()
         
         driversButton.addTarget(self, action: #selector(driverButtonAction(_:)), for: .touchUpInside)
         constructorsButton.addTarget(self, action: #selector(constructorButtonAction(_:)), for: .touchUpInside)
         
-        API.requestDriverStandings { [weak self] (driversPeople, err) in
-            let convert = driversPeople?.driverData.driverStandingsTable.driverStandingsLists.compactMap { $0.driverStandings }
-            let test = convert?.reduce([], +)
-            self?.drivers = test
-            self?.collectionView.reloadData()
-        }
+        standingsViewModel?.fetchData2()
+    
+        
+//        API.requestDriverStandings { [weak self] (driversPeople, err) in
+//            let convert = driversPeople?.driverData.driverStandingsTable.driverStandingsLists.compactMap { $0.driverStandings }
+//            let test = convert?.reduce([], +)
+//            self?.drivers = test
+//            self?.collectionView.reloadData()
+//        }
         
         API.requestconstructorStandings { [weak self] (constTeam, err) in
             let convert = constTeam?.constructorData.constructorStandingsTable.constructorStandingsLists.compactMap { $0.constructorStandings }
@@ -80,6 +86,7 @@ final class StandingsViewController: UIViewController {
             self?.collectionView.reloadData()
         }
     }
+    
 
     // MARK: - Private Methods
     
@@ -174,7 +181,10 @@ extension StandingsViewController: UICollectionViewDataSource, UICollectionViewD
         if indexPath.item == 0 {
             let drivingCell = collectionView.dequeueReusableCell(withReuseIdentifier: StandingDriverCell.reusId,
                                                                  for: indexPath) as! StandingDriverCell
-            drivingCell.configure(driver: drivers)
+            
+            let standingDriverCellViewModel = standingsViewModel?.collectionForCell()
+            drivingCell.confugureViewModel(viewModel: standingDriverCellViewModel)
+
             
             return drivingCell
         } else {

@@ -33,8 +33,14 @@ final class StandingDriverCell: UICollectionViewCell {
     
     // MARK: - Public Methods
     
-    func configure(driver: [DriverStandings]?) {
-        driversViewController.drivers = driver
+//    func configure(driver: [DriverStandings]?) {
+//        driversViewController.drivers = driver
+//        driversViewController.collectionView.reloadData()
+//    }
+    
+    func confugureViewModel(viewModel: StandingsCellViewModel?) {
+        driversViewController.driverViewModel = viewModel?.driverViewModel
         driversViewController.collectionView.reloadData()
+        
     }
 }

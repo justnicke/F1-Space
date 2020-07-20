@@ -13,13 +13,15 @@ final class DriverViewController: UIViewController {
     // MARK: - Public Properties
     
     var collectionView: UICollectionView!
-    var drivers: [DriverStandings]?
+//    var drivers: [DriverStandings]?
+    
+    var driverViewModel: DriverViewModel?
     
     // MARK: - Public Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+
         setupCollectionView()
     }
     
@@ -42,13 +44,18 @@ final class DriverViewController: UIViewController {
 
 extension DriverViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return drivers?.count ?? 0
+//        return drivers?.count ?? 0
+        return driverViewModel?.numberOfItems() ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DriversCell.reusId, for: indexPath) as! DriversCell
-        let driver = drivers?[indexPath.item]
-        cell.configure(driver: driver)
+        
+        let driverCellViewModel = driverViewModel?.collectionForCell2(indexPath: indexPath.item)
+        cell.configureViewModel(cellViewModel: driverCellViewModel)
+        
+//        let driver = drivers?[indexPath.item]
+//        cell.configure(driver: driver)
         
         return cell
     }

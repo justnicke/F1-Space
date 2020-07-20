@@ -19,7 +19,7 @@ final class ConstructorViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupCollectionView()
     }
     
