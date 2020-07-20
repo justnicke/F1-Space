@@ -13,7 +13,7 @@ final class ConstructorViewController: UIViewController {
     // MARK: - Public Properties
     
     var collectionView: UICollectionView!
-    var constructors: [ConstructorStandings]?
+    var constructorViewModel: ConstructorViewModel?
     
     // MARK: - Public Methods
     
@@ -42,14 +42,15 @@ final class ConstructorViewController: UIViewController {
 
 extension ConstructorViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return constructors?.count ?? 0
+        return constructorViewModel?.numberOfItems() ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ConstructorCell.reusId, for: indexPath) as! ConstructorCell
-        let constructor = constructors?[indexPath.item]
-        cell.configure(constructor: constructor)
         
+        let constructorCellViewModel = constructorViewModel?.cellForItemAt(indexPath: indexPath)
+        cell.configureViewModel(cellViewModel: constructorCellViewModel)
+    
         return cell
     }
 }

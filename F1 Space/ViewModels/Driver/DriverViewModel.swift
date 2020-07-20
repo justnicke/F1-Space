@@ -16,8 +16,8 @@ final class DriverViewModel: CollectionDataSourceViewModelType {
         return drivers?.count ?? 0
       }
       
-    func cellForItemAt(indexPath: Int?) -> DriverCellViewModel? {
-        let driver = drivers?[indexPath ?? 0]
+    func cellForItemAt(indexPath: IndexPath?) -> DriverCellViewModel? {
+        let driver = drivers?[indexPath?.item ?? 0]
         return DriverCellViewModel(driver: driver)
     }
 }

@@ -12,8 +12,9 @@ final class StandingsViewController: UIViewController {
     
     // MARK: - Public Properties
     
-    var constructors: [ConstructorStandings]?
+//    var constructors: [ConstructorStandings]?
     var standingsViewModel: StandingsViewModel?
+  
     
     // MARK: - Private Properties
     
@@ -67,13 +68,6 @@ final class StandingsViewController: UIViewController {
         
         driversButton.addTarget(self, action: #selector(driverButtonAction(_:)), for: .touchUpInside)
         constructorsButton.addTarget(self, action: #selector(constructorButtonAction(_:)), for: .touchUpInside)
-                
-        API.requestconstructorStandings { [weak self] (constTeam, err) in
-            let convert = constTeam?.constructorData.constructorStandingsTable.constructorStandingsLists.compactMap { $0.constructorStandings }
-            let test = convert?.reduce([], +)
-            self?.constructors = test
-            self?.collectionView.reloadData()
-        }
     }
     
 
@@ -175,19 +169,16 @@ extension StandingsViewController: UICollectionViewDataSource, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.item == 0 {
-            let drivingCell = collectionView.dequeueReusableCell(withReuseIdentifier: StandingDriverCell.reusId,
-                                                                 for: indexPath) as! StandingDriverCell
-            
-            let standingDriverCellViewModel = standingsViewModel?.cellForItemAt(indexPath: nil)
+            let drivingCell = collectionView.dequeueReusableCell(withReuseIdentifier: StandingDriverCell.reusId, for: indexPath) as! StandingDriverCell
+            let standingDriverCellViewModel = standingsViewModel?.cellForItemAt(indexPath: indexPath)
             drivingCell.confugureViewModel(viewModel: standingDriverCellViewModel)
 
-            
             return drivingCell
         } else {
-            let constructorCell = collectionView.dequeueReusableCell(withReuseIdentifier: StandingConstructorCell.reusId,
-                                                                     for: indexPath) as! StandingConstructorCell
-            constructorCell.configure(constructor: constructors)
-            
+            let constructorCell = collectionView.dequeueReusableCell(withReuseIdentifier: StandingConstructorCell.reusId, for: indexPath) as! StandingConstructorCell
+            let standingconstructorCellViewModel = standingsViewModel?.cellForItemAt(indexPath: indexPath)
+            constructorCell.confugureViewModel(viewModel: standingconstructorCellViewModel)
+                        
             return constructorCell
         }
     }

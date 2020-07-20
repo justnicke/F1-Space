@@ -11,18 +11,26 @@ import Foundation
 protocol CollectionDataSourceViewModelType {
     associatedtype CellItem
     func numberOfItems() -> Int
-    func cellForItemAt(indexPath: Int?) -> CellItem?
+    func cellForItemAt(indexPath: IndexPath?) -> CellItem?
 }
 
 final class StandingsViewModel: CollectionDataSourceViewModelType {
-
+    
     private var drivers: [DriverStandings]?
-         
+    private var constructors: [ConstructorStandings]?
+    
     func fetchData(compeletion: @escaping () ->()) {
         API.requestDriverStandings { [weak self] (driver, err) in
             let convert = driver?.driverData.driverStandingsTable.driverStandingsLists.compactMap { $0.driverStandings }
             let convertedDrivers = convert?.reduce([], +)
             self?.drivers = convertedDrivers
+            compeletion()
+        }
+        
+        API.requestconstructorStandings { [weak self] (constTeam, err) in
+            let convert = constTeam?.constructorData.constructorStandingsTable.constructorStandingsLists.compactMap { $0.constructorStandings }
+            let convertedconstructors = convert?.reduce([], +)
+            self?.constructors = convertedconstructors
             compeletion()
         }
     }
@@ -31,10 +39,15 @@ final class StandingsViewModel: CollectionDataSourceViewModelType {
         return 2
     }
     
-    func cellForItemAt(indexPath: Int?) -> StandingsCellViewModel? {
-        return StandingsCellViewModel(drivers: drivers)
+    func cellForItemAt(indexPath: IndexPath?) -> StandingsCellViewModel? {
+        if indexPath?.item == 0 {
+            return StandingsCellViewModel(drivers: drivers)
+        } else {
+            return StandingsCellViewModel(contructors: constructors)
+        }
     }
 }
+
 
 
 

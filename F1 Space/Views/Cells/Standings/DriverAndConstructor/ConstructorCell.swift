@@ -76,11 +76,11 @@ final class ConstructorCell: UICollectionViewCell {
     
     // MARK: - Public Methods
     
-    func configure(constructor: ConstructorStandings?) {
-        teamNameLabel.text = constructor?.constructor.name
-        positionLabel.text = constructor?.position
-        numberPtsLabel.text = constructor?.points
-        teamColorView.backgroundColor = ConstructorsColor.teamColor(constructor: constructor?.constructor.name)
+    func configureViewModel(cellViewModel: ConstructorCellViewModel?) {
+        positionLabel.text = cellViewModel?.position
+        teamNameLabel.text = cellViewModel?.teamName
+        numberPtsLabel.text = cellViewModel?.numberPts
+        teamColorView.backgroundColor = ConstructorsColor.teamColor(constructor: cellViewModel?.teamName)
     }
     
     // MARK: - Private Methods

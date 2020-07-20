@@ -41,6 +41,5 @@ final class StandingDriverCell: UICollectionViewCell {
     func confugureViewModel(viewModel: StandingsCellViewModel?) {
         driversViewController.driverViewModel = viewModel?.driverViewModel
         driversViewController.collectionView.reloadData()
-        
     }
 }

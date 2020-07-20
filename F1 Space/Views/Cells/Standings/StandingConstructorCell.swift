@@ -33,8 +33,13 @@ final class StandingConstructorCell: UICollectionViewCell {
     
     // MARK: - Public Methods
     
-    func configure(constructor: [ConstructorStandings]?) {
-        constructorViewController.constructors = constructor
+    func confugureViewModel(viewModel: StandingsCellViewModel?) {
+        constructorViewController.constructorViewModel = viewModel?.constructorViewModel
         constructorViewController.collectionView.reloadData()
     }
+    
+//    func configure(constructor: [ConstructorStandings]?) {
+//        constructorViewController.constructors = constructor
+//        constructorViewController.collectionView.reloadData()
+//    }
 }

@@ -32,6 +32,8 @@
 		5E419F0224B5FB08006421F6 /* Formula1-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E419F0124B5FB08006421F6 /* Formula1-Bold.ttf */; };
 		5E419F0424B5FB0D006421F6 /* Formula1-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E419F0324B5FB0D006421F6 /* Formula1-Black.ttf */; };
 		5E419F0A24B60E1F006421F6 /* Extension + StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E419F0924B60E1F006421F6 /* Extension + StackView.swift */; };
+		5E82B52024C5D6A100377859 /* ConstructorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E82B51F24C5D6A100377859 /* ConstructorViewModel.swift */; };
+		5E82B52224C5D6AC00377859 /* ConstructorCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E82B52124C5D6AC00377859 /* ConstructorCellViewModel.swift */; };
 		5E9EB95224C2D99A00023668 /* StandingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9EB95124C2D99A00023668 /* StandingsViewModel.swift */; };
 		5E9EB95424C2DA2D00023668 /* StandingsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9EB95324C2DA2D00023668 /* StandingsCellViewModel.swift */; };
 		5EC60D6824C18DBD009C66CC /* DriverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC60D6724C18DBD009C66CC /* DriverViewModel.swift */; };
@@ -78,6 +80,8 @@
 		5E419F0124B5FB08006421F6 /* Formula1-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Formula1-Bold.ttf"; path = "../../../../Formula1-Bold.ttf"; sourceTree = "<group>"; };
 		5E419F0324B5FB0D006421F6 /* Formula1-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Formula1-Black.ttf"; path = "../../../../Formula1-Black.ttf"; sourceTree = "<group>"; };
 		5E419F0924B60E1F006421F6 /* Extension + StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + StackView.swift"; sourceTree = "<group>"; };
+		5E82B51F24C5D6A100377859 /* ConstructorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorViewModel.swift; sourceTree = "<group>"; };
+		5E82B52124C5D6AC00377859 /* ConstructorCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorCellViewModel.swift; sourceTree = "<group>"; };
 		5E9EB95124C2D99A00023668 /* StandingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsViewModel.swift; sourceTree = "<group>"; };
 		5E9EB95324C2DA2D00023668 /* StandingsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsCellViewModel.swift; sourceTree = "<group>"; };
 		5EC60D6724C18DBD009C66CC /* DriverViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverViewModel.swift; sourceTree = "<group>"; };
@@ -181,7 +185,6 @@
 				5E14A14224BCA18C0058305B /* Models */,
 				5EC60D6924C18DF7009C66CC /* ViewModels */,
 				5E419EF724B5DC7B006421F6 /* Views */,
-				5E419EEC24B5AB86006421F6 /* FormulaTabBarController.swift */,
 				5E419EFC24B5FAC9006421F6 /* Fonts */,
 				5E419EF224B5B44A006421F6 /* Helpers */,
 				5E419EEA24B5AA48006421F6 /* Supports Files */,
@@ -232,9 +235,8 @@
 			isa = PBXGroup;
 			children = (
 				5E40ECFB24B7551500E3AF1F /* Cells */,
-				5E419EE824B5A9AA006421F6 /* StandingsViewController.swift */,
-				5E419EF824B5DEC7006421F6 /* DriverViewController.swift */,
-				5E40ECF724B74B8100E3AF1F /* ConstructorViewController.swift */,
+				5E82B52424C5E49100377859 /* ViewControllers */,
+				5E82B52524C5E4A100377859 /* TabBar */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -258,6 +260,33 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		5E82B52324C5D6B100377859 /* Constructor */ = {
+			isa = PBXGroup;
+			children = (
+				5E82B51F24C5D6A100377859 /* ConstructorViewModel.swift */,
+				5E82B52124C5D6AC00377859 /* ConstructorCellViewModel.swift */,
+			);
+			path = Constructor;
+			sourceTree = "<group>";
+		};
+		5E82B52424C5E49100377859 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				5E419EE824B5A9AA006421F6 /* StandingsViewController.swift */,
+				5E419EF824B5DEC7006421F6 /* DriverViewController.swift */,
+				5E40ECF724B74B8100E3AF1F /* ConstructorViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		5E82B52524C5E4A100377859 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				5E419EEC24B5AB86006421F6 /* FormulaTabBarController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
 		5E9EB95024C2D96600023668 /* Driver */ = {
 			isa = PBXGroup;
 			children = (
@@ -270,9 +299,10 @@
 		5EC60D6924C18DF7009C66CC /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				5E9EB95024C2D96600023668 /* Driver */,
 				5E9EB95124C2D99A00023668 /* StandingsViewModel.swift */,
 				5E9EB95324C2DA2D00023668 /* StandingsCellViewModel.swift */,
+				5E9EB95024C2D96600023668 /* Driver */,
+				5E82B52324C5D6B100377859 /* Constructor */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -391,6 +421,8 @@
 				5E05CD9424BF354A00EB2EF3 /* CommonConstructor.swift in Sources */,
 				5E05CD8A24BEF23900EB2EF3 /* ConstructorsColor.swift in Sources */,
 				5E419EF124B5B433006421F6 /* UIView + Layout.swift in Sources */,
+				5E82B52024C5D6A100377859 /* ConstructorViewModel.swift in Sources */,
+				5E82B52224C5D6AC00377859 /* ConstructorCellViewModel.swift in Sources */,
 				5E419EED24B5AB86006421F6 /* FormulaTabBarController.swift in Sources */,
 				5E40ECFA24B74BA100E3AF1F /* ConstructorCell.swift in Sources */,
 				5E40ECF624B7400700E3AF1F /* StandingConstructorCell.swift in Sources */,

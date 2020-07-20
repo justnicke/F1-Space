@@ -11,8 +11,13 @@ import Foundation
 final class StandingsCellViewModel {
     
     var driverViewModel = DriverViewModel()
+    var constructorViewModel = ConstructorViewModel()
     
     init(drivers: [DriverStandings]?) {
         driverViewModel.drivers = drivers
+    }
+    
+    init(contructors: [ConstructorStandings]?) {
+        constructorViewModel.constructors = contructors
     }
 }
