@@ -12,9 +12,7 @@ final class StandingsViewController: UIViewController {
     
     // MARK: - Public Properties
     
-//    var constructors: [ConstructorStandings]?
     var standingsViewModel: StandingsViewModel?
-  
     
     // MARK: - Private Properties
     

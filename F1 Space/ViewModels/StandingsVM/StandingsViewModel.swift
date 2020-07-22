@@ -8,11 +8,7 @@
 
 import Foundation
 
-protocol CollectionDataSourceViewModelType {
-    associatedtype CellItem
-    func numberOfItems() -> Int
-    func cellForItemAt(indexPath: IndexPath?) -> CellItem?
-}
+
 
 final class StandingsViewModel: CollectionDataSourceViewModelType {
     

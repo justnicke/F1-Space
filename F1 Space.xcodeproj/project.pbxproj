@@ -36,6 +36,7 @@
 		5E82B52224C5D6AC00377859 /* ConstructorCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E82B52124C5D6AC00377859 /* ConstructorCellViewModel.swift */; };
 		5E9EB95224C2D99A00023668 /* StandingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9EB95124C2D99A00023668 /* StandingsViewModel.swift */; };
 		5E9EB95424C2DA2D00023668 /* StandingsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9EB95324C2DA2D00023668 /* StandingsCellViewModel.swift */; };
+		5EAC214724C8244F00A65A7A /* CollectionDataSourceViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC214624C8244F00A65A7A /* CollectionDataSourceViewModelType.swift */; };
 		5EC60D6824C18DBD009C66CC /* DriverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC60D6724C18DBD009C66CC /* DriverViewModel.swift */; };
 		5EC60D6C24C1FD4E009C66CC /* DriverCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC60D6B24C1FD4E009C66CC /* DriverCellViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -84,6 +85,7 @@
 		5E82B52124C5D6AC00377859 /* ConstructorCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorCellViewModel.swift; sourceTree = "<group>"; };
 		5E9EB95124C2D99A00023668 /* StandingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsViewModel.swift; sourceTree = "<group>"; };
 		5E9EB95324C2DA2D00023668 /* StandingsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsCellViewModel.swift; sourceTree = "<group>"; };
+		5EAC214624C8244F00A65A7A /* CollectionDataSourceViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDataSourceViewModelType.swift; sourceTree = "<group>"; };
 		5EC60D6724C18DBD009C66CC /* DriverViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverViewModel.swift; sourceTree = "<group>"; };
 		5EC60D6B24C1FD4E009C66CC /* DriverCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverCellViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -183,6 +185,7 @@
 			children = (
 				5E47BBFF24C07BB6002D8261 /* Services */,
 				5E14A14224BCA18C0058305B /* Models */,
+				5EAC214824C8245D00A65A7A /* Protocols */,
 				5EC60D6924C18DF7009C66CC /* ViewModels */,
 				5E419EF724B5DC7B006421F6 /* Views */,
 				5E419EFC24B5FAC9006421F6 /* Fonts */,
@@ -236,7 +239,6 @@
 			children = (
 				5E40ECFB24B7551500E3AF1F /* Cells */,
 				5E82B52424C5E49100377859 /* ViewControllers */,
-				5E82B52524C5E4A100377859 /* TabBar */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -272,9 +274,8 @@
 		5E82B52424C5E49100377859 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				5E419EE824B5A9AA006421F6 /* StandingsViewController.swift */,
-				5E419EF824B5DEC7006421F6 /* DriverViewController.swift */,
-				5E40ECF724B74B8100E3AF1F /* ConstructorViewController.swift */,
+				5EAC214A24C824F100A65A7A /* StandingsVC */,
+				5E82B52524C5E4A100377859 /* TabBar */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -296,13 +297,47 @@
 			path = Driver;
 			sourceTree = "<group>";
 		};
-		5EC60D6924C18DF7009C66CC /* ViewModels */ = {
+		5EAC214824C8245D00A65A7A /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				5EAC214624C8244F00A65A7A /* CollectionDataSourceViewModelType.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		5EAC214924C824A900A65A7A /* StandingsVM */ = {
 			isa = PBXGroup;
 			children = (
 				5E9EB95124C2D99A00023668 /* StandingsViewModel.swift */,
 				5E9EB95324C2DA2D00023668 /* StandingsCellViewModel.swift */,
 				5E9EB95024C2D96600023668 /* Driver */,
 				5E82B52324C5D6B100377859 /* Constructor */,
+			);
+			path = StandingsVM;
+			sourceTree = "<group>";
+		};
+		5EAC214A24C824F100A65A7A /* StandingsVC */ = {
+			isa = PBXGroup;
+			children = (
+				5E419EE824B5A9AA006421F6 /* StandingsViewController.swift */,
+				5EAC214B24C8250300A65A7A /* DriverAndConstructor */,
+			);
+			path = StandingsVC;
+			sourceTree = "<group>";
+		};
+		5EAC214B24C8250300A65A7A /* DriverAndConstructor */ = {
+			isa = PBXGroup;
+			children = (
+				5E419EF824B5DEC7006421F6 /* DriverViewController.swift */,
+				5E40ECF724B74B8100E3AF1F /* ConstructorViewController.swift */,
+			);
+			path = DriverAndConstructor;
+			sourceTree = "<group>";
+		};
+		5EC60D6924C18DF7009C66CC /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				5EAC214924C824A900A65A7A /* StandingsVM */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -414,6 +449,7 @@
 				5E05CD8C24BF28E600EB2EF3 /* CommonDriver.swift in Sources */,
 				5E419EC724B5A855006421F6 /* AppDelegate.swift in Sources */,
 				5E419EF924B5DEC7006421F6 /* DriverViewController.swift in Sources */,
+				5EAC214724C8244F00A65A7A /* CollectionDataSourceViewModelType.swift in Sources */,
 				5EC60D6824C18DBD009C66CC /* DriverViewModel.swift in Sources */,
 				5E419EC924B5A855006421F6 /* SceneDelegate.swift in Sources */,
 				5E419EFB24B5F3C3006421F6 /* DriversCell.swift in Sources */,
