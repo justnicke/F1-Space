@@ -8,8 +8,6 @@
 
 import Foundation
 
-
-
 final class StandingsViewModel: CollectionDataSourceViewModelType {
     
     private var drivers: [DriverStandings]?

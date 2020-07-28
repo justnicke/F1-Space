@@ -16,13 +16,15 @@ final class FormulaTabBarController: UITabBarController {
         super.viewDidLoad()
         tabBar.tintColor = .red
         tabBar.backgroundColor = .white
-        viewControllers = [createNavController(vc: StandingsViewController(), title: "Standings", image: #imageLiteral(resourceName: "helmet-2")),
-                           createNavController(vc: UIViewController(), title: "News", image: #imageLiteral(resourceName: "helmet-2"))]
+        viewControllers = [
+            createNavController(vc: NewsViewController(), title: "News", image: nil),
+            createNavController(vc: StandingsViewController(), title: "Standings", image: #imageLiteral(resourceName: "helmet-2")),
+        ]
     }
     
     // MARK: Private Methods
     
-    private func createNavController(vc: UIViewController, title: String, image: UIImage) -> UIViewController {
+    private func createNavController(vc: UIViewController, title: String, image: UIImage?) -> UIViewController {
         let navigationController = UINavigationController(rootViewController: vc)
         navigationController.tabBarItem.title = title
         navigationController.tabBarItem.image = image
