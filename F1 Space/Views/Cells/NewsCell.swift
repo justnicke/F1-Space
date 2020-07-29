@@ -135,7 +135,6 @@ final class NewsCell: UITableViewCell {
         descriptionLabel.leadingAnchor.constraint(equalTo: logoImageView.trailingAnchor, constant: 10).isActive = true
         descriptionLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -15).isActive = true
         
-//        dateLabel.topAnchor.constraint(lessThanOrEqualTo: descriptionLabel.bottomAnchor, constant: 10).isActive = true
         dateLabel.leadingAnchor.constraint(equalTo: logoImageView.trailingAnchor, constant: 10).isActive = true
         dateLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -15).isActive = true
         dateLabel.bottomAnchor.constraint(greaterThanOrEqualTo: containerView.bottomAnchor, constant: -10).isActive = true

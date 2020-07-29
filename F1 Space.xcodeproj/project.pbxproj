@@ -42,6 +42,7 @@
 		5EA886F424D165DD0079EDDC /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA886F324D165DD0079EDDC /* Article.swift */; };
 		5EA886F724D191730079EDDC /* Extension + String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA886F624D191730079EDDC /* Extension + String.swift */; };
 		5EA886F924D1A9A60079EDDC /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA886F824D1A9A60079EDDC /* Formatter.swift */; };
+		5EA886FB24D1FE270079EDDC /* DetailNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA886FA24D1FE270079EDDC /* DetailNewsViewController.swift */; };
 		5EAC214724C8244F00A65A7A /* CollectionDataSourceViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC214624C8244F00A65A7A /* CollectionDataSourceViewModelType.swift */; };
 		5EC60D6824C18DBD009C66CC /* DriverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC60D6724C18DBD009C66CC /* DriverViewModel.swift */; };
 		5EC60D6C24C1FD4E009C66CC /* DriverCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC60D6B24C1FD4E009C66CC /* DriverCellViewModel.swift */; };
@@ -97,6 +98,7 @@
 		5EA886F324D165DD0079EDDC /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		5EA886F624D191730079EDDC /* Extension + String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + String.swift"; sourceTree = "<group>"; };
 		5EA886F824D1A9A60079EDDC /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
+		5EA886FA24D1FE270079EDDC /* DetailNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNewsViewController.swift; sourceTree = "<group>"; };
 		5EAC214624C8244F00A65A7A /* CollectionDataSourceViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDataSourceViewModelType.swift; sourceTree = "<group>"; };
 		5EC60D6724C18DBD009C66CC /* DriverViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverViewModel.swift; sourceTree = "<group>"; };
 		5EC60D6B24C1FD4E009C66CC /* DriverCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverCellViewModel.swift; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 			isa = PBXGroup;
 			children = (
 				5E7DB97C24D054420029C0EE /* NewsViewController.swift */,
+				5EA886FA24D1FE270079EDDC /* DetailNewsViewController.swift */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -488,6 +491,7 @@
 				5EAC214724C8244F00A65A7A /* CollectionDataSourceViewModelType.swift in Sources */,
 				5EC60D6824C18DBD009C66CC /* DriverViewModel.swift in Sources */,
 				5E419EC924B5A855006421F6 /* SceneDelegate.swift in Sources */,
+				5EA886FB24D1FE270079EDDC /* DetailNewsViewController.swift in Sources */,
 				5E419EFB24B5F3C3006421F6 /* DriversCell.swift in Sources */,
 				5E9EB95424C2DA2D00023668 /* StandingsCellViewModel.swift in Sources */,
 				5EA886F924D1A9A60079EDDC /* Formatter.swift in Sources */,

@@ -15,10 +15,12 @@ final class NewsViewController: UIViewController {
     // MARK: - Private Properties
     
     private var tableView: UITableView!
-    
     private var items: [Article] = []
     private var itemsReset: Bool = false
     private var dateRequest = Date()
+    private var activityIndicator: UIActivityIndicatorView?
+    private let refreshControl = UIRefreshControl()
+
     
     // MARK: - Public Methods
     
@@ -26,7 +28,10 @@ final class NewsViewController: UIViewController {
         super.viewDidLoad()
                 
         setupTableView()
+        setupActivityIndicator()
         requestNews()
+        
+        refreshControl.addTarget(self, action: #selector(updateData), for: .valueChanged)
     }
     
     // MARK: - Private Methods
@@ -48,10 +53,32 @@ final class NewsViewController: UIViewController {
         tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         
         tableView.register(NewsCell.self, forCellReuseIdentifier: NewsCell.reusId)
+        
+        // refresh
+        tableView.refreshControl = refreshControl
+    }
+    
+    private func setupActivityIndicator() {
+        activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator?.center = view.center
+        activityIndicator?.startAnimating()
+        if let activityIndicatorView = activityIndicator {
+            view.addSubview(activityIndicatorView)
+        }
+    }
+    
+    private func stopAnimateActivity() {
+        DispatchQueue.main.async { [weak self] in
+            self?.tableView.refreshControl?.endRefreshing()
+            self?.activityIndicator?.stopAnimating()
+        }
     }
     
     private func requestNews() {
-        guard items.isEmpty || DateInterval(start: dateRequest, end: Date()).duration > TimeInterval(floatLiteral: 60) else { return }
+        guard items.isEmpty || DateInterval(start: dateRequest, end: Date()).duration > TimeInterval(floatLiteral: 10) else {
+            stopAnimateActivity()
+            return
+        }
         
         itemsReset  = true
         
@@ -71,13 +98,19 @@ final class NewsViewController: UIViewController {
                                         newsVC.itemsReset = false
                                         newsVC.items = (newsVC.items + articles).sorted { ($0.published ?? Date()) > ($1.published ?? Date()) }
                                         newsVC.tableView.reloadData()
+                                        newsVC.stopAnimateActivity()
                                     }
                     },
                                 failure: { [weak self] error in
+                                    self?.stopAnimateActivity()
                                     print(error.localizedDescription)
                 })
             }
         }
+    }
+    
+    @objc private func updateData() {
+        requestNews()
     }
 }
 
@@ -91,30 +124,16 @@ extension NewsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NewsCell.reusId, for: indexPath) as! NewsCell
         cell.configure(article: items[indexPath.row])
-        let item = items[indexPath.row].url
         
-        if item.contains("sefwaefqefqtnwtwtqw") {
-            //            imageView?.image = #imageLiteral(resourceName: "motorsport_logo")
-            cell.imageView?.backgroundColor = .yellow
-//            print(article.url)
-        } else {
-            //            imageView?.image = #imageLiteral(resourceName: "f1news_logo")
-            cell.imageView?.backgroundColor = .red
-        }
-
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        print(items[indexPath.row].url)
+        let vc = DetailNewsViewController(urlString: items[indexPath.row].url)
+        let navController = UINavigationController(rootViewController: vc)
         
-//        let item = items[indexPath.row].url
-//
-//        if item.contains("motorsport.com") {
-//            print("logo motorsport")
-//        } else {
-//            print("logo f1news")
-//        }
+        navController.modalTransitionStyle = .coverVertical
+        present(navController, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
