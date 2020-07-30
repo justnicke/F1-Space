@@ -100,7 +100,9 @@ extension RSS: XMLParserDelegate {
         case "title":
             currentArticle.title += string
         case "description":
-            currentArticle.description += string.removeAllTags()
+            currentArticle.description += string
+                .removeAllTags()
+                .replacingOccurrences(of: "\n", with: "")
         case "pubDate":
             currentArticle.published = RSS.dateFormatter.date(from: string)
         case "link":

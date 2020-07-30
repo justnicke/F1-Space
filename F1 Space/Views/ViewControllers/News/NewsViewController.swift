@@ -28,12 +28,12 @@ final class NewsViewController: UIViewController {
         super.viewDidLoad()
                 
         setupTableView()
-        setupActivityIndicator()
         requestNews()
+        setupActivityIndicator()
         
         refreshControl.addTarget(self, action: #selector(updateData), for: .valueChanged)
     }
-    
+        
     // MARK: - Private Methods
     
     private func setupTableView() {
@@ -114,7 +114,7 @@ final class NewsViewController: UIViewController {
     }
 }
 
-// MARK: - TableViewDataSource & TableViewDelegate
+// MARK: - Extension TableViewDataSource & TableViewDelegate
 
 extension NewsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -129,11 +129,28 @@ extension NewsViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = DetailNewsViewController(urlString: items[indexPath.row].url)
-        let navController = UINavigationController(rootViewController: vc)
-        
-        navController.modalTransitionStyle = .coverVertical
-        present(navController, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            let item = self.items[indexPath.row]
+            let vc = DetailNewsViewController(urlString: item.url)
+
+            if item.url.contains("motorsport.com") {
+                vc.resourceNameLabel.text = "motorsport"
+            } else {
+                vc.resourceNameLabel.text = "F1NEWS"
+            }
+            
+            vc.modalTransitionStyle = .coverVertical
+            self.present(vc, animated: true, completion: nil)
+        }
+    }
+    
+    func test(indexPath: IndexPath) -> String {
+        let item = items[indexPath.row]
+        if item.url.contains("motorsport.com") {
+            return "Motorsport"
+        } else {
+            return "F1News"
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
