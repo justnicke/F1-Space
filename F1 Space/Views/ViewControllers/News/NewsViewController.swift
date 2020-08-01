@@ -10,16 +10,15 @@ import UIKit
 
 final class NewsViewController: UIViewController {
     
-    // MARK: - Public Properties
-    
     // MARK: - Private Properties
     
     private var tableView: UITableView!
     private var items: [Article] = []
     private var itemsReset: Bool = false
     private var dateRequest = Date()
-    private var activityIndicator: UIActivityIndicatorView?
+    private let activityIndicator = CustromActivityIndicator()
     private let refreshControl = UIRefreshControl()
+    
 
     
     // MARK: - Public Methods
@@ -30,7 +29,7 @@ final class NewsViewController: UIViewController {
         setupTableView()
         requestNews()
         setupActivityIndicator()
-        
+                
         refreshControl.addTarget(self, action: #selector(updateData), for: .valueChanged)
     }
         
@@ -55,22 +54,21 @@ final class NewsViewController: UIViewController {
         tableView.register(NewsCell.self, forCellReuseIdentifier: NewsCell.reusId)
         
         // refresh
+        
         tableView.refreshControl = refreshControl
     }
     
     private func setupActivityIndicator() {
-        activityIndicator = UIActivityIndicatorView(style: .large)
-        activityIndicator?.center = view.center
-        activityIndicator?.startAnimating()
-        if let activityIndicatorView = activityIndicator {
-            view.addSubview(activityIndicatorView)
-        }
+        view.addSubview(activityIndicator)
+        activityIndicator.centerInSuperview()
+        activityIndicator.color = .red
+        activityIndicator.startAnimating()
     }
     
     private func stopAnimateActivity() {
         DispatchQueue.main.async { [weak self] in
             self?.tableView.refreshControl?.endRefreshing()
-            self?.activityIndicator?.stopAnimating()
+            self?.activityIndicator.stopAnimating()
         }
     }
     

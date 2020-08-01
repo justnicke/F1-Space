@@ -36,7 +36,7 @@ final class DetailNewsViewController: UIViewController {
         button.tintColor = .white
         return button
     }()
-    private var activityIndicator: UIActivityIndicatorView?
+    private let activityIndicator = CustromActivityIndicator()
     lazy private var webView: WKWebView = {
         let webConfiguration = WKWebViewConfiguration()
         let webView = WKWebView(frame: .zero, configuration: webConfiguration)
@@ -44,7 +44,7 @@ final class DetailNewsViewController: UIViewController {
         return webView
     }()
     
-    // MARK: - Constructor
+    // MARK: - Constructors
     
     init(urlString: String) {
         self.urlString = urlString
@@ -109,12 +109,10 @@ final class DetailNewsViewController: UIViewController {
     }
     
     private func setupActivityIndicator() {
-        activityIndicator = UIActivityIndicatorView(style: .large)
-        activityIndicator?.center = view.center
-        activityIndicator?.startAnimating()
-        if let activityIndicatorView = activityIndicator {
-            view.addSubview(activityIndicatorView)
-        }
+        view.addSubview(activityIndicator)
+        activityIndicator.center = view.center
+        activityIndicator.color = .red
+        activityIndicator.startAnimating()
     }
     
     private func requestWebView() {
@@ -132,11 +130,11 @@ final class DetailNewsViewController: UIViewController {
 
 extension DetailNewsViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        activityIndicator?.stopAnimating()
+        activityIndicator.stopAnimating()
     }
 
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        activityIndicator?.stopAnimating()
+        activityIndicator.stopAnimating()
     }
 }
 
