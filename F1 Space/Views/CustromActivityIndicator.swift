@@ -26,6 +26,9 @@ final class CustromActivityIndicator: UIView {
         }
     }
     
+    /// Diameter of the activity indicator
+    var diameter: CGFloat = 37
+    
     // MARK: - Private Properties
     
     private let indicatorShapeLayer = CAShapeLayer()
@@ -38,7 +41,6 @@ final class CustromActivityIndicator: UIView {
         super.init(frame: frame)
         
         setupIndicatorShapeLayer()
-        setupCircleBezierPath()
     }
     
     required init?(coder: NSCoder) {
@@ -70,9 +72,10 @@ final class CustromActivityIndicator: UIView {
         indicatorShapeLayer.strokeEnd = 0.0
         layer.addSublayer(indicatorShapeLayer)
     }
+    
+    override public func layoutSubviews() {
+        super.layoutSubviews()
         
-    private func setupCircleBezierPath() {
-        let diameter: CGFloat = 37
         let circlePath = UIBezierPath(
             arcCenter: CGPoint(x: bounds.width / 2, y: bounds.height / 2),
             radius: diameter / 2,
@@ -82,5 +85,11 @@ final class CustromActivityIndicator: UIView {
         )
         
         indicatorShapeLayer.path = circlePath.cgPath
+    }
+}
+
+extension CGRect {
+    var center: CGPoint {
+        return CGPoint(x: midX, y: midY)
     }
 }

@@ -10,10 +10,11 @@ import UIKit
 
 final class RefreshView: UIView {
     
-    private let activityIndicator = CustromActivityIndicator()
+    let activityIndicator = CustromActivityIndicator()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setupActivityIndicator()
     }
     
     required init?(coder: NSCoder) {
@@ -24,6 +25,8 @@ final class RefreshView: UIView {
         self.addSubview(activityIndicator)
         activityIndicator.centerInSuperview()
         activityIndicator.color = .red
+        activityIndicator.diameter = 27
+        activityIndicator.lineWidth = 2
         activityIndicator.startAnimating()
     }
 }

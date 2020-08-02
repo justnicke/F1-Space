@@ -114,7 +114,7 @@ final class StandingsViewController: UIViewController {
     
     private func initAndUpdateVM() {
         standingsViewModel = StandingsViewModel()
-        standingsViewModel?.fetchData(compeletion: { [weak self] in
+        standingsViewModel?.requestData(compeletion: { [weak self] in
             self?.collectionView.reloadData()
         })
     }

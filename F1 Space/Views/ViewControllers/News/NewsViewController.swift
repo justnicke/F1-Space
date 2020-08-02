@@ -18,9 +18,8 @@ final class NewsViewController: UIViewController {
     private var dateRequest = Date()
     private let activityIndicator = CustromActivityIndicator()
     private let refreshControl = UIRefreshControl()
-    
+    private let refreshView = RefreshView()
 
-    
     // MARK: - Public Methods
     
     override func viewDidLoad() {
@@ -29,8 +28,7 @@ final class NewsViewController: UIViewController {
         setupTableView()
         requestNews()
         setupActivityIndicator()
-                
-        refreshControl.addTarget(self, action: #selector(updateData), for: .valueChanged)
+        setupRefreshControlAndView()
     }
         
     // MARK: - Private Methods
@@ -39,7 +37,7 @@ final class NewsViewController: UIViewController {
         tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tableView)
-        tableView.backgroundColor = #colorLiteral(red: 0.866422236, green: 0.9141893983, blue: 0.9915274978, alpha: 1)
+        tableView.backgroundColor = #colorLiteral(red: 0.9815699458, green: 0.9517598748, blue: 0.9695971608, alpha: 1)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = .none
@@ -54,15 +52,25 @@ final class NewsViewController: UIViewController {
         tableView.register(NewsCell.self, forCellReuseIdentifier: NewsCell.reusId)
         
         // refresh
-        
         tableView.refreshControl = refreshControl
     }
-    
+        
     private func setupActivityIndicator() {
         view.addSubview(activityIndicator)
         activityIndicator.centerInSuperview()
         activityIndicator.color = .red
         activityIndicator.startAnimating()
+    }
+    
+    private func setupRefreshControlAndView() {
+        refreshControl.tintColor = .clear
+        refreshControl.backgroundColor = .clear
+        refreshControl.addTarget(self, action: #selector(updateData), for: .valueChanged)
+        
+        refreshControl.addSubview(refreshView)
+        refreshView.centerInSuperview()
+        refreshView.backgroundColor = .clear
+        refreshView.activityIndicator.startAnimating()
     }
     
     private func stopAnimateActivity() {
@@ -71,9 +79,9 @@ final class NewsViewController: UIViewController {
             self?.activityIndicator.stopAnimating()
         }
     }
-    
+        
     private func requestNews() {
-        guard items.isEmpty || DateInterval(start: dateRequest, end: Date()).duration > TimeInterval(floatLiteral: 10) else {
+        guard items.isEmpty || DateInterval(start: dateRequest, end: Date()).duration > TimeInterval(floatLiteral: 1) else {
             stopAnimateActivity()
             return
         }
@@ -109,6 +117,12 @@ final class NewsViewController: UIViewController {
     
     @objc private func updateData() {
         requestNews()
+        refreshView.activityIndicator.startAnimating()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) { [weak self] in
+            self?.refreshView.activityIndicator.stopAnimating()
+            self?.tableView.refreshControl?.endRefreshing()
+        }
     }
 }
 
@@ -141,16 +155,7 @@ extension NewsViewController: UITableViewDataSource, UITableViewDelegate {
             self.present(vc, animated: true, completion: nil)
         }
     }
-    
-    func test(indexPath: IndexPath) -> String {
-        let item = items[indexPath.row]
-        if item.url.contains("motorsport.com") {
-            return "Motorsport"
-        } else {
-            return "F1News"
-        }
-    }
-    
+        
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 155
     }

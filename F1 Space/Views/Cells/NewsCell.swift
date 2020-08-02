@@ -55,7 +55,6 @@ final class NewsCell: UITableViewCell {
     }()
     let logoImageView: UIImageView = {
         let imageView = UIImageView()
-//        imageView.image = #imageLiteral(resourceName: "f1news_logo")
         imageView.backgroundColor = .black
         imageView.layer.masksToBounds = true
         imageView.layer.cornerRadius = 5
@@ -113,7 +112,7 @@ final class NewsCell: UITableViewCell {
     private func setupView() {
         addSubview(containerView)
         containerView.anchor(top: self.topAnchor, leading: self.leadingAnchor, bottom: self.bottomAnchor, trailing: self.trailingAnchor,
-                        padding: .init(top: 3, left: 10, bottom: 3, right: 10))
+                        padding: .init(top: 10, left: 10, bottom: 5, right: 10))
         
         setupContents()
     }

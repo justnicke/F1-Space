@@ -10,10 +10,12 @@ import Foundation
 
 final class StandingsViewModel: CollectionDataSourceViewModelType {
     
+    // MARK: - Private Properties
+    
     private var drivers: [DriverStandings]?
     private var constructors: [ConstructorStandings]?
     
-    func fetchData(compeletion: @escaping () ->()) {
+    func requestData(compeletion: @escaping () ->()) {
         API.requestDriverStandings { [weak self] (driver, err) in
             let convert = driver?.driverData.driverStandingsTable.driverStandingsLists.compactMap { $0.driverStandings }
             let convertedDrivers = convert?.reduce([], +)
@@ -21,7 +23,7 @@ final class StandingsViewModel: CollectionDataSourceViewModelType {
             compeletion()
         }
         
-        API.requestconstructorStandings { [weak self] (constTeam, err) in
+        API.requestConstructorStandings { [weak self] (constTeam, err) in
             let convert = constTeam?.constructorData.constructorStandingsTable.constructorStandingsLists.compactMap { $0.constructorStandings }
             let convertedconstructors = convert?.reduce([], +)
             self?.constructors = convertedconstructors

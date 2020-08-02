@@ -9,14 +9,18 @@
 import Foundation
 
 struct Article {
+    
+    // MARK: - Public Properties
+    
     var title: String
     var description: String
     var published: Date?
     var url: String
-    
     var isEmpty: Bool {
-        return title.isEmpty || description.isEmpty || url.isEmpty == nil
+        return title.isEmpty || description.isEmpty || url.isEmpty // == nil
     }
+    
+    // MARK: - Public Methods
     
     mutating func reset() {
         title = ""

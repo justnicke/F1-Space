@@ -22,10 +22,8 @@ final class RSS: NSObject {
     private var currentArticle = Article(title: "", description: "", url: "")
     private var elementStack: [String] = []
     private var xmlParser: XMLParser?
-    
     private var success: (([Article]) -> Void)?
     private var failure: ((Error) -> Void)?
-    
     private static let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US")

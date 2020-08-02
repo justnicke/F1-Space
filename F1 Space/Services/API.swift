@@ -9,7 +9,10 @@
 import Foundation
 
 final class API {
-    enum EndPoint {
+    
+    // MARK: - Public Nested
+    
+    private enum EndPoint {
         case driverStandings
         case constructorStandings
         
@@ -31,7 +34,7 @@ final class API {
         request(endpoint: .driverStandings, completion: completion)
     }
     
-    static func requestconstructorStandings(completion: @escaping (ConstructorGroup?, Error?) -> Void) {
+    static func requestConstructorStandings(completion: @escaping (ConstructorGroup?, Error?) -> Void) {
         request(endpoint: .constructorStandings, completion: completion)
     }
     

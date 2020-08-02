@@ -33,7 +33,6 @@
 		5E419F0424B5FB0D006421F6 /* Formula1-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E419F0324B5FB0D006421F6 /* Formula1-Black.ttf */; };
 		5E419F0A24B60E1F006421F6 /* Extension + StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E419F0924B60E1F006421F6 /* Extension + StackView.swift */; };
 		5E5F1B3224D5600200F81366 /* CustromActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5F1B3124D5600200F81366 /* CustromActivityIndicator.swift */; };
-		5E5F1B3424D56AF000F81366 /* Extension + Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5F1B3324D56AF000F81366 /* Extension + Size.swift */; };
 		5E5F1B3824D5DDE300F81366 /* CustomAnimationActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5F1B3724D5DDE300F81366 /* CustomAnimationActivityIndicator.swift */; };
 		5E5F1B3A24D5F37F00F81366 /* RefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5F1B3924D5F37F00F81366 /* RefreshView.swift */; };
 		5E7DB97D24D054420029C0EE /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DB97C24D054420029C0EE /* NewsViewController.swift */; };
@@ -87,13 +86,12 @@
 		5E419EF524B5DBB0006421F6 /* StandingDriverCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingDriverCell.swift; sourceTree = "<group>"; };
 		5E419EF824B5DEC7006421F6 /* DriverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverViewController.swift; sourceTree = "<group>"; };
 		5E419EFA24B5F3C3006421F6 /* DriversCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriversCell.swift; sourceTree = "<group>"; };
-		5E419EFD24B5FAF6006421F6 /* Formula1-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Formula1-Regular.ttf"; path = "../../../../Formula1-Regular.ttf"; sourceTree = "<group>"; };
-		5E419EFF24B5FB01006421F6 /* Formula1-Wide.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Formula1-Wide.ttf"; path = "../../../../Formula1-Wide.ttf"; sourceTree = "<group>"; };
-		5E419F0124B5FB08006421F6 /* Formula1-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Formula1-Bold.ttf"; path = "../../../../Formula1-Bold.ttf"; sourceTree = "<group>"; };
-		5E419F0324B5FB0D006421F6 /* Formula1-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Formula1-Black.ttf"; path = "../../../../Formula1-Black.ttf"; sourceTree = "<group>"; };
+		5E419EFD24B5FAF6006421F6 /* Formula1-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Formula1-Regular.ttf"; path = "../../../../../Fonts/Formula1-Regular.ttf"; sourceTree = "<group>"; };
+		5E419EFF24B5FB01006421F6 /* Formula1-Wide.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Formula1-Wide.ttf"; path = "../../../../../Fonts/Formula1-Wide.ttf"; sourceTree = "<group>"; };
+		5E419F0124B5FB08006421F6 /* Formula1-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Formula1-Bold.ttf"; path = "../../../../../Fonts/Formula1-Bold.ttf"; sourceTree = "<group>"; };
+		5E419F0324B5FB0D006421F6 /* Formula1-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Formula1-Black.ttf"; path = "../../../../../Fonts/Formula1-Black.ttf"; sourceTree = "<group>"; };
 		5E419F0924B60E1F006421F6 /* Extension + StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + StackView.swift"; sourceTree = "<group>"; };
 		5E5F1B3124D5600200F81366 /* CustromActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustromActivityIndicator.swift; sourceTree = "<group>"; };
-		5E5F1B3324D56AF000F81366 /* Extension + Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Size.swift"; sourceTree = "<group>"; };
 		5E5F1B3724D5DDE300F81366 /* CustomAnimationActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnimationActivityIndicator.swift; sourceTree = "<group>"; };
 		5E5F1B3924D5F37F00F81366 /* RefreshView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshView.swift; sourceTree = "<group>"; };
 		5E7DB97C24D054420029C0EE /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
@@ -212,7 +210,6 @@
 				5EAC214824C8245D00A65A7A /* Protocols */,
 				5EC60D6924C18DF7009C66CC /* ViewModels */,
 				5E419EF724B5DC7B006421F6 /* Views */,
-				5E419EFC24B5FAC9006421F6 /* Fonts */,
 				5E419EF224B5B44A006421F6 /* Helpers */,
 				5E419EEA24B5AA48006421F6 /* Supports Files */,
 			);
@@ -251,12 +248,12 @@
 		5E419EF224B5B44A006421F6 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				5E419EFC24B5FAC9006421F6 /* Fonts */,
 				5E419EF024B5B433006421F6 /* UIView + Layout.swift */,
 				5EA886F624D191730079EDDC /* Extension + String.swift */,
 				5E419F0924B60E1F006421F6 /* Extension + StackView.swift */,
 				5E05CD8924BEF23900EB2EF3 /* ConstructorsColor.swift */,
 				5EA886F824D1A9A60079EDDC /* Formatter.swift */,
-				5E5F1B3324D56AF000F81366 /* Extension + Size.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -504,7 +501,6 @@
 				5E5F1B3A24D5F37F00F81366 /* RefreshView.swift in Sources */,
 				5EAC214724C8244F00A65A7A /* CollectionDataSourceViewModelType.swift in Sources */,
 				5EC60D6824C18DBD009C66CC /* DriverViewModel.swift in Sources */,
-				5E5F1B3424D56AF000F81366 /* Extension + Size.swift in Sources */,
 				5E419EC924B5A855006421F6 /* SceneDelegate.swift in Sources */,
 				5EA886FB24D1FE270079EDDC /* DetailNewsViewController.swift in Sources */,
 				5E5F1B3824D5DDE300F81366 /* CustomAnimationActivityIndicator.swift in Sources */,
