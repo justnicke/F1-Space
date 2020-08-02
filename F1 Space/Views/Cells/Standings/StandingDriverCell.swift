@@ -18,7 +18,7 @@ final class StandingDriverCell: UICollectionViewCell {
     
     let driversViewController = DriverViewController()
     
-    // MARK: - Constructor
+    // MARK: - Constructors
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,7 +32,7 @@ final class StandingDriverCell: UICollectionViewCell {
     }
     
     // MARK: - Public Methods
-        
+    
     func confugureViewModel(viewModel: StandingsCellViewModel?) {
         driversViewController.driverViewModel = viewModel?.driverViewModel
         driversViewController.collectionView.reloadData()

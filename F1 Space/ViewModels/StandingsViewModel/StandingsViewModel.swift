@@ -15,17 +15,19 @@ final class StandingsViewModel: CollectionDataSourceViewModelType {
     private var drivers: [DriverStandings]?
     private var constructors: [ConstructorStandings]?
     
+    // MARK: - Public Methods
+    
     func requestData(compeletion: @escaping () ->()) {
         API.requestDriverStandings { [weak self] (driver, err) in
-            let convert = driver?.driverData.driverStandingsTable.driverStandingsLists.compactMap { $0.driverStandings }
-            let convertedDrivers = convert?.reduce([], +)
+            let drivers = driver?.driverData.driverStandingsTable.driverStandingsLists.compactMap { $0.driverStandings }
+            let convertedDrivers = drivers?.reduce([], +)
             self?.drivers = convertedDrivers
             compeletion()
         }
         
-        API.requestConstructorStandings { [weak self] (constTeam, err) in
-            let convert = constTeam?.constructorData.constructorStandingsTable.constructorStandingsLists.compactMap { $0.constructorStandings }
-            let convertedconstructors = convert?.reduce([], +)
+        API.requestConstructorStandings { [weak self] (constructor, err) in
+            let constructors = constructor?.constructorData.constructorStandingsTable.constructorStandingsLists.compactMap { $0.constructorStandings }
+            let convertedconstructors = constructors?.reduce([], +)
             self?.constructors = convertedconstructors
             compeletion()
         }

@@ -10,7 +10,11 @@ import Foundation
 
 final class ConstructorViewModel: CollectionDataSourceViewModelType {
     
+    // MARK: - Public Properties
+    
     var constructors: [ConstructorStandings]?
+    
+    // MARK: - Public Methods
     
     func numberOfItems() -> Int {
         return constructors?.count ?? 0

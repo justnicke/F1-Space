@@ -10,11 +10,7 @@ import Foundation
 
 final class DriverCellViewModel: NSObject {
     
-    private var driver: DriverStandings?
-    
-    init(driver: DriverStandings?) {
-        self.driver = driver
-    }
+    // MARK: - Public Properties
     
     var position: String? {
         return driver?.position
@@ -30,5 +26,15 @@ final class DriverCellViewModel: NSObject {
     }
     var numberPts: String? {
         return driver?.points
+    }
+    
+    // MARK: - Private Properties
+    
+    private var driver: DriverStandings?
+    
+    // MARK: - Constructors
+    
+    init(driver: DriverStandings?) {
+        self.driver = driver
     }
 }

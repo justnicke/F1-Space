@@ -10,8 +10,12 @@ import Foundation
 
 final class StandingsCellViewModel {
     
-    var driverViewModel = DriverViewModel()
-    var constructorViewModel = ConstructorViewModel()
+    // MARK: - Public Properties
+    
+    let driverViewModel = DriverViewModel()
+    let constructorViewModel = ConstructorViewModel()
+    
+    // MARK: - Constructors
     
     init(drivers: [DriverStandings]?) {
         driverViewModel.drivers = drivers

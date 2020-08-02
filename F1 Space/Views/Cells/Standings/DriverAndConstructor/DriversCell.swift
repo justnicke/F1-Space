@@ -75,11 +75,10 @@ final class DriversCell: UICollectionViewCell {
         return label
     }()
     
-    // MARK: - Constructor
+    // MARK: - Constructors
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         backgroundColor = .white
         
         setupLayout()
@@ -103,7 +102,6 @@ final class DriversCell: UICollectionViewCell {
     // MARK: - Private Methods
     
     private func setupLayout() {
-        // StackViews
         let teamColor = UIStackView(
             arrangedSubviews: [UIView(), teamColorView, UIView()],
             axis: .vertical,
@@ -140,7 +138,6 @@ final class DriversCell: UICollectionViewCell {
             distribution: .equalCentering
         )
         
-        // addSubView and constaints
         addSubview(positionLabelAndTeamColor)
         positionLabelAndTeamColor.anchor(
             top: topAnchor,

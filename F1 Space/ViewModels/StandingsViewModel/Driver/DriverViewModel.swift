@@ -10,7 +10,11 @@ import Foundation
 
 final class DriverViewModel: CollectionDataSourceViewModelType {
     
+    // MARK: - Public Properties
+    
     var drivers: [DriverStandings]?
+    
+    // MARK: - Public Methods
     
     func numberOfItems() -> Int {
         return drivers?.count ?? 0

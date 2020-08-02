@@ -60,11 +60,10 @@ final class ConstructorCell: UICollectionViewCell {
         return label
     }()
     
-    // MARK: - Constructor
+    // MARK: - Constructors
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         backgroundColor = .white
         
         setupLayout()
@@ -86,7 +85,6 @@ final class ConstructorCell: UICollectionViewCell {
     // MARK: - Private Methods
     
     private func setupLayout() {
-        // StackViews
         let teamColor = UIStackView(
             arrangedSubviews: [UIView(), teamColorView, UIView()],
             axis: .vertical,
@@ -119,7 +117,6 @@ final class ConstructorCell: UICollectionViewCell {
             distribution: .equalCentering
         )
         
-        // addSubView and constaints
         addSubview(positionLabelAndTeamColor)
         positionLabelAndTeamColor.anchor(
             top: topAnchor,
@@ -127,9 +124,8 @@ final class ConstructorCell: UICollectionViewCell {
             bottom: bottomAnchor,
             trailing: nil,
             padding: .init(top: 5, left: 20, bottom: 5, right: 0),
-            size: . init(width: 45, height: 0)
+            size: .init(width: 45, height: 0)
         )
-        
         
         roundingPtsView.addSubview(ptsNumAndWord)
         ptsNumAndWord.centerInSuperview()

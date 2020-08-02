@@ -79,11 +79,13 @@ final class DetailNewsViewController: UIViewController {
     
     private func setupNavView() {
         view.addSubview(navigationView)
-        navigationView.anchor(top: view.topAnchor,
-                              leading: view.leadingAnchor,
-                              bottom: nil,
-                              trailing: view.trailingAnchor,
-                              size: .init(width: view.frame.width, height: 56))
+        navigationView.anchor(
+            top: view.topAnchor,
+            leading: view.leadingAnchor,
+            bottom: nil,
+            trailing: view.trailingAnchor,
+            size: .init(width: view.frame.width, height: 56)
+        )
         
         [resourceNameLabel, backButton].forEach {
             navigationView.addSubview($0)
@@ -91,21 +93,24 @@ final class DetailNewsViewController: UIViewController {
         
         resourceNameLabel.centerInSuperview(size: .init(width: 0, height: navigationView.frame.height))
         
-        backButton.anchor(top: navigationView.topAnchor,
-                          leading: navigationView.leadingAnchor,
-                          bottom: navigationView.bottomAnchor,
-                          trailing: nil,
-                          padding: .init(top: 0, left: 10, bottom: 0, right: 0),
-                          size: .init(width: 50, height: 0))
+        backButton.anchor(
+            top: navigationView.topAnchor,
+            leading: navigationView.leadingAnchor,
+            bottom: navigationView.bottomAnchor,
+            trailing: nil,
+            padding: .init(top: 0, left: 10, bottom: 0, right: 0),
+            size: .init(width: 50, height: 0)
+        )
     }
     
     private func setupWebView() {
         view.addSubview(webView)
-        
-        webView.anchor(top: navigationView.bottomAnchor,
-                       leading: view.leadingAnchor,
-                       bottom: view.bottomAnchor,
-                       trailing: view.trailingAnchor)
+        webView.anchor(
+            top: navigationView.bottomAnchor,
+            leading: view.leadingAnchor,
+            bottom: view.bottomAnchor,
+            trailing: view.trailingAnchor
+        )
     }
     
     private func setupActivityIndicator() {

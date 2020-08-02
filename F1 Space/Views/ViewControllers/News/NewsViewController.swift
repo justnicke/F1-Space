@@ -13,13 +13,13 @@ final class NewsViewController: UIViewController {
     // MARK: - Private Properties
     
     private var tableView: UITableView!
-    private var items: [Article] = []
-    private var itemsReset: Bool = false
+    private var articles: [Article] = []
+    private var articlesReset: Bool = false
     private var dateRequest = Date()
-    private let activityIndicator = CustromActivityIndicator()
     private let refreshControl = UIRefreshControl()
     private let refreshView = RefreshView()
-
+    private let activityIndicator = CustromActivityIndicator()
+    
     // MARK: - Public Methods
     
     override func viewDidLoad() {
@@ -63,10 +63,12 @@ final class NewsViewController: UIViewController {
     }
     
     private func setupRefreshControlAndView() {
+        // control
         refreshControl.tintColor = .clear
         refreshControl.backgroundColor = .clear
         refreshControl.addTarget(self, action: #selector(updateData), for: .valueChanged)
         
+        // view
         refreshControl.addSubview(refreshView)
         refreshView.centerInSuperview()
         refreshView.backgroundColor = .clear
@@ -81,12 +83,12 @@ final class NewsViewController: UIViewController {
     }
         
     private func requestNews() {
-        guard items.isEmpty || DateInterval(start: dateRequest, end: Date()).duration > TimeInterval(floatLiteral: 1) else {
+        guard articles.isEmpty || DateInterval(start: dateRequest, end: Date()).duration > TimeInterval(floatLiteral: 1) else {
             stopAnimateActivity()
             return
         }
         
-        itemsReset  = true
+        articlesReset  = true
         
         DispatchQueue.main.async {
             for feed in RSS.feeds {
@@ -96,13 +98,13 @@ final class NewsViewController: UIViewController {
                                     DispatchQueue.main.async {
                                         guard let newsVC = self else { return }
                                         
-                                        if newsVC.itemsReset {
-                                            newsVC.items = []
+                                        if newsVC.articlesReset {
+                                            newsVC.articles = []
                                             newsVC.dateRequest = Date()
                                         }
                                         
-                                        newsVC.itemsReset = false
-                                        newsVC.items = (newsVC.items + articles).sorted { ($0.published ?? Date()) > ($1.published ?? Date()) }
+                                        newsVC.articlesReset = false
+                                        newsVC.articles = (newsVC.articles + articles).sorted { ($0.published ?? Date()) > ($1.published ?? Date()) }
                                         newsVC.tableView.reloadData()
                                         newsVC.stopAnimateActivity()
                                     }
@@ -130,22 +132,22 @@ final class NewsViewController: UIViewController {
 
 extension NewsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        return articles.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NewsCell.reusId, for: indexPath) as! NewsCell
-        cell.configure(article: items[indexPath.row])
+        cell.configure(article: articles[indexPath.row])
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         DispatchQueue.main.async {
-            let item = self.items[indexPath.row]
-            let vc = DetailNewsViewController(urlString: item.url)
-
-            if item.url.contains("motorsport.com") {
+            let article = self.articles[indexPath.row]
+            let vc = DetailNewsViewController(urlString: article.url)
+            
+            if article.url.contains("motorsport.com") {
                 vc.resourceNameLabel.text = "motorsport"
             } else {
                 vc.resourceNameLabel.text = "F1NEWS"

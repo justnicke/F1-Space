@@ -18,7 +18,7 @@ final class StandingConstructorCell: UICollectionViewCell {
     
     private let constructorViewController = ConstructorViewController()
     
-    // MARK: - Constructor
+    // MARK: - Constructors
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -37,9 +37,4 @@ final class StandingConstructorCell: UICollectionViewCell {
         constructorViewController.constructorViewModel = viewModel?.constructorViewModel
         constructorViewController.collectionView.reloadData()
     }
-    
-//    func configure(constructor: [ConstructorStandings]?) {
-//        constructorViewController.constructors = constructor
-//        constructorViewController.collectionView.reloadData()
-//    }
 }

@@ -351,7 +351,7 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
-		5EAC214924C824A900A65A7A /* StandingsVM */ = {
+		5EAC214924C824A900A65A7A /* StandingsViewModel */ = {
 			isa = PBXGroup;
 			children = (
 				5E9EB95124C2D99A00023668 /* StandingsViewModel.swift */,
@@ -359,7 +359,7 @@
 				5E9EB95024C2D96600023668 /* Driver */,
 				5E82B52324C5D6B100377859 /* Constructor */,
 			);
-			path = StandingsVM;
+			path = StandingsViewModel;
 			sourceTree = "<group>";
 		};
 		5EAC214A24C824F100A65A7A /* StandingsVC */ = {
@@ -383,7 +383,7 @@
 		5EC60D6924C18DF7009C66CC /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				5EAC214924C824A900A65A7A /* StandingsVM */,
+				5EAC214924C824A900A65A7A /* StandingsViewModel */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";

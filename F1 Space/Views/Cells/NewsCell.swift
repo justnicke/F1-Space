@@ -22,7 +22,6 @@ final class NewsCell: UITableViewCell {
         view.layer.cornerRadius = 10
         return view
     }()
-    
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Заголовок"
@@ -53,7 +52,7 @@ final class NewsCell: UITableViewCell {
         label.textColor = .black
         return label
     }()
-    let logoImageView: UIImageView = {
+    private let logoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .black
         imageView.layer.masksToBounds = true
@@ -64,8 +63,7 @@ final class NewsCell: UITableViewCell {
         return imageView
     }()
     
-    
-    // MARK: - Constructor
+    // MARK: - Constructors
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -79,12 +77,12 @@ final class NewsCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-     // MARK: - Public Methods
+    // MARK: - Public Methods
     
     func configure(article: Article) {
         titleLabel.text = article.title
         descriptionLabel.text = article.description
-                
+        
         if let date = article.published {
             let components = Calendar.current.dateComponents([.minute, .hour, .day], from: date, to: Date())
             let agoString = "ago"
@@ -99,7 +97,7 @@ final class NewsCell: UITableViewCell {
                 dateLabel.text = nil
             }
         }
- 
+        
         if article.url.contains("motorsport.com") {
             logoImageView.image = #imageLiteral(resourceName: "motorsport.com")
         } else {
@@ -107,12 +105,17 @@ final class NewsCell: UITableViewCell {
         }
     }
     
-     // MARK: - Private Methods
+    // MARK: - Private Methods
     
     private func setupView() {
         addSubview(containerView)
-        containerView.anchor(top: self.topAnchor, leading: self.leadingAnchor, bottom: self.bottomAnchor, trailing: self.trailingAnchor,
-                        padding: .init(top: 10, left: 10, bottom: 5, right: 10))
+        containerView.anchor(
+            top: self.topAnchor,
+            leading: self.leadingAnchor,
+            bottom: self.bottomAnchor,
+            trailing: self.trailingAnchor,
+            padding: .init(top: 10, left: 10, bottom: 5, right: 10)
+        )
         
         setupContents()
     }
@@ -125,7 +128,7 @@ final class NewsCell: UITableViewCell {
         
         logoImageView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 15).isActive = true
         logoImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 15).isActive = true
-
+        
         titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 12).isActive = true
         titleLabel.leadingAnchor.constraint(equalTo: logoImageView.trailingAnchor, constant: 10).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -15).isActive = true

@@ -10,11 +10,7 @@ import Foundation
 
 final class ConstructorCellViewModel {
     
-    private var constructor: ConstructorStandings?
-    
-    init(constructor: ConstructorStandings?) {
-        self.constructor = constructor
-    }
+    // MARK: - Public Properties
     
     var position: String? {
         return constructor?.position
@@ -24,5 +20,15 @@ final class ConstructorCellViewModel {
     }
     var numberPts: String? {
         return constructor?.points
+    }
+    
+    // MARK: - Private Properties
+    
+    private var constructor: ConstructorStandings?
+    
+    // MARK: - Constructors
+    
+    init(constructor: ConstructorStandings?) {
+        self.constructor = constructor
     }
 }
