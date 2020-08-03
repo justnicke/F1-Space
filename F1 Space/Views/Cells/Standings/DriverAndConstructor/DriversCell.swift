@@ -13,7 +13,7 @@ final class DriversCell: UICollectionViewCell {
     
     // MARK: Public Properties
     
-    static let reusId = String(describing: DriversCell.self)
+    static let reuseId = String(describing: DriversCell.self)
     
     // MARK: Private Properties
     

@@ -19,7 +19,7 @@ final class DriverViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupCollectionView()
     }
     
@@ -34,7 +34,7 @@ final class DriverViewController: UIViewController {
         collectionView.showsHorizontalScrollIndicator = false
         view.addSubview(collectionView)
         
-        collectionView.register(DriversCell.self, forCellWithReuseIdentifier: DriversCell.reusId)
+        collectionView.register(DriversCell.self, forCellWithReuseIdentifier: DriversCell.reuseId)
     }
 }
 
@@ -42,16 +42,14 @@ final class DriverViewController: UIViewController {
 
 extension DriverViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return drivers?.count ?? 0
         return driverViewModel?.numberOfItems() ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DriversCell.reusId, for: indexPath) as! DriversCell
-        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DriversCell.reuseId, for: indexPath) as! DriversCell
         let driverCellViewModel = driverViewModel?.cellForItemAt(indexPath: indexPath)
         cell.configureViewModel(cellViewModel: driverCellViewModel)
-   
+        
         return cell
     }
 }

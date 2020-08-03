@@ -12,7 +12,7 @@ final class ConstructorCell: UICollectionViewCell {
     
     // MARK: Public Properties
     
-    static let reusId = String(describing: ConstructorCell.self)
+    static let reuseId = String(describing: ConstructorCell.self)
     
     // MARK: Private Properties
     

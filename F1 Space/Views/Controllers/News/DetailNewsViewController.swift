@@ -51,8 +51,8 @@ final class DetailNewsViewController: UIViewController {
         self.detailViewModel = detailViewModel
         
         super.init(nibName: nil, bundle: nil)
-        resourceNameLabel.text = detailViewModel?.resourceName
-        urlString = detailViewModel?.urlString
+            resourceNameLabel.text = detailViewModel?.resourceName
+            urlString = detailViewModel?.urlString
     }
     
     required init?(coder: NSCoder) {

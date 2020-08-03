@@ -10,15 +10,11 @@ import Foundation
 
 final class NewsViewModel: DataSourceViewModelType {
     
-    // MARK: - Public Properties
-        
     // MARK: - Private Properties
     
     private var articles: [Article] = []
     private var articlesReset: Bool = false
     private var dateRequest = Date()
-    
-
     
     // MARK: - Public Methods
     
@@ -28,7 +24,7 @@ final class NewsViewModel: DataSourceViewModelType {
         }
         
         articlesReset  = true
-                
+        
         DispatchQueue.main.async {
             for feed in RSS.feeds {
                 let rss = RSS()

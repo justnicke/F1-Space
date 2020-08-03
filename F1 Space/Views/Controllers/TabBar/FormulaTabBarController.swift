@@ -14,8 +14,10 @@ final class FormulaTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tabBar.tintColor = .red
         tabBar.backgroundColor = .white
+        
         viewControllers = [
             createNavController(vc: NewsViewController(), title: "News", image: nil),
             createNavController(vc: StandingsViewController(), title: "Standings", image: #imageLiteral(resourceName: "helmet-2")),

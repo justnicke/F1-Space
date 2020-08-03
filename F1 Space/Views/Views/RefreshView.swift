@@ -10,7 +10,11 @@ import UIKit
 
 final class RefreshView: UIView {
     
+    // MARK: - Public Methods
+    
     let activityIndicator = CustromActivityIndicator()
+    
+    // MARK: - Constructors
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -20,6 +24,8 @@ final class RefreshView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Private Methods
     
     private func setupActivityIndicator() {
         self.addSubview(activityIndicator)

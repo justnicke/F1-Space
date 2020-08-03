@@ -14,6 +14,8 @@ extension UIView {
         var top, leading, bottom, trailing, width, height: NSLayoutConstraint?
     }
     
+    // MARK: - Public Properies
+    
     @discardableResult
     func anchor(top: NSLayoutYAxisAnchor?,
                 leading: NSLayoutXAxisAnchor?,

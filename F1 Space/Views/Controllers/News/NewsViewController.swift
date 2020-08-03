@@ -52,7 +52,7 @@ final class NewsViewController: UIViewController {
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         
-        tableView.register(NewsCell.self, forCellReuseIdentifier: NewsCell.reusId)
+        tableView.register(NewsCell.self, forCellReuseIdentifier: NewsCell.reuseId)
         
         // refresh
         tableView.refreshControl = refreshControl
@@ -106,7 +106,7 @@ extension NewsViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: NewsCell.reusId, for: indexPath) as! NewsCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: NewsCell.reuseId, for: indexPath) as! NewsCell
         let newsCellViewModel = newsViewModel?.cellForItemAt(indexPath: indexPath)
         cell.configure(viewModel: newsCellViewModel)
         
@@ -114,12 +114,10 @@ extension NewsViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        DispatchQueue.main.async {
             let detailVM = self.newsViewModel?.didSelectRowAt(indexPath: indexPath)
             let vc = DetailNewsViewController(detailViewModel: detailVM)
             vc.modalTransitionStyle = .coverVertical
             self.present(vc, animated: true, completion: nil)
-        }
     }
         
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

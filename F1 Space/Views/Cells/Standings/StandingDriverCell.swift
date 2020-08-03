@@ -12,11 +12,11 @@ final class StandingDriverCell: UICollectionViewCell {
     
     // MARK: Public Properties
     
-    static let reusId = String(describing: StandingDriverCell.self)
+    static let reuseId = String(describing: StandingDriverCell.self)
     
     // MARK: Private Properties
     
-    let driversViewController = DriverViewController()
+    private let driversViewController = DriverViewController()
     
     // MARK: - Constructors
     

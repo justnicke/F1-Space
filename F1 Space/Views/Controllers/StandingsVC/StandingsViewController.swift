@@ -47,13 +47,13 @@ final class StandingsViewController: UIViewController {
     lazy private var leadingConstant = lineSelectedSegmentedView.leadingAnchor.constraint(equalTo: segmentedView.leadingAnchor, constant: 0)
     lazy private var trailingConstant = lineSelectedSegmentedView.trailingAnchor.constraint(equalTo: segmentedView.trailingAnchor, constant: -view.frame.width / 2)
     
-    // MARK: - Public Nested
+    // MARK: - Private Nested
     
     private enum ButtonState {
         case drivers
         case constructors
     }
-
+    
     // MARK: - Public Methods
     
     override func viewDidLoad() {
@@ -68,7 +68,6 @@ final class StandingsViewController: UIViewController {
         constructorsButton.addTarget(self, action: #selector(constructorButtonAction(_:)), for: .touchUpInside)
     }
     
-
     // MARK: - Private Methods
     
     private func setupCollectionView() {
@@ -80,17 +79,17 @@ final class StandingsViewController: UIViewController {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.decelerationRate = .fast
         
-        collectionView.register(StandingDriverCell.self, forCellWithReuseIdentifier: StandingDriverCell.reusId)
-        collectionView.register(StandingConstructorCell.self, forCellWithReuseIdentifier: StandingConstructorCell.reusId)
+        collectionView.register(StandingDriverCell.self, forCellWithReuseIdentifier: StandingDriverCell.reuseId)
+        collectionView.register(StandingConstructorCell.self, forCellWithReuseIdentifier: StandingConstructorCell.reuseId)
         
         let mainStackView = UIStackView(arrangedSubviews: [segmentedView, collectionView], axis: .vertical)
         view.addSubview(mainStackView)
-
+        
         mainStackView.anchor(top: view.safeAreaLayoutGuide.topAnchor,
-                         leading: view.leadingAnchor,
-                         bottom: view.safeAreaLayoutGuide.bottomAnchor,
-                         trailing: view.trailingAnchor,
-                         padding: .zero)
+                             leading: view.leadingAnchor,
+                             bottom: view.safeAreaLayoutGuide.bottomAnchor,
+                             trailing: view.trailingAnchor,
+                             padding: .zero)
     }
     
     private func setupLayoutSegmentedView() {
@@ -167,16 +166,16 @@ extension StandingsViewController: UICollectionViewDataSource, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.item == 0 {
-            let drivingCell = collectionView.dequeueReusableCell(withReuseIdentifier: StandingDriverCell.reusId, for: indexPath) as! StandingDriverCell
+            let drivingCell = collectionView.dequeueReusableCell(withReuseIdentifier: StandingDriverCell.reuseId, for: indexPath) as! StandingDriverCell
             let standingDriverCellViewModel = standingsViewModel?.cellForItemAt(indexPath: indexPath)
             drivingCell.confugureViewModel(viewModel: standingDriverCellViewModel)
-
+            
             return drivingCell
         } else {
-            let constructorCell = collectionView.dequeueReusableCell(withReuseIdentifier: StandingConstructorCell.reusId, for: indexPath) as! StandingConstructorCell
+            let constructorCell = collectionView.dequeueReusableCell(withReuseIdentifier: StandingConstructorCell.reuseId, for: indexPath) as! StandingConstructorCell
             let standingconstructorCellViewModel = standingsViewModel?.cellForItemAt(indexPath: indexPath)
             constructorCell.confugureViewModel(viewModel: standingconstructorCellViewModel)
-                        
+            
             return constructorCell
         }
     }

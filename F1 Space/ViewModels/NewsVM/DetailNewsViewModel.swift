@@ -15,6 +15,7 @@ final class DetailNewsViewModel {
     var urlString: String?
     var resourceName: String?
     
+    // MARK: - Constructors
     
     init(urlString: String) {
         self.urlString = urlString

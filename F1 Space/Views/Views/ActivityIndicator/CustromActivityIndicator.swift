@@ -61,19 +61,7 @@ final class CustromActivityIndicator: UIView {
         animation.removeAnimation(layer: indicatorShapeLayer)
     }
     
-    // MARK: - Private Methods
-    
-    private func setupIndicatorShapeLayer() {
-        indicatorShapeLayer.strokeColor = color.cgColor
-        indicatorShapeLayer.fillColor = nil
-        indicatorShapeLayer.lineWidth = lineWidth
-        indicatorShapeLayer.frame = bounds
-        indicatorShapeLayer.strokeStart = 0.0
-        indicatorShapeLayer.strokeEnd = 0.0
-        layer.addSublayer(indicatorShapeLayer)
-    }
-    
-    override public func layoutSubviews() {
+    override func layoutSubviews() {
         super.layoutSubviews()
         
         let circlePath = UIBezierPath(
@@ -86,10 +74,17 @@ final class CustromActivityIndicator: UIView {
         
         indicatorShapeLayer.path = circlePath.cgPath
     }
-}
-
-extension CGRect {
-    var center: CGPoint {
-        return CGPoint(x: midX, y: midY)
+    
+    // MARK: - Private Methods
+    
+    private func setupIndicatorShapeLayer() {
+        indicatorShapeLayer.strokeColor = color.cgColor
+        indicatorShapeLayer.fillColor = nil
+        indicatorShapeLayer.lineWidth = lineWidth
+        indicatorShapeLayer.frame = bounds
+        indicatorShapeLayer.strokeStart = 0.0
+        indicatorShapeLayer.strokeEnd = 0.0
+        layer.addSublayer(indicatorShapeLayer)
     }
 }
+

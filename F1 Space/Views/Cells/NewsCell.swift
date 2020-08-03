@@ -12,7 +12,7 @@ final class NewsCell: UITableViewCell {
     
     // MARK: Public Properties
     
-    static let reusId = String(describing: NewsCell.self)
+    static let reuseId = String(describing: NewsCell.self)
     
     // MARK: Private Properties
     
@@ -70,7 +70,7 @@ final class NewsCell: UITableViewCell {
         
         backgroundColor = #colorLiteral(red: 0.9815699458, green: 0.9517598748, blue: 0.9695971608, alpha: 1)
         selectionStyle = .none
-        setupView()
+        setupContainerView()
     }
     
     required init?(coder: NSCoder) {
@@ -107,7 +107,7 @@ final class NewsCell: UITableViewCell {
     
     // MARK: - Private Methods
     
-    private func setupView() {
+    private func setupContainerView() {
         addSubview(containerView)
         containerView.anchor(
             top: self.topAnchor,

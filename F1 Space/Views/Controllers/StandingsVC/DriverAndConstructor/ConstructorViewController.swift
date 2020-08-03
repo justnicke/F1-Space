@@ -19,7 +19,7 @@ final class ConstructorViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupCollectionView()
     }
     
@@ -34,7 +34,7 @@ final class ConstructorViewController: UIViewController {
         collectionView.showsHorizontalScrollIndicator = false
         view.addSubview(collectionView)
         
-        collectionView.register(ConstructorCell.self, forCellWithReuseIdentifier: ConstructorCell.reusId)
+        collectionView.register(ConstructorCell.self, forCellWithReuseIdentifier: ConstructorCell.reuseId)
     }
 }
 
@@ -46,11 +46,10 @@ extension ConstructorViewController: UICollectionViewDataSource, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ConstructorCell.reusId, for: indexPath) as! ConstructorCell
-        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ConstructorCell.reuseId, for: indexPath) as! ConstructorCell
         let constructorCellViewModel = constructorViewModel?.cellForItemAt(indexPath: indexPath)
         cell.configureViewModel(cellViewModel: constructorCellViewModel)
-    
+        
         return cell
     }
 }
