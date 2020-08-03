@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class ConstructorViewModel: CollectionDataSourceViewModelType {
+final class ConstructorViewModel: DataSourceViewModelType {
     
     // MARK: - Public Properties
     
@@ -20,8 +20,8 @@ final class ConstructorViewModel: CollectionDataSourceViewModelType {
         return constructors?.count ?? 0
     }
     
-    func cellForItemAt(indexPath: IndexPath?) -> ConstructorCellViewModel? {
-        let constructor = constructors?[indexPath?.item ?? 0]
+    func cellForItemAt(indexPath: IndexPath) -> ConstructorCellViewModel? {
+        let constructor = constructors?[indexPath.item]
         return ConstructorCellViewModel(constructor: constructor)
     }
 }

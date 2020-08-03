@@ -18,7 +18,7 @@ final class DriverCellViewModel: NSObject {
     var firstName: String? {
         return driver?.driver.givenName
     }
-    var  lastName: String? {
+    var lastName: String? {
         return driver?.driver.familyName.uppercased()
     }
     var teamName: String? {

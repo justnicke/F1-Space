@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class DriverViewModel: CollectionDataSourceViewModelType {
+final class DriverViewModel: DataSourceViewModelType {
     
     // MARK: - Public Properties
     
@@ -20,8 +20,8 @@ final class DriverViewModel: CollectionDataSourceViewModelType {
         return drivers?.count ?? 0
       }
       
-    func cellForItemAt(indexPath: IndexPath?) -> DriverCellViewModel? {
-        let driver = drivers?[indexPath?.item ?? 0]
+    func cellForItemAt(indexPath: IndexPath) -> DriverCellViewModel? {
+        let driver = drivers?[indexPath.item]
         return DriverCellViewModel(driver: driver)
     }
 }

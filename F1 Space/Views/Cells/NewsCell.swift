@@ -78,12 +78,12 @@ final class NewsCell: UITableViewCell {
     }
     
     // MARK: - Public Methods
-    
-    func configure(article: Article) {
-        titleLabel.text = article.title
-        descriptionLabel.text = article.description
         
-        if let date = article.published {
+    func configure(viewModel: NewsCellViewModel?) {
+        titleLabel.text = viewModel?.title
+        descriptionLabel.text = viewModel?.description
+        
+        if let date = viewModel?.published {
             let components = Calendar.current.dateComponents([.minute, .hour, .day], from: date, to: Date())
             let agoString = "ago"
             
@@ -98,7 +98,7 @@ final class NewsCell: UITableViewCell {
             }
         }
         
-        if article.url.contains("motorsport.com") {
+        if viewModel?.url.contains("motorsport.com") ?? false {
             logoImageView.image = #imageLiteral(resourceName: "motorsport.com")
         } else {
             logoImageView.image = #imageLiteral(resourceName: "f1news.ru")

@@ -19,7 +19,8 @@ final class DetailNewsViewController: UIViewController {
         label.textColor = .white
         return label
     }()
-    var urlString: String
+    var urlString: String?
+    var detailViewModel: DetailNewsViewModel?
     
     // MARK: - Private Properties
     
@@ -46,9 +47,12 @@ final class DetailNewsViewController: UIViewController {
     
     // MARK: - Constructors
     
-    init(urlString: String) {
-        self.urlString = urlString
+    init(detailViewModel: DetailNewsViewModel?) {
+        self.detailViewModel = detailViewModel
+        
         super.init(nibName: nil, bundle: nil)
+        resourceNameLabel.text = detailViewModel?.resourceName
+        urlString = detailViewModel?.urlString
     }
     
     required init?(coder: NSCoder) {
@@ -64,7 +68,8 @@ final class DetailNewsViewController: UIViewController {
         
         setupNavView()
         setupWebView()
-        
+        detailViewModel = DetailNewsViewModel()
+
         backButton.addTarget(self, action: #selector(dismissAction(_:)), for: .touchUpInside)
     }
     
@@ -112,7 +117,7 @@ final class DetailNewsViewController: UIViewController {
             trailing: view.trailingAnchor
         )
     }
-    
+     
     private func setupActivityIndicator() {
         view.addSubview(activityIndicator)
         activityIndicator.center = view.center
@@ -121,7 +126,7 @@ final class DetailNewsViewController: UIViewController {
     }
     
     private func requestWebView() {
-        guard let url = URL(string: urlString) else { return }
+        guard let url = URL(string: urlString ?? "") else { return }
         let myRequest = URLRequest(url: url)
         webView.load(myRequest)
     }

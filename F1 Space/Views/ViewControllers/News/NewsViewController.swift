@@ -13,12 +13,12 @@ final class NewsViewController: UIViewController {
     // MARK: - Private Properties
     
     private var tableView: UITableView!
-    private var articles: [Article] = []
     private var articlesReset: Bool = false
     private var dateRequest = Date()
     private let refreshControl = UIRefreshControl()
     private let refreshView = RefreshView()
     private let activityIndicator = CustromActivityIndicator()
+    private var newsViewModel: NewsViewModel?
     
     // MARK: - Public Methods
     
@@ -26,9 +26,12 @@ final class NewsViewController: UIViewController {
         super.viewDidLoad()
                 
         setupTableView()
-        requestNews()
         setupActivityIndicator()
         setupRefreshControlAndView()
+        
+        newsViewModel = NewsViewModel()
+    
+        requestViewModel()
     }
         
     // MARK: - Private Methods
@@ -54,6 +57,15 @@ final class NewsViewController: UIViewController {
         // refresh
         tableView.refreshControl = refreshControl
     }
+    
+    private func requestViewModel() {
+        newsViewModel?.requestData { [weak self] in
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+                self?.activityIndicator.stopAnimating()
+            }
+        }
+    }
         
     private func setupActivityIndicator() {
         view.addSubview(activityIndicator)
@@ -72,58 +84,16 @@ final class NewsViewController: UIViewController {
         refreshControl.addSubview(refreshView)
         refreshView.centerInSuperview()
         refreshView.backgroundColor = .clear
-        refreshView.activityIndicator.startAnimating()
-    }
-    
-    private func stopAnimateActivity() {
-        DispatchQueue.main.async { [weak self] in
-            self?.tableView.refreshControl?.endRefreshing()
-            self?.activityIndicator.stopAnimating()
-        }
-    }
-        
-    private func requestNews() {
-        guard articles.isEmpty || DateInterval(start: dateRequest, end: Date()).duration > TimeInterval(floatLiteral: 1) else {
-            stopAnimateActivity()
-            return
-        }
-        
-        articlesReset  = true
-        
-        DispatchQueue.main.async {
-            for feed in RSS.feeds {
-                let rss = RSS()
-                rss.requestNews(feed: feed,
-                                success: { [weak self] articles in
-                                    DispatchQueue.main.async {
-                                        guard let newsVC = self else { return }
-                                        
-                                        if newsVC.articlesReset {
-                                            newsVC.articles = []
-                                            newsVC.dateRequest = Date()
-                                        }
-                                        
-                                        newsVC.articlesReset = false
-                                        newsVC.articles = (newsVC.articles + articles).sorted { ($0.published ?? Date()) > ($1.published ?? Date()) }
-                                        newsVC.tableView.reloadData()
-                                        newsVC.stopAnimateActivity()
-                                    }
-                    },
-                                failure: { [weak self] error in
-                                    self?.stopAnimateActivity()
-                                    print(error.localizedDescription)
-                })
-            }
-        }
     }
     
     @objc private func updateData() {
-        requestNews()
+        requestViewModel()
         refreshView.activityIndicator.startAnimating()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) { [weak self] in
             self?.refreshView.activityIndicator.stopAnimating()
             self?.tableView.refreshControl?.endRefreshing()
+            
         }
     }
 }
@@ -132,27 +102,21 @@ final class NewsViewController: UIViewController {
 
 extension NewsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return articles.count
+        return newsViewModel?.numberOfItems() ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NewsCell.reusId, for: indexPath) as! NewsCell
-        cell.configure(article: articles[indexPath.row])
+        let newsCellViewModel = newsViewModel?.cellForItemAt(indexPath: indexPath)
+        cell.configure(viewModel: newsCellViewModel)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         DispatchQueue.main.async {
-            let article = self.articles[indexPath.row]
-            let vc = DetailNewsViewController(urlString: article.url)
-            
-            if article.url.contains("motorsport.com") {
-                vc.resourceNameLabel.text = "motorsport"
-            } else {
-                vc.resourceNameLabel.text = "F1NEWS"
-            }
-            
+            let detailVM = self.newsViewModel?.didSelectRowAt(indexPath: indexPath)
+            let vc = DetailNewsViewController(detailViewModel: detailVM)
             vc.modalTransitionStyle = .coverVertical
             self.present(vc, animated: true, completion: nil)
         }

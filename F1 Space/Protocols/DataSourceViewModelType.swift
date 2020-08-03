@@ -8,8 +8,8 @@
 
 import Foundation
 
-protocol CollectionDataSourceViewModelType {
+protocol DataSourceViewModelType {
     associatedtype CellItem
     func numberOfItems() -> Int
-    func cellForItemAt(indexPath: IndexPath?) -> CellItem?
+    func cellForItemAt(indexPath: IndexPath) -> CellItem?
 }

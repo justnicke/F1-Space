@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class StandingsViewModel: CollectionDataSourceViewModelType {
+final class StandingsViewModel: DataSourceViewModelType {
     
     // MARK: - Private Properties
     
@@ -37,8 +37,8 @@ final class StandingsViewModel: CollectionDataSourceViewModelType {
         return 2
     }
     
-    func cellForItemAt(indexPath: IndexPath?) -> StandingsCellViewModel? {
-        if indexPath?.item == 0 {
+    func cellForItemAt(indexPath: IndexPath) -> StandingsCellViewModel? {
+        if indexPath.item == 0 {
             return StandingsCellViewModel(drivers: drivers)
         } else {
             return StandingsCellViewModel(contructors: constructors)
