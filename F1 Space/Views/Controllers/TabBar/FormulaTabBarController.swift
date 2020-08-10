@@ -19,17 +19,23 @@ final class FormulaTabBarController: UITabBarController {
         tabBar.backgroundColor = .white
         
         viewControllers = [
-            createNavController(vc: NewsViewController(), title: "News", image: nil),
-            createNavController(vc: StandingsViewController(), title: "Standings", image: #imageLiteral(resourceName: "helmet-2")),
+            createNavController(vc: StandingsViewController(), title: "Standings", image: #imageLiteral(resourceName: "standingFalse"), selectedImage: #imageLiteral(resourceName: "standingTrue")),
+            createNavController(vc: NewsViewController(), title: "News", image: #imageLiteral(resourceName: "newsFalse"), selectedImage: #imageLiteral(resourceName: "newsTrue"))
         ]
     }
-    
+
     // MARK: Private Methods
     
-    private func createNavController(vc: UIViewController, title: String, image: UIImage?) -> UIViewController {
+    private func createNavController(vc: UIViewController, title: String, image: UIImage?, selectedImage: UIImage?) -> UIViewController {
         let navigationController = UINavigationController(rootViewController: vc)
-        navigationController.tabBarItem.title = title
         navigationController.tabBarItem.image = image
+        navigationController.tabBarItem.selectedImage = selectedImage
+        navigationController.tabBarItem.imageInsets = UIEdgeInsets(
+            top: 0,
+            left: 0,
+            bottom: -12,
+            right: 0
+        )
         
         let titleFontAttrs = [
             NSAttributedString.Key.font: UIFont(name: "Formula1-Display-Bold", size: 25)!,

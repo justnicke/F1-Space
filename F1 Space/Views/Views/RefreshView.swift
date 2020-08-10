@@ -33,6 +33,6 @@ final class RefreshView: UIView {
         activityIndicator.color = .red
         activityIndicator.diameter = 27
         activityIndicator.lineWidth = 2
-        activityIndicator.startAnimating()
+//        activityIndicator.startAnimating()
     }
 }

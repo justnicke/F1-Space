@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class Formatter {
+struct Formatter {
     static func days(for number: Int) -> String {
         return organization(number: number, keys: ("day", "days", "days"))
     }

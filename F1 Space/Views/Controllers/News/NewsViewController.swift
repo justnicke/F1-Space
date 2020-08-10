@@ -85,15 +85,17 @@ final class NewsViewController: UIViewController {
         refreshView.centerInSuperview()
         refreshView.backgroundColor = .clear
     }
-    
-    @objc private func updateData() {
-        requestViewModel()
-        refreshView.activityIndicator.startAnimating()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) { [weak self] in
-            self?.refreshView.activityIndicator.stopAnimating()
-            self?.tableView.refreshControl?.endRefreshing()
-            
+    @objc private func updateData() {
+        DispatchQueue.main.async {
+            self.requestViewModel()
+            self.refreshView.activityIndicator.startAnimating()
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) { [weak self] in
+                self?.refreshView.activityIndicator.stopAnimating()
+                self?.tableView.refreshControl?.endRefreshing()
+
+            }
         }
     }
 }

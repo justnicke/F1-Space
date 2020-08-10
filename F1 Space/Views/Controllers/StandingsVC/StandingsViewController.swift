@@ -41,6 +41,7 @@ final class StandingsViewController: UIViewController {
         button.titleLabel?.font = UIFont(name: "AvenirNext-Medium", size: 18)
         return button
     }()
+    private let activityIndicator = CustromActivityIndicator()
     private var snapToMostVisibleColumnVelocityThreshold: CGFloat {
         return 0.3
     }
@@ -55,13 +56,13 @@ final class StandingsViewController: UIViewController {
     }
     
     // MARK: - Public Methods
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupCollectionView()
         setupLayoutSegmentedView()
-        
+        setupActivityIndicator()
         initAndUpdateVM()
         
         driversButton.addTarget(self, action: #selector(driverButtonAction(_:)), for: .touchUpInside)
@@ -74,6 +75,7 @@ final class StandingsViewController: UIViewController {
         collectionView = UICollectionView(frame: view.frame, collectionViewLayout: collectionViewLayout)
         collectionViewLayout.scrollDirection = .horizontal
         collectionView.backgroundColor = .black
+        collectionView.alpha = 0.0
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.showsHorizontalScrollIndicator = false
@@ -111,10 +113,23 @@ final class StandingsViewController: UIViewController {
         trailingConstant.isActive = true
     }
     
+    private func setupActivityIndicator() {
+        view.addSubview(activityIndicator)
+        activityIndicator.centerInSuperview()
+        activityIndicator.color = .red
+        activityIndicator.startAnimating()
+    }
+    
     private func initAndUpdateVM() {
         standingsViewModel = StandingsViewModel()
         standingsViewModel?.requestData(compeletion: { [weak self] in
             self?.collectionView.reloadData()
+            
+            UIView.animate(withDuration: 1.5) {
+                self?.collectionView.alpha = 1
+            }
+            
+            self?.activityIndicator.stopAnimating()
         })
     }
     
