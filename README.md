@@ -1,7 +1,5 @@
 # F1 Space
 
-# F1 Space
-
 iOS-приложение для чтения новостей и просмотра актуальных результатов из мира F1.  Дизайн выполнен в стиле официального приложения [Формулы-1.](https://apps.apple.com/ru/app/formula-1/id835022598?l=en )
 
 <img src="/presentation.gif" width="20%">
