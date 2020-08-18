@@ -1,5 +1,5 @@
 //
-//  ContainerPicker.swift
+//  StandingsContainerView.swift
 //  F1 Space
 //
 //  Created by Nikita Sukachev on 18.08.2020.
@@ -8,12 +8,7 @@
 
 import UIKit
 
-protocol PassValueType: class {
-    func picker(value: Int)
-    func picker2(value: String)
-}
-
-final class ContainerPicker: UIView {
+final class StandingsContainerView: UIView {
     
     var picker = UIPickerView()
     var doneButton: UIButton = {
@@ -22,8 +17,7 @@ final class ContainerPicker: UIView {
         button.backgroundColor = .red
         return button
     }()
-    var yearsCount: String? // это значение получить из сетевых данных
-    var championships = [Int]()
+    var standings = ["Races", "Drivers", "Teams"]
     weak var delegate: PassValueType?
     
     // MARK: - Constructors
@@ -33,18 +27,13 @@ final class ContainerPicker: UIView {
         
         backgroundColor = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)
         
+        setupUI()
+        
         doneButton.addTarget(self, action: #selector(getValueFromPicker), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func initView() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-            self.setupUI()
-            self.getChampionshipYears()
-        }
     }
     
     private func setupUI() {
@@ -69,57 +58,28 @@ final class ContainerPicker: UIView {
         picker.dataSource = self
     }
     
-    private func getChampionshipYears() {
-        let date = Date()
-        let calendar = Calendar.current
-        let currentYear = calendar.component(.year, from: date)
-        
-        if let string = yearsCount, let convertedYearCount = Int(string) {
-            for i in 0...convertedYearCount - 1 {
-                let year = currentYear - i
-                championships.append(year)
-            }
-        }
-    }
-    
     @objc private func getValueFromPicker() {
         //  получаем текущее значение у пикера
         let selectedRow = picker.selectedRow(inComponent: 0)
-        let selectedValue = championships[selectedRow]
+        let selectedValue = standings[selectedRow]
         
-        delegate?.picker(value: selectedValue)
+        delegate?.picker2(value: selectedValue)
     }
 }
 
 // MARK: - Extension CollectionViewDataSource & CollectionViewDelegate
 
-extension ContainerPicker: UIPickerViewDataSource, UIPickerViewDelegate {
+extension StandingsContainerView: UIPickerViewDataSource, UIPickerViewDelegate {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return championships.count
+        return standings.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return String(championships[row])
-    }
-}
-
-struct Year: Codable {
-    let championship: Championship
-    
-    enum CodingKeys: String, CodingKey {
-        case championship = "MRData"
-    }
-}
-
-struct Championship: Codable {
-    let yearsCount: String
-    
-    enum CodingKeys: String, CodingKey {
-        case yearsCount = "total"
+        return standings[row]
     }
 }

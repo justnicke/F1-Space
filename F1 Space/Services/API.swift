@@ -10,11 +10,12 @@ import Foundation
 
 final class API {
     
-    // MARK: - Public Nested
+    // MARK: - Private Nested
     
     private enum EndPoint {
         case driverStandings
         case constructorStandings
+        case championship
         
         var urlComponents: URLComponents? {
             switch self {
@@ -24,6 +25,9 @@ final class API {
             case .constructorStandings:
                 return
                     URLComponents(string: "https://ergast.com/api/f1/2020/constructorStandings.json")
+            case .championship:
+                return
+                    URLComponents(string: "https://ergast.com/api/f1/seasons.json")
             }
         }
     }
@@ -36,6 +40,10 @@ final class API {
     
     static func requestConstructorStandings(completion: @escaping (ConstructorGroup?, Error?) -> Void) {
         request(endpoint: .constructorStandings, completion: completion)
+    }
+    
+    static func requestYearChampionship(completion: @escaping (Year?, Error?) -> Void) {
+        request(endpoint: .championship, completion: completion)
     }
     
     // MARK: - Private Methods

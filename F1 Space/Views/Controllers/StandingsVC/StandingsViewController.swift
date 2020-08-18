@@ -172,7 +172,7 @@ final class StandingsViewController: UIViewController {
     }
 }
 
-// MARK: - CollectionViewDataSource & CollectionViewDelegate
+// MARK: - Extension CollectionViewDataSource & CollectionViewDelegate
 
 extension StandingsViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
