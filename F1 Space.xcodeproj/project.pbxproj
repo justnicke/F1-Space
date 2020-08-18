@@ -44,6 +44,8 @@
 		5E82B52224C5D6AC00377859 /* ConstructorCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E82B52124C5D6AC00377859 /* ConstructorCellViewModel.swift */; };
 		5E8662CF24E2CE9500064D4E /* AppIncludes.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E8662CE24E2CE9500064D4E /* AppIncludes.jpg */; };
 		5E8662D124E2D6B000064D4E /* presentation.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5E8662D024E2D6B000064D4E /* presentation.gif */; };
+		5E88B1A324EBA698006B7B51 /* ArchiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E88B1A224EBA698006B7B51 /* ArchiveViewController.swift */; };
+		5E88B1A724EBCBC6006B7B51 /* ContainerPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E88B1A624EBCBC6006B7B51 /* ContainerPicker.swift */; };
 		5E9EB95224C2D99A00023668 /* StandingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9EB95124C2D99A00023668 /* StandingsViewModel.swift */; };
 		5E9EB95424C2DA2D00023668 /* StandingsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9EB95324C2DA2D00023668 /* StandingsCellViewModel.swift */; };
 		5EA886F224D164F30079EDDC /* RSS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA886F124D164F30079EDDC /* RSS.swift */; };
@@ -109,6 +111,8 @@
 		5E8662CB24E2C7BA00064D4E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		5E8662CE24E2CE9500064D4E /* AppIncludes.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = AppIncludes.jpg; sourceTree = "<group>"; };
 		5E8662D024E2D6B000064D4E /* presentation.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = presentation.gif; sourceTree = "<group>"; };
+		5E88B1A224EBA698006B7B51 /* ArchiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveViewController.swift; sourceTree = "<group>"; };
+		5E88B1A624EBCBC6006B7B51 /* ContainerPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerPicker.swift; sourceTree = "<group>"; };
 		5E9EB95124C2D99A00023668 /* StandingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsViewModel.swift; sourceTree = "<group>"; };
 		5E9EB95324C2DA2D00023668 /* StandingsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsCellViewModel.swift; sourceTree = "<group>"; };
 		5EA886F124D164F30079EDDC /* RSS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSS.swift; sourceTree = "<group>"; };
@@ -190,9 +194,6 @@
 		5E419EBA24B5A855006421F6 = {
 			isa = PBXGroup;
 			children = (
-				5E8662CE24E2CE9500064D4E /* AppIncludes.jpg */,
-				5E8662D024E2D6B000064D4E /* presentation.gif */,
-				5E8662CB24E2C7BA00064D4E /* README.md */,
 				5E419EC524B5A855006421F6 /* F1 Space */,
 				5E419EDC24B5A858006421F6 /* F1 SpaceTests */,
 				5E419EC424B5A855006421F6 /* Products */,
@@ -222,6 +223,9 @@
 				5E419EC824B5A855006421F6 /* SceneDelegate.swift */,
 				5E419ED124B5A858006421F6 /* LaunchScreen.storyboard */,
 				5E419ED424B5A858006421F6 /* Info.plist */,
+				5E8662CB24E2C7BA00064D4E /* README.md */,
+				5E8662D024E2D6B000064D4E /* presentation.gif */,
+				5E8662CE24E2CE9500064D4E /* AppIncludes.jpg */,
 			);
 			path = "F1 Space";
 			sourceTree = "<group>";
@@ -262,6 +266,8 @@
 				5E4A6A9C24D84A190077CDBC /* Views */,
 				5E40ECFB24B7551500E3AF1F /* Cells */,
 				5E82B52424C5E49100377859 /* Controllers */,
+				5E88B1A224EBA698006B7B51 /* ArchiveViewController.swift */,
+				5E88B1A624EBCBC6006B7B51 /* ContainerPicker.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -544,9 +550,11 @@
 				5EA886F424D165DD0079EDDC /* Article.swift in Sources */,
 				5E419EED24B5AB86006421F6 /* FormulaTabBarController.swift in Sources */,
 				5E40ECFA24B74BA100E3AF1F /* ConstructorCell.swift in Sources */,
+				5E88B1A724EBCBC6006B7B51 /* ContainerPicker.swift in Sources */,
 				5E4A6A9924D7EEB30077CDBC /* NewsCellViewModel.swift in Sources */,
 				5EA886F224D164F30079EDDC /* RSS.swift in Sources */,
 				5E40ECF624B7400700E3AF1F /* StandingConstructorCell.swift in Sources */,
+				5E88B1A324EBA698006B7B51 /* ArchiveViewController.swift in Sources */,
 				5E05CD8E24BF2B8700EB2EF3 /* Constructor.swift in Sources */,
 				5E419F0A24B60E1F006421F6 /* StackView.swift in Sources */,
 				5E419EE924B5A9AA006421F6 /* StandingsViewController.swift in Sources */,
@@ -710,7 +718,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q4947V4853;
-				INFOPLIST_FILE = "$(SRCROOT)/F1 Space/Support Files/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/F1 Space/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -728,7 +736,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q4947V4853;
-				INFOPLIST_FILE = "$(SRCROOT)/F1 Space/Support Files/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/F1 Space/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
