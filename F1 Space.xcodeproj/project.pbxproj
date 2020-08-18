@@ -194,6 +194,9 @@
 		5E419EBA24B5A855006421F6 = {
 			isa = PBXGroup;
 			children = (
+				5E8662CB24E2C7BA00064D4E /* README.md */,
+				5E8662D024E2D6B000064D4E /* presentation.gif */,
+				5E8662CE24E2CE9500064D4E /* AppIncludes.jpg */,
 				5E419EC524B5A855006421F6 /* F1 Space */,
 				5E419EDC24B5A858006421F6 /* F1 SpaceTests */,
 				5E419EC424B5A855006421F6 /* Products */,
@@ -223,9 +226,6 @@
 				5E419EC824B5A855006421F6 /* SceneDelegate.swift */,
 				5E419ED124B5A858006421F6 /* LaunchScreen.storyboard */,
 				5E419ED424B5A858006421F6 /* Info.plist */,
-				5E8662CB24E2C7BA00064D4E /* README.md */,
-				5E8662D024E2D6B000064D4E /* presentation.gif */,
-				5E8662CE24E2CE9500064D4E /* AppIncludes.jpg */,
 			);
 			path = "F1 Space";
 			sourceTree = "<group>";
