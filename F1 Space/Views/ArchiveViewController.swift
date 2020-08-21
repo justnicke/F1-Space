@@ -108,9 +108,11 @@ final class ArchiveViewController: UIViewController {
         }
     }
     
-    private func requestDrivers() {
+    private func requestDataForPicker() {
+         guard let year = yearButton.titleLabel?.text  else { return }
+        
         if standingsButton.titleLabel?.text == "Drivers" {
-            API.requestDriverStandings { [weak self] (driver, error) in
+            API.requestDriverStandings(year: year) { [weak self] (driver, error) in
                 let drivers = driver?.driverData.driverStandingsTable.driverStandingsLists.compactMap { $0.driverStandings }
                 let convertedDrivers = drivers?.reduce([], +)
                 let driver = convertedDrivers?.compactMap { $0.driver.givenName + " " + $0.driver.familyName }
@@ -118,7 +120,7 @@ final class ArchiveViewController: UIViewController {
                 self?.containerViewNum3.results += driversZ
             }
         } else if standingsButton.titleLabel?.text == "Teams" {
-            API.requestConstructorStandings { [weak self] (constructor, error) in
+            API.requestConstructorStandings(year: year) { [weak self] (constructor, error) in
                 let constructors = constructor?.constructorData.constructorStandingsTable.constructorStandingsLists.compactMap { $0.constructorStandings }
                 let convertedconstructors = constructors?.reduce([], +)
                 let driver = convertedconstructors?.compactMap { $0.constructor.name}
@@ -133,6 +135,71 @@ final class ArchiveViewController: UIViewController {
             }
         }
     }
+    
+    @objc private func handleURL() {
+        guard let year = yearButton.titleLabel?.text  else { return }
+        guard var standings = standingsButton.titleLabel?.text  else { return }
+        guard let result = variantResultButton.titleLabel?.text else { return }
+        
+        
+//        print("https://ergast.com/api/f1/\(year)/drivers/\(result)/results")
+        if standings == "Teams" {
+            standings = "constructors"
+            if result == "All" {
+                print("https://ergast.com/api/f1/\(year)/constructorStandings.json")
+            } else {
+                let constructorsResult = result.replacingOccurrences(of: " ", with: "_")
+                print("https://ergast.com/api/f1/\(year)/\(standings)/\(constructorsResult)/results.json?limit=60")
+            }
+        } else if standings == "Drivers" {
+            if result == "All" {
+                print("https://ergast.com/api/f1/\(year)/driverStandings.json")
+            } else {
+                /* Сделать исключение для гонщиков которые были с одинаковыми фамилиями тк просто по фамилии будет ошибка.
+                 Пример: Verstappen будет ошибка тк в 90 гонял jos_Verstappen а сейчас max_Verstappen
+                 Таких гонщиков возможно много (около 20 шт)
+                 По пямяти (фитипальди, ферсапен, сенна, шумахер, росберг
+                 
+                 Или сделать проверку запроса если с имя фамилией нил то вернуть только фамилию, но проблема что запрос с именем сущетсвет токлько он пустой
+)                 */
+                
+                guard let nameResult = result.components(separatedBy: " ").last else { return }
+                
+                guard let urlString = URL(string: "https://ergast.com/api/f1/\(year)/\(standings)/\(nameResult)/results.json") else { return print("Bad_URL")}
+                URLSession.shared.dataTask(with: urlString) { (data, res, err) in
+                    if let error = err {
+                        print(error.localizedDescription)
+                    }
+                    
+                    guard let data = data else { return print("Data was nil")}
+//                    if data.copyBytes(to: <#T##UnsafeMutableBufferPointer<DestinationType>#>, from: <#T##Range<Data.Index>?#>)
+                    print(data)
+                    
+                    
+                    
+                } .resume()
+//                print(urlString!)
+                print("https://ergast.com/api/f1/\(year)/\(standings)/\(nameResult)/results.json")
+            }
+        } else {
+            
+        }
+        
+
+           /* DRIVERS
+               - https://ergast.com/api/f1/2008/driverStandings ALL
+               - https://ergast.com/api/f1/2020/drivers/hamilton/results selected driver
+            */
+           
+           /* TEAMS
+               - https://ergast.com/api/f1/2020/constructorStandings.json ALL
+            */
+               
+           /* Races
+               - https://ergast.com/api/f1/2020/results/1 ALL
+            */
+        
+       }
     
     // Запрос по умолчанию при запуске приложения
     private func initialRequest() {
@@ -186,31 +253,8 @@ final class ArchiveViewController: UIViewController {
         containerViewNum3.centerInSuperview(size: .init(width: view.frame.width - 40,
                                                         height: 200))
         
-        requestDrivers()
+        requestDataForPicker()
         containerViewNum3.initView()
-    }
-    
-    @objc private func handleURL() {
-        guard let year = yearButton.titleLabel?.text  else { return }
-        guard let standings = standingsButton.titleLabel?.text  else { return }
-        guard let result = variantResultButton.titleLabel?.text  else { return }
-        requestDrivers()
-        /* DRIVERS
-            - https://ergast.com/api/f1/2008/driverStandings ALL
-         */
-        
-        /* TEAMS
-            - https://ergast.com/api/f1/2020/constructorStandings.json ALL
-         */
-            
-        /* Races
-            - https://ergast.com/api/f1/2020/results/1 ALL
-         */
-        
-        
-        
-//        https://ergast.com/api/f1/2020/drivers/hamilton/results Результаты выбранного гонщика по годам
-        
     }
 }
 

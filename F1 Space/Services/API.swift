@@ -13,19 +13,20 @@ final class API {
     // MARK: - Private Nested
     
     private enum EndPoint {
-        case driverStandings
-        case constructorStandings
+        case driverStandings(year: String)
+        case constructorStandings(year: String)
         case championship
         case grandPrix
         
         var urlComponents: URLComponents? {
             switch self {
-            case .driverStandings:
+            case .driverStandings(let year):
                 return
-                    URLComponents(string: "https://ergast.com/api/f1/2020/driverStandings.json")
-            case .constructorStandings:
+                    URLComponents(string: "https://ergast.com/api/f1/\(year)/driverStandings.json")
+            case .constructorStandings(let year):
                 return
-                    URLComponents(string: "https://ergast.com/api/f1/2020/constructorStandings.json")
+                    URLComponents(string: "https://ergast.com/api/f1/\(year)/constructorStandings.json")
+                
             case .championship:
                 return
                     URLComponents(string: "https://ergast.com/api/f1/seasons.json")
@@ -38,12 +39,12 @@ final class API {
     
     // MARK: - Public Methods
     
-    static func requestDriverStandings(completion: @escaping (DriverGroup?, Error?) -> Void) {
-        request(endpoint: .driverStandings, completion: completion)
+    static func requestDriverStandings(year: String, completion: @escaping (DriverGroup?, Error?) -> Void) {
+        request(endpoint: .driverStandings(year: year), completion: completion)
     }
     
-    static func requestConstructorStandings(completion: @escaping (ConstructorGroup?, Error?) -> Void) {
-        request(endpoint: .constructorStandings, completion: completion)
+    static func requestConstructorStandings(year: String, completion: @escaping (ConstructorGroup?, Error?) -> Void) {
+        request(endpoint: .constructorStandings(year: year), completion: completion)
     }
     
     static func requestYearChampionship(completion: @escaping (Year?, Error?) -> Void) {
