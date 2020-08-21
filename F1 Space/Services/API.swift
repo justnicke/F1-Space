@@ -16,6 +16,7 @@ final class API {
         case driverStandings
         case constructorStandings
         case championship
+        case grandPrix
         
         var urlComponents: URLComponents? {
             switch self {
@@ -28,6 +29,9 @@ final class API {
             case .championship:
                 return
                     URLComponents(string: "https://ergast.com/api/f1/seasons.json")
+            case .grandPrix:
+                return
+                    URLComponents(string: "https://ergast.com/api/f1/2020/results/1.json")
             }
         }
     }
@@ -44,6 +48,10 @@ final class API {
     
     static func requestYearChampionship(completion: @escaping (Year?, Error?) -> Void) {
         request(endpoint: .championship, completion: completion)
+    }
+    
+    static func requestGrandPrix(completion: @escaping (Crucit?, Error?) -> Void) {
+        request(endpoint: .grandPrix, completion: completion)
     }
     
     // MARK: - Private Methods

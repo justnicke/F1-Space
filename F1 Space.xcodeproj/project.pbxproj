@@ -38,6 +38,8 @@
 		5E5F1B3224D5600200F81366 /* CustromActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5F1B3124D5600200F81366 /* CustromActivityIndicator.swift */; };
 		5E5F1B3824D5DDE300F81366 /* CustomAnimationActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5F1B3724D5DDE300F81366 /* CustomAnimationActivityIndicator.swift */; };
 		5E5F1B3A24D5F37F00F81366 /* RefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5F1B3924D5F37F00F81366 /* RefreshView.swift */; };
+		5E65123724EFA2A800008D67 /* ContainerNum3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E65123624EFA2A800008D67 /* ContainerNum3.swift */; };
+		5E65123924EFBB6700008D67 /* Races.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E65123824EFBB6700008D67 /* Races.swift */; };
 		5E7DB97D24D054420029C0EE /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DB97C24D054420029C0EE /* NewsViewController.swift */; };
 		5E7DB98024D05A6E0029C0EE /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DB97F24D05A6E0029C0EE /* NewsCell.swift */; };
 		5E82B52024C5D6A100377859 /* ConstructorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E82B51F24C5D6A100377859 /* ConstructorViewModel.swift */; };
@@ -105,6 +107,8 @@
 		5E5F1B3124D5600200F81366 /* CustromActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustromActivityIndicator.swift; sourceTree = "<group>"; };
 		5E5F1B3724D5DDE300F81366 /* CustomAnimationActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnimationActivityIndicator.swift; sourceTree = "<group>"; };
 		5E5F1B3924D5F37F00F81366 /* RefreshView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshView.swift; sourceTree = "<group>"; };
+		5E65123624EFA2A800008D67 /* ContainerNum3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerNum3.swift; sourceTree = "<group>"; };
+		5E65123824EFBB6700008D67 /* Races.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Races.swift; sourceTree = "<group>"; };
 		5E7DB97C24D054420029C0EE /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		5E7DB97F24D05A6E0029C0EE /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		5E82B51F24C5D6A100377859 /* ConstructorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorViewModel.swift; sourceTree = "<group>"; };
@@ -161,6 +165,7 @@
 			children = (
 				5EA886F524D165EB0079EDDC /* News */,
 				5E05CD9124BF340700EB2EF3 /* Standings */,
+				5E65123824EFBB6700008D67 /* Races.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -271,6 +276,7 @@
 				5E88B1A224EBA698006B7B51 /* ArchiveViewController.swift */,
 				5E88B1A624EBCBC6006B7B51 /* ContainerPicker.swift */,
 				5E88B1A824EC0D8E006B7B51 /* StandingsContainerView.swift */,
+				5E65123624EFA2A800008D67 /* ContainerNum3.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -528,6 +534,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E65123924EFBB6700008D67 /* Races.swift in Sources */,
 				5E05CD8C24BF28E600EB2EF3 /* CommonDriver.swift in Sources */,
 				5E7DB98024D05A6E0029C0EE /* NewsCell.swift in Sources */,
 				5EA886F724D191730079EDDC /* String.swift in Sources */,
@@ -566,6 +573,7 @@
 				5E419EF624B5DBB0006421F6 /* StandingDriverCell.swift in Sources */,
 				5EC60D6C24C1FD4E009C66CC /* DriverCellViewModel.swift in Sources */,
 				5E05CD9024BF2B8F00EB2EF3 /* Driver.swift in Sources */,
+				5E65123724EFA2A800008D67 /* ContainerNum3.swift in Sources */,
 				5E9EB95224C2D99A00023668 /* StandingsViewModel.swift in Sources */,
 				5E14A14424BCA1A90058305B /* API.swift in Sources */,
 				5E40ECF824B74B8100E3AF1F /* ConstructorViewController.swift in Sources */,

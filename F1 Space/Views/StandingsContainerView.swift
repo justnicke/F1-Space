@@ -17,7 +17,7 @@ final class StandingsContainerView: UIView {
         button.backgroundColor = .red
         return button
     }()
-    var standings = ["Races", "Drivers", "Teams"]
+    var standings = ["Drivers", "Teams", "Races"]
     weak var delegate: PassValueType?
     
     // MARK: - Constructors
