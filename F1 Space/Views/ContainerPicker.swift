@@ -11,7 +11,7 @@ import UIKit
 protocol PassValueType: class {
     func picker(value: Int)
     func picker2(value: String)
-    func picker3(value: String)
+    func picker3(value: String?, arrayStand: String)
 }
 
 final class ContainerPicker: UIView {

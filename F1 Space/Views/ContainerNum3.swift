@@ -17,6 +17,8 @@ final class ContainerNum3: UIView {
         return button
     }()
     var results = ["All"]
+    var resultsID = ["All"]
+    var standings: [DriverStandings]? = []
     weak var delegate: PassValueType?
     
     // MARK: - Constructors
@@ -66,9 +68,12 @@ final class ContainerNum3: UIView {
     @objc private func getValueFromPicker() {
         //  получаем текущее значение у пикера
         let selectedRow = picker.selectedRow(inComponent: 0)
-        let selectedValue = results[selectedRow]
-        
-        delegate?.picker3(value: selectedValue)
+
+        let fullPickerStack = results[selectedRow]
+        let fullPickerStacID = resultsID[selectedRow]
+
+
+        delegate?.picker3(value: fullPickerStacID, arrayStand: fullPickerStack)
     }
 }
 

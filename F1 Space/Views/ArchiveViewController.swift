@@ -38,7 +38,7 @@ final class ArchiveViewController: UIViewController {
     var standingContainer: StandingsContainerView!
     var containerViewNum3 = ContainerNum3()
     
-    var yearStr: String!
+    var driverID: String?
     var standingsStr: String!
     var resultStr: String!
     
@@ -116,8 +116,16 @@ final class ArchiveViewController: UIViewController {
                 let drivers = driver?.driverData.driverStandingsTable.driverStandingsLists.compactMap { $0.driverStandings }
                 let convertedDrivers = drivers?.reduce([], +)
                 let driver = convertedDrivers?.compactMap { $0.driver.givenName + " " + $0.driver.familyName }
+                let driversID = convertedDrivers?.compactMap { $0.driver.driverID }
                 guard let driversZ = driver else { return }
+                guard let driversIDZ = driversID else { return }
+                
+                
+                self?.containerViewNum3.standings = convertedDrivers ?? []
+
                 self?.containerViewNum3.results += driversZ
+                
+                self?.containerViewNum3.resultsID += driversIDZ
             }
         } else if standingsButton.titleLabel?.text == "Teams" {
             API.requestConstructorStandings(year: year) { [weak self] (constructor, error) in
@@ -125,13 +133,13 @@ final class ArchiveViewController: UIViewController {
                 let convertedconstructors = constructors?.reduce([], +)
                 let driver = convertedconstructors?.compactMap { $0.constructor.name}
                 guard let driversZ = driver else { return }
-                self?.containerViewNum3.results += driversZ
+//                self?.containerViewNum3.results += driversZ
             }
         } else {
             API.requestGrandPrix { [weak self] (grandPrix, error) in
                 let grandPrixes =  grandPrix?.mrData.raceTable.races.compactMap { $0.raceName }
                 guard let crucit = grandPrixes else { return }
-                self?.containerViewNum3.results += crucit
+//                self?.containerViewNum3.results += crucit
             }
         }
     }
@@ -155,37 +163,14 @@ final class ArchiveViewController: UIViewController {
             if result == "All" {
                 print("https://ergast.com/api/f1/\(year)/driverStandings.json")
             } else {
-                /* Сделать исключение для гонщиков которые были с одинаковыми фамилиями тк просто по фамилии будет ошибка.
-                 Пример: Verstappen будет ошибка тк в 90 гонял jos_Verstappen а сейчас max_Verstappen
-                 Таких гонщиков возможно много (около 20 шт)
-                 По пямяти (фитипальди, ферсапен, сенна, шумахер, росберг
-                 
-                 Или сделать проверку запроса если с имя фамилией нил то вернуть только фамилию, но проблема что запрос с именем сущетсвет токлько он пустой
-)                 */
+                guard let driverRefresh = driverID else { return }
                 
-                guard let nameResult = result.components(separatedBy: " ").last else { return }
-                
-                guard let urlString = URL(string: "https://ergast.com/api/f1/\(year)/\(standings)/\(nameResult)/results.json") else { return print("Bad_URL")}
-                URLSession.shared.dataTask(with: urlString) { (data, res, err) in
-                    if let error = err {
-                        print(error.localizedDescription)
-                    }
-                    
-                    guard let data = data else { return print("Data was nil")}
-//                    if data.copyBytes(to: <#T##UnsafeMutableBufferPointer<DestinationType>#>, from: <#T##Range<Data.Index>?#>)
-                    print(data)
-                    
-                    
-                    
-                } .resume()
-//                print(urlString!)
-                print("https://ergast.com/api/f1/\(year)/\(standings)/\(nameResult)/results.json")
+                print("https://ergast.com/api/f1/\(year)/\(standings)/\(driverRefresh)/results.json")
             }
         } else {
             
         }
-        
-
+    
            /* DRIVERS
                - https://ergast.com/api/f1/2008/driverStandings ALL
                - https://ergast.com/api/f1/2020/drivers/hamilton/results selected driver
@@ -273,8 +258,14 @@ extension ArchiveViewController: PassValueType {
         yearButton.isEnabled = true
     }
     
-    func picker3(value: String) {
-        variantResultButton.setTitle(value, for: .normal)
+    func picker3(value: String?, arrayStand: String) {
+        
+//        guard let firstName = value?.driver.givenName else { return }
+//        guard let lastName = value?.driver.familyName else { return }
+//        let fullName = firstName + " " + lastName
+        
+        driverID = value
+        variantResultButton.setTitle(arrayStand, for: .normal)
         containerViewNum3.isHidden = true
     }
 }

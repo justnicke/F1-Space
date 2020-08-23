@@ -31,10 +31,18 @@ struct DriverStandings: Codable {
 }
 
 struct Driver: Codable {
+    let driverID: String
     var givenName: String
     var familyName: String
+    
+    enum CodingKeys: String, CodingKey {
+        case driverID = "driverId"
+        case givenName = "givenName"
+        case familyName = "familyName"
+    }
 }
 
 struct Team: Codable {
     let name: String
 }
+
