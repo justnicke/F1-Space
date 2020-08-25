@@ -16,7 +16,7 @@ final class API {
         case driverStandings(year: String)
         case constructorStandings(year: String)
         case championship
-        case grandPrix
+        case grandPrix(year: String)
         
         var urlComponents: URLComponents? {
             switch self {
@@ -26,13 +26,12 @@ final class API {
             case .constructorStandings(let year):
                 return
                     URLComponents(string: "https://ergast.com/api/f1/\(year)/constructorStandings.json")
-                
             case .championship:
                 return
                     URLComponents(string: "https://ergast.com/api/f1/seasons.json")
-            case .grandPrix:
+            case .grandPrix(let year):
                 return
-                    URLComponents(string: "https://ergast.com/api/f1/2020/results/1.json")
+                    URLComponents(string: "https://ergast.com/api/f1/\(year)/results/1.json")
             }
         }
     }
@@ -51,8 +50,8 @@ final class API {
         request(endpoint: .championship, completion: completion)
     }
     
-    static func requestGrandPrix(completion: @escaping (Crucit?, Error?) -> Void) {
-        request(endpoint: .grandPrix, completion: completion)
+    static func requestGrandPrix(year: String, completion: @escaping (Crucit?, Error?) -> Void) {
+        request(endpoint: .grandPrix(year: year), completion: completion)
     }
     
     // MARK: - Private Methods

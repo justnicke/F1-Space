@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class ArchiveViewController: UIViewController {
+final class ArchiveViewController: UITableViewController {
     
     let yearButton: UIButton = {
         let button = UIButton(type: .system)
@@ -38,9 +38,11 @@ final class ArchiveViewController: UIViewController {
     var standingContainer: StandingsContainerView!
     var containerViewNum3 = ContainerNum3()
     
-    var driverID: String?
-    var standingsStr: String!
-    var resultStr: String!
+    let headerView = UIView()
+    
+    var nameId: String?
+//    var raceRound: String?
+//    var resultStr: String!
     
     // MARK: Public Methods
     
@@ -48,6 +50,7 @@ final class ArchiveViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .white
+        tableView.register(ArchiveCell.self, forCellReuseIdentifier: "cell")
         setupUI()
         
         yearButton.addTarget(self, action: #selector(actionYearButton), for: .touchUpInside)
@@ -59,44 +62,44 @@ final class ArchiveViewController: UIViewController {
     // MARK: Prrivate Methods
     
     private func setupUI() {
-        view.addSubview(yearButton)
+        headerView.addSubview(yearButton)
         yearButton.anchor(
-            top: view.topAnchor,
-            leading: view.leadingAnchor,
+            top: headerView.topAnchor,
+            leading: headerView.leadingAnchor,
             bottom: nil,
-            trailing: view.trailingAnchor,
-            padding: .init(top: 100, left: 50, bottom: 0, right: 50),
-            size: .init(width: 0, height: 60)
+            trailing: headerView.trailingAnchor,
+            padding: .init(top: 10, left: 50, bottom: 0, right: 50),
+            size: .init(width: 0, height: 30)
         )
         
-        view.addSubview(standingsButton)
+        headerView.addSubview(standingsButton)
         standingsButton.anchor(
             top: yearButton.bottomAnchor,
-            leading: view.leadingAnchor,
+            leading: headerView.leadingAnchor,
             bottom: nil,
-            trailing: view.trailingAnchor,
-            padding: .init(top: 30, left: 50, bottom: 0, right: 50),
-            size: .init(width: 0, height: 60)
+            trailing: headerView.trailingAnchor,
+            padding: .init(top: 10, left: 50, bottom: 0, right: 50),
+            size: .init(width: 0, height: 30)
         )
         
-        view.addSubview(variantResultButton)
+        headerView.addSubview(variantResultButton)
         variantResultButton.anchor(
             top: standingsButton.bottomAnchor,
-            leading: view.leadingAnchor,
+            leading: headerView.leadingAnchor,
             bottom: nil,
-            trailing: view.trailingAnchor,
-            padding: .init(top: 30, left: 50, bottom: 0, right: 50),
-            size: .init(width: 0, height: 60)
+            trailing: headerView.trailingAnchor,
+            padding: .init(top: 10, left: 50, bottom: 0, right: 50),
+            size: .init(width: 0, height: 30)
         )
         
-        view.addSubview(finalResultURLButton)
+        headerView.addSubview(finalResultURLButton)
         finalResultURLButton.anchor(
             top: variantResultButton.bottomAnchor,
-            leading: view.leadingAnchor,
+            leading: headerView.leadingAnchor,
             bottom: nil,
-            trailing: view.trailingAnchor,
-            padding: .init(top: 30, left: 50, bottom: 0, right: 50),
-            size: .init(width: 0, height: 60)
+            trailing: headerView.trailingAnchor,
+            padding: .init(top: 10, left: 50, bottom: 0, right: 50),
+            size: .init(width: 0, height: 30)
         )
         
         initialRequest()
@@ -115,31 +118,40 @@ final class ArchiveViewController: UIViewController {
             API.requestDriverStandings(year: year) { [weak self] (driver, error) in
                 let drivers = driver?.driverData.driverStandingsTable.driverStandingsLists.compactMap { $0.driverStandings }
                 let convertedDrivers = drivers?.reduce([], +)
+                
                 let driver = convertedDrivers?.compactMap { $0.driver.givenName + " " + $0.driver.familyName }
                 let driversID = convertedDrivers?.compactMap { $0.driver.driverID }
+                
                 guard let driversZ = driver else { return }
                 guard let driversIDZ = driversID else { return }
                 
-                
-                self?.containerViewNum3.standings = convertedDrivers ?? []
-
                 self?.containerViewNum3.results += driversZ
-                
                 self?.containerViewNum3.resultsID += driversIDZ
             }
         } else if standingsButton.titleLabel?.text == "Teams" {
             API.requestConstructorStandings(year: year) { [weak self] (constructor, error) in
                 let constructors = constructor?.constructorData.constructorStandingsTable.constructorStandingsLists.compactMap { $0.constructorStandings }
                 let convertedconstructors = constructors?.reduce([], +)
-                let driver = convertedconstructors?.compactMap { $0.constructor.name}
-                guard let driversZ = driver else { return }
-//                self?.containerViewNum3.results += driversZ
+                
+                let constructorsName = convertedconstructors?.compactMap { $0.constructor.name}
+                let constructorsID = convertedconstructors?.compactMap { $0.constructor.constructorId }
+                
+                guard let constructorList = constructorsName else { return }
+                guard let constID = constructorsID else { return }
+                
+                self?.containerViewNum3.results += constructorList
+                self?.containerViewNum3.resultsID += constID
             }
         } else {
-            API.requestGrandPrix { [weak self] (grandPrix, error) in
+            API.requestGrandPrix(year: year) { [weak self] (grandPrix, error) in
                 let grandPrixes =  grandPrix?.mrData.raceTable.races.compactMap { $0.raceName }
+                let roundGP = grandPrix?.mrData.raceTable.races.compactMap { $0.round }
+                
                 guard let crucit = grandPrixes else { return }
-//                self?.containerViewNum3.results += crucit
+                guard let round = roundGP else { return }
+                
+                self?.containerViewNum3.results += crucit
+                self?.containerViewNum3.resultsID += round
             }
         }
     }
@@ -148,43 +160,30 @@ final class ArchiveViewController: UIViewController {
         guard let year = yearButton.titleLabel?.text  else { return }
         guard var standings = standingsButton.titleLabel?.text  else { return }
         guard let result = variantResultButton.titleLabel?.text else { return }
+        guard let currentID = nameId else { return }
         
-        
-//        print("https://ergast.com/api/f1/\(year)/drivers/\(result)/results")
         if standings == "Teams" {
             standings = "constructors"
             if result == "All" {
                 print("https://ergast.com/api/f1/\(year)/constructorStandings.json")
             } else {
-                let constructorsResult = result.replacingOccurrences(of: " ", with: "_")
-                print("https://ergast.com/api/f1/\(year)/\(standings)/\(constructorsResult)/results.json?limit=60")
+                print("https://ergast.com/api/f1/\(year)/\(standings)/\(currentID)/results.json?limit=60")
             }
         } else if standings == "Drivers" {
             if result == "All" {
                 print("https://ergast.com/api/f1/\(year)/driverStandings.json")
             } else {
-                guard let driverRefresh = driverID else { return }
-                
-                print("https://ergast.com/api/f1/\(year)/\(standings)/\(driverRefresh)/results.json")
+                print("https://ergast.com/api/f1/\(year)/\(standings)/\(currentID)/results.json")
             }
         } else {
-            
+            if result == "All" {
+                print("https://ergast.com/api/f1/\(year)/results/1.json")
+            } else {
+                // Делаем только резулятат гонки и квалификации, после UI разберемся
+                print("https://ergast.com/api/f1/\(year)/\(currentID)/results.json") // трасса, победитель, команда
+            }
         }
-    
-           /* DRIVERS
-               - https://ergast.com/api/f1/2008/driverStandings ALL
-               - https://ergast.com/api/f1/2020/drivers/hamilton/results selected driver
-            */
-           
-           /* TEAMS
-               - https://ergast.com/api/f1/2020/constructorStandings.json ALL
-            */
-               
-           /* Races
-               - https://ergast.com/api/f1/2020/results/1 ALL
-            */
-        
-       }
+    }
     
     // Запрос по умолчанию при запуске приложения
     private func initialRequest() {
@@ -241,6 +240,32 @@ final class ArchiveViewController: UIViewController {
         requestDataForPicker()
         containerViewNum3.initView()
     }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        headerView.backgroundColor = #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)
+        
+        return headerView
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 200
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ArchiveCell
+        
+        cell
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70
+    }
 }
 
 extension ArchiveViewController: PassValueType {
@@ -259,12 +284,7 @@ extension ArchiveViewController: PassValueType {
     }
     
     func picker3(value: String?, arrayStand: String) {
-        
-//        guard let firstName = value?.driver.givenName else { return }
-//        guard let lastName = value?.driver.familyName else { return }
-//        let fullName = firstName + " " + lastName
-        
-        driverID = value
+        nameId = value
         variantResultButton.setTitle(arrayStand, for: .normal)
         containerViewNum3.isHidden = true
     }

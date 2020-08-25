@@ -30,4 +30,5 @@ struct ConstructorStandings: Codable {
 
 struct Constructor: Codable {
     let name: String
+    let constructorId: String
 }

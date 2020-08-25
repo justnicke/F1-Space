@@ -37,10 +37,12 @@ struct GrandPrix: Codable {
 
 // MARK: - Race
 struct Race: Codable {
+    let round: String
     let raceName: String
     
     enum CodingKeys: String, CodingKey {
         case raceName = "raceName"
+        case round = "round"
 
     }
 }

@@ -18,7 +18,7 @@ final class ContainerNum3: UIView {
     }()
     var results = ["All"]
     var resultsID = ["All"]
-    var standings: [DriverStandings]? = []
+//    var standings: [DriverStandings]? = []
     weak var delegate: PassValueType?
     
     // MARK: - Constructors
