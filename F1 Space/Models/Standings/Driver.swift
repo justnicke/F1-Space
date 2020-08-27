@@ -34,11 +34,13 @@ struct Driver: Codable {
     let driverID: String
     var givenName: String
     var familyName: String
+    var nationality: String
     
     enum CodingKeys: String, CodingKey {
         case driverID = "driverId"
         case givenName = "givenName"
         case familyName = "familyName"
+        case nationality = "nationality"
     }
 }
 

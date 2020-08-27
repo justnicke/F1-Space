@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class ArchiveViewController: UITableViewController {
+final class ArchiveViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     let yearButton: UIButton = {
         let button = UIButton(type: .system)
@@ -37,12 +37,15 @@ final class ArchiveViewController: UITableViewController {
     var containerView: ContainerPicker!
     var standingContainer: StandingsContainerView!
     var containerViewNum3 = ContainerNum3()
+    var tableView: UITableView!
     
-    let headerView = UIView()
+    let topView = UIView()
+    let headerView = HeaderView()
     
     var nameId: String?
-//    var raceRound: String?
-//    var resultStr: String!
+    var anyTypes: [DriverStandings]?
+    var anyTypes2: [DriverStandings]?
+
     
     // MARK: Public Methods
     
@@ -50,6 +53,28 @@ final class ArchiveViewController: UITableViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .white
+        
+        topView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(topView)
+        topView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        topView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        topView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        topView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        topView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        
+        tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(tableView)
+        tableView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.separatorStyle = .singleLine
+        tableView.tableFooterView = UIView()
+        
+        tableView.topAnchor.constraint(equalTo: topView.bottomAnchor).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         tableView.register(ArchiveCell.self, forCellReuseIdentifier: "cell")
         setupUI()
         
@@ -62,47 +87,20 @@ final class ArchiveViewController: UITableViewController {
     // MARK: Prrivate Methods
     
     private func setupUI() {
-        headerView.addSubview(yearButton)
-        yearButton.anchor(
-            top: headerView.topAnchor,
-            leading: headerView.leadingAnchor,
-            bottom: nil,
-            trailing: headerView.trailingAnchor,
-            padding: .init(top: 10, left: 50, bottom: 0, right: 50),
-            size: .init(width: 0, height: 30)
-        )
+        let buttonStackView = UIStackView(
+            arrangedSubviews: [yearButton, standingsButton, variantResultButton, finalResultURLButton],
+            axis: .horizontal,
+            spacing: 10,
+            distribution: .fillEqually)
         
-        headerView.addSubview(standingsButton)
-        standingsButton.anchor(
-            top: yearButton.bottomAnchor,
-            leading: headerView.leadingAnchor,
-            bottom: nil,
-            trailing: headerView.trailingAnchor,
-            padding: .init(top: 10, left: 50, bottom: 0, right: 50),
-            size: .init(width: 0, height: 30)
+        topView.addSubview(buttonStackView)
+        buttonStackView.anchor(
+            top: topView.topAnchor,
+            leading: topView.leadingAnchor,
+            bottom: topView.bottomAnchor,
+            trailing: topView.trailingAnchor,
+            padding: .init(top: 10, left: 10, bottom: 10, right: 10)
         )
-        
-        headerView.addSubview(variantResultButton)
-        variantResultButton.anchor(
-            top: standingsButton.bottomAnchor,
-            leading: headerView.leadingAnchor,
-            bottom: nil,
-            trailing: headerView.trailingAnchor,
-            padding: .init(top: 10, left: 50, bottom: 0, right: 50),
-            size: .init(width: 0, height: 30)
-        )
-        
-        headerView.addSubview(finalResultURLButton)
-        finalResultURLButton.anchor(
-            top: variantResultButton.bottomAnchor,
-            leading: headerView.leadingAnchor,
-            bottom: nil,
-            trailing: headerView.trailingAnchor,
-            padding: .init(top: 10, left: 50, bottom: 0, right: 50),
-            size: .init(width: 0, height: 30)
-        )
-        
-        initialRequest()
     }
     
     private func requestData() {
@@ -157,6 +155,7 @@ final class ArchiveViewController: UITableViewController {
     }
     
     @objc private func handleURL() {
+        initialRequest()
         guard let year = yearButton.titleLabel?.text  else { return }
         guard var standings = standingsButton.titleLabel?.text  else { return }
         guard let result = variantResultButton.titleLabel?.text else { return }
@@ -187,21 +186,45 @@ final class ArchiveViewController: UITableViewController {
     
     // Запрос по умолчанию при запуске приложения
     private func initialRequest() {
-        guard let year = yearButton.titleLabel?.text  else { return }
-        guard let standings = standingsButton.titleLabel?.text?.lowercased()  else { return }
-        print("https://ergast.com/api/f1/\(year)/\(standings.dropLast())Standings.json")
+//        guard let year = yearButton.titleLabel?.text  else { return }
+//        guard let standings = standingsButton.titleLabel?.text?.lowercased()  else { return }
+//        print("https://ergast.com/api/f1/\(year)/\(standings.dropLast())Standings.json")
         
+        guard let year = yearButton.titleLabel?.text  else { return }
+        API.requestDriverStandings(year: year) { [weak self] (driver, err) in
+            let drivers = driver?.driverData.driverStandingsTable.driverStandingsLists.compactMap { $0.driverStandings }
+            let convertedDrivers = drivers?.reduce([], +)
+            self?.anyTypes = convertedDrivers
+             self?.anyTypes2 = nil
+            self?.tableView.reloadData()
+        }
+    }
+        
+    private func initialRequest2() {
+        //        guard let year = yearButton.titleLabel?.text  else { return }
+        //        guard let standings = standingsButton.titleLabel?.text?.lowercased()  else { return }
+        //        print("https://ergast.com/api/f1/\(year)/\(standings.dropLast())Standings.json")
+        
+        guard let year = yearButton.titleLabel?.text  else { return }
+        API.requestDriverStandings(year: year) { [weak self] (driver, err) in
+            let drivers = driver?.driverData.driverStandingsTable.driverStandingsLists.compactMap { $0.driverStandings }
+            let convertedDrivers = drivers?.reduce([], +)
+            self?.anyTypes2 = convertedDrivers
+            self?.anyTypes = nil
+            self?.tableView.reloadData()
+        }
     }
     
     @objc private func actionYearButton() {
+        initialRequest2()
         // в будущем передалать
-        containerView = ContainerPicker()
-        view.addSubview(containerView)
-        containerView.isHidden = false
-        containerView.delegate = self
-        containerView.centerInSuperview(size: .init(width: view.frame.width - 40,
-                                                    height: 200))
-        requestData()
+//        containerView = ContainerPicker()
+//        view.addSubview(containerView)
+//        containerView.isHidden = false
+//        containerView.delegate = self
+//        containerView.centerInSuperview(size: .init(width: view.frame.width - 40,
+//                                                    height: 200))
+//        requestData()
         
         /* По нажатию на кнопку выбора года, перед тем, как открыть требуется:
          - Обработать Error в запросе
@@ -214,8 +237,8 @@ final class ArchiveViewController: UITableViewController {
          - Показывать следующи кнопки с выбором контенера исходя из выбранного года и вида (гонщик, конка или команда)
          */
         
-        containerView.initView()
-        yearButton.isEnabled = false
+//        containerView.initView()
+//        yearButton.isEnabled = false
     }
     
     @objc private func actionStandingsButton() {
@@ -241,31 +264,49 @@ final class ArchiveViewController: UITableViewController {
         containerViewNum3.initView()
     }
     
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-        headerView.backgroundColor = #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)
+        if anyTypes != nil {
+            headerView.configureHeader2()
+        } else if anyTypes2 != nil {
+            headerView.configureHeader1()
+        } else {
+            return UIView()
+        }
         
         return headerView
     }
     
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 200
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if anyTypes?.count != nil {
+            return anyTypes?.count ?? 0
+        } else {
+            return anyTypes2?.count ?? 0
+        }
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ArchiveCell
+        let anyType = anyTypes?[indexPath.row]
+        let anyType2 = anyTypes2?[indexPath.row]
         
-        cell
+        if anyTypes == nil {
+            cell.congigure2(anyType: anyType2)
+        } else {
+            cell.congigure(anyType: anyType)
+        }
+        
+        //        cell.congigure(anyType: anyType)
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
-    }
+}
 }
 
 extension ArchiveViewController: PassValueType {
