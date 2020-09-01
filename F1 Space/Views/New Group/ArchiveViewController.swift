@@ -40,7 +40,7 @@ final class ArchiveViewController: UIViewController, UITableViewDataSource, UITa
     var tableView: UITableView!
     
     let topView = UIView()
-    let headerView = HeaderView()
+    var headerView: HeaderView?
     
     var nameId: String?
     var anyTypes: [DriverStandings]?
@@ -91,7 +91,8 @@ final class ArchiveViewController: UIViewController, UITableViewDataSource, UITa
             arrangedSubviews: [yearButton, standingsButton, variantResultButton, finalResultURLButton],
             axis: .horizontal,
             spacing: 10,
-            distribution: .fillEqually)
+            distribution: .fillEqually
+        )
         
         topView.addSubview(buttonStackView)
         buttonStackView.anchor(
@@ -265,16 +266,19 @@ final class ArchiveViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        headerView = HeaderView()
         
-        if anyTypes != nil {
-            headerView.configureHeader2()
-        } else if anyTypes2 != nil {
-            headerView.configureHeader1()
+        if anyTypes == nil {
+            headerView?.configureHeader2()
         } else {
-            return UIView()
+            headerView?.configureHeader1()
         }
         
-        return headerView
+        if headerView == nil {
+            return UIView()
+        } else {
+            return headerView
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
