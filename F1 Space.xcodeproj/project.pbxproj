@@ -61,8 +61,18 @@
 		5EAC214724C8244F00A65A7A /* DataSourceViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC214624C8244F00A65A7A /* DataSourceViewModelType.swift */; };
 		5EC60D6824C18DBD009C66CC /* DriverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC60D6724C18DBD009C66CC /* DriverViewModel.swift */; };
 		5EC60D6C24C1FD4E009C66CC /* DriverCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC60D6B24C1FD4E009C66CC /* DriverCellViewModel.swift */; };
+		5ECFB2A62501132800ED94EA /* TransitionDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECFB29A2501132800ED94EA /* TransitionDriver.swift */; };
+		5ECFB2A72501132800ED94EA /* CGPoint + Velocity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECFB29B2501132800ED94EA /* CGPoint + Velocity.swift */; };
+		5ECFB2A82501132800ED94EA /* PanelTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECFB29C2501132800ED94EA /* PanelTransition.swift */; };
+		5ECFB2A92501132800ED94EA /* InstantPanGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECFB29D2501132800ED94EA /* InstantPanGestureRecognizer.swift */; };
+		5ECFB2AA2501132800ED94EA /* PresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECFB29F2501132800ED94EA /* PresentationController.swift */; };
+		5ECFB2AB2501132800ED94EA /* DarkenedPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECFB2A02501132800ED94EA /* DarkenedPresentationController.swift */; };
+		5ECFB2AC2501132800ED94EA /* PresentAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECFB2A22501132800ED94EA /* PresentAnimation.swift */; };
+		5ECFB2AD2501132800ED94EA /* DismissAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECFB2A32501132800ED94EA /* DismissAnimation.swift */; };
+		5ECFB2AE2501132800ED94EA /* TransitionDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECFB2A42501132800ED94EA /* TransitionDirection.swift */; };
+		5EEE76DE25013F7C00D7D530 /* PanGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EEE76DD25013F7C00D7D530 /* PanGestureRecognizer.swift */; };
 		5EFD898724FE251E00A39838 /* HistoricalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFD898624FE251E00A39838 /* HistoricalViewController.swift */; };
-		5EFD898924FE458200A39838 /* HistoricalPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFD898824FE458200A39838 /* HistoricalPickerView.swift */; };
+		5EFD898924FE458200A39838 /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFD898824FE458200A39838 /* PickerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,8 +145,18 @@
 		5EAC214624C8244F00A65A7A /* DataSourceViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourceViewModelType.swift; sourceTree = "<group>"; };
 		5EC60D6724C18DBD009C66CC /* DriverViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverViewModel.swift; sourceTree = "<group>"; };
 		5EC60D6B24C1FD4E009C66CC /* DriverCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverCellViewModel.swift; sourceTree = "<group>"; };
+		5ECFB29A2501132800ED94EA /* TransitionDriver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionDriver.swift; sourceTree = "<group>"; };
+		5ECFB29B2501132800ED94EA /* CGPoint + Velocity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint + Velocity.swift"; sourceTree = "<group>"; };
+		5ECFB29C2501132800ED94EA /* PanelTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanelTransition.swift; sourceTree = "<group>"; };
+		5ECFB29D2501132800ED94EA /* InstantPanGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstantPanGestureRecognizer.swift; sourceTree = "<group>"; };
+		5ECFB29F2501132800ED94EA /* PresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationController.swift; sourceTree = "<group>"; };
+		5ECFB2A02501132800ED94EA /* DarkenedPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DarkenedPresentationController.swift; sourceTree = "<group>"; };
+		5ECFB2A22501132800ED94EA /* PresentAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentAnimation.swift; sourceTree = "<group>"; };
+		5ECFB2A32501132800ED94EA /* DismissAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissAnimation.swift; sourceTree = "<group>"; };
+		5ECFB2A42501132800ED94EA /* TransitionDirection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionDirection.swift; sourceTree = "<group>"; };
+		5EEE76DD25013F7C00D7D530 /* PanGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanGestureRecognizer.swift; sourceTree = "<group>"; };
 		5EFD898624FE251E00A39838 /* HistoricalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalViewController.swift; sourceTree = "<group>"; };
-		5EFD898824FE458200A39838 /* HistoricalPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalPickerView.swift; sourceTree = "<group>"; };
+		5EFD898824FE458200A39838 /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -266,6 +286,7 @@
 			isa = PBXGroup;
 			children = (
 				5E419EFC24B5FAC9006421F6 /* Fonts */,
+				5ECFB2982501132800ED94EA /* Transition */,
 				5E419EF024B5B433006421F6 /* Layout.swift */,
 				5EA886F624D191730079EDDC /* String.swift */,
 				5E419F0924B60E1F006421F6 /* StackView.swift */,
@@ -282,7 +303,7 @@
 				5E40ECFB24B7551500E3AF1F /* Cells */,
 				5E82B52424C5E49100377859 /* Controllers */,
 				5EFD898624FE251E00A39838 /* HistoricalViewController.swift */,
-				5EFD898824FE458200A39838 /* HistoricalPickerView.swift */,
+				5EFD898824FE458200A39838 /* PickerViewController.swift */,
 				5EFD898524FE248400A39838 /* New Group */,
 			);
 			path = Views;
@@ -435,6 +456,39 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		5ECFB2982501132800ED94EA /* Transition */ = {
+			isa = PBXGroup;
+			children = (
+				5ECFB29F2501132800ED94EA /* PresentationController.swift */,
+				5ECFB2A02501132800ED94EA /* DarkenedPresentationController.swift */,
+				5ECFB29C2501132800ED94EA /* PanelTransition.swift */,
+				5ECFB29A2501132800ED94EA /* TransitionDriver.swift */,
+				5ECFB2A12501132800ED94EA /* Animations */,
+				5EEE76DF25013FFF00D7D530 /* Helpers */,
+			);
+			path = Transition;
+			sourceTree = "<group>";
+		};
+		5ECFB2A12501132800ED94EA /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				5ECFB2A22501132800ED94EA /* PresentAnimation.swift */,
+				5ECFB2A32501132800ED94EA /* DismissAnimation.swift */,
+			);
+			path = Animations;
+			sourceTree = "<group>";
+		};
+		5EEE76DF25013FFF00D7D530 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				5ECFB2A42501132800ED94EA /* TransitionDirection.swift */,
+				5EEE76DD25013F7C00D7D530 /* PanGestureRecognizer.swift */,
+				5ECFB29D2501132800ED94EA /* InstantPanGestureRecognizer.swift */,
+				5ECFB29B2501132800ED94EA /* CGPoint + Velocity.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		5EFD898524FE248400A39838 /* New Group */ = {
 			isa = PBXGroup;
 			children = (
@@ -559,6 +613,8 @@
 				5EFD898724FE251E00A39838 /* HistoricalViewController.swift in Sources */,
 				5E7DB98024D05A6E0029C0EE /* NewsCell.swift in Sources */,
 				5EA886F724D191730079EDDC /* String.swift in Sources */,
+				5ECFB2AE2501132800ED94EA /* TransitionDirection.swift in Sources */,
+				5ECFB2A82501132800ED94EA /* PanelTransition.swift in Sources */,
 				5E5F1B3224D5600200F81366 /* CustromActivityIndicator.swift in Sources */,
 				5E419EC724B5A855006421F6 /* AppDelegate.swift in Sources */,
 				5E419EF924B5DEC7006421F6 /* DriverViewController.swift in Sources */,
@@ -566,21 +622,28 @@
 				5E5F1B3A24D5F37F00F81366 /* RefreshView.swift in Sources */,
 				5EAC214724C8244F00A65A7A /* DataSourceViewModelType.swift in Sources */,
 				5E4B737524F7DEB40086F547 /* HeaderView.swift in Sources */,
+				5ECFB2A92501132800ED94EA /* InstantPanGestureRecognizer.swift in Sources */,
 				5EC60D6824C18DBD009C66CC /* DriverViewModel.swift in Sources */,
 				5E419EC924B5A855006421F6 /* SceneDelegate.swift in Sources */,
 				5EA886FB24D1FE270079EDDC /* DetailNewsViewController.swift in Sources */,
 				5E5F1B3824D5DDE300F81366 /* CustomAnimationActivityIndicator.swift in Sources */,
 				5E419EFB24B5F3C3006421F6 /* DriversCell.swift in Sources */,
 				5E9EB95424C2DA2D00023668 /* StandingsCellViewModel.swift in Sources */,
+				5ECFB2AA2501132800ED94EA /* PresentationController.swift in Sources */,
+				5ECFB2AD2501132800ED94EA /* DismissAnimation.swift in Sources */,
 				5EA886F924D1A9A60079EDDC /* Formatter.swift in Sources */,
 				5E05CD9424BF354A00EB2EF3 /* CommonConstructor.swift in Sources */,
 				5E05CD8A24BEF23900EB2EF3 /* ConstructorsColor.swift in Sources */,
+				5ECFB2AB2501132800ED94EA /* DarkenedPresentationController.swift in Sources */,
 				5E419EF124B5B433006421F6 /* Layout.swift in Sources */,
 				5E88B1A924EC0D8E006B7B51 /* StandingsContainerView.swift in Sources */,
 				5E82B52024C5D6A100377859 /* ConstructorViewModel.swift in Sources */,
 				5E4A6A9624D7EE100077CDBC /* NewsViewModel.swift in Sources */,
+				5ECFB2A72501132800ED94EA /* CGPoint + Velocity.swift in Sources */,
 				5E82B52224C5D6AC00377859 /* ConstructorCellViewModel.swift in Sources */,
 				5EA886F424D165DD0079EDDC /* Article.swift in Sources */,
+				5EEE76DE25013F7C00D7D530 /* PanGestureRecognizer.swift in Sources */,
+				5ECFB2AC2501132800ED94EA /* PresentAnimation.swift in Sources */,
 				5E419EED24B5AB86006421F6 /* FormulaTabBarController.swift in Sources */,
 				5E40ECFA24B74BA100E3AF1F /* ConstructorCell.swift in Sources */,
 				5E88B1A724EBCBC6006B7B51 /* ContainerPicker.swift in Sources */,
@@ -597,9 +660,10 @@
 				5EC60D6C24C1FD4E009C66CC /* DriverCellViewModel.swift in Sources */,
 				5E05CD9024BF2B8F00EB2EF3 /* Driver.swift in Sources */,
 				5E65123724EFA2A800008D67 /* ContainerNum3.swift in Sources */,
-				5EFD898924FE458200A39838 /* HistoricalPickerView.swift in Sources */,
+				5EFD898924FE458200A39838 /* PickerViewController.swift in Sources */,
 				5E9EB95224C2D99A00023668 /* StandingsViewModel.swift in Sources */,
 				5E14A14424BCA1A90058305B /* API.swift in Sources */,
+				5ECFB2A62501132800ED94EA /* TransitionDriver.swift in Sources */,
 				5E40ECF824B74B8100E3AF1F /* ConstructorViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

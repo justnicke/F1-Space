@@ -17,7 +17,10 @@ final class HistoricalViewController: UIViewController {
     private let typeSearchButton = UIButton(type: .system)
     private let detailResultButton = UIButton(type: .system)
     private let extraResultButton = UIButton(type: .system)
-    private var historicalPickerView: HistoricalPickerView!
+    
+//    private let historicalPickerView = PickerViewController()
+    
+    private let transition = PanelTransition()
     
     private let testFunctionallityButton = UIButton(type: .system)
 
@@ -95,21 +98,14 @@ final class HistoricalViewController: UIViewController {
             }
         }
     }
-        
+    
     @objc private func testHandle() {
-        historicalPickerView = HistoricalPickerView(frame: CGRect(x: <#T##Int#>, y: <#T##Int#>, width: <#T##Int#>, height: <#T##Int#>))
-        view.layoutIfNeeded()
-        UIView.animate(withDuration: 2) {
-            self.view.addSubview(self.historicalPickerView)
-            
-//            self.historicalPickerView?.centerInSuperview()
-//            self.historicalPickerView?.widthAnchor.constraint(equalToConstant: self.view.frame.width).isActive = true
-//            self.historicalPickerView?.heightAnchor.constraint(equalToConstant: self.view.frame.height / 2).isActive = true
-            self.view.layoutIfNeeded()
-        }
-
-        historicalPickerView?.delegate = self
-
+        let historicalPickerView = PickerViewController()
+        historicalPickerView.delegate = self
+        historicalPickerView.transitioningDelegate = transition
+        historicalPickerView.modalPresentationStyle = .custom
+        
+        present(historicalPickerView, animated: true)
     }
 }
 

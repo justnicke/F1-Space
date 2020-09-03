@@ -12,7 +12,7 @@ protocol PickerType: class {
     func year(value: Int)
 }
 
-final class HistoricalPickerView: UIView {
+final class PickerViewController: UIViewController {
     
     // MARK: - Public Properties
     
@@ -38,14 +38,27 @@ final class HistoricalPickerView: UIView {
     private let testTopView = UIView()
     private var championships = [Int]()
     
-    // MARK: - Constructors
+    // MARK: - Public Methods
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+//    init() {
+//        print("init PickerVC")
+//       super.init(nibName: nil, bundle: nil)
+//    }
+//    
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+//    
+    deinit {
+        print("deinit PickerVC")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
-        layer.cornerRadius = 25
-        layer.masksToBounds = true
-        backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        view.layer.cornerRadius = 25
+        view.layer.masksToBounds = true
+        view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         
         requestDates()
         setupUI()
@@ -53,38 +66,36 @@ final class HistoricalPickerView: UIView {
         doneButton.addTarget(self, action: #selector(getValueFromPicker), for: .touchUpInside)
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-        
+    // MARK: - Private Methods
+    
     private func setupUI() {
         testTopView.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
      
-        addSubview(testTopView)
+        view.addSubview(testTopView)
         testTopView.anchor(
-            top: topAnchor,
-            leading: leadingAnchor,
+            top: view.topAnchor,
+            leading: view.leadingAnchor,
             bottom: nil,
-            trailing: trailingAnchor,
+            trailing: view.trailingAnchor,
             size: .init(width: 0, height: 60)
         )
         
-        addSubview(doneButton)
+        view.addSubview(doneButton)
         doneButton.anchor(
             top: nil,
-            leading: leadingAnchor,
-            bottom: bottomAnchor,
-            trailing: trailingAnchor,
+            leading: view.leadingAnchor,
+            bottom: view.bottomAnchor,
+            trailing: view.trailingAnchor,
             padding: .init(top: 0, left: 30, bottom: 30, right: 30),
             size: .init(width: 0, height: 60)
         )
         
-        addSubview(picker)
+        view.addSubview(picker)
         picker.anchor(
             top: testTopView.bottomAnchor,
-            leading: leadingAnchor,
+            leading: view.leadingAnchor,
             bottom: doneButton.topAnchor,
-            trailing: trailingAnchor,
+            trailing: view.trailingAnchor,
             padding: .init(top: 0, left: 0, bottom: 20, right: 0)
         )
         
@@ -114,16 +125,17 @@ final class HistoricalPickerView: UIView {
     }
     
     @objc private func getValueFromPicker() {
-        
-        let selectedRow = picker.selectedRow(inComponent: 0)
-        let selectedValue = championships[selectedRow]
-        delegate?.year(value: selectedValue)
+        self.dismiss(animated: true) {
+            let selectedRow = self.picker.selectedRow(inComponent: 0)
+            let selectedValue = self.championships[selectedRow]
+            self.delegate?.year(value: selectedValue)
+        }
     }
 }
 
-// MARK: - Extension CollectionViewDataSource & CollectionViewDelegate
+// MARK: - Extension UIPickerViewDataSource & UIPickerViewDelegate
 
-extension HistoricalPickerView: UIPickerViewDataSource, UIPickerViewDelegate {
+extension PickerViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
