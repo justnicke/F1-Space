@@ -13,14 +13,16 @@ final class HistoricalViewController: UIViewController {
     // MARK: - Public Properties
     
     private let topView = UIScrollView()
-    private let yearButton = UIButton(type: .system)
+    private let yearButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("2020", for: .normal)
+        return button
+    }()
     private let typeSearchButton = UIButton(type: .system)
     private let detailResultButton = UIButton(type: .system)
     private let extraResultButton = UIButton(type: .system)
     
-//    private let historicalPickerView = PickerViewController()
-    
-    private let transition = PanelTransition()
+//    private let transition = PanelTransition()
     
     private let testFunctionallityButton = UIButton(type: .system)
 
@@ -32,7 +34,7 @@ final class HistoricalViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .green
-
+        
         setupTopView()
         
 //        view.addSubview(testFunctionallityButton)
@@ -60,6 +62,7 @@ final class HistoricalViewController: UIViewController {
         
         set(for: [yearButton, typeSearchButton, detailResultButton, extraResultButton])
         
+        
         let buttonStackView = UIStackView(
             arrangedSubviews: [yearButton, typeSearchButton, detailResultButton, extraResultButton],
             axis: .horizontal,
@@ -74,6 +77,8 @@ final class HistoricalViewController: UIViewController {
             trailing: topView.trailingAnchor,
             padding: .init(top: 10, left: 10, bottom: 10, right: 10)
         )
+        
+        animation(for: yearButton)
     }
     
     private func set(for buttons: [UIButton]) {
@@ -100,11 +105,12 @@ final class HistoricalViewController: UIViewController {
     }
     
     @objc private func testHandle() {
+        let transition = PanelTransition()
         let historicalPickerView = PickerViewController()
         historicalPickerView.delegate = self
         historicalPickerView.transitioningDelegate = transition
         historicalPickerView.modalPresentationStyle = .custom
-        
+        historicalPickerView.yearString = yearButton.titleLabel?.text
         present(historicalPickerView, animated: true)
     }
 }
