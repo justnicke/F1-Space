@@ -18,8 +18,16 @@ final class HistoricalViewController: UIViewController {
         button.setTitle("2020", for: .normal)
         return button
     }()
-    private let typeSearchButton = UIButton(type: .system)
-    private let detailResultButton = UIButton(type: .system)
+    private let typeSearchButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Drivers", for: .normal)
+        return button
+    }()
+    private let detailResultButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("All", for: .normal)
+        return button
+    }()
     private let extraResultButton = UIButton(type: .system)
     
 //    private let transition = PanelTransition()
@@ -44,7 +52,9 @@ final class HistoricalViewController: UIViewController {
 //        testFunctionallityButton.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
 //        testFunctionallityButton.setTitle("Test", for: .normal)
         
-        yearButton.addTarget(self, action: #selector(testHandle), for: .touchUpInside)
+        yearButton.addTarget(self, action: #selector(yearButtonPressed), for: .touchUpInside)
+        typeSearchButton.addTarget(self, action: #selector(typeSearchButtonPressed), for: .touchUpInside)
+        detailResultButton.addTarget(self, action: #selector(detailResultButtonPressed), for: .touchUpInside)
     }
     
     // MARK: - Private Methods
@@ -79,6 +89,8 @@ final class HistoricalViewController: UIViewController {
         )
         
         animation(for: yearButton)
+        animation(for: typeSearchButton)
+        animation(for: detailResultButton)
     }
     
     private func set(for buttons: [UIButton]) {
@@ -104,13 +116,35 @@ final class HistoricalViewController: UIViewController {
         }
     }
     
-    @objc private func testHandle() {
+    @objc private func yearButtonPressed() {
         let transition = PanelTransition()
         let historicalPickerView = PickerViewController()
         historicalPickerView.delegate = self
         historicalPickerView.transitioningDelegate = transition
         historicalPickerView.modalPresentationStyle = .custom
-        historicalPickerView.yearString = yearButton.titleLabel?.text
+        historicalPickerView.supportingValue = yearButton.titleLabel?.text
+        present(historicalPickerView, animated: true)
+    }
+    
+    @objc private func typeSearchButtonPressed() {
+        let transition = PanelTransition()
+        let historicalPickerView = PickerViewController()
+        historicalPickerView.delegate = self
+        historicalPickerView.transitioningDelegate = transition
+        historicalPickerView.modalPresentationStyle = .custom
+        historicalPickerView.supportingValue2 = typeSearchButton.titleLabel?.text
+        present(historicalPickerView, animated: true)
+    }
+    
+    @objc private func detailResultButtonPressed() {
+        let transition = PanelTransition()
+        let historicalPickerView = PickerViewController()
+        historicalPickerView.delegate = self
+        historicalPickerView.transitioningDelegate = transition
+        historicalPickerView.modalPresentationStyle = .custom
+        historicalPickerView.supportingValue3 = yearButton.titleLabel?.text
+        historicalPickerView.supportingValue4 = typeSearchButton.titleLabel?.text
+        historicalPickerView.supportingValue5 = detailResultButton.titleLabel?.text
         present(historicalPickerView, animated: true)
     }
 }
@@ -119,5 +153,13 @@ extension HistoricalViewController: PickerType {
     func year(value: Int) {
         yearButton.setTitle(String(value), for: .normal)
         animation(for: yearButton)
+    }
+    
+    func type(result: String) {
+        typeSearchButton.setTitle(result, for: .normal)
+    }
+    
+    func result(value: String) {
+        detailResultButton.setTitle(value, for: .normal)
     }
 }

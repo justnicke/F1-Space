@@ -10,13 +10,26 @@ import UIKit
 
 protocol PickerType: class {
     func year(value: Int)
-//    func type(result: String)
+    func type(result: String)
+    func result(value: String)
 }
+
+/*
+    - Настроить потоки
+    - Настроить анимацию
+    - Рефакторинг больших if else (emum)
+    - Рефакторинг убрать дублирование
+ 
+ */
 
 final class PickerViewController: UIViewController {
     
     // MARK: - Public Properties
-    var yearString: String!
+    var supportingValue: String?
+    var supportingValue2: String?
+    var supportingValue3: String?
+    var supportingValue4: String?
+    var supportingValue5: String?
     
     weak var delegate: PickerType?
     
@@ -39,6 +52,8 @@ final class PickerViewController: UIViewController {
     private let handleDismissView = UIView()
     private var championships = [Int]()
     private var typeResults = ["Drivers", "Teams", "Races"]
+    var results = ["All"]
+    var resultsID = ["All"]
     private var yearCount: String?
     
    
@@ -59,12 +74,14 @@ final class PickerViewController: UIViewController {
         view.layer.masksToBounds = true
         view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         
+//        if supportingValue == nil && supportingValue2 == nil {
+//
+//        }
         requestDates()
+        
         setupUI()
         
         doneButton.addTarget(self, action: #selector(sendValueFromPicker), for: .touchUpInside)
-//        doneButton.addTarget(self, action: #selector(getValueFromPicker2), for: .touchUpInside)
-//        doneButton.addTarget(self, action: #selector(getValueFromPicker3), for: .touchUpInside)
     }
     
     // MARK: - Private Methods
@@ -105,67 +122,96 @@ final class PickerViewController: UIViewController {
     }
     
     private func requestDates() {
-        API.requestYearChampionship { [weak self] (dates, error) in
-            self?.yearCount = dates?.championship.yearsCount
-            self?.getChampionshipYear()
-            self?.updatePickerValue()
-            self?.picker.reloadAllComponents()
+        if supportingValue != nil {
+            API.requestYearChampionship { [weak self] (dates, error) in
+                self?.yearCount = dates?.championship.yearsCount
+                self?.getChampionshipYear()
+                self?.updatePickerValue()
+                self?.picker.reloadAllComponents()
+            }
+        } else if supportingValue2 != nil {
+            updatePickerValue()
+        } else {
+            requestDataForPicker()
         }
     }
-    
+
     private func updatePickerValue() {
-        guard let year = Int(yearString) else { return }
-        guard let index = championships.firstIndex(of: year) else { return }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
-            self.picker.selectRow(index, inComponent: 0, animated: true)
+        if supportingValue != nil {
+            print(championships)
+            guard let year = Int(supportingValue ?? "0") else { return }
+            guard let index = championships.firstIndex(of: year) else { return }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
+                self.picker.selectRow(index, inComponent: 0, animated: true)
+            }
+        } else if supportingValue2 != nil {
+            guard let typeResult = supportingValue2 else { return }
+            guard let index = typeResults.firstIndex(of: typeResult) else { return }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
+                self.picker.selectRow(index, inComponent: 0, animated: true)
+            }
+        } else {
+            guard let result = supportingValue5 else { return }
+            guard let index = results.firstIndex(of: result) else { return }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+                self.picker.selectRow(index, inComponent: 0, animated: true)
+            }
         }
     }
+
+    private func requestDataForPicker() {
+        guard let year = supportingValue3 else { return }
     
-//    private func requestDataForPicker() {
-//        guard let year = yearButton.titleLabel?.text  else { return }
-//
-//        if standingsButton.titleLabel?.text == "Drivers" {
-//            API.requestDriverStandings(year: year) { [weak self] (driver, error) in
-//                let drivers = driver?.driverData.driverStandingsTable.driverStandingsLists.compactMap { $0.driverStandings }
-//                let convertedDrivers = drivers?.reduce([], +)
-//
-//                let driver = convertedDrivers?.compactMap { $0.driver.givenName + " " + $0.driver.familyName }
-//                let driversID = convertedDrivers?.compactMap { $0.driver.driverID }
-//
-//                guard let driversZ = driver else { return }
-//                guard let driversIDZ = driversID else { return }
-//
-//                self?.containerViewNum3.results += driversZ
-//                self?.containerViewNum3.resultsID += driversIDZ
-//            }
-//        } else if standingsButton.titleLabel?.text == "Teams" {
-//            API.requestConstructorStandings(year: year) { [weak self] (constructor, error) in
-//                let constructors = constructor?.constructorData.constructorStandingsTable.constructorStandingsLists.compactMap { $0.constructorStandings }
-//                let convertedconstructors = constructors?.reduce([], +)
-//
-//                let constructorsName = convertedconstructors?.compactMap { $0.constructor.name}
-//                let constructorsID = convertedconstructors?.compactMap { $0.constructor.constructorId }
-//
-//                guard let constructorList = constructorsName else { return }
-//                guard let constID = constructorsID else { return }
-//
-//                self?.containerViewNum3.results += constructorList
-//                self?.containerViewNum3.resultsID += constID
-//            }
-//        } else {
-//            API.requestGrandPrix(year: year) { [weak self] (grandPrix, error) in
-//                let grandPrixes =  grandPrix?.mrData.raceTable.races.compactMap { $0.raceName }
-//                let roundGP = grandPrix?.mrData.raceTable.races.compactMap { $0.round }
-//
-//                guard let crucit = grandPrixes else { return }
-//                guard let round = roundGP else { return }
-//
-//                self?.containerViewNum3.results += crucit
-//                self?.containerViewNum3.resultsID += round
-//            }
-//        }
-//    }
+        if supportingValue4 == "Drivers" {
+            API.requestDriverStandings(year: year) { [weak self] (driver, error) in
+                let drivers = driver?.driverData.driverStandingsTable.driverStandingsLists.compactMap { $0.driverStandings }
+                let convertedDrivers = drivers?.reduce([], +)
+                
+                let driver = convertedDrivers?.compactMap { $0.driver.givenName + " " + $0.driver.familyName }
+                let driversID = convertedDrivers?.compactMap { $0.driver.driverID }
+                
+                guard let driversZ = driver else { return }
+                guard let driversIDZ = driversID else { return }
+                
+                self?.results += driversZ
+                self?.resultsID += driversIDZ
+                self?.updatePickerValue()
+                self?.picker.reloadAllComponents()
+            }
+        } else if supportingValue4 == "Teams" {
+            API.requestConstructorStandings(year: year) { [weak self] (constructor, error) in
+                let constructors = constructor?.constructorData.constructorStandingsTable.constructorStandingsLists.compactMap { $0.constructorStandings }
+                let convertedconstructors = constructors?.reduce([], +)
+                
+                let constructorsName = convertedconstructors?.compactMap { $0.constructor.name}
+                let constructorsID = convertedconstructors?.compactMap { $0.constructor.constructorId }
+                
+                guard let constructorList = constructorsName else { return }
+                guard let constID = constructorsID else { return }
+                
+                self?.results += constructorList
+                self?.resultsID += constID
+                self?.updatePickerValue()
+                self?.picker.reloadAllComponents()
+            }
+        } else {
+            API.requestGrandPrix(year: year) { [weak self] (grandPrix, error) in
+                let grandPrixes =  grandPrix?.mrData.raceTable.races.compactMap { $0.raceName }
+                let roundGP = grandPrix?.mrData.raceTable.races.compactMap { $0.round }
+                
+                guard let crucit = grandPrixes else { return }
+                guard let round = roundGP else { return }
+                
+                self?.results += crucit
+                self?.resultsID += round
+                self?.updatePickerValue()
+                self?.picker.reloadAllComponents()
+            }
+        }
+    }
     
     private func getChampionshipYear() {
         let date = Date()
@@ -181,26 +227,26 @@ final class PickerViewController: UIViewController {
     }
     
     @objc private func sendValueFromPicker() {
-        self.dismiss(animated: true) {
-            let selectedRow = self.picker.selectedRow(inComponent: 0)
-            let selectedValue = self.championships[selectedRow]
-            self.delegate?.year(value: selectedValue)
+        if supportingValue != nil {
+            self.dismiss(animated: true) {
+                let selectedRow = self.picker.selectedRow(inComponent: 0)
+                let selectedValue = self.championships[selectedRow]
+                self.delegate?.year(value: selectedValue)
+            }
+        } else if supportingValue2 != nil {
+            self.dismiss(animated: true) {
+                let selectedRow = self.picker.selectedRow(inComponent: 0)
+                let selectedValue = self.typeResults[selectedRow]
+                self.delegate?.type(result: selectedValue)
+            }
+        } else {
+            self.dismiss(animated: true) {
+                let selectedRow = self.picker.selectedRow(inComponent: 0)
+                let selectedValue = self.results[selectedRow]
+                self.delegate?.result(value: selectedValue)
+            }
         }
     }
-    
-//    @objc private func getValueFromPicker2() {
-//        self.dismiss(animated: true) {
-//            let selectedRow = self.picker.selectedRow(inComponent: 0)
-//            let selectedValue = self.typeResults[selectedRow]
-//
-//            self.delegate?.type(result: selectedValue)
-//        }
-//    }
-//    @objc private func getValueFromPicker3() {
-//        self.dismiss(animated: true) {
-//
-//        }
-//    }
 }
 
 // MARK: - Extension UIPickerViewDataSource & UIPickerViewDelegate
@@ -212,11 +258,23 @@ extension PickerViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return championships.count
+        if supportingValue != nil {
+            return championships.count
+        } else if supportingValue2 != nil {
+            return typeResults.count
+        } else {
+            return results.count
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return String(championships[row])
+        if supportingValue != nil {
+            return String(championships[row])
+        } else if supportingValue2 != nil {
+            return typeResults[row]
+        } else {
+            return results[row]
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
@@ -236,10 +294,26 @@ extension PickerViewController: UIPickerViewDataSource, UIPickerViewDelegate {
             label = UILabel()
         }
         
-        let title = NSAttributedString(
-            string: String(championships[row]),
-            attributes: [NSAttributedString.Key.font: UIFont(name: "AvenirNext-Bold", size: 22) ?? UIFont()]
-        )
+        let title: NSAttributedString!
+        
+        if supportingValue != nil {
+            title = NSAttributedString(
+                string: String(championships[row]),
+                attributes: [NSAttributedString.Key.font: UIFont(name: "AvenirNext-Bold", size: 22) ?? UIFont()]
+            )
+        } else if supportingValue2 != nil  {
+            title = NSAttributedString(
+                string: typeResults[row],
+                attributes: [NSAttributedString.Key.font: UIFont(name: "AvenirNext-Bold", size: 22) ?? UIFont()]
+            )
+        } else {
+            title = NSAttributedString(
+                string: results[row],
+                attributes: [NSAttributedString.Key.font: UIFont(name: "AvenirNext-Bold", size: 22) ?? UIFont()]
+            )
+        }
+        
+
         
         label?.attributedText = title
         label?.textColor = #colorLiteral(red: 0.3819147944, green: 0.3267760873, blue: 0.8082862496, alpha: 1)
