@@ -30,7 +30,7 @@ final class HistoricalViewController: UIViewController {
     }()
     private let extraResultButton = UIButton(type: .system)
     
-//    private let transition = PanelTransition()
+    private let transition = PanelTransition()
     
     private let testFunctionallityButton = UIButton(type: .system)
 
@@ -117,7 +117,6 @@ final class HistoricalViewController: UIViewController {
     }
     
     @objc private func yearButtonPressed() {
-        let transition = PanelTransition()
         let historicalPickerView = PickerViewController()
         historicalPickerView.delegate = self
         historicalPickerView.transitioningDelegate = transition
@@ -127,7 +126,6 @@ final class HistoricalViewController: UIViewController {
     }
     
     @objc private func typeSearchButtonPressed() {
-        let transition = PanelTransition()
         let historicalPickerView = PickerViewController()
         historicalPickerView.delegate = self
         historicalPickerView.transitioningDelegate = transition
@@ -137,7 +135,6 @@ final class HistoricalViewController: UIViewController {
     }
     
     @objc private func detailResultButtonPressed() {
-        let transition = PanelTransition()
         let historicalPickerView = PickerViewController()
         historicalPickerView.delegate = self
         historicalPickerView.transitioningDelegate = transition

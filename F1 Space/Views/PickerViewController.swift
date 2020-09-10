@@ -15,11 +15,9 @@ protocol PickerType: class {
 }
 
 /*
-    - Настроить потоки
     - Настроить анимацию
     - Рефакторинг больших if else (emum)
     - Рефакторинг убрать дублирование
- 
  */
 
 final class PickerViewController: UIViewController {
@@ -56,7 +54,6 @@ final class PickerViewController: UIViewController {
     var resultsID = ["All"]
     private var yearCount: String?
     
-   
     deinit {
         print("deinit PickerVC")
     }
@@ -69,22 +66,19 @@ final class PickerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         view.layer.cornerRadius = 25
         view.layer.masksToBounds = true
         view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         
-//        if supportingValue == nil && supportingValue2 == nil {
-//
-//        }
-        requestDates()
-        
         setupUI()
+        requestDates()
         
         doneButton.addTarget(self, action: #selector(sendValueFromPicker), for: .touchUpInside)
     }
     
     // MARK: - Private Methods
+    
     
     private func setupUI() {
         handleDismissView.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
@@ -108,6 +102,10 @@ final class PickerViewController: UIViewController {
             size: .init(width: 0, height: 60)
         )
         
+
+    }
+    
+    private func initPicker() {
         view.addSubview(picker)
         picker.anchor(
             top: handleDismissView.bottomAnchor,
@@ -119,6 +117,13 @@ final class PickerViewController: UIViewController {
         
         picker.delegate = self
         picker.dataSource = self
+        picker.alpha = 0
+        
+        view.layoutIfNeeded()
+        UIView.animate(withDuration: 0.1) {
+            self.picker.alpha = 1
+            self.view.layoutIfNeeded()
+        }
     }
     
     private func requestDates() {
@@ -126,11 +131,14 @@ final class PickerViewController: UIViewController {
             API.requestYearChampionship { [weak self] (dates, error) in
                 self?.yearCount = dates?.championship.yearsCount
                 self?.getChampionshipYear()
-                self?.updatePickerValue()
                 self?.picker.reloadAllComponents()
+                self?.initPicker()
+                self?.updatePickerValue()
             }
         } else if supportingValue2 != nil {
+            initPicker()
             updatePickerValue()
+            
         } else {
             requestDataForPicker()
         }
@@ -138,27 +146,20 @@ final class PickerViewController: UIViewController {
 
     private func updatePickerValue() {
         if supportingValue != nil {
-            print(championships)
-            guard let year = Int(supportingValue ?? "0") else { return }
-            guard let index = championships.firstIndex(of: year) else { return }
+            guard let year = Int(self.supportingValue ?? "0") else { return }
+            guard let index = self.championships.firstIndex(of: year) else { return }
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
-                self.picker.selectRow(index, inComponent: 0, animated: true)
-            }
+            picker.selectRow(index, inComponent: 0, animated: false)
         } else if supportingValue2 != nil {
             guard let typeResult = supportingValue2 else { return }
             guard let index = typeResults.firstIndex(of: typeResult) else { return }
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
-                self.picker.selectRow(index, inComponent: 0, animated: true)
-            }
+            picker.selectRow(index, inComponent: 0, animated: false)
         } else {
             guard let result = supportingValue5 else { return }
             guard let index = results.firstIndex(of: result) else { return }
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-                self.picker.selectRow(index, inComponent: 0, animated: true)
-            }
+            picker.selectRow(index, inComponent: 0, animated: false)
         }
     }
 
@@ -178,8 +179,10 @@ final class PickerViewController: UIViewController {
                 
                 self?.results += driversZ
                 self?.resultsID += driversIDZ
-                self?.updatePickerValue()
+                
                 self?.picker.reloadAllComponents()
+                self?.initPicker()
+                self?.updatePickerValue()
             }
         } else if supportingValue4 == "Teams" {
             API.requestConstructorStandings(year: year) { [weak self] (constructor, error) in
@@ -194,8 +197,10 @@ final class PickerViewController: UIViewController {
                 
                 self?.results += constructorList
                 self?.resultsID += constID
-                self?.updatePickerValue()
+                
                 self?.picker.reloadAllComponents()
+                self?.initPicker()
+                self?.updatePickerValue()
             }
         } else {
             API.requestGrandPrix(year: year) { [weak self] (grandPrix, error) in
@@ -207,8 +212,10 @@ final class PickerViewController: UIViewController {
                 
                 self?.results += crucit
                 self?.resultsID += round
-                self?.updatePickerValue()
+                
                 self?.picker.reloadAllComponents()
+                self?.initPicker()
+                self?.updatePickerValue()
             }
         }
     }
@@ -326,4 +333,10 @@ extension PickerViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         return 50
     }
 }
+
+//extension Thread {
+//    class func CurrentThread() {
+//        print("\r⚡️: \(Thread.current)\r" + "🏭: \(OperationQueue.current?.underlyingQueue?.label ?? "None")\r")
+//    }
+//}
 
