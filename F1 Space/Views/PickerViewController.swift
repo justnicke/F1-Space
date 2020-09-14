@@ -15,7 +15,6 @@ protocol PickerType: class {
 }
 
 /*
-    - Настроить анимацию
     - Рефакторинг больших if else (emum)
     - Рефакторинг убрать дублирование
  */
@@ -54,9 +53,9 @@ final class PickerViewController: UIViewController {
     var resultsID = ["All"]
     private var yearCount: String?
     
-    deinit {
-        print("deinit PickerVC")
-    }
+//    deinit {
+//        print("deinit PickerVC")
+//    }
     
     // MARK: - Public Methods
     
@@ -333,10 +332,3 @@ extension PickerViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         return 50
     }
 }
-
-//extension Thread {
-//    class func CurrentThread() {
-//        print("\r⚡️: \(Thread.current)\r" + "🏭: \(OperationQueue.current?.underlyingQueue?.label ?? "None")\r")
-//    }
-//}
-

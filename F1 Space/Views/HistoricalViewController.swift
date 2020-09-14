@@ -13,26 +13,31 @@ final class HistoricalViewController: UIViewController {
     // MARK: - Public Properties
     
     private let topView = UIScrollView()
-    private let yearButton: UIButton = {
-        let button = UIButton(type: .system)
+    private let yearButton: AutoSizeButton = {
+        let button = AutoSizeButton(type: .custom)
         button.setTitle("2020", for: .normal)
         return button
     }()
-    private let typeSearchButton: UIButton = {
-        let button = UIButton(type: .system)
+    
+    private let typeSearchButton: AutoSizeButton = {
+        let button = AutoSizeButton(type: .custom)
         button.setTitle("Drivers", for: .normal)
         return button
     }()
-    private let detailResultButton: UIButton = {
-        let button = UIButton(type: .system)
+    
+    private let detailResultButton: AutoSizeButton = {
+        let button = AutoSizeButton()
         button.setTitle("All", for: .normal)
         return button
     }()
-    private let extraResultButton = UIButton(type: .system)
+    
+    private let extraResultButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Push", for: .normal)
+        return button
+    }()
     
     private let transition = PanelTransition()
-    
-    private let testFunctionallityButton = UIButton(type: .system)
 
     // MARK: - Private Properties
     
@@ -45,12 +50,10 @@ final class HistoricalViewController: UIViewController {
         
         setupTopView()
         
-//        view.addSubview(testFunctionallityButton)
-//        testFunctionallityButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
-//        testFunctionallityButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-//        testFunctionallityButton.centerInSuperview()
-//        testFunctionallityButton.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-//        testFunctionallityButton.setTitle("Test", for: .normal)
+        view.addSubview(extraResultButton)
+        extraResultButton.backgroundColor = .red
+        extraResultButton.centerInSuperview(size: .init(width: 150, height: 80))
+        extraResultButton.addTarget(self, action: #selector(testAnimationPressed), for: .touchUpInside)
         
         yearButton.addTarget(self, action: #selector(yearButtonPressed), for: .touchUpInside)
         typeSearchButton.addTarget(self, action: #selector(typeSearchButtonPressed), for: .touchUpInside)
@@ -70,11 +73,11 @@ final class HistoricalViewController: UIViewController {
             size: .init(width: 0, height: 50)
         )
         
-        set(for: [yearButton, typeSearchButton, detailResultButton, extraResultButton])
+        set(for: [yearButton, typeSearchButton, detailResultButton])
         
         
         let buttonStackView = UIStackView(
-            arrangedSubviews: [yearButton, typeSearchButton, detailResultButton, extraResultButton],
+            arrangedSubviews: [yearButton, typeSearchButton, detailResultButton],
             axis: .horizontal,
             spacing: 10
         )
@@ -87,13 +90,9 @@ final class HistoricalViewController: UIViewController {
             trailing: topView.trailingAnchor,
             padding: .init(top: 10, left: 10, bottom: 10, right: 10)
         )
-        
-        animation(for: yearButton)
-        animation(for: typeSearchButton)
-        animation(for: detailResultButton)
     }
     
-    private func set(for buttons: [UIButton]) {
+    private func set(for buttons: [AutoSizeButton]) {
         buttons.forEach {
             $0.backgroundColor = #colorLiteral(red: 0.6764943004, green: 0.6070100665, blue: 0.899546206, alpha: 1)
             $0.titleLabel?.font = UIFont(name: "AvenirNext-Medium", size: 13)
@@ -103,17 +102,10 @@ final class HistoricalViewController: UIViewController {
             $0.clipsToBounds = true
             $0.layer.cornerRadius = 15
         }
-        buttons.last?.isHidden = true
     }
-    
-    private func animation(for button: UIButton) {
-        if button.frame.width != 51 {
-            view.layoutIfNeeded()
-            UIView.animate(withDuration: 0.5) { [unowned self] in
-                button.widthAnchor.constraint(equalToConstant: button.frame.width + 20).isActive = true
-                self.view.layoutIfNeeded()
-            }
-        }
+        
+    @objc private func testAnimationPressed() {
+        
     }
     
     @objc private func yearButtonPressed() {
@@ -149,7 +141,6 @@ final class HistoricalViewController: UIViewController {
 extension HistoricalViewController: PickerType {
     func year(value: Int) {
         yearButton.setTitle(String(value), for: .normal)
-        animation(for: yearButton)
     }
     
     func type(result: String) {
@@ -160,3 +151,5 @@ extension HistoricalViewController: PickerType {
         detailResultButton.setTitle(value, for: .normal)
     }
 }
+
+

@@ -13,6 +13,7 @@
 		5E05CD9024BF2B8F00EB2EF3 /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E05CD8F24BF2B8F00EB2EF3 /* Driver.swift */; };
 		5E05CD9424BF354A00EB2EF3 /* CommonConstructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E05CD9324BF354A00EB2EF3 /* CommonConstructor.swift */; };
 		5E14A14424BCA1A90058305B /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E14A14324BCA1A90058305B /* API.swift */; };
+		5E26F1E4250F60490065907A /* AutoSizeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E26F1E3250F60490065907A /* AutoSizeButton.swift */; };
 		5E40ECF624B7400700E3AF1F /* StandingConstructorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E40ECF524B7400700E3AF1F /* StandingConstructorCell.swift */; };
 		5E40ECF824B74B8100E3AF1F /* ConstructorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E40ECF724B74B8100E3AF1F /* ConstructorViewController.swift */; };
 		5E40ECFA24B74BA100E3AF1F /* ConstructorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E40ECF924B74BA100E3AF1F /* ConstructorCell.swift */; };
@@ -92,6 +93,7 @@
 		5E05CD8F24BF2B8F00EB2EF3 /* Driver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Driver.swift; sourceTree = "<group>"; };
 		5E05CD9324BF354A00EB2EF3 /* CommonConstructor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonConstructor.swift; sourceTree = "<group>"; };
 		5E14A14324BCA1A90058305B /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		5E26F1E3250F60490065907A /* AutoSizeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSizeButton.swift; sourceTree = "<group>"; };
 		5E40ECF524B7400700E3AF1F /* StandingConstructorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingConstructorCell.swift; sourceTree = "<group>"; };
 		5E40ECF724B74B8100E3AF1F /* ConstructorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorViewController.swift; sourceTree = "<group>"; };
 		5E40ECF924B74BA100E3AF1F /* ConstructorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorCell.swift; sourceTree = "<group>"; };
@@ -198,6 +200,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		5E26F1E5250F604D0065907A /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				5ECFB2982501132800ED94EA /* Transition */,
+				5E26F1E3250F60490065907A /* AutoSizeButton.swift */,
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
 		5E40ECFB24B7551500E3AF1F /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -250,6 +261,7 @@
 		5E419EC524B5A855006421F6 /* F1 Space */ = {
 			isa = PBXGroup;
 			children = (
+				5E26F1E5250F604D0065907A /* Custom */,
 				5E419EF224B5B44A006421F6 /* Common */,
 				5E47BBFF24C07BB6002D8261 /* Services */,
 				5E14A14224BCA18C0058305B /* Models */,
@@ -286,7 +298,6 @@
 			isa = PBXGroup;
 			children = (
 				5E419EFC24B5FAC9006421F6 /* Fonts */,
-				5ECFB2982501132800ED94EA /* Transition */,
 				5E419EF024B5B433006421F6 /* Layout.swift */,
 				5EA886F624D191730079EDDC /* String.swift */,
 				5E419F0924B60E1F006421F6 /* StackView.swift */,
@@ -637,6 +648,7 @@
 				5ECFB2AB2501132800ED94EA /* DarkenedPresentationController.swift in Sources */,
 				5E419EF124B5B433006421F6 /* Layout.swift in Sources */,
 				5E88B1A924EC0D8E006B7B51 /* StandingsContainerView.swift in Sources */,
+				5E26F1E4250F60490065907A /* AutoSizeButton.swift in Sources */,
 				5E82B52024C5D6A100377859 /* ConstructorViewModel.swift in Sources */,
 				5E4A6A9624D7EE100077CDBC /* NewsViewModel.swift in Sources */,
 				5ECFB2A72501132800ED94EA /* CGPoint + Velocity.swift in Sources */,
