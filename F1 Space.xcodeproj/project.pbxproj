@@ -37,6 +37,8 @@
 		5E4A6A9924D7EEB30077CDBC /* NewsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A6A9824D7EEB30077CDBC /* NewsCellViewModel.swift */; };
 		5E4A6A9B24D82E210077CDBC /* DetailNewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A6A9A24D82E210077CDBC /* DetailNewsViewModel.swift */; };
 		5E4B737524F7DEB40086F547 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4B737424F7DEB40086F547 /* HeaderView.swift */; };
+		5E50BEEE2510D81A0025963F /* PickerResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E50BEED2510D81A0025963F /* PickerResult.swift */; };
+		5E50BEF02510D9340025963F /* PickerTypeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E50BEEF2510D9340025963F /* PickerTypeDelegate.swift */; };
 		5E5F1B3224D5600200F81366 /* CustromActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5F1B3124D5600200F81366 /* CustromActivityIndicator.swift */; };
 		5E5F1B3824D5DDE300F81366 /* CustomAnimationActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5F1B3724D5DDE300F81366 /* CustomAnimationActivityIndicator.swift */; };
 		5E5F1B3A24D5F37F00F81366 /* RefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5F1B3924D5F37F00F81366 /* RefreshView.swift */; };
@@ -121,6 +123,8 @@
 		5E4A6A9824D7EEB30077CDBC /* NewsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCellViewModel.swift; sourceTree = "<group>"; };
 		5E4A6A9A24D82E210077CDBC /* DetailNewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNewsViewModel.swift; sourceTree = "<group>"; };
 		5E4B737424F7DEB40086F547 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		5E50BEED2510D81A0025963F /* PickerResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerResult.swift; sourceTree = "<group>"; };
+		5E50BEEF2510D9340025963F /* PickerTypeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTypeDelegate.swift; sourceTree = "<group>"; };
 		5E5F1B3124D5600200F81366 /* CustromActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustromActivityIndicator.swift; sourceTree = "<group>"; };
 		5E5F1B3724D5DDE300F81366 /* CustomAnimationActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnimationActivityIndicator.swift; sourceTree = "<group>"; };
 		5E5F1B3924D5F37F00F81366 /* RefreshView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshView.swift; sourceTree = "<group>"; };
@@ -196,6 +200,7 @@
 				5EA886F524D165EB0079EDDC /* News */,
 				5E05CD9124BF340700EB2EF3 /* Standings */,
 				5E65123824EFBB6700008D67 /* Races.swift */,
+				5E50BEED2510D81A0025963F /* PickerResult.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -425,6 +430,7 @@
 			isa = PBXGroup;
 			children = (
 				5EAC214624C8244F00A65A7A /* DataSourceViewModelType.swift */,
+				5E50BEEF2510D9340025963F /* PickerTypeDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -629,6 +635,7 @@
 				5E5F1B3224D5600200F81366 /* CustromActivityIndicator.swift in Sources */,
 				5E419EC724B5A855006421F6 /* AppDelegate.swift in Sources */,
 				5E419EF924B5DEC7006421F6 /* DriverViewController.swift in Sources */,
+				5E50BEF02510D9340025963F /* PickerTypeDelegate.swift in Sources */,
 				5E4A6A9B24D82E210077CDBC /* DetailNewsViewModel.swift in Sources */,
 				5E5F1B3A24D5F37F00F81366 /* RefreshView.swift in Sources */,
 				5EAC214724C8244F00A65A7A /* DataSourceViewModelType.swift in Sources */,
@@ -664,6 +671,7 @@
 				5E78687324F54A1A002E6A10 /* ArchiveCell.swift in Sources */,
 				5E40ECF624B7400700E3AF1F /* StandingConstructorCell.swift in Sources */,
 				5E88B1A324EBA698006B7B51 /* ArchiveViewController.swift in Sources */,
+				5E50BEEE2510D81A0025963F /* PickerResult.swift in Sources */,
 				5E05CD8E24BF2B8700EB2EF3 /* Constructor.swift in Sources */,
 				5E419F0A24B60E1F006421F6 /* StackView.swift in Sources */,
 				5E419EE924B5A9AA006421F6 /* StandingsViewController.swift in Sources */,

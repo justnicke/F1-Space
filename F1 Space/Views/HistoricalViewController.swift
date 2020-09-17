@@ -12,19 +12,19 @@ final class HistoricalViewController: UIViewController {
     
     // MARK: - Public Properties
     
+    // MARK: - Private Properties
+    
     private let topView = UIScrollView()
     private let yearButton: AutoSizeButton = {
         let button = AutoSizeButton(type: .custom)
         button.setTitle("2020", for: .normal)
         return button
     }()
-    
     private let typeSearchButton: AutoSizeButton = {
         let button = AutoSizeButton(type: .custom)
         button.setTitle("Drivers", for: .normal)
         return button
     }()
-    
     private let detailResultButton: AutoSizeButton = {
         let button = AutoSizeButton()
         button.setTitle("All", for: .normal)
@@ -39,8 +39,6 @@ final class HistoricalViewController: UIViewController {
     
     private let transition = PanelTransition()
 
-    // MARK: - Private Properties
-    
     // MARK: - Public Methods
     
     override func viewDidLoad() {
@@ -74,7 +72,6 @@ final class HistoricalViewController: UIViewController {
         )
         
         set(for: [yearButton, typeSearchButton, detailResultButton])
-        
         
         let buttonStackView = UIStackView(
             arrangedSubviews: [yearButton, typeSearchButton, detailResultButton],
@@ -113,7 +110,13 @@ final class HistoricalViewController: UIViewController {
         historicalPickerView.delegate = self
         historicalPickerView.transitioningDelegate = transition
         historicalPickerView.modalPresentationStyle = .custom
+        
+        historicalPickerView.testArray.append(yearButton.titleLabel?.text)
+        historicalPickerView.count = .first
+        historicalPickerView.counter = 1
         historicalPickerView.supportingValue = yearButton.titleLabel?.text
+        
+        
         present(historicalPickerView, animated: true)
     }
     
@@ -122,7 +125,14 @@ final class HistoricalViewController: UIViewController {
         historicalPickerView.delegate = self
         historicalPickerView.transitioningDelegate = transition
         historicalPickerView.modalPresentationStyle = .custom
+        
+        historicalPickerView.testArray.append(typeSearchButton.titleLabel?.text)
+        historicalPickerView.count = .second
+        historicalPickerView.counter = 2
+        
         historicalPickerView.supportingValue2 = typeSearchButton.titleLabel?.text
+        
+        
         present(historicalPickerView, animated: true)
     }
     
@@ -131,14 +141,22 @@ final class HistoricalViewController: UIViewController {
         historicalPickerView.delegate = self
         historicalPickerView.transitioningDelegate = transition
         historicalPickerView.modalPresentationStyle = .custom
+        
+        historicalPickerView.count = .third
+        let a = [yearButton.titleLabel?.text, typeSearchButton.titleLabel?.text, detailResultButton.titleLabel?.text]
+        
+        historicalPickerView.testArray.append(contentsOf: a)
+        historicalPickerView.counter = 3
         historicalPickerView.supportingValue3 = yearButton.titleLabel?.text
         historicalPickerView.supportingValue4 = typeSearchButton.titleLabel?.text
         historicalPickerView.supportingValue5 = detailResultButton.titleLabel?.text
+        
+        
         present(historicalPickerView, animated: true)
     }
 }
 
-extension HistoricalViewController: PickerType {
+extension HistoricalViewController: PickerTypeDelegate {
     func year(value: Int) {
         yearButton.setTitle(String(value), for: .normal)
     }
