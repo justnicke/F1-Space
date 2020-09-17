@@ -17,7 +17,7 @@ final class StandingsViewModel: DataSourceViewModelType {
     
     // MARK: - Public Methods
     
-    func requestData(compeletion: @escaping () ->()) {
+    func requestData(compeletion: @escaping () -> (Void)) {
         API.requestDriverStandings(year: "2020") { [weak self] (driver, err) in
             let drivers = driver?.driverData.driverStandingsTable.driverStandingsLists.compactMap { $0.driverStandings }
             let convertedDrivers = drivers?.reduce([], +)

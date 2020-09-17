@@ -18,7 +18,7 @@ final class NewsViewModel: DataSourceViewModelType {
     
     // MARK: - Public Methods
     
-    func requestData(compeletion: @escaping () ->()) {
+    func requestData(compeletion: @escaping () -> (Void)) {
         guard articles.isEmpty || DateInterval(start: dateRequest, end: Date()).duration > TimeInterval(floatLiteral: 3) else {
             return
         }

@@ -107,14 +107,12 @@ final class HistoricalViewController: UIViewController {
     
     @objc private func yearButtonPressed() {
         let historicalPickerView = PickerViewController()
-        historicalPickerView.delegate = self
+        historicalPickerView.pickerViewModel.delegate = self // временное решение
         historicalPickerView.transitioningDelegate = transition
         historicalPickerView.modalPresentationStyle = .custom
         
         historicalPickerView.testArray.append(yearButton.titleLabel?.text)
         historicalPickerView.count = .first
-        historicalPickerView.counter = 1
-        historicalPickerView.supportingValue = yearButton.titleLabel?.text
         
         
         present(historicalPickerView, animated: true)
@@ -122,36 +120,27 @@ final class HistoricalViewController: UIViewController {
     
     @objc private func typeSearchButtonPressed() {
         let historicalPickerView = PickerViewController()
-        historicalPickerView.delegate = self
+        historicalPickerView.pickerViewModel.delegate = self // временное решение
         historicalPickerView.transitioningDelegate = transition
         historicalPickerView.modalPresentationStyle = .custom
         
         historicalPickerView.testArray.append(typeSearchButton.titleLabel?.text)
         historicalPickerView.count = .second
-        historicalPickerView.counter = 2
-        
-        historicalPickerView.supportingValue2 = typeSearchButton.titleLabel?.text
-        
-        
         present(historicalPickerView, animated: true)
     }
     
     @objc private func detailResultButtonPressed() {
         let historicalPickerView = PickerViewController()
-        historicalPickerView.delegate = self
+        historicalPickerView.pickerViewModel.delegate = self // временное решение
         historicalPickerView.transitioningDelegate = transition
         historicalPickerView.modalPresentationStyle = .custom
+        
         
         historicalPickerView.count = .third
         let a = [yearButton.titleLabel?.text, typeSearchButton.titleLabel?.text, detailResultButton.titleLabel?.text]
         
         historicalPickerView.testArray.append(contentsOf: a)
-        historicalPickerView.counter = 3
-        historicalPickerView.supportingValue3 = yearButton.titleLabel?.text
-        historicalPickerView.supportingValue4 = typeSearchButton.titleLabel?.text
-        historicalPickerView.supportingValue5 = detailResultButton.titleLabel?.text
-        
-        
+
         present(historicalPickerView, animated: true)
     }
 }
