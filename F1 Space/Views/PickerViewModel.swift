@@ -8,39 +8,27 @@
 
 import Foundation
 
-protocol PickerViewModelType {
-    func numberOfRowsIn(state: Countering, component: Int) -> Int
-    func titleFor(state: Countering, row: Int) -> String?
-    func viewFor(state: Countering, row: Int, for title: NSAttributedString, and attributes: [NSAttributedString.Key : Any]) -> NSAttributedString
-}
-
-
 final class PickerViewModel {
     
-    var pickerResult = PickerResult(yearCount: nil, championships: [])
-
+    // MARK: - Public Properties
+    
     weak var delegate: PickerTypeDelegate?
     
-    var resultsID = ["All"]
+    // MARK: - Private Properties
+    
+    private var pickerResult = PickerResult(yearCount: nil, championships: [])
+
+    private var resultsID = ["All"] // в будущем убрать
+    
+    // MARK: - Private Nested
     
     private enum SelectedType: String {
         case drivers, teams, races
     }
     
-    func getChampionshipYear() {
-        let date = Date()
-        let calendar = Calendar.current
-        let currentYear = calendar.component(.year, from: date)
-        
-        if let string = pickerResult.yearCount, let convertedYearCount = Int(string) {
-            for i in 0...convertedYearCount - 1 {
-                let year = currentYear - i
-                pickerResult.championships.append(year)
-            }
-        }
-    }
+    // MARK: - Private Methods
     
-    func sendValueFromPicker(state: Countering, selectedRow: Int) {
+    func sendValueFromPicker(state: PickerIndex, selectedRow: Int) {
         switch state {
         case .first:
             let selectedValue = pickerResult.championships[selectedRow]
@@ -54,7 +42,7 @@ final class PickerViewModel {
         }
     }
     
-    func selectedRowPicker(arr: [String?], state: Countering) -> Array<Int>.Index {
+    func selectedRowPicker(arr: [String?], state: PickerIndex) -> Array<Int>.Index {
         switch state {
         case .first:
             if let year = Int(arr[state.rawValue] ?? "2020"),
@@ -75,7 +63,7 @@ final class PickerViewModel {
         return 0
     }
     
-    func requestData(arr: [String?], state: Countering, compeletion: @escaping () -> (Void)) {
+    func requestForSelection(arr: [String?], state: PickerIndex, compeletion: @escaping () -> (Void)) {
         switch state {
         case .first:
             requestSeason(compeletion: compeletion)
@@ -86,80 +74,97 @@ final class PickerViewModel {
         }
     }
     
-    func requestSeason(compeletion: @escaping () -> (Void)) {
-    API.requestYearChampionship { [weak self] (dates, error) in
-        self?.pickerResult.yearCount = dates?.championship.yearsCount
-        self?.getChampionshipYear()
-        compeletion()
+    // MARK: - Private Methods
+    
+    private func getChampionshipYear() {
+        let date = Date()
+        let calendar = Calendar.current
+        let currentYear = calendar.component(.year, from: date)
+        
+        if let string = pickerResult.yearCount, let convertedYearCount = Int(string) {
+            for i in 0...convertedYearCount - 1 {
+                let year = currentYear - i
+                pickerResult.championships.append(year)
+            }
+        }
     }
-}
     
-    func requestDriverTeamOrRaceData(arr: [String?], state: Countering, compeletion: @escaping () -> (Void)) {
-    let type = arr[state.rawValue - 1]?.lowercased()
-    guard let year = arr[state.rawValue - state.rawValue] else { return }
-    
-    if type == SelectedType.drivers.rawValue {
-        API.requestDriverStandings(year: year) { [weak self] (driver, error) in
-            let drivers = driver?.driverData.driverStandingsTable.driverStandingsLists.compactMap { $0.driverStandings }
-            
-            guard let driver = drivers?.reduce([], +).compactMap({ $0.driver.givenName + " " + $0.driver.familyName })
-                else {
-                    return
-            }
-            guard let driversID = drivers?.reduce([], +).compactMap({ $0.driver.driverID  })
-                else {
-                    return
-            }
-            
-            self?.pickerResult.listResults += driver
-            self?.resultsID += driversID
-            
-            compeletion()
-        }
-    } else if type == SelectedType.teams.rawValue {
-        API.requestConstructorStandings(year: year) { [weak self] (constructor, error) in
-            let constructors = constructor?
-                .constructorData
-                .constructorStandingsTable
-                .constructorStandingsLists.compactMap { $0.constructorStandings }
-            
-            guard let constructorsName = constructors?.reduce([], +).compactMap({ $0.constructor.name })
-                else {
-                    return
-            }
-            guard let constructorsID = constructors?.reduce([], +).compactMap({ $0.constructor.constructorId })
-                else {
-                    return
-            }
-            
-            self?.pickerResult.listResults += constructorsName
-            self?.resultsID += constructorsID
-            
-            compeletion()
-        }
-    } else {
-        API.requestGrandPrix(year: year) { [weak self] (grandPrix, error) in
-            guard let grandPrixes =  grandPrix?.mrData.raceTable.races.compactMap({ $0.raceName })
-                else {
-                    return
-            }
-            guard let roundGP = grandPrix?.mrData.raceTable.races.compactMap({ $0.round })
-                else {
-                    return
-            }
-            
-            self?.pickerResult.listResults += grandPrixes
-            self?.resultsID += roundGP
-            
+    private func requestSeason(compeletion: @escaping () -> (Void)) {
+        API.requestYearChampionship { [weak self] (dates, error) in
+            self?.pickerResult.yearCount = dates?.championship.yearsCount
+            self?.getChampionshipYear()
             compeletion()
         }
     }
+    
+    private func requestDriverTeamOrRaceData(arr: [String?], state: PickerIndex, compeletion: @escaping () -> (Void)) {
+        let type = arr[state.rawValue - 1]?.lowercased()
+        guard let year = arr[state.rawValue - state.rawValue] else { return }
+        
+        if type == SelectedType.drivers.rawValue {
+            API.requestDriverStandings(year: year) { [weak self] (driver, error) in
+                let drivers = driver?.driverData.driverStandingsTable.driverStandingsLists.compactMap { $0.driverStandings }
+                
+                guard let driver = drivers?.reduce([], +).compactMap({ $0.driver.givenName + " " + $0.driver.familyName })
+                    else {
+                        return
+                }
+                guard let driversID = drivers?.reduce([], +).compactMap({ $0.driver.driverID  })
+                    else {
+                        return
+                }
+                
+                self?.pickerResult.listResults += driver
+                self?.resultsID += driversID
+                
+                compeletion()
+            }
+        } else if type == SelectedType.teams.rawValue {
+            API.requestConstructorStandings(year: year) { [weak self] (constructor, error) in
+                let constructors = constructor?
+                    .constructorData
+                    .constructorStandingsTable
+                    .constructorStandingsLists.compactMap { $0.constructorStandings }
+                
+                guard let constructorsName = constructors?.reduce([], +).compactMap({ $0.constructor.name })
+                    else {
+                        return
+                }
+                guard let constructorsID = constructors?.reduce([], +).compactMap({ $0.constructor.constructorId })
+                    else {
+                        return
+                }
+                
+                self?.pickerResult.listResults += constructorsName
+                self?.resultsID += constructorsID
+                
+                compeletion()
+            }
+        } else {
+            API.requestGrandPrix(year: year) { [weak self] (grandPrix, error) in
+                guard let grandPrixes = grandPrix?.mrData.raceTable.races.compactMap({ $0.raceName })
+                    else {
+                        return
+                }
+                guard let roundGP = grandPrix?.mrData.raceTable.races.compactMap({ $0.round })
+                    else {
+                        return
+                }
+                
+                self?.pickerResult.listResults += grandPrixes
+                self?.resultsID += roundGP
+                
+                compeletion()
+            }
+        }
+    }
+    
 }
 
-}
+// MARK: - Extension PickerViewModelType
 
 extension PickerViewModel: PickerViewModelType {
-    func numberOfRowsIn(state: Countering, component: Int) -> Int {
+    func numberOfRowsIn(state: PickerIndex, component: Int) -> Int {
         switch state {
         case .first:
             return pickerResult.championships.count
@@ -170,7 +175,7 @@ extension PickerViewModel: PickerViewModelType {
         }
     }
     
-    func titleFor(state: Countering, row: Int) -> String? {
+    func titleFor(state: PickerIndex, row: Int) -> String? {
         switch state {
         case .first:
             return String(pickerResult.championships[row])
@@ -181,8 +186,9 @@ extension PickerViewModel: PickerViewModelType {
         }
     }
     
-    func viewFor(state: Countering, row: Int, for title: NSAttributedString, and attributes: [NSAttributedString.Key : Any]) -> NSAttributedString {
+    func viewFor(state: PickerIndex, row: Int, for title: NSAttributedString, and attributes: [NSAttributedString.Key : Any]) -> NSAttributedString {
         var title = title
+        
         switch state {
         case .first:
             title = NSAttributedString(string: String(pickerResult.championships[row]), attributes: attributes)
@@ -193,7 +199,7 @@ extension PickerViewModel: PickerViewModelType {
         case .third:
             title = NSAttributedString(string: pickerResult.listResults[row], attributes: attributes)
             return title
- 
+            
         }
     }
 }

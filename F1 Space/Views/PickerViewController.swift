@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum Countering: Int {
+enum PickerIndex: Int {
     case first  = 0
     case second = 1
     case third  = 2
@@ -17,6 +17,9 @@ enum Countering: Int {
 final class PickerViewController: UIViewController {
     
     // MARK: - Public Properties
+    
+    var count = PickerIndex(rawValue: .zero)
+    var currentValues: [String?] = []
     
     // MARK: - Private Properties
     
@@ -35,25 +38,7 @@ final class PickerViewController: UIViewController {
         return button
     }()
     private let handleDismissView = UIView()
-    
-    // MARK: - Private Nested
-    
-    var count = Countering(rawValue: .zero)
-    
-    var testArray: [String?] = []
-    
-    let pickerViewModel = PickerViewModel()
-    
-    // MARK: - Constructors
-    
-//    init(year: String, typeResult: String, listResults: String) {
-//        super.init(nibName: nil, bundle: nil)
-//        self.first = year
-//    }
-//
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
+    private let pickerViewModel = PickerViewModel() // будет приватной
     
 //    deinit {
 //        print("deinit PickerVC")
@@ -71,7 +56,11 @@ final class PickerViewController: UIViewController {
         setupUI()
         updateViewModel()
 
-        doneButton.addTarget(self, action: #selector(sendValueFromPicker), for: .touchUpInside)
+        doneButton.addTarget(self, action: #selector(handleReturnValue), for: .touchUpInside)
+    }
+    
+    func giveDelegate(vc: UIViewController) {
+        pickerViewModel.delegate = vc as? PickerTypeDelegate
     }
     
     // MARK: - Private Methods
@@ -112,37 +101,25 @@ final class PickerViewController: UIViewController {
         picker.dataSource = self
     }
     
-    @objc func sendValueFromPicker() {
+    private func updateViewModel() {
+        pickerViewModel.requestForSelection(arr: currentValues, state: count!) { [weak self] in
+            self?.picker.reloadAllComponents()
+            self?.initPicker()
+            self?.currentPickerValue()
+        }
+    }
+    
+    private func currentPickerValue() {
+        picker.selectRow(pickerViewModel.selectedRowPicker(arr: currentValues, state: count!), inComponent: 0, animated: false)
+    }
+    
+    @objc private func handleReturnValue() {
         let selectedRow = picker.selectedRow(inComponent: 0)
         
         dismiss(animated: true) {
             self.pickerViewModel.sendValueFromPicker(state: self.count!, selectedRow: selectedRow)
         }
     }
-}
-
-// Запросы и обновление
-extension PickerViewController {
-    
-    func updateViewModel() {
-        pickerViewModel.requestData(arr: testArray, state: count!) { [weak self] in
-            
-            self?.reloadData()
-            
-        }
-    }
-    
-    private func reloadData() {
-        picker.reloadAllComponents()
-        initPicker()
-        currentPickerValue()
-    }
-    
-    private func currentPickerValue() {
-        picker.selectRow(pickerViewModel.selectedRowPicker(arr: testArray, state: count!), inComponent: 0, animated: false)
-    }
-    
-
 }
 
 // MARK: - Extension UIPickerViewDataSource & UIPickerViewDelegate

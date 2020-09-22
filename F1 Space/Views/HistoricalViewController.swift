@@ -31,6 +31,8 @@ final class HistoricalViewController: UIViewController {
         return button
     }()
     
+    private var tableView: UITableView!
+    
     private let extraResultButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Push", for: .normal)
@@ -47,6 +49,7 @@ final class HistoricalViewController: UIViewController {
         view.backgroundColor = .green
         
         setupTopView()
+        setupTableView()
         
         view.addSubview(extraResultButton)
         extraResultButton.backgroundColor = .red
@@ -62,7 +65,7 @@ final class HistoricalViewController: UIViewController {
     
     private func setupTopView() {
         view.addSubview(topView)
-        topView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        topView.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
         topView.anchor(
             top: view.safeAreaLayoutGuide.topAnchor,
             leading: view.leadingAnchor,
@@ -100,48 +103,53 @@ final class HistoricalViewController: UIViewController {
             $0.layer.cornerRadius = 15
         }
     }
+    
+    private func setupTableView() {
+        tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(tableView)
+        tableView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.separatorStyle = .singleLine
+        tableView.tableFooterView = UIView()
         
+        tableView.topAnchor.constraint(equalTo: topView.bottomAnchor).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+    }
+    
+    private func openTransition(state: PickerIndex, currentValues: [String?]) {
+        let historicalPickerView = PickerViewController()
+        historicalPickerView.giveDelegate(vc: self)
+        historicalPickerView.transitioningDelegate = transition
+        historicalPickerView.modalPresentationStyle = .custom
+        historicalPickerView.count = state
+        historicalPickerView.currentValues.append(contentsOf: currentValues)
+        
+        present(historicalPickerView, animated: true)
+    }
+    
     @objc private func testAnimationPressed() {
         
     }
     
     @objc private func yearButtonPressed() {
-        let historicalPickerView = PickerViewController()
-        historicalPickerView.pickerViewModel.delegate = self // временное решение
-        historicalPickerView.transitioningDelegate = transition
-        historicalPickerView.modalPresentationStyle = .custom
-        
-        historicalPickerView.testArray.append(yearButton.titleLabel?.text)
-        historicalPickerView.count = .first
-        
-        
-        present(historicalPickerView, animated: true)
+        openTransition(state: .first, currentValues: [yearButton.titleLabel?.text])
     }
     
     @objc private func typeSearchButtonPressed() {
-        let historicalPickerView = PickerViewController()
-        historicalPickerView.pickerViewModel.delegate = self // временное решение
-        historicalPickerView.transitioningDelegate = transition
-        historicalPickerView.modalPresentationStyle = .custom
-        
-        historicalPickerView.testArray.append(typeSearchButton.titleLabel?.text)
-        historicalPickerView.count = .second
-        present(historicalPickerView, animated: true)
+        openTransition(state: .second, currentValues: [typeSearchButton.titleLabel?.text])
     }
     
     @objc private func detailResultButtonPressed() {
-        let historicalPickerView = PickerViewController()
-        historicalPickerView.pickerViewModel.delegate = self // временное решение
-        historicalPickerView.transitioningDelegate = transition
-        historicalPickerView.modalPresentationStyle = .custom
+        let currentValues = [yearButton.titleLabel?.text,
+                             typeSearchButton.titleLabel?.text,
+                             detailResultButton.titleLabel?.text]
         
-        
-        historicalPickerView.count = .third
-        let a = [yearButton.titleLabel?.text, typeSearchButton.titleLabel?.text, detailResultButton.titleLabel?.text]
-        
-        historicalPickerView.testArray.append(contentsOf: a)
-
-        present(historicalPickerView, animated: true)
+        openTransition(state: .third, currentValues: currentValues)
     }
 }
 
@@ -157,6 +165,20 @@ extension HistoricalViewController: PickerTypeDelegate {
     func result(value: String) {
         detailResultButton.setTitle(value, for: .normal)
     }
+}
+
+extension HistoricalViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+
+        return UITableViewCell()
+    }
+    
+    
 }
 
 

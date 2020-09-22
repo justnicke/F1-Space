@@ -37,6 +37,8 @@
 		5E4A6A9924D7EEB30077CDBC /* NewsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A6A9824D7EEB30077CDBC /* NewsCellViewModel.swift */; };
 		5E4A6A9B24D82E210077CDBC /* DetailNewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A6A9A24D82E210077CDBC /* DetailNewsViewModel.swift */; };
 		5E4B737524F7DEB40086F547 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4B737424F7DEB40086F547 /* HeaderView.swift */; };
+		5E4CA6E22519E1AB0035E6F6 /* HistoricalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4CA6E12519E1AB0035E6F6 /* HistoricalViewModel.swift */; };
+		5E4CA6E42519FD1B0035E6F6 /* PickerViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4CA6E32519FD1B0035E6F6 /* PickerViewModelType.swift */; };
 		5E50BEEE2510D81A0025963F /* PickerResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E50BEED2510D81A0025963F /* PickerResult.swift */; };
 		5E50BEF02510D9340025963F /* PickerTypeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E50BEEF2510D9340025963F /* PickerTypeDelegate.swift */; };
 		5E5F1B3224D5600200F81366 /* CustromActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5F1B3124D5600200F81366 /* CustromActivityIndicator.swift */; };
@@ -124,6 +126,8 @@
 		5E4A6A9824D7EEB30077CDBC /* NewsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCellViewModel.swift; sourceTree = "<group>"; };
 		5E4A6A9A24D82E210077CDBC /* DetailNewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNewsViewModel.swift; sourceTree = "<group>"; };
 		5E4B737424F7DEB40086F547 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		5E4CA6E12519E1AB0035E6F6 /* HistoricalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalViewModel.swift; sourceTree = "<group>"; };
+		5E4CA6E32519FD1B0035E6F6 /* PickerViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewModelType.swift; sourceTree = "<group>"; };
 		5E50BEED2510D81A0025963F /* PickerResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerResult.swift; sourceTree = "<group>"; };
 		5E50BEEF2510D9340025963F /* PickerTypeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTypeDelegate.swift; sourceTree = "<group>"; };
 		5E5F1B3124D5600200F81366 /* CustromActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustromActivityIndicator.swift; sourceTree = "<group>"; };
@@ -323,6 +327,7 @@
 				5EFD898624FE251E00A39838 /* HistoricalViewController.swift */,
 				5EFD898824FE458200A39838 /* PickerViewController.swift */,
 				5E5FCB612513438F00618534 /* PickerViewModel.swift */,
+				5E4CA6E12519E1AB0035E6F6 /* HistoricalViewModel.swift */,
 				5EFD898524FE248400A39838 /* New Group */,
 			);
 			path = Views;
@@ -434,6 +439,7 @@
 			children = (
 				5EAC214624C8244F00A65A7A /* DataSourceViewModelType.swift */,
 				5E50BEEF2510D9340025963F /* PickerTypeDelegate.swift */,
+				5E4CA6E32519FD1B0035E6F6 /* PickerViewModelType.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -630,6 +636,7 @@
 			files = (
 				5E65123924EFBB6700008D67 /* Races.swift in Sources */,
 				5E5FCB622513438F00618534 /* PickerViewModel.swift in Sources */,
+				5E4CA6E22519E1AB0035E6F6 /* HistoricalViewModel.swift in Sources */,
 				5E05CD8C24BF28E600EB2EF3 /* CommonDriver.swift in Sources */,
 				5EFD898724FE251E00A39838 /* HistoricalViewController.swift in Sources */,
 				5E7DB98024D05A6E0029C0EE /* NewsCell.swift in Sources */,
@@ -665,6 +672,7 @@
 				5ECFB2A72501132800ED94EA /* CGPoint + Velocity.swift in Sources */,
 				5E82B52224C5D6AC00377859 /* ConstructorCellViewModel.swift in Sources */,
 				5EA886F424D165DD0079EDDC /* Article.swift in Sources */,
+				5E4CA6E42519FD1B0035E6F6 /* PickerViewModelType.swift in Sources */,
 				5EEE76DE25013F7C00D7D530 /* PanGestureRecognizer.swift in Sources */,
 				5ECFB2AC2501132800ED94EA /* PresentAnimation.swift in Sources */,
 				5E419EED24B5AB86006421F6 /* FormulaTabBarController.swift in Sources */,
