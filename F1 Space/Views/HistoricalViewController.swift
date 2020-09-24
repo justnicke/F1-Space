@@ -33,13 +33,16 @@ final class HistoricalViewController: UIViewController {
     
     private var tableView: UITableView!
     
-    private let extraResultButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Push", for: .normal)
-        return button
-    }()
+//    private let extraResultButton: UIButton = {
+//        let button = UIButton(type: .system)
+//        button.setTitle("Push", for: .normal)
+//        return button
+//    }()
     
     private let transition = PanelTransition()
+    
+    var driversStandings: [DriverStandings] = []
+    var construcorsStandings: [ConstructorStandings] = []
 
     // MARK: - Public Methods
     
@@ -49,12 +52,13 @@ final class HistoricalViewController: UIViewController {
         view.backgroundColor = .green
         
         setupTopView()
+        requestDriverStandings()
         setupTableView()
         
-        view.addSubview(extraResultButton)
-        extraResultButton.backgroundColor = .red
-        extraResultButton.centerInSuperview(size: .init(width: 150, height: 80))
-        extraResultButton.addTarget(self, action: #selector(testAnimationPressed), for: .touchUpInside)
+//        view.addSubview(extraResultButton)
+//        extraResultButton.backgroundColor = .red
+//        extraResultButton.centerInSuperview(size: .init(width: 150, height: 80))
+//        extraResultButton.addTarget(self, action: #selector(testAnimationPressed), for: .touchUpInside)
         
         yearButton.addTarget(self, action: #selector(yearButtonPressed), for: .touchUpInside)
         typeSearchButton.addTarget(self, action: #selector(typeSearchButtonPressed), for: .touchUpInside)
@@ -118,7 +122,7 @@ final class HistoricalViewController: UIViewController {
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(HistoricalCell.self, forCellReuseIdentifier: HistoricalCell.reuseId)
     }
     
     private func openTransition(state: PickerIndex, currentValues: [String?]) {
@@ -151,15 +155,48 @@ final class HistoricalViewController: UIViewController {
         
         openTransition(state: .third, currentValues: currentValues)
     }
+    
+    private func requestDriverStandings() {
+        guard let year = yearButton.titleLabel?.text  else { return }
+        API.requestDriverStandings(year: year) { [weak self] (driver, err) in
+            let drivers = driver?.driverData.driverStandingsTable.driverStandingsLists.compactMap { $0.driverStandings }
+            
+            guard let convertedDrivers = drivers?.reduce([], +) else { return }
+            self?.driversStandings = convertedDrivers
+            
+            self?.tableView.reloadData()
+        }
+    }
+    
+    private func requestConstructorStandings() {
+        guard let year = yearButton.titleLabel?.text  else { return }
+        API.requestConstructorStandings(year: year) { [weak self] (team, err) in
+            let teams = team?.constructorData.constructorStandingsTable.constructorStandingsLists.compactMap { $0.constructorStandings }
+            guard let convertedTeams = teams?.reduce([], +) else { return }
+            self?.construcorsStandings = convertedTeams
+            
+            self?.tableView.reloadData()
+        }
+    }
+    
+    private func selectedType() {
+        if typeSearchButton.titleLabel?.text == "Drivers" {
+            requestDriverStandings()
+        } else {
+            requestConstructorStandings()
+        }
+    }
 }
 
 extension HistoricalViewController: PickerTypeDelegate {
     func year(value: Int) {
         yearButton.setTitle(String(value), for: .normal)
+        selectedType()
     }
     
     func type(result: String) {
         typeSearchButton.setTitle(result, for: .normal)
+        selectedType()
     }
     
     func result(value: String) {
@@ -169,16 +206,32 @@ extension HistoricalViewController: PickerTypeDelegate {
 
 extension HistoricalViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        
+        if typeSearchButton.titleLabel?.text == "Drivers" {
+            return driversStandings.count
+        } else {
+            return construcorsStandings.count
+        }
+//        return driversStandings.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: HistoricalCell.reuseId, for: indexPath) as! HistoricalCell
+        if typeSearchButton.titleLabel?.text == "Drivers" {
+            let driverStanding = driversStandings[indexPath.row]
+            cell.configure(driver: driverStanding)
+            return cell
+        } else {
+            let constructor = construcorsStandings[indexPath.row]
+            cell.configureTeam(team: constructor)
+            return cell
+        }
 
-        return UITableViewCell()
     }
     
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
 }
 
 

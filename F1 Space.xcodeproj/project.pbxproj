@@ -41,6 +41,7 @@
 		5E4CA6E42519FD1B0035E6F6 /* PickerViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4CA6E32519FD1B0035E6F6 /* PickerViewModelType.swift */; };
 		5E50BEEE2510D81A0025963F /* PickerResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E50BEED2510D81A0025963F /* PickerResult.swift */; };
 		5E50BEF02510D9340025963F /* PickerTypeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E50BEEF2510D9340025963F /* PickerTypeDelegate.swift */; };
+		5E510D18251C833100584EE2 /* HistoricalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E510D17251C833100584EE2 /* HistoricalCell.swift */; };
 		5E5F1B3224D5600200F81366 /* CustromActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5F1B3124D5600200F81366 /* CustromActivityIndicator.swift */; };
 		5E5F1B3824D5DDE300F81366 /* CustomAnimationActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5F1B3724D5DDE300F81366 /* CustomAnimationActivityIndicator.swift */; };
 		5E5F1B3A24D5F37F00F81366 /* RefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5F1B3924D5F37F00F81366 /* RefreshView.swift */; };
@@ -130,6 +131,7 @@
 		5E4CA6E32519FD1B0035E6F6 /* PickerViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewModelType.swift; sourceTree = "<group>"; };
 		5E50BEED2510D81A0025963F /* PickerResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerResult.swift; sourceTree = "<group>"; };
 		5E50BEEF2510D9340025963F /* PickerTypeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTypeDelegate.swift; sourceTree = "<group>"; };
+		5E510D17251C833100584EE2 /* HistoricalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalCell.swift; sourceTree = "<group>"; };
 		5E5F1B3124D5600200F81366 /* CustromActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustromActivityIndicator.swift; sourceTree = "<group>"; };
 		5E5F1B3724D5DDE300F81366 /* CustomAnimationActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnimationActivityIndicator.swift; sourceTree = "<group>"; };
 		5E5F1B3924D5F37F00F81366 /* RefreshView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshView.swift; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 				5E40ECFB24B7551500E3AF1F /* Cells */,
 				5E82B52424C5E49100377859 /* Controllers */,
 				5EFD898624FE251E00A39838 /* HistoricalViewController.swift */,
+				5E510D17251C833100584EE2 /* HistoricalCell.swift */,
 				5EFD898824FE458200A39838 /* PickerViewController.swift */,
 				5E5FCB612513438F00618534 /* PickerViewModel.swift */,
 				5E4CA6E12519E1AB0035E6F6 /* HistoricalViewModel.swift */,
@@ -573,7 +576,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1150;
-				LastUpgradeCheck = 1150;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Nikita Sukachev";
 				TargetAttributes = {
 					5E419EC224B5A855006421F6 = {
@@ -635,6 +638,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E65123924EFBB6700008D67 /* Races.swift in Sources */,
+				5E510D18251C833100584EE2 /* HistoricalCell.swift in Sources */,
 				5E5FCB622513438F00618534 /* PickerViewModel.swift in Sources */,
 				5E4CA6E22519E1AB0035E6F6 /* HistoricalViewModel.swift in Sources */,
 				5E05CD8C24BF28E600EB2EF3 /* CommonDriver.swift in Sources */,
@@ -756,6 +760,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -816,6 +821,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
