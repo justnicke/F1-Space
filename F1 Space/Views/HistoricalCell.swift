@@ -14,55 +14,38 @@ final class HistoricalCell: UITableViewCell {
     
     static let reuseId = String(describing: HistoricalCell.self)
     
-    var standingStrategy: StandingStrategy?
-    
+    var standingStrategy: StandingsStrategy?
     
     // MARK: - Private Properties
     
-    private let positionLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont(name: "AvenirNext-Medium", size: 13)
-        return label
-    }()
-    private let any1Label: UILabel = {
-        let label = UILabel()
-        label.font = UIFont(name: "AvenirNext-Medium", size: 13)
-        return label
-    }()
-    private let any2Label: UILabel = {
-        let label = UILabel()
-        label.font = UIFont(name: "AvenirNext-Medium", size: 13)
-        return label
-    }()
-    private let any3Label: UILabel = {
-        let label = UILabel()
-        label.font = UIFont(name: "AvenirNext-Medium", size: 13)
-        return label
-    }()
-    private let any4Label: UILabel = {
-        let label = UILabel()
-        label.font = UIFont(name: "AvenirNext-Medium", size: 13)
-        return label
-    }()
-    private let any5Label: UILabel = {
-        let label = UILabel()
-        label.font = UIFont(name: "AvenirNext-Medium", size: 13)
-        return label
-    }()
+    private var positionLabel: UILabel?
+    private var any1Label: UILabel?
+    private var any2Label: UILabel?
+    private var any3Label: UILabel?
+    private var any4Label: UILabel?
+    private var any5Label: UILabel?
+    
+    private lazy var widthLabel = any2Label?.widthAnchor.constraint(equalToConstant: self.frame.width / 4)
+    private lazy var widthLabel2 = positionLabel?.widthAnchor.constraint(equalToConstant: self.frame.width / 4)
     
     // MARK: - Constructors
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-//        setupUI()
-//        setupUITeam()
-        
+                
+        positionLabel = UILabel()
+        any1Label = UILabel()
+        any2Label = UILabel()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+//    
+//    func constraintWidth() -> [NSLayoutConstraint]? {
+//        
+//        return [widthLabel]
+//    }
     
     // MARK: - Public Methods
     
@@ -73,10 +56,6 @@ final class HistoricalCell: UITableViewCell {
     }
     
     func configureTeam(team: ConstructorStandings) {
-        
-        any3Label.removeFromSuperview()
-        self.layoutIfNeeded()
-        
         setupUITeam()
         standingStrategy = ConstructorStrategy()
         standingStrategy?.configureCell(for: [positionLabel, any1Label, any2Label], result: ModelType(constructor: team))
@@ -85,80 +64,16 @@ final class HistoricalCell: UITableViewCell {
     // MARK: - Private Methods
     
     private func setupUI() {
+        any3Label = UILabel()
         standingStrategy = DriverStrategy()
-        standingStrategy?.setupUI(for: [positionLabel, any1Label, any2Label, any3Label], cell: self, widthConst: &widthLabel)
+        standingStrategy?.setupUI(for: [positionLabel, any1Label, any2Label, any3Label], cell: self, widthConst: [widthLabel2, widthLabel])
     }
 
     private func setupUITeam() {
+        any3Label?.removeFromSuperview()
+        any3Label = nil
+        
         standingStrategy = ConstructorStrategy()
-        standingStrategy?.setupUI(for: [positionLabel, any1Label, any2Label], cell: self, widthConst: &widthLabel)
+        standingStrategy?.setupUI(for: [positionLabel, any1Label, any2Label], cell: self, widthConst: [widthLabel2, widthLabel])
     }
-
-    
-    lazy var widthLabel = any2Label.widthAnchor.constraint(equalToConstant: self.frame.width / 4)
-    
-//    private func setupUI() {
-//        [positionLabel, any1Label, any2Label, any3Label].forEach {
-//            $0.translatesAutoresizingMaskIntoConstraints = false
-//            addSubview($0)
-//            $0.textAlignment = . center
-//            $0.backgroundColor = .black
-//        }
-//        
-//        positionLabel.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
-//        positionLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
-//        positionLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-//        positionLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-//        positionLabel.widthAnchor.constraint(equalToConstant: self.frame.width / 4).isActive = true
-//        
-//        any1Label.backgroundColor = #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)
-//        any1Label.topAnchor.constraint(equalTo: topAnchor).isActive = true
-//        any1Label.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-//        any1Label.leadingAnchor.constraint(equalTo: positionLabel.trailingAnchor).isActive = true
-//        any1Label.widthAnchor.constraint(equalToConstant: self.frame.width / 4).isActive = true
-//        
-//        any2Label.backgroundColor = #colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1)
-//        any2Label.topAnchor.constraint(equalTo: topAnchor).isActive = true
-//        any2Label.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-//        any2Label.leadingAnchor.constraint(equalTo: any1Label.trailingAnchor).isActive = true
-//   
-//        widthLabel.isActive = true
-//        widthLabel.constant = self.frame.width / 4
-//        
-//        any3Label.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
-//        any3Label.topAnchor.constraint(equalTo: topAnchor).isActive = true
-//        any3Label.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-//        any3Label.leadingAnchor.constraint(equalTo: any2Label.trailingAnchor).isActive = true
-//        any3Label.widthAnchor.constraint(equalToConstant: self.frame.width / 4).isActive = true
-//        
-//    }
-//    
-//    private func setupUITeam() {
-//        [positionLabel, any1Label, any2Label].forEach {
-//            $0.translatesAutoresizingMaskIntoConstraints = false
-//            addSubview($0)
-//            $0.textAlignment = . center
-//            $0.backgroundColor = .black
-//        }
-//        
-//        positionLabel.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
-//        positionLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
-//        positionLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-//        positionLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-//        positionLabel.widthAnchor.constraint(equalToConstant: self.frame.width / 4).isActive = true
-//        
-//        any1Label.backgroundColor = #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)
-//        any1Label.topAnchor.constraint(equalTo: topAnchor).isActive = true
-//        any1Label.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-//        any1Label.leadingAnchor.constraint(equalTo: positionLabel.trailingAnchor).isActive = true
-//        any1Label.widthAnchor.constraint(equalToConstant: self.frame.width / 4).isActive = true
-//        
-//        any2Label.backgroundColor = #colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1)
-//        any2Label.topAnchor.constraint(equalTo: topAnchor).isActive = true
-//        any2Label.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-//        any2Label.leadingAnchor.constraint(equalTo: any1Label.trailingAnchor).isActive = true
-//        
-//        widthLabel .constant = self.frame.width / 2
-//        widthLabel.isActive = true
-//    }
 }
