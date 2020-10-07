@@ -7,10 +7,9 @@
 //
 
 import Foundation
-
 protocol PickerViewModelType {
-    func numberOfRowsIn(state: PickerIndex, component: Int) -> Int
-    func titleFor(state: PickerIndex, row: Int) -> String?
-    func viewFor(state: PickerIndex, row: Int, for title: NSAttributedString, and attributes: [NSAttributedString.Key : Any]) -> NSAttributedString
-    func requestForSelection(arr: [String?], state: PickerIndex, compeletion: @escaping () -> (Void))
+    func numberOfRowsInComponent(_ component: Int, by state: PickerIndex) -> Int
+    func titleForRow(_ row: Int, by state: PickerIndex) -> String?
+    func viewForRow(_ row: Int, with title: NSAttributedString, and attributes: [NSAttributedString.Key : Any], by state: PickerIndex) -> NSAttributedString
+    func requestForSelection(from values: [String?], by state: PickerIndex, compeletion: @escaping () -> (Void))
 }

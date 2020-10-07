@@ -38,12 +38,8 @@ final class PickerViewController: UIViewController {
         return button
     }()
     private let handleDismissView = UIView()
-    private let pickerViewModel = PickerViewModel() // будет приватной
-    
-//    deinit {
-//        print("deinit PickerVC")
-//    }
-    
+    private let pickerViewModel = PickerViewModel()
+        
     // MARK: - Public Methods
     
     override func viewDidLoad() {
@@ -59,7 +55,7 @@ final class PickerViewController: UIViewController {
         doneButton.addTarget(self, action: #selector(handleReturnValue), for: .touchUpInside)
     }
     
-    func giveDelegate(vc: UIViewController) {
+    func giveDelegate(for vc: UIViewController) {
         pickerViewModel.delegate = vc as? PickerTypeDelegate
     }
     
@@ -102,7 +98,7 @@ final class PickerViewController: UIViewController {
     }
     
     private func updateViewModel() {
-        pickerViewModel.requestForSelection(arr: currentValues, state: count!) { [weak self] in
+        pickerViewModel.requestForSelection(from: currentValues, by: count!) { [weak self] in
             self?.picker.reloadAllComponents()
             self?.initPicker()
             self?.currentPickerValue()
@@ -110,14 +106,18 @@ final class PickerViewController: UIViewController {
     }
     
     private func currentPickerValue() {
-        picker.selectRow(pickerViewModel.selectedRowPicker(arr: currentValues, state: count!), inComponent: 0, animated: false)
+        picker.selectRow(
+            pickerViewModel.selectedRowPicker(from: currentValues, by: count!),
+            inComponent: 0,
+            animated: false
+        )
     }
     
     @objc private func handleReturnValue() {
         let selectedRow = picker.selectedRow(inComponent: 0)
         
         dismiss(animated: true) {
-            self.pickerViewModel.sendValueFromPicker(state: self.count!, selectedRow: selectedRow)
+            self.pickerViewModel.sendValueFromPicker(by: self.count!, and: selectedRow)
         }
     }
 }
@@ -131,11 +131,11 @@ extension PickerViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerViewModel.numberOfRowsIn(state: count!, component: component)
+        return pickerViewModel.numberOfRowsInComponent(component, by: count!)
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerViewModel.titleFor(state: count!, row: row)
+        return pickerViewModel.titleForRow(row, by: count!)
     }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
@@ -157,9 +157,12 @@ extension PickerViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         
         let title = NSAttributedString()
         
-        let a = pickerViewModel.viewFor(state: count!, row: row, for: title, and: [NSAttributedString.Key.font: UIFont(name: "AvenirNext-Bold", size: 22) ?? UIFont()])
-        
-        label?.attributedText = a
+        label?.attributedText = pickerViewModel.viewForRow(
+            row,
+            with: title,
+            and: [NSAttributedString.Key.font: UIFont(name: "AvenirNext-Bold", size: 22)!],
+            by: count!
+        )
         label?.textColor = #colorLiteral(red: 0.3819147944, green: 0.3267760873, blue: 0.8082862496, alpha: 1)
         label?.textAlignment = .center
         

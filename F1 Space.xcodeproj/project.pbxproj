@@ -53,6 +53,7 @@
 		5E5F1B3A24D5F37F00F81366 /* RefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5F1B3924D5F37F00F81366 /* RefreshView.swift */; };
 		5E5FCB622513438F00618534 /* PickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5FCB612513438F00618534 /* PickerViewModel.swift */; };
 		5E65123924EFBB6700008D67 /* Races.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E65123824EFBB6700008D67 /* Races.swift */; };
+		5E6932BF252DA1BD0045E030 /* HistoricalHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6932BE252DA1BD0045E030 /* HistoricalHeader.swift */; };
 		5E7DB97D24D054420029C0EE /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DB97C24D054420029C0EE /* NewsViewController.swift */; };
 		5E7DB98024D05A6E0029C0EE /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DB97F24D05A6E0029C0EE /* NewsCell.swift */; };
 		5E82B52024C5D6A100377859 /* ConstructorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E82B51F24C5D6A100377859 /* ConstructorViewModel.swift */; };
@@ -144,6 +145,7 @@
 		5E5F1B3924D5F37F00F81366 /* RefreshView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshView.swift; sourceTree = "<group>"; };
 		5E5FCB612513438F00618534 /* PickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewModel.swift; sourceTree = "<group>"; };
 		5E65123824EFBB6700008D67 /* Races.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Races.swift; sourceTree = "<group>"; };
+		5E6932BE252DA1BD0045E030 /* HistoricalHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalHeader.swift; sourceTree = "<group>"; };
 		5E7DB97C24D054420029C0EE /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		5E7DB97F24D05A6E0029C0EE /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		5E82B51F24C5D6A100377859 /* ConstructorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorViewModel.swift; sourceTree = "<group>"; };
@@ -331,6 +333,7 @@
 				5E510D1D251CC11D00584EE2 /* DriverStrategy.swift */,
 				5EFD898624FE251E00A39838 /* HistoricalViewController.swift */,
 				5E510D17251C833100584EE2 /* HistoricalCell.swift */,
+				5E6932BE252DA1BD0045E030 /* HistoricalHeader.swift */,
 				5EFD898824FE458200A39838 /* PickerViewController.swift */,
 				5E5FCB612513438F00618534 /* PickerViewModel.swift */,
 				5E4CA6E12519E1AB0035E6F6 /* HistoricalViewModel.swift */,
@@ -640,6 +643,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E6932BF252DA1BD0045E030 /* HistoricalHeader.swift in Sources */,
 				5E65123924EFBB6700008D67 /* Races.swift in Sources */,
 				5E510D18251C833100584EE2 /* HistoricalCell.swift in Sources */,
 				5E4A644D2523672B00A81C56 /* StandingsContainerView.swift in Sources */,

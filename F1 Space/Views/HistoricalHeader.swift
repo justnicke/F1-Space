@@ -1,20 +1,14 @@
 //
-//  HistoricalCell.swift
+//  HistoricalHeader.swift
 //  F1 Space
 //
-//  Created by Nikita Sukachev on 24.09.2020.
+//  Created by Nikita Sukachev on 07.10.2020.
 //  Copyright © 2020 Nikita Sukachev. All rights reserved.
 //
 
 import UIKit
 
-final class HistoricalCell: UITableViewCell {
-    
-    // MARK: - Public Properties
-    
-    static let reuseId = String(describing: HistoricalCell.self)
-    
-    var standingStrategy: StandingsStrategy?
+final class HistoricalHeaderView: UIView {
     
     // MARK: - Private Properties
     
@@ -56,21 +50,24 @@ final class HistoricalCell: UITableViewCell {
     private lazy var fifthWidth = fifthLabel.widthAnchor.constraint(equalToConstant: 0)
     private lazy var sixthWidth = sixthLabel.widthAnchor.constraint(equalToConstant: 0)
     
+    var standingStrategy: StandingsStrategy?
+        
     // MARK: - Constructors
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
         setupUI()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+        
     // MARK: - Public Methods
     
-    func configure(driver: DriverStandings, rootView: UIView) {
+    
+    func configureDriversHeader(header: DriverHeader, rootView: UIView) {
         standingStrategy = DriverStrategy()
         standingStrategy?.setupUI(
             for: [firstLabel, secondLabel, thirdLabel, fouthLabel, fifthLabel, sixthLabel],
@@ -78,13 +75,13 @@ final class HistoricalCell: UITableViewCell {
             widthConst: [firstWidth, secondWidth, thirdWidth, fourthWidth, fifthWidth, sixthWidth]
         )
         
-        standingStrategy?.configureCell(
+        standingStrategy?.configureHeader(
             for: [firstLabel, secondLabel, thirdLabel, fouthLabel, fifthLabel, sixthLabel],
-            result: ModelType(driver: driver))
-        
+            rootView: rootView, model: ModelTypeHeader(driver: header)
+        )
     }
     
-    func configure(team: ConstructorStandings, rootView: UIView) {
+    func configureTeamHeader(header: TeamHeader, rootView: UIView) {
         standingStrategy = ConstructorStrategy()
         standingStrategy?.setupUI(
             for: [firstLabel, secondLabel, thirdLabel, fouthLabel, fifthLabel, sixthLabel],
@@ -92,9 +89,11 @@ final class HistoricalCell: UITableViewCell {
             widthConst: [firstWidth, secondWidth, thirdWidth, fourthWidth, fifthWidth, sixthWidth]
         )
         
-        standingStrategy?.configureCell(
+        standingStrategy?.configureHeader(
             for: [firstLabel, secondLabel, thirdLabel, fouthLabel, fifthLabel, sixthLabel],
-            result: ModelType(constructor: team))
+            rootView: rootView,
+            model: ModelTypeHeader(constructor: header)
+        )
     }
     
     // MARK: - Private Methods
@@ -114,26 +113,12 @@ final class HistoricalCell: UITableViewCell {
         
         self.addSubview(stackView)
         stackView.anchor(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor)
-
+        
         firstLabel.backgroundColor = #colorLiteral(red: 0.866422236, green: 0.9141893983, blue: 0.9915274978, alpha: 1)
         secondLabel.backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
         thirdLabel.backgroundColor = #colorLiteral(red: 0.866422236, green: 0.9141893983, blue: 0.9915274978, alpha: 1)
         fouthLabel.backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
         fifthLabel.backgroundColor = #colorLiteral(red: 0.866422236, green: 0.9141893983, blue: 0.9915274978, alpha: 1)
         sixthLabel.backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
-    }
-    
-    private func teamSetupUI() {
-        secondWidth.isActive = false
-
-        [self.fouthLabel ,self.fifthLabel, self.sixthLabel].forEach {
-            $0.isHidden = true
-        }
-        
-        firstWidth.constant = self.frame.width / 6
-        firstWidth.isActive = true
-        
-        thirdWidth.constant = self.frame.width / 6
-        thirdWidth.isActive = true
     }
 }

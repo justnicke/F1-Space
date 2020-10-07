@@ -41,6 +41,11 @@ final class HistoricalViewController: UIViewController {
     
     private let transition = PanelTransition()
     
+    let header = HistoricalHeaderView()
+    
+    var headerModel = DriverHeader(position: "POS", driverName: "Driver", team: "Constructor", points: "Points")
+    var headerModelTeam = TeamHeader(position: "POS", constructorName: "Constructor", points: "Points")
+    
     var driversStandings: [DriverStandings] = []
     var construcorsStandings: [ConstructorStandings] = []
 
@@ -50,7 +55,6 @@ final class HistoricalViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .green
-        
         setupTopView()
         requestDriverStandings()
         setupTableView()
@@ -127,7 +131,7 @@ final class HistoricalViewController: UIViewController {
     
     private func openTransition(state: PickerIndex, currentValues: [String?]) {
         let historicalPickerView = PickerViewController()
-        historicalPickerView.giveDelegate(vc: self)
+        historicalPickerView.giveDelegate(for: self)
         historicalPickerView.transitioningDelegate = transition
         historicalPickerView.modalPresentationStyle = .custom
         historicalPickerView.count = state
@@ -206,32 +210,57 @@ extension HistoricalViewController: PickerTypeDelegate {
 
 extension HistoricalViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         if typeSearchButton.titleLabel?.text == "Drivers" {
             return driversStandings.count
         } else {
             return construcorsStandings.count
         }
-//        return driversStandings.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: HistoricalCell.reuseId, for: indexPath) as! HistoricalCell
         if typeSearchButton.titleLabel?.text == "Drivers" {
             let driverStanding = driversStandings[indexPath.row]
-            cell.configure(driver: driverStanding)
+            cell.configure(driver: driverStanding, rootView: view)
             return cell
         } else {
             let constructor = construcorsStandings[indexPath.row]
-            cell.configureTeam(team: constructor)
+            cell.configure(team: constructor, rootView: view)
             return cell
         }
-
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if typeSearchButton.titleLabel?.text == "Drivers" {
+            header.configureDriversHeader(header: headerModel, rootView: view)
+        } else {
+            header.configureTeamHeader(header: headerModelTeam, rootView: view)
+        }
+        
+        return header
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
 }
+
+struct DriverHeader {
+    var position: String
+    var driverName: String
+    var team: String
+    var points: String
+}
+
+struct TeamHeader {
+    var position: String
+    var constructorName: String
+    var points: String
+}
+
 
 
