@@ -20,7 +20,7 @@ final class FormulaTabBarController: UITabBarController {
         
         viewControllers = [
             createNavController(vc: HistoricalViewController(), title: "Historical", image: #imageLiteral(resourceName: "newsTrue"), selectedImage: nil),
-            createNavController(vc: ArchiveViewController(), title: "Archive", image: #imageLiteral(resourceName: "newsTrue"), selectedImage: nil),
+//            createNavController(vc: ArchiveViewController(), title: "Archive", image: #imageLiteral(resourceName: "newsTrue"), selectedImage: nil),
             createNavController(vc: StandingsViewController(), title: "Standings", image: #imageLiteral(resourceName: "standingFalse"), selectedImage: #imageLiteral(resourceName: "standingTrue")),
             createNavController(vc: NewsViewController(), title: "News", image: #imageLiteral(resourceName: "newsFalse"), selectedImage: #imageLiteral(resourceName: "newsTrue"))
         ]
