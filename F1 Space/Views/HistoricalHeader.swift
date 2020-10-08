@@ -50,7 +50,7 @@ final class HistoricalHeaderView: UIView {
     private lazy var fifthWidth = fifthLabel.widthAnchor.constraint(equalToConstant: 0)
     private lazy var sixthWidth = sixthLabel.widthAnchor.constraint(equalToConstant: 0)
     
-    var standingStrategy: StandingsStrategy?
+    var historicalStandingsStrategy: HistoricalStandingsStrategyType?
         
     // MARK: - Constructors
     
@@ -67,32 +67,33 @@ final class HistoricalHeaderView: UIView {
     // MARK: - Public Methods
     
     
-    func configureDriversHeader(header: DriverHeader, rootView: UIView) {
-        standingStrategy = DriverStrategy()
-        standingStrategy?.setupUI(
+    func configureDriversHeader(header: HistoricalStandingsHeader, rootView: UIView) {
+        historicalStandingsStrategy = HistoricalDriverStrategy()
+        historicalStandingsStrategy?.setupUI(
             for: [firstLabel, secondLabel, thirdLabel, fouthLabel, fifthLabel, sixthLabel],
-            rootView: rootView,
-            widthConst: [firstWidth, secondWidth, thirdWidth, fourthWidth, fifthWidth, sixthWidth]
+            from: rootView,
+            by: [firstWidth, secondWidth, thirdWidth, fourthWidth, fifthWidth, sixthWidth]
         )
         
-        standingStrategy?.configureHeader(
+        historicalStandingsStrategy?.configureHeader(
             for: [firstLabel, secondLabel, thirdLabel, fouthLabel, fifthLabel, sixthLabel],
-            rootView: rootView, model: ModelTypeHeader(driver: header)
+            from: rootView,
+            by: header
         )
     }
     
-    func configureTeamHeader(header: TeamHeader, rootView: UIView) {
-        standingStrategy = ConstructorStrategy()
-        standingStrategy?.setupUI(
+    func configureTeamHeader(header: HistoricalStandingsHeader, rootView: UIView) {
+        historicalStandingsStrategy = HistoricalConstructorStrategy()
+        historicalStandingsStrategy?.setupUI(
             for: [firstLabel, secondLabel, thirdLabel, fouthLabel, fifthLabel, sixthLabel],
-            rootView: rootView,
-            widthConst: [firstWidth, secondWidth, thirdWidth, fourthWidth, fifthWidth, sixthWidth]
+            from: rootView,
+            by: [firstWidth, secondWidth, thirdWidth, fourthWidth, fifthWidth, sixthWidth]
         )
         
-        standingStrategy?.configureHeader(
+        historicalStandingsStrategy?.configureHeader(
             for: [firstLabel, secondLabel, thirdLabel, fouthLabel, fifthLabel, sixthLabel],
-            rootView: rootView,
-            model: ModelTypeHeader(constructor: header)
+            from: rootView,
+            by: header
         )
     }
     

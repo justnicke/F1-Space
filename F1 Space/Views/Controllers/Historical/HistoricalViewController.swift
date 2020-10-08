@@ -9,12 +9,11 @@
 import UIKit
 
 final class HistoricalViewController: UIViewController {
-    
-    // MARK: - Public Properties
-    
+        
     // MARK: - Private Properties
     
     private let topView = UIScrollView()
+    
     private let yearButton: AutoSizeButton = {
         let button = AutoSizeButton(type: .custom)
         button.setTitle("2020", for: .normal)
@@ -33,21 +32,14 @@ final class HistoricalViewController: UIViewController {
     
     private var tableView: UITableView!
     
-//    private let extraResultButton: UIButton = {
-//        let button = UIButton(type: .system)
-//        button.setTitle("Push", for: .normal)
-//        return button
-//    }()
-    
     private let transition = PanelTransition()
+    private let header = HistoricalHeaderView()
     
-    let header = HistoricalHeaderView()
+    private var driversHeader = HistoricalStandingsHeader("POS", "Driver", "Constructor", "Points")
+    private var constructorsHeader = HistoricalStandingsHeader("POS", "Constructor", "Points")
     
-    var headerModel = DriverHeader(position: "POS", driverName: "Driver", team: "Constructor", points: "Points")
-    var headerModelTeam = TeamHeader(position: "POS", constructorName: "Constructor", points: "Points")
-    
-    var driversStandings: [DriverStandings] = []
-    var construcorsStandings: [ConstructorStandings] = []
+    private var driversStandings: [DriverStandings] = []
+    private var construcorsStandings: [ConstructorStandings] = []
 
     // MARK: - Public Methods
     
@@ -58,11 +50,6 @@ final class HistoricalViewController: UIViewController {
         setupTopView()
         requestDriverStandings()
         setupTableView()
-        
-//        view.addSubview(extraResultButton)
-//        extraResultButton.backgroundColor = .red
-//        extraResultButton.centerInSuperview(size: .init(width: 150, height: 80))
-//        extraResultButton.addTarget(self, action: #selector(testAnimationPressed), for: .touchUpInside)
         
         yearButton.addTarget(self, action: #selector(yearButtonPressed), for: .touchUpInside)
         typeSearchButton.addTarget(self, action: #selector(typeSearchButtonPressed), for: .touchUpInside)
@@ -126,6 +113,7 @@ final class HistoricalViewController: UIViewController {
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        
         tableView.register(HistoricalCell.self, forCellReuseIdentifier: HistoricalCell.reuseId)
     }
     
@@ -139,11 +127,7 @@ final class HistoricalViewController: UIViewController {
         
         present(historicalPickerView, animated: true)
     }
-    
-    @objc private func testAnimationPressed() {
         
-    }
-    
     @objc private func yearButtonPressed() {
         openTransition(state: .first, currentValues: [yearButton.titleLabel?.text])
     }
@@ -192,21 +176,7 @@ final class HistoricalViewController: UIViewController {
     }
 }
 
-extension HistoricalViewController: PickerTypeDelegate {
-    func year(value: Int) {
-        yearButton.setTitle(String(value), for: .normal)
-        selectedType()
-    }
-    
-    func type(result: String) {
-        typeSearchButton.setTitle(result, for: .normal)
-        selectedType()
-    }
-    
-    func result(value: String) {
-        detailResultButton.setTitle(value, for: .normal)
-    }
-}
+// MARK: - Extension UITableViewDataSource & UITableViewDelegate
 
 extension HistoricalViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -236,9 +206,9 @@ extension HistoricalViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if typeSearchButton.titleLabel?.text == "Drivers" {
-            header.configureDriversHeader(header: headerModel, rootView: view)
+            header.configureDriversHeader(header: driversHeader, rootView: view)
         } else {
-            header.configureTeamHeader(header: headerModelTeam, rootView: view)
+            header.configureTeamHeader(header: constructorsHeader, rootView: view)
         }
         
         return header
@@ -249,18 +219,24 @@ extension HistoricalViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-struct DriverHeader {
-    var position: String
-    var driverName: String
-    var team: String
-    var points: String
+// MARK: - Extension PickerTypeDelegate
+
+extension HistoricalViewController: PickerTypeDelegate {
+    func year(value: Int) {
+        yearButton.setTitle(String(value), for: .normal)
+        selectedType()
+    }
+    
+    func type(result: String) {
+        typeSearchButton.setTitle(result, for: .normal)
+        selectedType()
+    }
+    
+    func result(value: String) {
+        detailResultButton.setTitle(value, for: .normal)
+    }
 }
 
-struct TeamHeader {
-    var position: String
-    var constructorName: String
-    var points: String
-}
 
 
 

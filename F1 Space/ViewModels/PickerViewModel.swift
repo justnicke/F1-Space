@@ -17,7 +17,6 @@ final class PickerViewModel {
     // MARK: - Private Properties
     
     private var pickerResult = PickerResult(yearCount: nil, championships: [])
-
     private var resultsID = ["All"] // в будущем убрать
     
     // MARK: - Private Nested
@@ -106,12 +105,12 @@ final class PickerViewModel {
                 let drivers = driver?.driverData.driverStandingsTable.driverStandingsLists.compactMap { $0.driverStandings }
                 
                 guard let driver = drivers?.reduce([], +).compactMap({ $0.driver.givenName + " " + $0.driver.familyName })
-                    else {
-                        return
+                else {
+                    return
                 }
                 guard let driversID = drivers?.reduce([], +).compactMap({ $0.driver.driverID  })
-                    else {
-                        return
+                else {
+                    return
                 }
                 
                 self?.pickerResult.listResults += driver
@@ -127,12 +126,12 @@ final class PickerViewModel {
                     .constructorStandingsLists.compactMap { $0.constructorStandings }
                 
                 guard let constructorsName = constructors?.reduce([], +).compactMap({ $0.constructor.name })
-                    else {
-                        return
+                else {
+                    return
                 }
                 guard let constructorsID = constructors?.reduce([], +).compactMap({ $0.constructor.constructorId })
-                    else {
-                        return
+                else {
+                    return
                 }
                 
                 self?.pickerResult.listResults += constructorsName
@@ -143,12 +142,12 @@ final class PickerViewModel {
         } else {
             API.requestGrandPrix(year: year) { [weak self] (grandPrix, error) in
                 guard let grandPrixes = grandPrix?.mrData.raceTable.races.compactMap({ $0.raceName })
-                    else {
-                        return
+                else {
+                    return
                 }
                 guard let roundGP = grandPrix?.mrData.raceTable.races.compactMap({ $0.round })
-                    else {
-                        return
+                else {
+                    return
                 }
                 
                 self?.pickerResult.listResults += grandPrixes
@@ -186,6 +185,7 @@ extension PickerViewModel: PickerViewModelType {
             return pickerResult.listResults[row]
         }
     }
+    
     func viewForRow(_ row: Int, with title: NSAttributedString, and attributes: [NSAttributedString.Key : Any], by state: PickerIndex) -> NSAttributedString {
         var title = title
         

@@ -109,18 +109,4 @@ extension ContainerPicker: UIPickerViewDataSource, UIPickerViewDelegate {
     }
 }
 
-struct Year: Codable {
-    let championship: Championship
-    
-    enum CodingKeys: String, CodingKey {
-        case championship = "MRData"
-    }
-}
 
-struct Championship: Codable {
-    let yearsCount: String
-    
-    enum CodingKeys: String, CodingKey {
-        case yearsCount = "total"
-    }
-}

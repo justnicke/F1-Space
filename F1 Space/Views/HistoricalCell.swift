@@ -14,7 +14,7 @@ final class HistoricalCell: UITableViewCell {
     
     static let reuseId = String(describing: HistoricalCell.self)
     
-    var standingStrategy: StandingsStrategy?
+    var historicalStandingsStrategy: HistoricalStandingsStrategyType?
     
     // MARK: - Private Properties
     
@@ -71,30 +71,32 @@ final class HistoricalCell: UITableViewCell {
     // MARK: - Public Methods
     
     func configure(driver: DriverStandings, rootView: UIView) {
-        standingStrategy = DriverStrategy()
-        standingStrategy?.setupUI(
+        historicalStandingsStrategy = HistoricalDriverStrategy()
+        historicalStandingsStrategy?.setupUI(
             for: [firstLabel, secondLabel, thirdLabel, fouthLabel, fifthLabel, sixthLabel],
-            rootView: rootView,
-            widthConst: [firstWidth, secondWidth, thirdWidth, fourthWidth, fifthWidth, sixthWidth]
+            from: rootView,
+            by: [firstWidth, secondWidth, thirdWidth, fourthWidth, fifthWidth, sixthWidth]
         )
         
-        standingStrategy?.configureCell(
+        historicalStandingsStrategy?.configureCell(
             for: [firstLabel, secondLabel, thirdLabel, fouthLabel, fifthLabel, sixthLabel],
-            result: ModelType(driver: driver))
+            on: HistoricalStandings(driver)
+        )
         
     }
     
     func configure(team: ConstructorStandings, rootView: UIView) {
-        standingStrategy = ConstructorStrategy()
-        standingStrategy?.setupUI(
+        historicalStandingsStrategy = HistoricalConstructorStrategy()
+        historicalStandingsStrategy?.setupUI(
             for: [firstLabel, secondLabel, thirdLabel, fouthLabel, fifthLabel, sixthLabel],
-            rootView: rootView,
-            widthConst: [firstWidth, secondWidth, thirdWidth, fourthWidth, fifthWidth, sixthWidth]
+            from: rootView,
+            by: [firstWidth, secondWidth, thirdWidth, fourthWidth, fifthWidth, sixthWidth]
         )
         
-        standingStrategy?.configureCell(
+        historicalStandingsStrategy?.configureCell(
             for: [firstLabel, secondLabel, thirdLabel, fouthLabel, fifthLabel, sixthLabel],
-            result: ModelType(constructor: team))
+            on: HistoricalStandings(team)
+        )
     }
     
     // MARK: - Private Methods
@@ -121,19 +123,5 @@ final class HistoricalCell: UITableViewCell {
         fouthLabel.backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
         fifthLabel.backgroundColor = #colorLiteral(red: 0.866422236, green: 0.9141893983, blue: 0.9915274978, alpha: 1)
         sixthLabel.backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
-    }
-    
-    private func teamSetupUI() {
-        secondWidth.isActive = false
-
-        [self.fouthLabel ,self.fifthLabel, self.sixthLabel].forEach {
-            $0.isHidden = true
-        }
-        
-        firstWidth.constant = self.frame.width / 6
-        firstWidth.isActive = true
-        
-        thirdWidth.constant = self.frame.width / 6
-        thirdWidth.isActive = true
     }
 }

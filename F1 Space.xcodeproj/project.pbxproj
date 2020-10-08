@@ -47,13 +47,19 @@
 		5E50BEEE2510D81A0025963F /* PickerResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E50BEED2510D81A0025963F /* PickerResult.swift */; };
 		5E50BEF02510D9340025963F /* PickerTypeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E50BEEF2510D9340025963F /* PickerTypeDelegate.swift */; };
 		5E510D18251C833100584EE2 /* HistoricalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E510D17251C833100584EE2 /* HistoricalCell.swift */; };
-		5E510D1E251CC11D00584EE2 /* DriverStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E510D1D251CC11D00584EE2 /* DriverStrategy.swift */; };
+		5E510D1E251CC11D00584EE2 /* HistoricalDriverStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E510D1D251CC11D00584EE2 /* HistoricalDriverStrategy.swift */; };
 		5E5F1B3224D5600200F81366 /* CustromActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5F1B3124D5600200F81366 /* CustromActivityIndicator.swift */; };
 		5E5F1B3824D5DDE300F81366 /* CustomAnimationActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5F1B3724D5DDE300F81366 /* CustomAnimationActivityIndicator.swift */; };
 		5E5F1B3A24D5F37F00F81366 /* RefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5F1B3924D5F37F00F81366 /* RefreshView.swift */; };
 		5E5FCB622513438F00618534 /* PickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5FCB612513438F00618534 /* PickerViewModel.swift */; };
 		5E65123924EFBB6700008D67 /* Races.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E65123824EFBB6700008D67 /* Races.swift */; };
 		5E6932BF252DA1BD0045E030 /* HistoricalHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6932BE252DA1BD0045E030 /* HistoricalHeader.swift */; };
+		5E6A132A252EE8FF0012CFEC /* HistoricalStandingsStrategyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A1329252EE8FF0012CFEC /* HistoricalStandingsStrategyType.swift */; };
+		5E6A1330252EF4300012CFEC /* HistoricalStandings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A132F252EF4300012CFEC /* HistoricalStandings.swift */; };
+		5E6A1337252F002F0012CFEC /* HistoricalStandingsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A1336252F002F0012CFEC /* HistoricalStandingsHeader.swift */; };
+		5E6A133B252F01E80012CFEC /* Year.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A133A252F01E80012CFEC /* Year.swift */; };
+		5E6A133F252F04D30012CFEC /* AuxiliaryNumbering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A133E252F04D30012CFEC /* AuxiliaryNumbering.swift */; };
+		5E6A1349252F0D4D0012CFEC /* HistoricalConstructorStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A1348252F0D4D0012CFEC /* HistoricalConstructorStrategy.swift */; };
 		5E7DB97D24D054420029C0EE /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DB97C24D054420029C0EE /* NewsViewController.swift */; };
 		5E7DB98024D05A6E0029C0EE /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DB97F24D05A6E0029C0EE /* NewsCell.swift */; };
 		5E82B52024C5D6A100377859 /* ConstructorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E82B51F24C5D6A100377859 /* ConstructorViewModel.swift */; };
@@ -139,13 +145,19 @@
 		5E50BEED2510D81A0025963F /* PickerResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerResult.swift; sourceTree = "<group>"; };
 		5E50BEEF2510D9340025963F /* PickerTypeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTypeDelegate.swift; sourceTree = "<group>"; };
 		5E510D17251C833100584EE2 /* HistoricalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalCell.swift; sourceTree = "<group>"; };
-		5E510D1D251CC11D00584EE2 /* DriverStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverStrategy.swift; sourceTree = "<group>"; };
+		5E510D1D251CC11D00584EE2 /* HistoricalDriverStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalDriverStrategy.swift; sourceTree = "<group>"; };
 		5E5F1B3124D5600200F81366 /* CustromActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustromActivityIndicator.swift; sourceTree = "<group>"; };
 		5E5F1B3724D5DDE300F81366 /* CustomAnimationActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnimationActivityIndicator.swift; sourceTree = "<group>"; };
 		5E5F1B3924D5F37F00F81366 /* RefreshView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshView.swift; sourceTree = "<group>"; };
 		5E5FCB612513438F00618534 /* PickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewModel.swift; sourceTree = "<group>"; };
 		5E65123824EFBB6700008D67 /* Races.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Races.swift; sourceTree = "<group>"; };
 		5E6932BE252DA1BD0045E030 /* HistoricalHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalHeader.swift; sourceTree = "<group>"; };
+		5E6A1329252EE8FF0012CFEC /* HistoricalStandingsStrategyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalStandingsStrategyType.swift; sourceTree = "<group>"; };
+		5E6A132F252EF4300012CFEC /* HistoricalStandings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalStandings.swift; sourceTree = "<group>"; };
+		5E6A1336252F002F0012CFEC /* HistoricalStandingsHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalStandingsHeader.swift; sourceTree = "<group>"; };
+		5E6A133A252F01E80012CFEC /* Year.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Year.swift; sourceTree = "<group>"; };
+		5E6A133E252F04D30012CFEC /* AuxiliaryNumbering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuxiliaryNumbering.swift; sourceTree = "<group>"; };
+		5E6A1348252F0D4D0012CFEC /* HistoricalConstructorStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalConstructorStrategy.swift; sourceTree = "<group>"; };
 		5E7DB97C24D054420029C0EE /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		5E7DB97F24D05A6E0029C0EE /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		5E82B51F24C5D6A100377859 /* ConstructorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorViewModel.swift; sourceTree = "<group>"; };
@@ -212,7 +224,9 @@
 				5EA886F524D165EB0079EDDC /* News */,
 				5E05CD9124BF340700EB2EF3 /* Standings */,
 				5E65123824EFBB6700008D67 /* Races.swift */,
+				5E6A133A252F01E80012CFEC /* Year.swift */,
 				5E50BEED2510D81A0025963F /* PickerResult.swift */,
+				5E6A1333252EF4360012CFEC /* HistoricalStandings */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -330,12 +344,9 @@
 				5E4A6A9C24D84A190077CDBC /* Views */,
 				5E40ECFB24B7551500E3AF1F /* Cells */,
 				5E82B52424C5E49100377859 /* Controllers */,
-				5E510D1D251CC11D00584EE2 /* DriverStrategy.swift */,
-				5EFD898624FE251E00A39838 /* HistoricalViewController.swift */,
+				5E6A1328252EE8970012CFEC /* HistoricalStrategy */,
 				5E510D17251C833100584EE2 /* HistoricalCell.swift */,
 				5E6932BE252DA1BD0045E030 /* HistoricalHeader.swift */,
-				5EFD898824FE458200A39838 /* PickerViewController.swift */,
-				5E5FCB612513438F00618534 /* PickerViewModel.swift */,
 				5E4CA6E12519E1AB0035E6F6 /* HistoricalViewModel.swift */,
 				5E4A64532523673400A81C56 /* New Group */,
 			);
@@ -360,6 +371,15 @@
 				5EA886F124D164F30079EDDC /* RSS.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		5E49EEBF252DF9280058B78D /* Historical */ = {
+			isa = PBXGroup;
+			children = (
+				5EFD898624FE251E00A39838 /* HistoricalViewController.swift */,
+				5EFD898824FE458200A39838 /* PickerViewController.swift */,
+			);
+			path = Historical;
 			sourceTree = "<group>";
 		};
 		5E4A64532523673400A81C56 /* New Group */ = {
@@ -403,6 +423,25 @@
 			path = ActivityIndicator;
 			sourceTree = "<group>";
 		};
+		5E6A1328252EE8970012CFEC /* HistoricalStrategy */ = {
+			isa = PBXGroup;
+			children = (
+				5E510D1D251CC11D00584EE2 /* HistoricalDriverStrategy.swift */,
+				5E6A1348252F0D4D0012CFEC /* HistoricalConstructorStrategy.swift */,
+				5E6A133E252F04D30012CFEC /* AuxiliaryNumbering.swift */,
+			);
+			path = HistoricalStrategy;
+			sourceTree = "<group>";
+		};
+		5E6A1333252EF4360012CFEC /* HistoricalStandings */ = {
+			isa = PBXGroup;
+			children = (
+				5E6A132F252EF4300012CFEC /* HistoricalStandings.swift */,
+				5E6A1336252F002F0012CFEC /* HistoricalStandingsHeader.swift */,
+			);
+			path = HistoricalStandings;
+			sourceTree = "<group>";
+		};
 		5E7DB97E24D0544F0029C0EE /* News */ = {
 			isa = PBXGroup;
 			children = (
@@ -425,8 +464,9 @@
 			isa = PBXGroup;
 			children = (
 				5E7DB97E24D0544F0029C0EE /* News */,
-				5EAC214A24C824F100A65A7A /* StandingsVC */,
+				5EAC214A24C824F100A65A7A /* Standings */,
 				5E82B52524C5E4A100377859 /* TabBar */,
+				5E49EEBF252DF9280058B78D /* Historical */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -462,6 +502,7 @@
 				5EAC214624C8244F00A65A7A /* DataSourceViewModelType.swift */,
 				5E50BEEF2510D9340025963F /* PickerTypeDelegate.swift */,
 				5E4CA6E32519FD1B0035E6F6 /* PickerViewModelType.swift */,
+				5E6A1329252EE8FF0012CFEC /* HistoricalStandingsStrategyType.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -477,13 +518,13 @@
 			path = StandingsVM;
 			sourceTree = "<group>";
 		};
-		5EAC214A24C824F100A65A7A /* StandingsVC */ = {
+		5EAC214A24C824F100A65A7A /* Standings */ = {
 			isa = PBXGroup;
 			children = (
 				5E419EE824B5A9AA006421F6 /* StandingsViewController.swift */,
 				5EAC214B24C8250300A65A7A /* DriverAndConstructor */,
 			);
-			path = StandingsVC;
+			path = Standings;
 			sourceTree = "<group>";
 		};
 		5EAC214B24C8250300A65A7A /* DriverAndConstructor */ = {
@@ -500,6 +541,7 @@
 			children = (
 				5E4A6A9724D7EE1C0077CDBC /* NewsVM */,
 				5EAC214924C824A900A65A7A /* StandingsVM */,
+				5E5FCB612513438F00618534 /* PickerViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -647,6 +689,7 @@
 				5E65123924EFBB6700008D67 /* Races.swift in Sources */,
 				5E510D18251C833100584EE2 /* HistoricalCell.swift in Sources */,
 				5E4A644D2523672B00A81C56 /* StandingsContainerView.swift in Sources */,
+				5E6A1337252F002F0012CFEC /* HistoricalStandingsHeader.swift in Sources */,
 				5E5FCB622513438F00618534 /* PickerViewModel.swift in Sources */,
 				5E4CA6E22519E1AB0035E6F6 /* HistoricalViewModel.swift in Sources */,
 				5E05CD8C24BF28E600EB2EF3 /* CommonDriver.swift in Sources */,
@@ -663,6 +706,8 @@
 				5E50BEF02510D9340025963F /* PickerTypeDelegate.swift in Sources */,
 				5E4A6A9B24D82E210077CDBC /* DetailNewsViewModel.swift in Sources */,
 				5E5F1B3A24D5F37F00F81366 /* RefreshView.swift in Sources */,
+				5E6A133F252F04D30012CFEC /* AuxiliaryNumbering.swift in Sources */,
+				5E6A132A252EE8FF0012CFEC /* HistoricalStandingsStrategyType.swift in Sources */,
 				5EAC214724C8244F00A65A7A /* DataSourceViewModelType.swift in Sources */,
 				5ECFB2A92501132800ED94EA /* InstantPanGestureRecognizer.swift in Sources */,
 				5EC60D6824C18DBD009C66CC /* DriverViewModel.swift in Sources */,
@@ -697,11 +742,14 @@
 				5E50BEEE2510D81A0025963F /* PickerResult.swift in Sources */,
 				5E05CD8E24BF2B8700EB2EF3 /* Constructor.swift in Sources */,
 				5E419F0A24B60E1F006421F6 /* StackView.swift in Sources */,
+				5E6A1349252F0D4D0012CFEC /* HistoricalConstructorStrategy.swift in Sources */,
 				5E4A644F2523672B00A81C56 /* ContainerNum3.swift in Sources */,
 				5E419EE924B5A9AA006421F6 /* StandingsViewController.swift in Sources */,
-				5E510D1E251CC11D00584EE2 /* DriverStrategy.swift in Sources */,
+				5E6A1330252EF4300012CFEC /* HistoricalStandings.swift in Sources */,
+				5E510D1E251CC11D00584EE2 /* HistoricalDriverStrategy.swift in Sources */,
 				5E7DB97D24D054420029C0EE /* NewsViewController.swift in Sources */,
 				5E419EF624B5DBB0006421F6 /* StandingDriverCell.swift in Sources */,
+				5E6A133B252F01E80012CFEC /* Year.swift in Sources */,
 				5EC60D6C24C1FD4E009C66CC /* DriverCellViewModel.swift in Sources */,
 				5E05CD9024BF2B8F00EB2EF3 /* Driver.swift in Sources */,
 				5EFD898924FE458200A39838 /* PickerViewController.swift in Sources */,
