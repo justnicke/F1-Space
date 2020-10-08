@@ -345,9 +345,7 @@
 				5E40ECFB24B7551500E3AF1F /* Cells */,
 				5E82B52424C5E49100377859 /* Controllers */,
 				5E6A1328252EE8970012CFEC /* HistoricalStrategy */,
-				5E510D17251C833100584EE2 /* HistoricalCell.swift */,
-				5E6932BE252DA1BD0045E030 /* HistoricalHeader.swift */,
-				5E4CA6E12519E1AB0035E6F6 /* HistoricalViewModel.swift */,
+				5EE1D966252F32B6000C96DA /* Header and Cell Completed */,
 				5E4A64532523673400A81C56 /* New Group */,
 			);
 			path = Views;
@@ -377,7 +375,9 @@
 			isa = PBXGroup;
 			children = (
 				5EFD898624FE251E00A39838 /* HistoricalViewController.swift */,
+				5E4CA6E12519E1AB0035E6F6 /* HistoricalViewModel.swift */,
 				5EFD898824FE458200A39838 /* PickerViewController.swift */,
+				5E5FCB612513438F00618534 /* PickerViewModel.swift */,
 			);
 			path = Historical;
 			sourceTree = "<group>";
@@ -426,9 +426,9 @@
 		5E6A1328252EE8970012CFEC /* HistoricalStrategy */ = {
 			isa = PBXGroup;
 			children = (
+				5E6A133E252F04D30012CFEC /* AuxiliaryNumbering.swift */,
 				5E510D1D251CC11D00584EE2 /* HistoricalDriverStrategy.swift */,
 				5E6A1348252F0D4D0012CFEC /* HistoricalConstructorStrategy.swift */,
-				5E6A133E252F04D30012CFEC /* AuxiliaryNumbering.swift */,
 			);
 			path = HistoricalStrategy;
 			sourceTree = "<group>";
@@ -541,7 +541,6 @@
 			children = (
 				5E4A6A9724D7EE1C0077CDBC /* NewsVM */,
 				5EAC214924C824A900A65A7A /* StandingsVM */,
-				5E5FCB612513438F00618534 /* PickerViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -566,6 +565,15 @@
 				5ECFB2A32501132800ED94EA /* DismissAnimation.swift */,
 			);
 			path = Animations;
+			sourceTree = "<group>";
+		};
+		5EE1D966252F32B6000C96DA /* Header and Cell Completed */ = {
+			isa = PBXGroup;
+			children = (
+				5E510D17251C833100584EE2 /* HistoricalCell.swift */,
+				5E6932BE252DA1BD0045E030 /* HistoricalHeader.swift */,
+			);
+			path = "Header and Cell Completed";
 			sourceTree = "<group>";
 		};
 		5EEE76DF25013FFF00D7D530 /* Helpers */ = {

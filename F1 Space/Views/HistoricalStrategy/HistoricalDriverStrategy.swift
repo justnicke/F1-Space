@@ -9,8 +9,12 @@
 import UIKit
 
 final class HistoricalDriverStrategy: HistoricalStandingsStrategyType {
+    
+    // MARK: - Properties
 
     private(set) var forThe = AuxiliaryNumbering(first: 0, second: 1, third: 2, fourth: 3, fifth: 4, sixth: 5)
+    
+    // MARK: - Methods
     
     func setupUI(for labels: [UILabel], from rootView: UIView, by widthConst: [NSLayoutConstraint?]) {
         labels.forEach {
@@ -47,6 +51,5 @@ final class HistoricalDriverStrategy: HistoricalStandingsStrategyType {
         labels[forThe.second].text = model.secondHead
         labels[forThe.third].text = model.thirdHead
         labels[forThe.fourth].text = model.fourthHead
-
     }
 }

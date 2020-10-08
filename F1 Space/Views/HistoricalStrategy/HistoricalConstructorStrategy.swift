@@ -10,7 +10,11 @@ import UIKit
 
 final class HistoricalConstructorStrategy: HistoricalStandingsStrategyType {
     
-    var forThe = AuxiliaryNumbering(first: 0, second: 1, third: 2, fourth: 3, fifth: 4, sixth: 5)
+    // MARK: - Properties
+    
+    private(set) var forThe = AuxiliaryNumbering(first: 0, second: 1, third: 2, fourth: 3, fifth: 4, sixth: 5)
+    
+    // MARK: - Methods
     
     func setupUI(for labels: [UILabel], from rootView: UIView, by widthConst: [NSLayoutConstraint?]) {
         labels.forEach {
