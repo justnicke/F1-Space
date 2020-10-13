@@ -1,5 +1,5 @@
 //
-//  PickerTypeDelegate.swift
+//  HistoricalPickerDelegate.swift
 //  F1 Space
 //
 //  Created by Nikita Sukachev on 15.09.2020.
@@ -8,8 +8,8 @@
 
 import Foundation
 
-protocol PickerTypeDelegate: class {
+protocol HistoricalPickerDelegate: class {
     func year(value: Int)
-    func type(result: String)
+    func category(current: String)
     func result(value: String)
 }

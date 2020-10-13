@@ -45,9 +45,8 @@ final class HistoricalCell: UITableViewCell {
     }
     
     // MARK: - Public Methods
-//    by width and category
     
-    func configureCell(viewModel: HistoricalCellViewModel?, byWidth rootView: UIView, and category: String?) {
+    func configureCell(viewModel: HistoricalCellViewModel?, byFrame rootView: UIView, and category: String?) {
         if category?.lowercased() == HistoricalCategory.drivers.rawValue {
             historicalStandingsStrategy = HistoricalDriverStrategy()
             historicalStandingsStrategy?.setupUI(for: group().labels, withAdjustable: group().widths, byFrame: rootView)

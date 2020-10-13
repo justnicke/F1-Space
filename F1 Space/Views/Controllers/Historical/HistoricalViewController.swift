@@ -133,8 +133,8 @@ final class HistoricalViewController: UIViewController {
         tableView.register(HistoricalCell.self, forCellReuseIdentifier: HistoricalCell.reuseId)
     }
     
-    private func openTransition(state: PickerIndex, currentValues: [String?]) {
-        let historicalPickerView = PickerViewController()
+    private func openTransition(state: HistoricalPickerIndex, currentValues: [String?]) {
+        let historicalPickerView = HistoricalPickerViewController()
         historicalPickerView.giveDelegate(for: self)
         historicalPickerView.transitioningDelegate = transition
         historicalPickerView.modalPresentationStyle = .custom
@@ -173,7 +173,7 @@ extension HistoricalViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: HistoricalCell.reuseId, for: indexPath) as! HistoricalCell
         let viewModelCell = historicalViewModel.cellForItemAt(indexPath: indexPath, for: typeSearchButton.titleLabel?.text)
         
-        cell.configureCell(viewModel: viewModelCell, byWidth: view, and: typeSearchButton.titleLabel?.text)
+        cell.configureCell(viewModel: viewModelCell, byFrame: view, and: typeSearchButton.titleLabel?.text)
         
         return cell
     }
@@ -197,9 +197,9 @@ extension HistoricalViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-// MARK: - Extension PickerTypeDelegate
+// MARK: - Extension HistoricalPickerDelegate
 
-extension HistoricalViewController: PickerTypeDelegate {
+extension HistoricalViewController: HistoricalPickerDelegate {
     func year(value: Int) {
         yearButton.setTitle(String(value), for: .normal)
         historicalViewModel.selectedType(currentCategory: typeSearchButton.titleLabel?.text, yearStr: yearButton.titleLabel?.text) { [weak self] in
@@ -207,8 +207,8 @@ extension HistoricalViewController: PickerTypeDelegate {
         }
     }
     
-    func type(result: String) {
-        typeSearchButton.setTitle(result, for: .normal)
+    func category(current: String) {
+        typeSearchButton.setTitle(current, for: .normal)
         historicalViewModel.selectedType(currentCategory: typeSearchButton.titleLabel?.text, yearStr: yearButton.titleLabel?.text) { [weak self] in
             self?.tableView.reloadData()
         }

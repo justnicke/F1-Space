@@ -1,5 +1,5 @@
 //
-//  Extension + StackView.swift
+//  StackView.swift
 //  F1 Space
 //
 //  Created by Nikita Sukachev on 08.07.2020.

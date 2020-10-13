@@ -1,5 +1,5 @@
 //
-//  PickerViewController.swift
+//  HistoricalPickerViewController.swift
 //  F1 Space
 //
 //  Created by Nikita Sukachev on 01.09.2020.
@@ -8,17 +8,17 @@
 
 import UIKit
 
-enum PickerIndex: Int {
+enum HistoricalPickerIndex: Int {
     case first  = 0
     case second = 1
     case third  = 2
 }
 
-final class PickerViewController: UIViewController {
+final class HistoricalPickerViewController: UIViewController {
     
     // MARK: - Public Properties
     
-    var count = PickerIndex(rawValue: .zero)
+    var count = HistoricalPickerIndex(rawValue: .zero)
     var currentValues: [String?] = []
     
     // MARK: - Private Properties
@@ -38,7 +38,7 @@ final class PickerViewController: UIViewController {
         return button
     }()
     private let handleDismissView = UIView()
-    private let pickerViewModel = PickerViewModel()
+    private let historicalPickerViewModel = HistoricalPickerViewModel()
         
     // MARK: - Public Methods
     
@@ -56,7 +56,7 @@ final class PickerViewController: UIViewController {
     }
     
     func giveDelegate(for vc: UIViewController) {
-        pickerViewModel.delegate = vc as? PickerTypeDelegate
+        historicalPickerViewModel.delegate = vc as? HistoricalPickerDelegate
     }
     
     // MARK: - Private Methods
@@ -98,7 +98,7 @@ final class PickerViewController: UIViewController {
     }
     
     private func updateViewModel() {
-        pickerViewModel.requestForSelection(from: currentValues, by: count!) { [weak self] in
+        historicalPickerViewModel.requestForSelection(from: currentValues, by: count!) { [weak self] in
             self?.picker.reloadAllComponents()
             self?.initPicker()
             self?.currentPickerValue()
@@ -107,7 +107,7 @@ final class PickerViewController: UIViewController {
     
     private func currentPickerValue() {
         picker.selectRow(
-            pickerViewModel.selectedRowPicker(from: currentValues, by: count!),
+            historicalPickerViewModel.selectedRowPicker(from: currentValues, by: count!),
             inComponent: 0,
             animated: false
         )
@@ -117,25 +117,25 @@ final class PickerViewController: UIViewController {
         let selectedRow = picker.selectedRow(inComponent: 0)
         
         dismiss(animated: true) {
-            self.pickerViewModel.sendValueFromPicker(by: self.count!, and: selectedRow)
+            self.historicalPickerViewModel.sendValueFromPicker(by: self.count!, and: selectedRow)
         }
     }
 }
 
 // MARK: - Extension UIPickerViewDataSource & UIPickerViewDelegate
 
-extension PickerViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+extension HistoricalPickerViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerViewModel.numberOfRowsInComponent(component, by: count!)
+        return historicalPickerViewModel.numberOfRowsInComponent(component, by: count!)
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerViewModel.titleForRow(row, by: count!)
+        return historicalPickerViewModel.titleForRow(row, by: count!)
     }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
@@ -157,7 +157,7 @@ extension PickerViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         
         let title = NSAttributedString()
         
-        label?.attributedText = pickerViewModel.viewForRow(
+        label?.attributedText = historicalPickerViewModel.viewForRow(
             row,
             with: title,
             and: [NSAttributedString.Key.font: UIFont(name: "AvenirNext-Bold", size: 22)!],

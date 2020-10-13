@@ -1,5 +1,5 @@
 //
-//  Extension + String.swift
+//  String.swift
 //  F1 Space
 //
 //  Created by Nikita Sukachev on 29.07.2020.

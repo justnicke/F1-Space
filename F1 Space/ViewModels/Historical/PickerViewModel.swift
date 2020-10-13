@@ -8,34 +8,34 @@
 
 import Foundation
 
-final class PickerViewModel {
+final class HistoricalPickerViewModel {
     
     // MARK: - Public Properties
     
-    weak var delegate: PickerTypeDelegate?
+    weak var delegate: HistoricalPickerDelegate?
     
     // MARK: - Private Properties
     
-    private var pickerResult = PickerResult(yearCount: nil, championships: [])
+    private var pickerResult = HistoricalPickerResult(totalSeasons: nil, championships: [], detailedResult: ["All"])
     private var resultsID = ["All"] // в будущем убрать
     
     // MARK: - Private Methods
     
-    func sendValueFromPicker(by state: PickerIndex, and row: Int) {
+    func sendValueFromPicker(by state: HistoricalPickerIndex, and row: Int) {
         switch state {
         case .first:
             let selectedValue = pickerResult.championships[row]
             delegate?.year(value: selectedValue)
         case .second:
-            let selectedValue = pickerResult.typeResults[row]
-            delegate?.type(result: selectedValue)
+            let selectedValue = pickerResult.category[row]
+            delegate?.category(current: selectedValue)
         case .third:
-            let selectedValue = pickerResult.listResults[row]
+            let selectedValue = pickerResult.detailedResult[row]
             delegate?.result(value: selectedValue)
         }
     }
     
-    func selectedRowPicker(from values: [String?], by state: PickerIndex) -> Array<Int>.Index {
+    func selectedRowPicker(from values: [String?], by state: HistoricalPickerIndex) -> Array<Int>.Index {
         switch state {
         case .first:
             if let year = Int(values[state.rawValue] ?? "2020"),
@@ -43,20 +43,20 @@ final class PickerViewModel {
                 return index
             }
         case .second:
-            if let typeResult = values[0],
-               let index = pickerResult.typeResults.firstIndex(of: typeResult) {
+            if let category = values[0],
+               let index = pickerResult.category.firstIndex(of: category) {
                 return index
             }
         case .third:
             if let result = values[state.rawValue],
-               let index = pickerResult.listResults.firstIndex(of: result) {
+               let index = pickerResult.detailedResult.firstIndex(of: result) {
                 return index
             }
         }
         return 0
     }
     
-    func requestForSelection(from values: [String?], by state: PickerIndex, compeletion: @escaping () -> (Void)) {
+    func requestForSelection(from values: [String?], by state: HistoricalPickerIndex, compeletion: @escaping () -> (Void)) {
         switch state {
         case .first:
             requestSeason(compeletion: compeletion)
@@ -74,7 +74,7 @@ final class PickerViewModel {
         let calendar = Calendar.current
         let currentYear = calendar.component(.year, from: date)
         
-        if let string = pickerResult.yearCount, let convertedYearCount = Int(string) {
+        if let string = pickerResult.totalSeasons, let convertedYearCount = Int(string) {
             for i in 0...convertedYearCount - 1 {
                 let year = currentYear - i
                 pickerResult.championships.append(year)
@@ -84,13 +84,13 @@ final class PickerViewModel {
     
     private func requestSeason(compeletion: @escaping () -> (Void)) {
         API.requestYearChampionship { [weak self] (dates, error) in
-            self?.pickerResult.yearCount = dates?.championship.yearsCount
+            self?.pickerResult.totalSeasons = dates?.championship.yearsCount
             self?.getChampionshipYear()
             compeletion()
         }
     }
     
-    private func requestDriverTeamOrRaceData(arr: [String?], state: PickerIndex, compeletion: @escaping () -> (Void)) {
+    private func requestDriverTeamOrRaceData(arr: [String?], state: HistoricalPickerIndex, compeletion: @escaping () -> (Void)) {
         let type = arr[state.rawValue - 1]?.lowercased()
         guard let year = arr[state.rawValue - state.rawValue] else { return }
         
@@ -107,7 +107,7 @@ final class PickerViewModel {
                     return
                 }
                 
-                self?.pickerResult.listResults += driver
+                self?.pickerResult.detailedResult += driver
                 self?.resultsID += driversID
                 
                 compeletion()
@@ -128,7 +128,7 @@ final class PickerViewModel {
                     return
                 }
                 
-                self?.pickerResult.listResults += constructorsName
+                self?.pickerResult.detailedResult += constructorsName
                 self?.resultsID += constructorsID
                 
                 compeletion()
@@ -144,7 +144,7 @@ final class PickerViewModel {
                     return
                 }
                 
-                self?.pickerResult.listResults += grandPrixes
+                self?.pickerResult.detailedResult += grandPrixes
                 self?.resultsID += roundGP
                 
                 compeletion()
@@ -155,31 +155,31 @@ final class PickerViewModel {
 
 // MARK: - Extension PickerViewModelType
 
-extension PickerViewModel: PickerViewModelType {
+extension HistoricalPickerViewModel: PickerViewModelType {
     
-    func numberOfRowsInComponent(_ component: Int, by state: PickerIndex) -> Int {
+    func numberOfRowsInComponent(_ component: Int, by state: HistoricalPickerIndex) -> Int {
         switch state {
         case .first:
             return pickerResult.championships.count
         case .second:
-            return pickerResult.typeResults.count
+            return pickerResult.category.count
         case .third:
-            return pickerResult.listResults.count
+            return pickerResult.detailedResult.count
         }
     }
     
-    func titleForRow(_ row: Int, by state: PickerIndex) -> String? {
+    func titleForRow(_ row: Int, by state: HistoricalPickerIndex) -> String? {
         switch state {
         case .first:
             return String(pickerResult.championships[row])
         case .second:
-            return pickerResult.typeResults[row]
+            return pickerResult.category[row]
         case .third:
-            return pickerResult.listResults[row]
+            return pickerResult.detailedResult[row]
         }
     }
     
-    func viewForRow(_ row: Int, with title: NSAttributedString, and attributes: [NSAttributedString.Key : Any], by state: PickerIndex) -> NSAttributedString {
+    func viewForRow(_ row: Int, with title: NSAttributedString, and attributes: [NSAttributedString.Key : Any], by state: HistoricalPickerIndex) -> NSAttributedString {
         var title = title
         
         switch state {
@@ -187,10 +187,10 @@ extension PickerViewModel: PickerViewModelType {
             title = NSAttributedString(string: String(pickerResult.championships[row]), attributes: attributes)
             return title
         case .second:
-            title = NSAttributedString(string: pickerResult.typeResults[row], attributes: attributes)
+            title = NSAttributedString(string: pickerResult.category[row], attributes: attributes)
             return title
         case .third:
-            title = NSAttributedString(string: pickerResult.listResults[row], attributes: attributes)
+            title = NSAttributedString(string: pickerResult.detailedResult[row], attributes: attributes)
             return title
         }
     }

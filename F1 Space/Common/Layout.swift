@@ -1,5 +1,5 @@
 //
-//  UIView + Layout.swift
+//  Layout.swift
 //  F1 Space
 //
 //  Created by Nikita Sukachev on 08.07.2020.
