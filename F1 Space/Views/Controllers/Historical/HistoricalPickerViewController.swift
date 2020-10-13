@@ -8,17 +8,13 @@
 
 import UIKit
 
-enum HistoricalPickerIndex: Int {
-    case first  = 0
-    case second = 1
-    case third  = 2
-}
+
 
 final class HistoricalPickerViewController: UIViewController {
     
     // MARK: - Public Properties
     
-    var count = HistoricalPickerIndex(rawValue: .zero)
+    var count = HistoricalPickerSelected(rawValue: .zero)
     var currentValues: [String?] = []
     
     // MARK: - Private Properties
@@ -56,7 +52,7 @@ final class HistoricalPickerViewController: UIViewController {
     }
     
     func giveDelegate(for vc: UIViewController) {
-        historicalPickerViewModel.delegate = vc as? HistoricalPickerDelegate
+        historicalPickerViewModel.delegate = vc as? HistoricalPickerSelectedDelegate
     }
     
     // MARK: - Private Methods

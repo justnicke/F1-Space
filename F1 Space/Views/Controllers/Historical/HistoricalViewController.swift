@@ -13,7 +13,6 @@ final class HistoricalViewController: UIViewController {
     // MARK: - Private Properties
     
     private let topView = UIScrollView()
-    
     private let yearButton: AutoSizeButton = {
         let button = AutoSizeButton(type: .custom)
         button.setTitle("2020", for: .normal)
@@ -29,19 +28,12 @@ final class HistoricalViewController: UIViewController {
         button.setTitle("All", for: .normal)
         return button
     }()
-    
     private var tableView: UITableView!
-    
     private let transition = PanelTransition()
     private let header = HistoricalHeaderView()
-    
     private var driversHeader = HistoricalStandingsHeader("POS", "Driver", "Constructor", "Points")
     private var constructorsHeader = HistoricalStandingsHeader("POS", "Constructor", "Points")
-    
-    private var driversStandings: [DriverStandings] = []
-    private var construcorsStandings: [ConstructorStandings] = []
-    
-    var historicalViewModel = HistoricalViewModel()
+    private var historicalViewModel = HistoricalViewModel()
 
     // MARK: - Public Methods
     
@@ -49,10 +41,9 @@ final class HistoricalViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .green
-        setupTopView()
         
+        setupTopView()
         requestViewModel()
-      
         setupTableView()
         
         yearButton.addTarget(self, action: #selector(yearButtonPressed), for: .touchUpInside)
@@ -62,17 +53,7 @@ final class HistoricalViewController: UIViewController {
     
     // MARK: - Private Methods
     
-    func requestViewModel() {
-        if typeSearchButton.titleLabel?.text?.lowercased() == HistoricalCategory.drivers.rawValue {
-            historicalViewModel.requestDriverStandings(yearStr: yearButton.titleLabel?.text) { [weak self] in
-                self?.tableView.reloadData()
-            }
-        } else {
-            historicalViewModel.requestConstructorStandings(yearStr: yearButton.titleLabel?.text) { [weak self] in
-                self?.tableView.reloadData()
-            }
-        }
-    }
+
     
     private func setupTopView() {
         view.addSubview(topView)
@@ -133,7 +114,15 @@ final class HistoricalViewController: UIViewController {
         tableView.register(HistoricalCell.self, forCellReuseIdentifier: HistoricalCell.reuseId)
     }
     
-    private func openTransition(state: HistoricalPickerIndex, currentValues: [String?]) {
+    private func requestViewModel() {
+        historicalViewModel.selectedType(
+            currentCategory: typeSearchButton.titleLabel?.text,
+            yearStr: yearButton.titleLabel?.text) { [weak self] in
+            self?.tableView.reloadData()
+        }
+    }
+    
+    private func openTransition(state: HistoricalPickerSelected, currentValues: [String?]) {
         let historicalPickerView = HistoricalPickerViewController()
         historicalPickerView.giveDelegate(for: self)
         historicalPickerView.transitioningDelegate = transition
@@ -143,13 +132,13 @@ final class HistoricalViewController: UIViewController {
         
         present(historicalPickerView, animated: true)
     }
-        
+    
     @objc private func yearButtonPressed() {
-        openTransition(state: .first, currentValues: [yearButton.titleLabel?.text])
+        openTransition(state: .yearChampionship, currentValues: [yearButton.titleLabel?.text])
     }
     
     @objc private func typeSearchButtonPressed() {
-        openTransition(state: .second, currentValues: [typeSearchButton.titleLabel?.text])
+        openTransition(state: .category, currentValues: [typeSearchButton.titleLabel?.text])
     }
     
     @objc private func detailResultButtonPressed() {
@@ -157,7 +146,7 @@ final class HistoricalViewController: UIViewController {
                              typeSearchButton.titleLabel?.text,
                              detailResultButton.titleLabel?.text]
         
-        openTransition(state: .third, currentValues: currentValues)
+        openTransition(state: .detailedResult, currentValues: currentValues)
     }
     
 }
@@ -166,12 +155,12 @@ final class HistoricalViewController: UIViewController {
 
 extension HistoricalViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return historicalViewModel.numberOfItems(currentCategory: typeSearchButton.titleLabel?.text)
+        return historicalViewModel.numberOfRows(inCurrent: typeSearchButton.titleLabel?.text)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: HistoricalCell.reuseId, for: indexPath) as! HistoricalCell
-        let viewModelCell = historicalViewModel.cellForItemAt(indexPath: indexPath, for: typeSearchButton.titleLabel?.text)
+        let viewModelCell = historicalViewModel.cellForRowAt(indexPath: indexPath, inCurrent: typeSearchButton.titleLabel?.text)
         
         cell.configureCell(viewModel: viewModelCell, byFrame: view, and: typeSearchButton.titleLabel?.text)
         
@@ -197,25 +186,21 @@ extension HistoricalViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-// MARK: - Extension HistoricalPickerDelegate
+// MARK: - Extension HistoricalPickerSelectedDelegate
 
-extension HistoricalViewController: HistoricalPickerDelegate {
-    func year(value: Int) {
-        yearButton.setTitle(String(value), for: .normal)
-        historicalViewModel.selectedType(currentCategory: typeSearchButton.titleLabel?.text, yearStr: yearButton.titleLabel?.text) { [weak self] in
-            self?.tableView.reloadData()
-        }
+extension HistoricalViewController: HistoricalPickerSelectedDelegate {
+    func year(currentСhampionship: Int) {
+        yearButton.setTitle(String(currentСhampionship), for: .normal)
+        requestViewModel()
     }
     
     func category(current: String) {
         typeSearchButton.setTitle(current, for: .normal)
-        historicalViewModel.selectedType(currentCategory: typeSearchButton.titleLabel?.text, yearStr: yearButton.titleLabel?.text) { [weak self] in
-            self?.tableView.reloadData()
-        }
+        requestViewModel()
     }
     
-    func result(value: String) {
-        detailResultButton.setTitle(value, for: .normal)
+    func detailed(currentResult: String) {
+        detailResultButton.setTitle(currentResult, for: .normal)
     }
 }
 

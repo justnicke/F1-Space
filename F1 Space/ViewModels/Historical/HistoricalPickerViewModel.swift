@@ -1,5 +1,5 @@
 //
-//  PickerViewModel.swift
+//  HistoricalPickerViewModel.swift
 //  F1 Space
 //
 //  Created by Nikita Sukachev on 17.09.2020.
@@ -12,7 +12,7 @@ final class HistoricalPickerViewModel {
     
     // MARK: - Public Properties
     
-    weak var delegate: HistoricalPickerDelegate?
+    weak var delegate: HistoricalPickerSelectedDelegate?
     
     // MARK: - Private Properties
     
@@ -21,33 +21,33 @@ final class HistoricalPickerViewModel {
     
     // MARK: - Private Methods
     
-    func sendValueFromPicker(by state: HistoricalPickerIndex, and row: Int) {
+    func sendValueFromPicker(by state: HistoricalPickerSelected, and row: Int) {
         switch state {
-        case .first:
+        case .yearChampionship:
             let selectedValue = pickerResult.championships[row]
-            delegate?.year(value: selectedValue)
-        case .second:
-            let selectedValue = pickerResult.category[row]
-            delegate?.category(current: selectedValue)
-        case .third:
+            delegate?.year(currentСhampionship: selectedValue)
+        case .category:
+            let selectedСategory = pickerResult.category[row]
+            delegate?.category(current: selectedСategory)
+        case .detailedResult:
             let selectedValue = pickerResult.detailedResult[row]
-            delegate?.result(value: selectedValue)
+            delegate?.detailed(currentResult: selectedValue)
         }
     }
     
-    func selectedRowPicker(from values: [String?], by state: HistoricalPickerIndex) -> Array<Int>.Index {
+    func selectedRowPicker(from values: [String?], by state: HistoricalPickerSelected) -> Array<Int>.Index {
         switch state {
-        case .first:
+        case .yearChampionship:
             if let year = Int(values[state.rawValue] ?? "2020"),
                let index = pickerResult.championships.firstIndex(of: year) {
                 return index
             }
-        case .second:
+        case .category:
             if let category = values[0],
                let index = pickerResult.category.firstIndex(of: category) {
                 return index
             }
-        case .third:
+        case .detailedResult:
             if let result = values[state.rawValue],
                let index = pickerResult.detailedResult.firstIndex(of: result) {
                 return index
@@ -56,14 +56,14 @@ final class HistoricalPickerViewModel {
         return 0
     }
     
-    func requestForSelection(from values: [String?], by state: HistoricalPickerIndex, compeletion: @escaping () -> (Void)) {
+    func requestForSelection(from values: [String?], by state: HistoricalPickerSelected, compeletion: @escaping () -> (Void)) {
         switch state {
-        case .first:
+        case .yearChampionship:
             requestSeason(compeletion: compeletion)
-        case .second:
+        case .category:
             compeletion()
-        case .third:
-            requestDriverTeamOrRaceData(arr: values, state: state, compeletion: compeletion)
+        case .detailedResult:
+            requestDriverOrTeamOrRaceData(from: values, by: state, compeletion: compeletion)
         }
     }
     
@@ -90,9 +90,9 @@ final class HistoricalPickerViewModel {
         }
     }
     
-    private func requestDriverTeamOrRaceData(arr: [String?], state: HistoricalPickerIndex, compeletion: @escaping () -> (Void)) {
-        let type = arr[state.rawValue - 1]?.lowercased()
-        guard let year = arr[state.rawValue - state.rawValue] else { return }
+    private func requestDriverOrTeamOrRaceData(from values: [String?], by state: HistoricalPickerSelected, compeletion: @escaping () -> (Void)) {
+        let type = values[state.rawValue - 1]?.lowercased()
+        guard let year = values[state.rawValue - state.rawValue] else { return }
         
         if type == HistoricalCategory.drivers.rawValue {
             API.requestDriverStandings(year: year) { [weak self] (driver, error) in
@@ -157,39 +157,39 @@ final class HistoricalPickerViewModel {
 
 extension HistoricalPickerViewModel: PickerViewModelType {
     
-    func numberOfRowsInComponent(_ component: Int, by state: HistoricalPickerIndex) -> Int {
+    func numberOfRowsInComponent(_ component: Int, by state: HistoricalPickerSelected) -> Int {
         switch state {
-        case .first:
+        case .yearChampionship:
             return pickerResult.championships.count
-        case .second:
+        case .category:
             return pickerResult.category.count
-        case .third:
+        case .detailedResult:
             return pickerResult.detailedResult.count
         }
     }
     
-    func titleForRow(_ row: Int, by state: HistoricalPickerIndex) -> String? {
+    func titleForRow(_ row: Int, by state: HistoricalPickerSelected) -> String? {
         switch state {
-        case .first:
+        case .yearChampionship:
             return String(pickerResult.championships[row])
-        case .second:
+        case .category:
             return pickerResult.category[row]
-        case .third:
+        case .detailedResult:
             return pickerResult.detailedResult[row]
         }
     }
     
-    func viewForRow(_ row: Int, with title: NSAttributedString, and attributes: [NSAttributedString.Key : Any], by state: HistoricalPickerIndex) -> NSAttributedString {
+    func viewForRow(_ row: Int, with title: NSAttributedString, and attributes: [NSAttributedString.Key : Any], by state: HistoricalPickerSelected) -> NSAttributedString {
         var title = title
         
         switch state {
-        case .first:
+        case .yearChampionship:
             title = NSAttributedString(string: String(pickerResult.championships[row]), attributes: attributes)
             return title
-        case .second:
+        case .category:
             title = NSAttributedString(string: pickerResult.category[row], attributes: attributes)
             return title
-        case .third:
+        case .detailedResult:
             title = NSAttributedString(string: pickerResult.detailedResult[row], attributes: attributes)
             return title
         }

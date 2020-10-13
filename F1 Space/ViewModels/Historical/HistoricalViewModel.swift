@@ -14,13 +14,22 @@ final class HistoricalViewModel {
     
     private var driversHeader = HistoricalStandingsHeader("POS", "Driver", "Constructor", "Points")
     private var constructorsHeader = HistoricalStandingsHeader("POS", "Constructor", "Points")
-    
     private var driversStandings: [DriverStandings] = []
     private var construcorsStandings: [ConstructorStandings] = []
     
     // MARK: - Public Methods
     
-    func requestDriverStandings(yearStr: String?, compeletion: @escaping () -> (Void)) {
+    func selectedType(currentCategory: String?, yearStr: String?, compeletion: @escaping () -> (Void)) {
+        if currentCategory?.lowercased() == HistoricalCategory.drivers.rawValue {
+            requestDriverStandings(yearStr: yearStr, compeletion: compeletion)
+        } else {
+            requestConstructorStandings(yearStr: yearStr, compeletion: compeletion)
+        }
+    }
+    
+    // MARK: - Private Methods
+    
+    private func requestDriverStandings(yearStr: String?, compeletion: @escaping () -> (Void)) {
         guard let year = yearStr else { return }
         
         API.requestDriverStandings(year: year) { [weak self] (driver, err) in
@@ -32,7 +41,7 @@ final class HistoricalViewModel {
         }
     }
     
-    func requestConstructorStandings(yearStr: String?, compeletion: @escaping () -> (Void)) {
+    private func requestConstructorStandings(yearStr: String?, compeletion: @escaping () -> (Void)) {
         guard let year = yearStr  else { return }
         
         API.requestConstructorStandings(year: year) { [weak self] (team, err) in
@@ -43,28 +52,20 @@ final class HistoricalViewModel {
             compeletion()
         }
     }
-    
-    func selectedType(currentCategory: String?, yearStr: String?, compeletion: @escaping () -> (Void)) {
-        if currentCategory?.lowercased() == HistoricalCategory.drivers.rawValue {
-            requestDriverStandings(yearStr: yearStr, compeletion: compeletion)
-        } else {
-            requestConstructorStandings(yearStr: yearStr, compeletion: compeletion)
-        }
-    }
 }
 
 // MARK: - Extension HistoricalViewModelType
 
 extension HistoricalViewModel: HistoricalViewModelType {
-    func numberOfItems(currentCategory: String?) -> Int {
-        if currentCategory?.lowercased() == HistoricalCategory.drivers.rawValue {
+    func numberOfRows(inCurrent category: String?) -> Int {
+        if category?.lowercased() == HistoricalCategory.drivers.rawValue {
             return driversStandings.count
         } else {
             return construcorsStandings.count
         }
     }
     
-    func cellForItemAt(indexPath: IndexPath, for currentCategory: String?) -> HistoricalCellViewModel? {
+    func cellForRowAt(indexPath: IndexPath, inCurrent currentCategory: String?) -> HistoricalCellViewModel? {
         if currentCategory?.lowercased() == HistoricalCategory.drivers.rawValue {
             let driver = driversStandings[indexPath.row]
             return HistoricalCellViewModel(driverStanding: driver, category: currentCategory)

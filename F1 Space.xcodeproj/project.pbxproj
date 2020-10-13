@@ -33,7 +33,7 @@
 		5E419F0224B5FB08006421F6 /* Formula1-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E419F0124B5FB08006421F6 /* Formula1-Bold.ttf */; };
 		5E419F0424B5FB0D006421F6 /* Formula1-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E419F0324B5FB0D006421F6 /* Formula1-Black.ttf */; };
 		5E419F0A24B60E1F006421F6 /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E419F0924B60E1F006421F6 /* StackView.swift */; };
-		5E47932025359CC500332FB4 /* HistoricalCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E47931F25359CC500332FB4 /* HistoricalCategory.swift */; };
+		5E47932025359CC500332FB4 /* HistoricalEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E47931F25359CC500332FB4 /* HistoricalEnums.swift */; };
 		5E4793312535AA5B00332FB4 /* HistoricalViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4793302535AA5B00332FB4 /* HistoricalViewModelType.swift */; };
 		5E47933E2535ADBD00332FB4 /* HistoricalCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E47933D2535ADBD00332FB4 /* HistoricalCellViewModel.swift */; };
 		5E4A644B2523672B00A81C56 /* ContainerPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A64452523672B00A81C56 /* ContainerPicker.swift */; };
@@ -48,13 +48,13 @@
 		5E4CA6E22519E1AB0035E6F6 /* HistoricalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4CA6E12519E1AB0035E6F6 /* HistoricalViewModel.swift */; };
 		5E4CA6E42519FD1B0035E6F6 /* PickerViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4CA6E32519FD1B0035E6F6 /* PickerViewModelType.swift */; };
 		5E50BEEE2510D81A0025963F /* HistoricalPickerResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E50BEED2510D81A0025963F /* HistoricalPickerResult.swift */; };
-		5E50BEF02510D9340025963F /* HistoricalPickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E50BEEF2510D9340025963F /* HistoricalPickerDelegate.swift */; };
+		5E50BEF02510D9340025963F /* HistoricalPickerSelectedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E50BEEF2510D9340025963F /* HistoricalPickerSelectedDelegate.swift */; };
 		5E510D18251C833100584EE2 /* HistoricalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E510D17251C833100584EE2 /* HistoricalCell.swift */; };
 		5E510D1E251CC11D00584EE2 /* HistoricalDriverStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E510D1D251CC11D00584EE2 /* HistoricalDriverStrategy.swift */; };
 		5E5F1B3224D5600200F81366 /* CustromActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5F1B3124D5600200F81366 /* CustromActivityIndicator.swift */; };
 		5E5F1B3824D5DDE300F81366 /* CustomAnimationActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5F1B3724D5DDE300F81366 /* CustomAnimationActivityIndicator.swift */; };
 		5E5F1B3A24D5F37F00F81366 /* RefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5F1B3924D5F37F00F81366 /* RefreshView.swift */; };
-		5E5FCB622513438F00618534 /* PickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5FCB612513438F00618534 /* PickerViewModel.swift */; };
+		5E5FCB622513438F00618534 /* HistoricalPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5FCB612513438F00618534 /* HistoricalPickerViewModel.swift */; };
 		5E65123924EFBB6700008D67 /* Races.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E65123824EFBB6700008D67 /* Races.swift */; };
 		5E6932BF252DA1BD0045E030 /* HistoricalHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6932BE252DA1BD0045E030 /* HistoricalHeader.swift */; };
 		5E6A132A252EE8FF0012CFEC /* HistoricalStandingsStrategyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A1329252EE8FF0012CFEC /* HistoricalStandingsStrategyType.swift */; };
@@ -134,7 +134,7 @@
 		5E419F0124B5FB08006421F6 /* Formula1-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Formula1-Bold.ttf"; path = "../../../../../Fonts/Formula1-Bold.ttf"; sourceTree = "<group>"; };
 		5E419F0324B5FB0D006421F6 /* Formula1-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Formula1-Black.ttf"; path = "../../../../../Fonts/Formula1-Black.ttf"; sourceTree = "<group>"; };
 		5E419F0924B60E1F006421F6 /* StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackView.swift; sourceTree = "<group>"; };
-		5E47931F25359CC500332FB4 /* HistoricalCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalCategory.swift; sourceTree = "<group>"; };
+		5E47931F25359CC500332FB4 /* HistoricalEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalEnums.swift; sourceTree = "<group>"; };
 		5E4793302535AA5B00332FB4 /* HistoricalViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalViewModelType.swift; sourceTree = "<group>"; };
 		5E47933D2535ADBD00332FB4 /* HistoricalCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalCellViewModel.swift; sourceTree = "<group>"; };
 		5E4A64452523672B00A81C56 /* ContainerPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerPicker.swift; sourceTree = "<group>"; };
@@ -149,13 +149,13 @@
 		5E4CA6E12519E1AB0035E6F6 /* HistoricalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalViewModel.swift; sourceTree = "<group>"; };
 		5E4CA6E32519FD1B0035E6F6 /* PickerViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewModelType.swift; sourceTree = "<group>"; };
 		5E50BEED2510D81A0025963F /* HistoricalPickerResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalPickerResult.swift; sourceTree = "<group>"; };
-		5E50BEEF2510D9340025963F /* HistoricalPickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalPickerDelegate.swift; sourceTree = "<group>"; };
+		5E50BEEF2510D9340025963F /* HistoricalPickerSelectedDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalPickerSelectedDelegate.swift; sourceTree = "<group>"; };
 		5E510D17251C833100584EE2 /* HistoricalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalCell.swift; sourceTree = "<group>"; };
 		5E510D1D251CC11D00584EE2 /* HistoricalDriverStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalDriverStrategy.swift; sourceTree = "<group>"; };
 		5E5F1B3124D5600200F81366 /* CustromActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustromActivityIndicator.swift; sourceTree = "<group>"; };
 		5E5F1B3724D5DDE300F81366 /* CustomAnimationActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnimationActivityIndicator.swift; sourceTree = "<group>"; };
 		5E5F1B3924D5F37F00F81366 /* RefreshView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshView.swift; sourceTree = "<group>"; };
-		5E5FCB612513438F00618534 /* PickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewModel.swift; sourceTree = "<group>"; };
+		5E5FCB612513438F00618534 /* HistoricalPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalPickerViewModel.swift; sourceTree = "<group>"; };
 		5E65123824EFBB6700008D67 /* Races.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Races.swift; sourceTree = "<group>"; };
 		5E6932BE252DA1BD0045E030 /* HistoricalHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalHeader.swift; sourceTree = "<group>"; };
 		5E6A1329252EE8FF0012CFEC /* HistoricalStandingsStrategyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalStandingsStrategyType.swift; sourceTree = "<group>"; };
@@ -230,7 +230,7 @@
 				5E05CD9124BF340700EB2EF3 /* ConstructorStandings */,
 				5E65123824EFBB6700008D67 /* Races.swift */,
 				5E6A133A252F01E80012CFEC /* Year.swift */,
-				5E4793492535AF3C00332FB4 /* Histrotical */,
+				5E4793492535AF3C00332FB4 /* Historical */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -247,8 +247,8 @@
 		5E40ECFB24B7551500E3AF1F /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				5E40ECFC24B7552500E3AF1F /* Standings */,
 				5E4793462535AE1100332FB4 /* News */,
+				5E40ECFC24B7552500E3AF1F /* Standings */,
 				5E4793452535ADFE00332FB4 /* Historical */,
 			);
 			path = Cells;
@@ -379,7 +379,7 @@
 			children = (
 				5E4CA6E12519E1AB0035E6F6 /* HistoricalViewModel.swift */,
 				5E47933D2535ADBD00332FB4 /* HistoricalCellViewModel.swift */,
-				5E5FCB612513438F00618534 /* PickerViewModel.swift */,
+				5E5FCB612513438F00618534 /* HistoricalPickerViewModel.swift */,
 			);
 			path = Historical;
 			sourceTree = "<group>";
@@ -401,14 +401,15 @@
 			path = News;
 			sourceTree = "<group>";
 		};
-		5E4793492535AF3C00332FB4 /* Histrotical */ = {
+		5E4793492535AF3C00332FB4 /* Historical */ = {
 			isa = PBXGroup;
 			children = (
+				5E47931F25359CC500332FB4 /* HistoricalEnums.swift */,
 				5E50BEED2510D81A0025963F /* HistoricalPickerResult.swift */,
 				5E6A132F252EF4300012CFEC /* HistoricalStandings.swift */,
 				5E6A1336252F002F0012CFEC /* HistoricalStandingsHeader.swift */,
 			);
-			path = Histrotical;
+			path = Historical;
 			sourceTree = "<group>";
 		};
 		5E47BBFF24C07BB6002D8261 /* Services */ = {
@@ -423,7 +424,6 @@
 		5E49EEBF252DF9280058B78D /* Historical */ = {
 			isa = PBXGroup;
 			children = (
-				5E47931F25359CC500332FB4 /* HistoricalCategory.swift */,
 				5EFD898624FE251E00A39838 /* HistoricalViewController.swift */,
 				5EFD898824FE458200A39838 /* HistoricalPickerViewController.swift */,
 			);
@@ -540,7 +540,7 @@
 			isa = PBXGroup;
 			children = (
 				5EAC214624C8244F00A65A7A /* DataSourceViewModelType.swift */,
-				5E50BEEF2510D9340025963F /* HistoricalPickerDelegate.swift */,
+				5E50BEEF2510D9340025963F /* HistoricalPickerSelectedDelegate.swift */,
 				5E4CA6E32519FD1B0035E6F6 /* PickerViewModelType.swift */,
 				5E4793302535AA5B00332FB4 /* HistoricalViewModelType.swift */,
 				5E6A1329252EE8FF0012CFEC /* HistoricalStandingsStrategyType.swift */,
@@ -731,7 +731,7 @@
 				5E510D18251C833100584EE2 /* HistoricalCell.swift in Sources */,
 				5E4A644D2523672B00A81C56 /* StandingsContainerView.swift in Sources */,
 				5E6A1337252F002F0012CFEC /* HistoricalStandingsHeader.swift in Sources */,
-				5E5FCB622513438F00618534 /* PickerViewModel.swift in Sources */,
+				5E5FCB622513438F00618534 /* HistoricalPickerViewModel.swift in Sources */,
 				5E4CA6E22519E1AB0035E6F6 /* HistoricalViewModel.swift in Sources */,
 				5E05CD8C24BF28E600EB2EF3 /* CommonDriver.swift in Sources */,
 				5E4A644B2523672B00A81C56 /* ContainerPicker.swift in Sources */,
@@ -744,7 +744,7 @@
 				5E5F1B3224D5600200F81366 /* CustromActivityIndicator.swift in Sources */,
 				5E419EC724B5A855006421F6 /* AppDelegate.swift in Sources */,
 				5E419EF924B5DEC7006421F6 /* DriverViewController.swift in Sources */,
-				5E50BEF02510D9340025963F /* HistoricalPickerDelegate.swift in Sources */,
+				5E50BEF02510D9340025963F /* HistoricalPickerSelectedDelegate.swift in Sources */,
 				5E4A6A9B24D82E210077CDBC /* DetailNewsViewModel.swift in Sources */,
 				5E5F1B3A24D5F37F00F81366 /* RefreshView.swift in Sources */,
 				5E6A133F252F04D30012CFEC /* AuxiliaryNumbering.swift in Sources */,
@@ -761,7 +761,7 @@
 				5E9EB95424C2DA2D00023668 /* StandingsCellViewModel.swift in Sources */,
 				5ECFB2AA2501132800ED94EA /* PresentationController.swift in Sources */,
 				5ECFB2AD2501132800ED94EA /* DismissAnimation.swift in Sources */,
-				5E47932025359CC500332FB4 /* HistoricalCategory.swift in Sources */,
+				5E47932025359CC500332FB4 /* HistoricalEnums.swift in Sources */,
 				5EA886F924D1A9A60079EDDC /* Formatter.swift in Sources */,
 				5E05CD9424BF354A00EB2EF3 /* CommonConstructor.swift in Sources */,
 				5E05CD8A24BEF23900EB2EF3 /* ConstructorsColor.swift in Sources */,

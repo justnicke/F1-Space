@@ -42,7 +42,9 @@ final class HistoricalCellViewModel {
         if category?.lowercased() == HistoricalCategory.drivers.rawValue {
             first = driverStanding?.position
             second = driverStanding?.driver.familyName
-            third = driverStanding?.team.first?.name
+            // if the driver changed teams during the year
+            let constructors = driverStanding?.team.map { $0.name }
+            third = constructors?.joined(separator: " / ")
             fourth = driverStanding?.points
         } else {
             first = constructorStandings?.position

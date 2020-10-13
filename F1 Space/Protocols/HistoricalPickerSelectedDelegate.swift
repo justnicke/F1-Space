@@ -8,8 +8,8 @@
 
 import Foundation
 
-protocol HistoricalPickerDelegate: class {
-    func year(value: Int)
+protocol HistoricalPickerSelectedDelegate: class {
+    func year(currentСhampionship: Int)
     func category(current: String)
-    func result(value: String)
+    func detailed(currentResult: String)
 }

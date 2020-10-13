@@ -9,6 +9,6 @@
 import Foundation
 
 protocol HistoricalViewModelType {
-    func numberOfItems(currentCategory: String?) -> Int
-    func cellForItemAt(indexPath: IndexPath, for currentCategory: String?) -> HistoricalCellViewModel?
+    func numberOfRows(inCurrent category: String?) -> Int
+    func cellForRowAt(indexPath: IndexPath, inCurrent category: String?) -> HistoricalCellViewModel?
 }

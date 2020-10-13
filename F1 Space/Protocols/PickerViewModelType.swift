@@ -8,8 +8,8 @@
 
 import Foundation
 protocol PickerViewModelType {
-    func numberOfRowsInComponent(_ component: Int, by state: HistoricalPickerIndex) -> Int
-    func titleForRow(_ row: Int, by state: HistoricalPickerIndex) -> String?
-    func viewForRow(_ row: Int, with title: NSAttributedString, and attributes: [NSAttributedString.Key : Any], by state: HistoricalPickerIndex) -> NSAttributedString
-    func requestForSelection(from values: [String?], by state: HistoricalPickerIndex, compeletion: @escaping () -> (Void))
+    func numberOfRowsInComponent(_ component: Int, by state: HistoricalPickerSelected) -> Int
+    func titleForRow(_ row: Int, by state: HistoricalPickerSelected) -> String?
+    func viewForRow(_ row: Int, with title: NSAttributedString, and attributes: [NSAttributedString.Key : Any], by state: HistoricalPickerSelected) -> NSAttributedString
+    func requestForSelection(from values: [String?], by state: HistoricalPickerSelected, compeletion: @escaping () -> (Void))
 }
