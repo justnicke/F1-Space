@@ -33,6 +33,7 @@
 		5E419F0224B5FB08006421F6 /* Formula1-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E419F0124B5FB08006421F6 /* Formula1-Bold.ttf */; };
 		5E419F0424B5FB0D006421F6 /* Formula1-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E419F0324B5FB0D006421F6 /* Formula1-Black.ttf */; };
 		5E419F0A24B60E1F006421F6 /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E419F0924B60E1F006421F6 /* StackView.swift */; };
+		5E47932025359CC500332FB4 /* HistoricalCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E47931F25359CC500332FB4 /* HistoricalCategory.swift */; };
 		5E4A644B2523672B00A81C56 /* ContainerPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A64452523672B00A81C56 /* ContainerPicker.swift */; };
 		5E4A644C2523672B00A81C56 /* ArchiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A64462523672B00A81C56 /* ArchiveViewController.swift */; };
 		5E4A644D2523672B00A81C56 /* StandingsContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A64472523672B00A81C56 /* StandingsContainerView.swift */; };
@@ -131,6 +132,7 @@
 		5E419F0124B5FB08006421F6 /* Formula1-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Formula1-Bold.ttf"; path = "../../../../../Fonts/Formula1-Bold.ttf"; sourceTree = "<group>"; };
 		5E419F0324B5FB0D006421F6 /* Formula1-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Formula1-Black.ttf"; path = "../../../../../Fonts/Formula1-Black.ttf"; sourceTree = "<group>"; };
 		5E419F0924B60E1F006421F6 /* StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackView.swift; sourceTree = "<group>"; };
+		5E47931F25359CC500332FB4 /* HistoricalCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalCategory.swift; sourceTree = "<group>"; };
 		5E4A64452523672B00A81C56 /* ContainerPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerPicker.swift; sourceTree = "<group>"; };
 		5E4A64462523672B00A81C56 /* ArchiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArchiveViewController.swift; sourceTree = "<group>"; };
 		5E4A64472523672B00A81C56 /* StandingsContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandingsContainerView.swift; sourceTree = "<group>"; };
@@ -378,6 +380,7 @@
 				5E4CA6E12519E1AB0035E6F6 /* HistoricalViewModel.swift */,
 				5EFD898824FE458200A39838 /* PickerViewController.swift */,
 				5E5FCB612513438F00618534 /* PickerViewModel.swift */,
+				5E47931F25359CC500332FB4 /* HistoricalCategory.swift */,
 			);
 			path = Historical;
 			sourceTree = "<group>";
@@ -727,6 +730,7 @@
 				5E9EB95424C2DA2D00023668 /* StandingsCellViewModel.swift in Sources */,
 				5ECFB2AA2501132800ED94EA /* PresentationController.swift in Sources */,
 				5ECFB2AD2501132800ED94EA /* DismissAnimation.swift in Sources */,
+				5E47932025359CC500332FB4 /* HistoricalCategory.swift in Sources */,
 				5EA886F924D1A9A60079EDDC /* Formatter.swift in Sources */,
 				5E05CD9424BF354A00EB2EF3 /* CommonConstructor.swift in Sources */,
 				5E05CD8A24BEF23900EB2EF3 /* ConstructorsColor.swift in Sources */,

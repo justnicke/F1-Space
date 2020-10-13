@@ -58,11 +58,13 @@ final class NewsViewModel: DataSourceViewModelType {
     
     func cellForItemAt(indexPath: IndexPath) -> NewsCellViewModel? {
         let article = articles[indexPath.row]
+        print(article)
         return NewsCellViewModel(article: article)
     }
     
     func didSelectRowAt(indexPath: IndexPath) -> DetailNewsViewModel? {
-        let article = self.articles[indexPath.row]
+        let article = articles[indexPath.row]
+        
         let detailVM = DetailNewsViewModel(urlString: article.url)
         
         if article.url.contains("motorsport.com") {

@@ -1,5 +1,5 @@
 //
-//  HistoricalPickerView.swift
+//  PickerViewController.swift
 //  F1 Space
 //
 //  Created by Nikita Sukachev on 01.09.2020.

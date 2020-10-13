@@ -47,13 +47,12 @@ final class HistoricalHeaderView: UIView {
         
         historicalStandingsStrategy?.setupUI(
             for: group().labels,
-            from: rootView,
-            by: group().widths
+            withAdjustable: group().widths,
+            byFrame: rootView
         )
         
         historicalStandingsStrategy?.configureHeader(
             for: group().labels,
-            from: rootView,
             by: header
         )
     }
@@ -63,13 +62,12 @@ final class HistoricalHeaderView: UIView {
         
         historicalStandingsStrategy?.setupUI(
             for: group().labels,
-            from: rootView,
-            by: group().widths
+            withAdjustable: group().widths,
+            byFrame: rootView
         )
         
         historicalStandingsStrategy?.configureHeader(
             for: group().labels,
-            from: rootView,
             by: header
         )
     }

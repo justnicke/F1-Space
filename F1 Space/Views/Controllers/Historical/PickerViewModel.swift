@@ -19,12 +19,6 @@ final class PickerViewModel {
     private var pickerResult = PickerResult(yearCount: nil, championships: [])
     private var resultsID = ["All"] // в будущем убрать
     
-    // MARK: - Private Nested
-    
-    private enum SelectedType: String {
-        case drivers, teams, races
-    }
-    
     // MARK: - Private Methods
     
     func sendValueFromPicker(by state: PickerIndex, and row: Int) {
@@ -100,7 +94,7 @@ final class PickerViewModel {
         let type = arr[state.rawValue - 1]?.lowercased()
         guard let year = arr[state.rawValue - state.rawValue] else { return }
         
-        if type == SelectedType.drivers.rawValue {
+        if type == HistoricalCategory.drivers.rawValue {
             API.requestDriverStandings(year: year) { [weak self] (driver, error) in
                 let drivers = driver?.driverData.driverStandingsTable.driverStandingsLists.compactMap { $0.driverStandings }
                 
@@ -118,7 +112,7 @@ final class PickerViewModel {
                 
                 compeletion()
             }
-        } else if type == SelectedType.teams.rawValue {
+        } else if type == HistoricalCategory.teams.rawValue {
             API.requestConstructorStandings(year: year) { [weak self] (constructor, error) in
                 let constructors = constructor?
                     .constructorData
@@ -157,7 +151,6 @@ final class PickerViewModel {
             }
         }
     }
-    
 }
 
 // MARK: - Extension PickerViewModelType

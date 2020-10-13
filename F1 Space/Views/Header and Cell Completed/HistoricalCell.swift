@@ -45,35 +45,18 @@ final class HistoricalCell: UITableViewCell {
     }
     
     // MARK: - Public Methods
+//    by width and category
     
-    func configure(driver: DriverStandings, rootView: UIView) {
-        historicalStandingsStrategy = HistoricalDriverStrategy()
-        
-        historicalStandingsStrategy?.setupUI(
-            for: group().labels,
-            from: rootView,
-            by: group().widths
-        )
-        
-        historicalStandingsStrategy?.configureCell(
-            for: group().labels,
-            on: HistoricalStandings(driver)
-        )
-    }
-    
-    func configure(team: ConstructorStandings, rootView: UIView) {
-        historicalStandingsStrategy = HistoricalConstructorStrategy()
-
-        historicalStandingsStrategy?.setupUI(
-            for: group().labels,
-            from: rootView,
-            by: group().widths
-        )
-        
-        historicalStandingsStrategy?.configureCell(
-            for: group().labels,
-            on: HistoricalStandings(team)
-        )
+    func configureCell(viewModel: HistoricalCellViewModel?, byWidth rootView: UIView, and category: String?) {
+        if category?.lowercased() == HistoricalCategory.drivers.rawValue {
+            historicalStandingsStrategy = HistoricalDriverStrategy()
+            historicalStandingsStrategy?.setupUI(for: group().labels, withAdjustable: group().widths, byFrame: rootView)
+            historicalStandingsStrategy?.configureCell(viewModel: viewModel, for: group().labels)
+        } else {
+            historicalStandingsStrategy = HistoricalConstructorStrategy()
+            historicalStandingsStrategy?.setupUI(for: group().labels, withAdjustable: group().widths, byFrame: rootView)
+            historicalStandingsStrategy?.configureCell(viewModel: viewModel, for: group().labels)
+        }
     }
     
     // MARK: - Private Methods

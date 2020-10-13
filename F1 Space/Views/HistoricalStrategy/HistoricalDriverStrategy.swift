@@ -16,37 +16,37 @@ final class HistoricalDriverStrategy: HistoricalStandingsStrategyType {
     
     // MARK: - Methods
     
-    func setupUI(for labels: [UILabel], from rootView: UIView, by widthConst: [NSLayoutConstraint?]) {
+    func setupUI(for labels: [UILabel], withAdjustable width: [NSLayoutConstraint?], byFrame rootView: UIView) {
         labels.forEach {
             $0.textAlignment = . center
             $0.font = UIFont(name: "AvenirNext-Medium", size: 13)
         }
         
-        widthConst[forThe.third]?.isActive = false
+        width[forThe.third]?.isActive = false
         labels[forThe.fourth].isHidden = false
         
-        widthConst[forThe.first]?.constant = rootView.frame.width / 6
-        widthConst[forThe.first]?.isActive = true
+        width[forThe.first]?.constant = rootView.frame.width / 6
+        width[forThe.first]?.isActive = true
         
-        widthConst[forThe.second]?.constant = rootView.frame.width / 4
-        widthConst[forThe.second]?.isActive = true
+        width[forThe.second]?.constant = rootView.frame.width / 4
+        width[forThe.second]?.isActive = true
         
-        widthConst[forThe.fourth]?.constant = rootView.frame.width / 6
-        widthConst[forThe.fourth]?.isActive = true
+        width[forThe.fourth]?.constant = rootView.frame.width / 6
+        width[forThe.fourth]?.isActive = true
         
         [labels[forThe.fifth], labels[forThe.sixth]].forEach {
             $0.isHidden = true
         }
     }
     
-    func configureCell(for labels: [UILabel], on model: HistoricalStandings) {
-        labels[forThe.first].text  = model.driverStandings?.position
-        labels[forThe.second].text = model.driverStandings?.driver.familyName
-        labels[forThe.third].text  = model.driverStandings?.team.first?.name
-        labels[forThe.fourth].text = model.driverStandings?.points
+    func configureCell(viewModel: HistoricalCellViewModel?, for labels: [UILabel]) {
+        labels[forThe.first].text  = viewModel?.first
+        labels[forThe.second].text = viewModel?.second
+        labels[forThe.third].text  = viewModel?.third
+        labels[forThe.fourth].text = viewModel?.fourth
     }
     
-    func configureHeader(for labels: [UILabel], from rootView: UIView, by model: HistoricalStandingsHeader) {
+    func configureHeader(for labels: [UILabel], by model: HistoricalStandingsHeader) {
         labels[forThe.first].text = model.firstHead
         labels[forThe.second].text = model.secondHead
         labels[forThe.third].text = model.thirdHead
