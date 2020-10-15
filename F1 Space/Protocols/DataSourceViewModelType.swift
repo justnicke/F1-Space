@@ -8,7 +8,6 @@
 
 import Foundation
 
-/// For use by a TableView and CollectionView
 protocol DataSourceViewModelType {
     associatedtype CellItem
     func numberOfItems() -> Int

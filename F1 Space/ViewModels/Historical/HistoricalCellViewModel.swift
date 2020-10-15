@@ -23,6 +23,7 @@ final class HistoricalCellViewModel {
     
     private var driverStanding: DriverStandings?
     private var constructorStandings: ConstructorStandings?
+    private var race: Race?
     
     // MARK: - Constructors
     
@@ -36,6 +37,11 @@ final class HistoricalCellViewModel {
         setup(category: category)
     }
     
+    init(race: Race?, category: String?) {
+        self.race = race
+        setup(category: category)
+    }
+    
     // MARK: Private Methods
     
     private func setup(category: String?) {
@@ -46,10 +52,14 @@ final class HistoricalCellViewModel {
             let constructors = driverStanding?.team.map { $0.name }
             third = constructors?.joined(separator: " / ")
             fourth = driverStanding?.points
-        } else {
+        } else if category?.lowercased() == HistoricalCategory.teams.rawValue {
             first = constructorStandings?.position
             second = constructorStandings?.constructor.name
             third = constructorStandings?.points
+        } else {
+            first = race?.raceName
+            second = race?.results.first?.driver.familyName
+            third = race?.results.first?.constructor.name
         }
     }
 }

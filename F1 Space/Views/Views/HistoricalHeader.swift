@@ -47,8 +47,12 @@ final class HistoricalHeaderView: UIView {
             historicalStandingsStrategy = HistoricalDriverStrategy()
             historicalStandingsStrategy?.setupUI(for: group().labels, withAdjustable: group().widths, byFrame: rootView)
             historicalStandingsStrategy?.configureHeader(viewModel: viewModel, for: group().labels)
-        } else {
+        } else if category?.lowercased() == HistoricalCategory.teams.rawValue {
             historicalStandingsStrategy = HistoricalConstructorStrategy()
+            historicalStandingsStrategy?.setupUI(for: group().labels, withAdjustable: group().widths, byFrame: rootView)
+            historicalStandingsStrategy?.configureHeader(viewModel: viewModel, for: group().labels)
+        } else {
+            historicalStandingsStrategy = HistoricalRaceStrategy()
             historicalStandingsStrategy?.setupUI(for: group().labels, withAdjustable: group().widths, byFrame: rootView)
             historicalStandingsStrategy?.configureHeader(viewModel: viewModel, for: group().labels)
         }

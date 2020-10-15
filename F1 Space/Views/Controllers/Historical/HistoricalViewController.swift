@@ -117,7 +117,10 @@ final class HistoricalViewController: UIViewController {
             current: type().category,
             inThat: type().year) { [weak self] in
             
+            let indexPath = IndexPath(row: 0, section: 0)
+            
             self?.tableView.reloadData()
+            self?.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
         }
     }
     
@@ -202,6 +205,7 @@ extension HistoricalViewController: HistoricalPickerSelectedDelegate {
     
     func detailed(currentResult: String) {
         detailResultButton.setTitle(currentResult, for: .normal)
+        requestViewModel()
     }
 }
 

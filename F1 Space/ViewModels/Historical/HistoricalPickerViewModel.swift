@@ -135,11 +135,11 @@ final class HistoricalPickerViewModel {
             }
         } else {
             API.requestGrandPrix(year: year) { [weak self] (grandPrix, error) in
-                guard let grandPrixes = grandPrix?.mrData.raceTable.races.compactMap({ $0.raceName })
+                guard let grandPrixes = grandPrix?.сrucitData.grandPrix.races.compactMap({ $0.raceName })
                 else {
                     return
                 }
-                guard let roundGP = grandPrix?.mrData.raceTable.races.compactMap({ $0.round })
+                guard let roundGP = grandPrix?.сrucitData.grandPrix.races.compactMap({ $0.round })
                 else {
                     return
                 }
