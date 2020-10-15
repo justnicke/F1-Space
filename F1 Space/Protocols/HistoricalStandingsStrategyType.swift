@@ -12,8 +12,7 @@ protocol HistoricalStandingsStrategyType: class {
     var forThe: AuxiliaryNumbering { get }
     func setupUI(for labels: [UILabel], withAdjustable width: [NSLayoutConstraint?], byFrame rootView: UIView)
     func configureCell(viewModel: HistoricalCellViewModel?, for labels: [UILabel])
-    // naming and add headerVM
-    func configureHeader(for labels: [UILabel], by model: HistoricalStandingsHeader)
+    func configureHeader(viewModel: HistoricalHeaderViewModel?, for labels: [UILabel])
 }
 
 

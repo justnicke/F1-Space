@@ -42,34 +42,16 @@ final class HistoricalHeaderView: UIView {
         
     // MARK: - Public Methods
     
-    func configureDriversHeader(header: HistoricalStandingsHeader, rootView: UIView) {
-        historicalStandingsStrategy = HistoricalDriverStrategy()
-        
-        historicalStandingsStrategy?.setupUI(
-            for: group().labels,
-            withAdjustable: group().widths,
-            byFrame: rootView
-        )
-        
-        historicalStandingsStrategy?.configureHeader(
-            for: group().labels,
-            by: header
-        )
-    }
-    
-    func configureTeamHeader(header: HistoricalStandingsHeader, rootView: UIView) {
-        historicalStandingsStrategy = HistoricalConstructorStrategy()
-        
-        historicalStandingsStrategy?.setupUI(
-            for: group().labels,
-            withAdjustable: group().widths,
-            byFrame: rootView
-        )
-        
-        historicalStandingsStrategy?.configureHeader(
-            for: group().labels,
-            by: header
-        )
+    func configureHeader(viewModel: HistoricalHeaderViewModel?, byFrame rootView: UIView, and category: String?) {
+        if category?.lowercased() == HistoricalCategory.drivers.rawValue {
+            historicalStandingsStrategy = HistoricalDriverStrategy()
+            historicalStandingsStrategy?.setupUI(for: group().labels, withAdjustable: group().widths, byFrame: rootView)
+            historicalStandingsStrategy?.configureHeader(viewModel: viewModel, for: group().labels)
+        } else {
+            historicalStandingsStrategy = HistoricalConstructorStrategy()
+            historicalStandingsStrategy?.setupUI(for: group().labels, withAdjustable: group().widths, byFrame: rootView)
+            historicalStandingsStrategy?.configureHeader(viewModel: viewModel, for: group().labels)
+        }
     }
     
     // MARK: - Private Methods

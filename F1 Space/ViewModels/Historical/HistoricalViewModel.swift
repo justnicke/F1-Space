@@ -8,6 +8,10 @@
 
 import Foundation
 
+// Вью модель хедера
+// нейминг протокола хедера
+// окончательный рефакторинг исторического
+
 final class HistoricalViewModel {
     
     // MARK: - Private Properties
@@ -19,18 +23,18 @@ final class HistoricalViewModel {
     
     // MARK: - Public Methods
     
-    func selectedType(currentCategory: String?, yearStr: String?, compeletion: @escaping () -> (Void)) {
-        if currentCategory?.lowercased() == HistoricalCategory.drivers.rawValue {
-            requestDriverStandings(yearStr: yearStr, compeletion: compeletion)
+    func request(current category: String?, inThat year: String?, compeletion: @escaping () -> (Void)) {
+        if category?.lowercased() == HistoricalCategory.drivers.rawValue {
+            requestDriverStandings(season: year, compeletion: compeletion)
         } else {
-            requestConstructorStandings(yearStr: yearStr, compeletion: compeletion)
+            requestConstructorStandings(season: year, compeletion: compeletion)
         }
     }
     
     // MARK: - Private Methods
     
-    private func requestDriverStandings(yearStr: String?, compeletion: @escaping () -> (Void)) {
-        guard let year = yearStr else { return }
+    private func requestDriverStandings(season: String?, compeletion: @escaping () -> (Void)) {
+        guard let year = season else { return }
         
         API.requestDriverStandings(year: year) { [weak self] (driver, err) in
             let drivers = driver?.driverData.driverStandingsTable.driverStandingsLists.compactMap { $0.driverStandings }
@@ -41,8 +45,8 @@ final class HistoricalViewModel {
         }
     }
     
-    private func requestConstructorStandings(yearStr: String?, compeletion: @escaping () -> (Void)) {
-        guard let year = yearStr  else { return }
+    private func requestConstructorStandings(season: String?, compeletion: @escaping () -> (Void)) {
+        guard let year = season  else { return }
         
         API.requestConstructorStandings(year: year) { [weak self] (team, err) in
             let teams = team?.constructorData.constructorStandingsTable.constructorStandingsLists.compactMap { $0.constructorStandings }
@@ -74,5 +78,14 @@ extension HistoricalViewModel: HistoricalViewModelType {
             return HistoricalCellViewModel(constructorStandings: constructor, category: currentCategory)
         }
     }
+    
+    func viewForHeader(in section: Int, currentCategory: String?) -> HistoricalHeaderViewModel? {
+        if currentCategory?.lowercased() == HistoricalCategory.drivers.rawValue {
+            return HistoricalHeaderViewModel(driverStandingsHeader: driversHeader, category: currentCategory)
+        } else {
+            return HistoricalHeaderViewModel(constructorStandingsHeader: constructorsHeader, category: currentCategory)
+        }
+    }
 }
+
 

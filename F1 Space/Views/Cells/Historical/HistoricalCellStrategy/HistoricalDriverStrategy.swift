@@ -46,10 +46,10 @@ final class HistoricalDriverStrategy: HistoricalStandingsStrategyType {
         labels[forThe.fourth].text = viewModel?.fourth
     }
     
-    func configureHeader(for labels: [UILabel], by model: HistoricalStandingsHeader) {
-        labels[forThe.first].text = model.firstHead
-        labels[forThe.second].text = model.secondHead
-        labels[forThe.third].text = model.thirdHead
-        labels[forThe.fourth].text = model.fourthHead
+    func configureHeader(viewModel: HistoricalHeaderViewModel?, for labels: [UILabel]) {
+        labels[forThe.first].text = viewModel?.first
+        labels[forThe.second].text = viewModel?.second
+        labels[forThe.third].text = viewModel?.third
+        labels[forThe.fourth].text = viewModel?.fourth
     }
 }
