@@ -11,5 +11,5 @@ import Foundation
 protocol HistoricalPickerSelectedDelegate: class {
     func year(currentСhampionship: Int)
     func category(current: String)
-    func detailed(currentResult: String)
+    func detailed(currentResult: String, id: String)
 }

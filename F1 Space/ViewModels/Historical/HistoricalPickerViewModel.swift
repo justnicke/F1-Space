@@ -16,8 +16,10 @@ final class HistoricalPickerViewModel {
     
     // MARK: - Private Properties
     
-    private var pickerResult = HistoricalPickerResult(totalSeasons: nil, championships: [], detailedResult: ["All"])
-    private var resultsID = ["All"] // в будущем убрать
+    private var pickerResult = HistoricalPickerResult(totalSeasons: nil,
+                                                      championships: [],
+                                                      detailedResult: ["All"],
+                                                      detailedResultID: ["All"])
     
     // MARK: - Private Methods
     
@@ -31,7 +33,8 @@ final class HistoricalPickerViewModel {
             delegate?.category(current: selectedСategory)
         case .detailedResult:
             let selectedValue = pickerResult.detailedResult[row]
-            delegate?.detailed(currentResult: selectedValue)
+            let selectedID = pickerResult.detailedResultID[row]
+            delegate?.detailed(currentResult: selectedValue, id: selectedID)
         }
     }
     
@@ -108,7 +111,7 @@ final class HistoricalPickerViewModel {
                 }
                 
                 self?.pickerResult.detailedResult += driver
-                self?.resultsID += driversID
+                self?.pickerResult.detailedResultID += driversID
                 
                 compeletion()
             }
@@ -129,7 +132,7 @@ final class HistoricalPickerViewModel {
                 }
                 
                 self?.pickerResult.detailedResult += constructorsName
-                self?.resultsID += constructorsID
+                self?.pickerResult.detailedResultID += constructorsID
                 
                 compeletion()
             }
@@ -145,7 +148,7 @@ final class HistoricalPickerViewModel {
                 }
                 
                 self?.pickerResult.detailedResult += grandPrixes
-                self?.resultsID += roundGP
+                self?.pickerResult.detailedResultID += roundGP
                 
                 compeletion()
             }

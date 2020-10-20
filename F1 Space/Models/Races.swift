@@ -38,7 +38,7 @@ struct Race: Codable {
     let round: String
     let raceName: String
     let results: [Result]
-    
+
     enum CodingKeys: String, CodingKey {
         case raceName = "raceName"
         case round = "round"
@@ -47,23 +47,23 @@ struct Race: Codable {
 }
 
 struct Result: Codable {
+    let position: String
+    let points: String
     let driver: Driver
     let constructor: Constructor
+    let resultTime: ResultTime?
+    let finishStatus: String
     
     enum CodingKeys: String, CodingKey {
+        case position = "position"
+        case points = "points"
         case driver = "Driver"
         case constructor = "Constructor"
+        case resultTime = "ResultTime"
+        case finishStatus = "status"
     }
 }
 
-//// MARK: - Driver
-//struct Driver: Codable {
-//    let driverID, permanentNumber, code: String
-//    let url: String
-//    let givenName, familyName, dateOfBirth, nationality: String
-//
-//    enum CodingKeys: String, CodingKey {
-//        case driverID = "driverId"
-//        case permanentNumber, code, url, givenName, familyName, dateOfBirth, nationality
-//    }
-//}
+struct ResultTime: Codable {
+    let time: String
+}

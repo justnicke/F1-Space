@@ -22,4 +22,7 @@ struct HistoricalPickerResult {
     
     /// Detailed result depending on the category selection
     var detailedResult: [String]
+    
+    /// Designed to identify a specific driver, constructor or race
+    var detailedResultID: [String]
 }

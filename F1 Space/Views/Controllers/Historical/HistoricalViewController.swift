@@ -28,12 +28,11 @@ final class HistoricalViewController: UIViewController {
         button.setTitle("All", for: .normal)
         return button
     }()
+    private var detailResultID = "All"
     private var tableView: UITableView!
     private let transition = PanelTransition()
     private let header = HistoricalHeaderView()
     private var historicalViewModel = HistoricalViewModel()
-    
-
     
     // MARK: - Public Methods
     
@@ -115,7 +114,8 @@ final class HistoricalViewController: UIViewController {
     private func requestViewModel() {
         historicalViewModel.request(
             current: type().category,
-            inThat: type().year) { [weak self] in
+            inThat: type().year,
+            id: type().id) { [weak self] in
             
             let indexPath = IndexPath(row: 0, section: 0)
             
@@ -124,12 +124,13 @@ final class HistoricalViewController: UIViewController {
         }
     }
     
-    /// Quick access to the current state of the button text
-    private func type() -> (year: String?, category: String?, detailed: String?) {
+    /// Quick access to the current state of the button text or identity
+    private func type() -> (year: String?, category: String?, detailed: String?, id: String?) {
         return (
             yearButton.titleLabel?.text,
             categoryButton.titleLabel?.text,
-            detailResultButton.titleLabel?.text
+            detailResultButton.titleLabel?.text,
+            detailResultID
         )
     }
     
@@ -203,8 +204,9 @@ extension HistoricalViewController: HistoricalPickerSelectedDelegate {
         requestViewModel()
     }
     
-    func detailed(currentResult: String) {
+    func detailed(currentResult: String, id: String) {
         detailResultButton.setTitle(currentResult, for: .normal)
+        detailResultID = id
         requestViewModel()
     }
 }

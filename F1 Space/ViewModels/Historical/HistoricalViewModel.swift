@@ -8,9 +8,34 @@
 
 import Foundation
 
-// Вью модель хедера
-// нейминг протокола хедера
-// окончательный рефакторинг исторического
+/*
+ Внедряем данные для трасс: https://ergast.com/api/f1/2020/results/1
+ //        guard let year = yearButton.titleLabel?.text  else { return }
+ //        guard var standings = standingsButton.titleLabel?.text  else { return }
+ //        guard let result = variantResultButton.titleLabel?.text else { return }
+ //        guard let currentID = nameId else { return }
+ if standings == "Teams" {
+    standings = "constructors"
+    if result == "All" {
+        print("https://ergast.com/api/f1/\(year)/constructorStandings.json")
+ } else {
+    print("https://ergast.com/api/f1/\(year)/\(standings)/\(currentID)/results.json?limit=60")
+ }
+ } else if standings == "Drivers" {
+    if result == "All" {
+    print("https://ergast.com/api/f1/\(year)/driverStandings.json")
+ } else {
+    print("https://ergast.com/api/f1/\(year)/\(standings)/\(currentID)/results.json")
+ }
+ } else {
+    if result == "All" {
+ print("https://ergast.com/api/f1/\(year)/results/1.json")
+ } else {
+ // Делаем только резулятат гонки и квалификации, после UI разберемся
+ print("https://ergast.com/api/f1/\(year)/\(currentID)/results.json") // трасса, победитель, команда
+ }
+ }
+ */
 
 final class HistoricalViewModel {
     
@@ -23,12 +48,18 @@ final class HistoricalViewModel {
     private var driversStandings: [DriverStandings] = []
     private var construcorsStandings: [ConstructorStandings] = []
     private var races: [Race] = []
+    private var racesDetailDriver: [Race] = []
+    
     
     // MARK: - Public Methods
     
-    func request(current category: String?, inThat year: String?, compeletion: @escaping () -> (Void)) {
+    func request(current category: String?, inThat year: String?, id: String?, compeletion: @escaping () -> (Void)) {
         if category?.lowercased() == HistoricalCategory.drivers.rawValue {
-            requestDriverStandings(season: year, compeletion: compeletion)
+            if id == "All" {
+                requestDriverStandings(season: year, compeletion: compeletion)
+            } else {
+                requestDriverDitail(season: year, id: id, completion: compeletion)
+            }
         } else if category?.lowercased() == HistoricalCategory.teams.rawValue {
             requestConstructorStandings(season: year, compeletion: compeletion)
         } else {
@@ -37,6 +68,21 @@ final class HistoricalViewModel {
     }
     
     // MARK: - Private Methods
+    
+    private func requestDriverDitail(season: String?, id: String?, completion: @escaping () -> (Void)) {
+        guard let year = season,
+              let driverId = id
+        else {
+            return
+        }
+        
+        API.requestDriverDetailResult(year: year, id: driverId) { [weak self] (detail, err) in
+            guard let detailRaces = detail?.detailData.detail.races else { return }
+            
+            self?.racesDetailDriver = detailRaces
+            completion()
+        }
+    }
     
     private func requestDriverStandings(season: String?, compeletion: @escaping () -> (Void)) {
         guard let year = season else { return }
