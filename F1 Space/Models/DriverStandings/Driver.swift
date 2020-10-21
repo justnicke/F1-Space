@@ -31,7 +31,7 @@ struct DriverStandings: Codable {
 }
 
 struct Driver: Codable {
-    let driverID: String
+    var driverID: String
     var givenName: String
     var familyName: String
     var nationality: String

@@ -50,6 +50,9 @@ final class HistoricalViewModel {
     private var races: [Race] = []
     private var racesDetailDriver: [Race] = []
     
+    // попробывать передать id в свойтсво и с ним поиграться и делать условия через него
+    private var idenity: String?
+    
     
     // MARK: - Public Methods
     
@@ -58,7 +61,7 @@ final class HistoricalViewModel {
             if id == "All" {
                 requestDriverStandings(season: year, compeletion: compeletion)
             } else {
-                requestDriverDitail(season: year, id: id, completion: compeletion)
+                requestDriverDetail(season: year, id: id, completion: compeletion)
             }
         } else if category?.lowercased() == HistoricalCategory.teams.rawValue {
             requestConstructorStandings(season: year, compeletion: compeletion)
@@ -69,18 +72,22 @@ final class HistoricalViewModel {
     
     // MARK: - Private Methods
     
-    private func requestDriverDitail(season: String?, id: String?, completion: @escaping () -> (Void)) {
+    private func requestDriverDetail(season: String?, id: String?, completion: @escaping () -> (Void)) {
         guard let year = season,
               let driverId = id
         else {
             return
         }
-        
+
         API.requestDriverDetailResult(year: year, id: driverId) { [weak self] (detail, err) in
-            guard let detailRaces = detail?.detailData.detail.races else { return }
+            let detailRaces = detail?.detailData.detail.races //else { return }
             
-            self?.racesDetailDriver = detailRaces
-            completion()
+            if detailRaces!.isEmpty || detailRaces == nil {
+                
+            } else {
+                self?.racesDetailDriver = detailRaces ?? []
+                completion()
+            }
         }
     }
     
@@ -123,9 +130,13 @@ final class HistoricalViewModel {
 // MARK: - Extension HistoricalViewModelType
 
 extension HistoricalViewModel: HistoricalViewModelType {
-    func numberOfRows(inCurrent category: String?) -> Int {
+    func numberOfRows(inCurrent category: String?, id: String?) -> Int {
         if category?.lowercased() == HistoricalCategory.drivers.rawValue {
+            if id == "All" {
             return driversStandings.count
+            } else {
+                return racesDetailDriver.count
+            }
         } else if category?.lowercased() == HistoricalCategory.teams.rawValue  {
             return construcorsStandings.count
         } else {
@@ -133,16 +144,22 @@ extension HistoricalViewModel: HistoricalViewModelType {
         }
     }
     
-    func cellForRowAt(indexPath: IndexPath, inCurrent currentCategory: String?) -> HistoricalCellViewModel? {
+    func cellForRowAt(indexPath: IndexPath, inCurrent currentCategory: String?, id: String?) -> HistoricalCellViewModel? {
         if currentCategory?.lowercased() == HistoricalCategory.drivers.rawValue {
-            let driver = driversStandings[indexPath.row]
-            return HistoricalCellViewModel(driverStanding: driver, category: currentCategory)
+            if id == "All" {
+                let driver = driversStandings[indexPath.row]
+                return HistoricalCellViewModel(driverStanding: driver, category: currentCategory, id: id)
+            } else {
+                let detailDriver = racesDetailDriver[indexPath.row]
+                return HistoricalCellViewModel(raceDetailDriver: detailDriver, category: currentCategory, id: id)
+            }
+
         } else if currentCategory?.lowercased() == HistoricalCategory.teams.rawValue {
             let constructor = construcorsStandings[indexPath.row]
-            return HistoricalCellViewModel(constructorStandings: constructor, category: currentCategory)
+            return HistoricalCellViewModel(constructorStandings: constructor, category: currentCategory, id: id)
         } else {
             let race = races[indexPath.row]
-            return HistoricalCellViewModel(race: race, category: currentCategory)
+            return HistoricalCellViewModel(race: race, category: currentCategory, id: id)
         }
     }
     

@@ -46,11 +46,17 @@ final class HistoricalCell: UITableViewCell {
     
     // MARK: - Public Methods
     
-    func configureCell(viewModel: HistoricalCellViewModel?, byFrame rootView: UIView, and category: String?) {
+    func configureCell(viewModel: HistoricalCellViewModel?, byFrame rootView: UIView, and category: String?, id: String?) {
         if category?.lowercased() == HistoricalCategory.drivers.rawValue {
-            historicalStandingsStrategy = HistoricalDriverStrategy()
-            historicalStandingsStrategy?.setupUI(for: group().labels, withAdjustable: group().widths, byFrame: rootView)
-            historicalStandingsStrategy?.configureCell(viewModel: viewModel, for: group().labels)
+            if id == "All" {
+                historicalStandingsStrategy = HistoricalDriverStrategy()
+                historicalStandingsStrategy?.setupUI(for: group().labels, withAdjustable: group().widths, byFrame: rootView)
+                historicalStandingsStrategy?.configureCell(viewModel: viewModel, for: group().labels)
+            } else {
+                historicalStandingsStrategy = HistoricalDriverDetailStrategy()
+                historicalStandingsStrategy?.setupUI(for: group().labels, withAdjustable: group().widths, byFrame: rootView)
+                historicalStandingsStrategy?.configureCell(viewModel: viewModel, for: group().labels)
+            }
         } else if category?.lowercased() == HistoricalCategory.teams.rawValue {
             historicalStandingsStrategy = HistoricalConstructorStrategy()
             historicalStandingsStrategy?.setupUI(for: group().labels, withAdjustable: group().widths, byFrame: rootView)

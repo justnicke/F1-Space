@@ -117,6 +117,7 @@ final class HistoricalViewController: UIViewController {
             inThat: type().year,
             id: type().id) { [weak self] in
             
+            
             let indexPath = IndexPath(row: 0, section: 0)
             
             self?.tableView.reloadData()
@@ -146,7 +147,7 @@ final class HistoricalViewController: UIViewController {
     }
     
     @objc private func yearButtonPressed() {
-        openTransition(state: .yearChampionship, currentValues: [type().year])
+        openTransition(state: .yearChampionship, currentValues: [type().year, type().id])
     }
     
     @objc private func typeSearchButtonPressed() {
@@ -166,13 +167,13 @@ final class HistoricalViewController: UIViewController {
 
 extension HistoricalViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return historicalViewModel.numberOfRows(inCurrent: type().category)
+        return historicalViewModel.numberOfRows(inCurrent: type().category, id: type().id)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: HistoricalCell.reuseId, for: indexPath) as! HistoricalCell
-        let viewModelCell = historicalViewModel.cellForRowAt(indexPath: indexPath, inCurrent: categoryButton.titleLabel?.text)
-        cell.configureCell(viewModel: viewModelCell, byFrame: view, and: type().category)
+        let viewModelCell = historicalViewModel.cellForRowAt(indexPath: indexPath, inCurrent: type().category, id: type().id)
+        cell.configureCell(viewModel: viewModelCell, byFrame: view, and: type().category, id: detailResultID)
         return cell
     }
     
@@ -201,12 +202,18 @@ extension HistoricalViewController: HistoricalPickerSelectedDelegate {
     
     func category(current: String) {
         categoryButton.setTitle(current, for: .normal)
+ 
+        detailResultID = "All"
+        detailResultButton.setTitle("All", for: .normal)
+        
         requestViewModel()
     }
     
-    func detailed(currentResult: String, id: String) {
+    func detailed(currentResult: String, id: String?) {
         detailResultButton.setTitle(currentResult, for: .normal)
-        detailResultID = id
+        
+        detailResultID = id ?? "All"
+        
         requestViewModel()
     }
 }

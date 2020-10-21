@@ -34,6 +34,7 @@ final class HistoricalPickerViewModel {
         case .detailedResult:
             let selectedValue = pickerResult.detailedResult[row]
             let selectedID = pickerResult.detailedResultID[row]
+            
             delegate?.detailed(currentResult: selectedValue, id: selectedID)
         }
     }
@@ -62,7 +63,7 @@ final class HistoricalPickerViewModel {
     func requestForSelection(from values: [String?], by state: HistoricalPickerSelected, compeletion: @escaping () -> (Void)) {
         switch state {
         case .yearChampionship:
-            requestSeason(compeletion: compeletion)
+            requestSeason(id: values[1], compeletion: compeletion)
         case .category:
             compeletion()
         case .detailedResult:
@@ -85,11 +86,42 @@ final class HistoricalPickerViewModel {
         }
     }
     
-    private func requestSeason(compeletion: @escaping () -> (Void)) {
-        API.requestYearChampionship { [weak self] (dates, error) in
-            self?.pickerResult.totalSeasons = dates?.championship.yearsCount
-            self?.getChampionshipYear()
-            compeletion()
+    private func getChampionshipYear2(id: String?) {
+        let date = Date()
+        let calendar = Calendar.current
+        let currentYear = calendar.component(.year, from: date)
+        
+        if let string = pickerResult.totalSeasons, let convertedYearCount = Int(string) {
+            if id == "All" {
+                for i in 0...convertedYearCount - 1 {
+                    let year = currentYear - i
+                    pickerResult.championships.append(year)
+                }
+            } else {
+                for i in 0...convertedYearCount {
+                    let year = currentYear - i
+                    pickerResult.championships.append(year)
+                }
+            }
+        }
+    }
+    
+    private func requestSeason(id: String?, compeletion: @escaping () -> (Void)) {
+        if id == "All" {
+            API.requestYearChampionship { [weak self] (dates, error) in
+                self?.pickerResult.totalSeasons = dates?.championship.yearsCount
+//                self?.getChampionshipYear()
+                self?.getChampionshipYear2(id: id)
+                compeletion()
+            }
+        } else {
+            guard let identity = id else { return }
+            
+            API.requestDriverParticipated(id: identity) { [weak self] (takePart, err) in
+                self?.pickerResult.totalSeasons = takePart?.championship.yearsCount
+                self?.getChampionshipYear2(id: id)
+                compeletion()
+            }
         }
     }
     
@@ -109,7 +141,7 @@ final class HistoricalPickerViewModel {
                 else {
                     return
                 }
-                
+
                 self?.pickerResult.detailedResult += driver
                 self?.pickerResult.detailedResultID += driversID
                 

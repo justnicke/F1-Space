@@ -6,8 +6,6 @@
 //  Copyright © 2020 Nikita Sukachev. All rights reserved.
 //
 
-// Мне нужно: Название 1) гран при 2) победитель гонки, 3) конструктор
-
 import Foundation
 
 struct Crucit: Codable {
@@ -59,7 +57,7 @@ struct Result: Codable {
         case points = "points"
         case driver = "Driver"
         case constructor = "Constructor"
-        case resultTime = "ResultTime"
+        case resultTime = "Time"
         case finishStatus = "status"
     }
 }

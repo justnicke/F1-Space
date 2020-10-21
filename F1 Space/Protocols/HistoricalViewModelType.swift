@@ -9,7 +9,7 @@
 import Foundation
 
 protocol HistoricalViewModelType {
-    func numberOfRows(inCurrent category: String?) -> Int
-    func cellForRowAt(indexPath: IndexPath, inCurrent category: String?) -> HistoricalCellViewModel?
+    func numberOfRows(inCurrent category: String?, id: String?) -> Int
+    func cellForRowAt(indexPath: IndexPath, inCurrent category: String?, id: String?) -> HistoricalCellViewModel?
     func viewForHeader(in section: Int, currentCategory: String?) -> HistoricalHeaderViewModel?
 }
