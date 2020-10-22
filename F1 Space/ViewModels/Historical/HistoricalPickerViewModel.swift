@@ -42,7 +42,7 @@ final class HistoricalPickerViewModel {
     func selectedRowPicker(from values: [String?], by state: HistoricalPickerSelected) -> Array<Int>.Index {
         switch state {
         case .yearChampionship:
-            if let year = Int(values[state.rawValue] ?? "2020"),
+            if let year = values[state.rawValue],
                let index = pickerResult.championships.firstIndex(of: year) {
                 return index
             }
@@ -81,46 +81,70 @@ final class HistoricalPickerViewModel {
         if let string = pickerResult.totalSeasons, let convertedYearCount = Int(string) {
             for i in 0...convertedYearCount - 1 {
                 let year = currentYear - i
-                pickerResult.championships.append(year)
+                pickerResult.championships.append(String(year))
             }
         }
     }
     
-    private func getChampionshipYear2(id: String?) {
-        let date = Date()
-        let calendar = Calendar.current
-        let currentYear = calendar.component(.year, from: date)
-        
-        if let string = pickerResult.totalSeasons, let convertedYearCount = Int(string) {
-            if id == "All" {
-                for i in 0...convertedYearCount - 1 {
-                    let year = currentYear - i
-                    pickerResult.championships.append(year)
-                }
-            } else {
-                for i in 0...convertedYearCount {
-                    let year = currentYear - i
-                    pickerResult.championships.append(year)
-                }
-            }
-        }
-    }
+
     
     private func requestSeason(id: String?, compeletion: @escaping () -> (Void)) {
         if id == "All" {
             API.requestYearChampionship { [weak self] (dates, error) in
                 self?.pickerResult.totalSeasons = dates?.championship.yearsCount
-//                self?.getChampionshipYear()
-                self?.getChampionshipYear2(id: id)
+                self?.getChampionshipYear()
                 compeletion()
             }
         } else {
             guard let identity = id else { return }
             
-            API.requestDriverParticipated(id: identity) { [weak self] (takePart, err) in
-                self?.pickerResult.totalSeasons = takePart?.championship.yearsCount
-                self?.getChampionshipYear2(id: id)
-                compeletion()
+            API.requestCurrentDriverStandings { [weak self] (currentDriverStandings, err) in
+                guard let checkID = currentDriverStandings?
+                        .currentDriverStandingsData
+                        .currentDriverStandingsTable
+                        .currentDriverStandingsLists.first?
+                        .driverStandings.compactMap({ $0.driver.driverID }) else {
+                    return
+                }
+                
+                guard let checkedCurrentSeason = currentDriverStandings?
+                        .currentDriverStandingsData
+                        .currentDriverStandingsTable
+                        .currentDriverStandingsLists.first?
+                        .season else { return
+                }
+                
+                if checkID.contains(identity) {
+                    API.requestDriverParticipated(id: identity) { [weak self] (takePart, err) in
+                        
+                        var correctTakePartDriverYear = [String]()
+                        
+                        guard let currentTakePartDriver = takePart?.takePartYear.standingsTable.standingsLists
+                                .compactMap({ $0.season })
+                                .sorted(by: { $0 > $1 })
+                        else {
+                            return
+                        }
+                        
+                        correctTakePartDriverYear.append(checkedCurrentSeason)
+                        correctTakePartDriverYear.append(contentsOf: currentTakePartDriver)
+                        
+                        self?.pickerResult.championships = correctTakePartDriverYear
+                        compeletion()
+                    }
+                } else {
+                    API.requestDriverParticipated(id: identity) { [weak self] (takePart, err) in
+                        guard let currentTakePartDriver = takePart?.takePartYear.standingsTable.standingsLists
+                                .compactMap({ $0.season })
+                                .sorted(by: { $0 > $1 })
+                        else {
+                            return
+                        }
+                        
+                        self?.pickerResult.championships = currentTakePartDriver
+                        compeletion()
+                    }
+                }
             }
         }
     }

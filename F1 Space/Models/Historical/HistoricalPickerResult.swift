@@ -13,7 +13,7 @@ struct HistoricalPickerResult {
     var totalSeasons: String?
     
     /// Championship years
-    var championships = [Int]()
+    var championships = [String]()
     
     /// Category of choice for the user
     ///

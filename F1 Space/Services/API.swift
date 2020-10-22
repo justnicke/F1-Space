@@ -19,6 +19,7 @@ final class API {
         case grandPrix(year: String)
         case driverDetail(year: String, id: String)
         case driverParticipated(id: String)
+        case currentDriverStandings
         
         var urlComponents: URLComponents? {
             switch self {
@@ -40,6 +41,9 @@ final class API {
             case .driverParticipated(let id):
                 return
                     URLComponents(string: "https://ergast.com/api/f1/drivers/\(id)/driverStandings.json")
+            case .currentDriverStandings:
+                return
+                    URLComponents(string: "https://ergast.com/api/f1/current/driverStandings.json")
             }
         }
     }
@@ -66,8 +70,12 @@ final class API {
         request(endpoint: .driverDetail(year: year, id: id), completion: completion)
     }
     
-    static func requestDriverParticipated(id: String, completion: @escaping (Year?, Error?) -> Void) {
+    static func requestDriverParticipated(id: String, completion: @escaping (DriverTakePartYear?, Error?) -> Void) {
         request(endpoint: .driverParticipated(id: id), completion: completion)
+    }
+    
+    static func requestCurrentDriverStandings(completion: @escaping (CurrentDriverStandings?, Error?) -> Void) {
+        request(endpoint: .currentDriverStandings, completion: completion)
     }
     
     // MARK: - Private Methods

@@ -9,7 +9,7 @@
 import Foundation
 
 protocol HistoricalPickerSelectedDelegate: class {
-    func year(currentСhampionship: Int)
+    func year(currentСhampionship: String)
     func category(current: String)
     func detailed(currentResult: String, id: String?)
 }

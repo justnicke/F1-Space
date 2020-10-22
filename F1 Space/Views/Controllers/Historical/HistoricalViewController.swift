@@ -195,7 +195,7 @@ extension HistoricalViewController: UITableViewDataSource, UITableViewDelegate {
 // MARK: - Extension HistoricalPickerSelectedDelegate
 
 extension HistoricalViewController: HistoricalPickerSelectedDelegate {
-    func year(currentСhampionship: Int) {
+    func year(currentСhampionship: String) {
         yearButton.setTitle(String(currentСhampionship), for: .normal)
         requestViewModel()
     }
