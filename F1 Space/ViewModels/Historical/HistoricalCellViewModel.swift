@@ -60,9 +60,9 @@ final class HistoricalCellViewModel {
                 third = constructors?.joined(separator: " / ")
                 fourth = driverStanding?.points
             } else {
-                first = detailDriver?.raceName
+                first = detailDriver?.raceName.replacingOccurrences(of: "Grand Prix", with: "")
                 second = detailDriver?.results.first?.position
-                
+                // Исправить тк круговые считаются сошедшими
                 let checkFinished = detailDriver?.results.first?.finishStatus
                 if checkFinished == "Finished" {
                     third = detailDriver?.results.first?.resultTime?.time
@@ -77,7 +77,7 @@ final class HistoricalCellViewModel {
             second = constructorStandings?.constructor.name
             third = constructorStandings?.points
         } else {
-            first = race?.raceName
+            first = race?.raceName.replacingOccurrences(of: "Grand Prix", with: "")
             second = race?.results.first?.driver.familyName
             third = race?.results.first?.constructor.name
         }

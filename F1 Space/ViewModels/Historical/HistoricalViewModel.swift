@@ -8,35 +8,6 @@
 
 import Foundation
 
-/*
- Внедряем данные для трасс: https://ergast.com/api/f1/2020/results/1
- //        guard let year = yearButton.titleLabel?.text  else { return }
- //        guard var standings = standingsButton.titleLabel?.text  else { return }
- //        guard let result = variantResultButton.titleLabel?.text else { return }
- //        guard let currentID = nameId else { return }
- if standings == "Teams" {
-    standings = "constructors"
-    if result == "All" {
-        print("https://ergast.com/api/f1/\(year)/constructorStandings.json")
- } else {
-    print("https://ergast.com/api/f1/\(year)/\(standings)/\(currentID)/results.json?limit=60")
- }
- } else if standings == "Drivers" {
-    if result == "All" {
-    print("https://ergast.com/api/f1/\(year)/driverStandings.json")
- } else {
-    print("https://ergast.com/api/f1/\(year)/\(standings)/\(currentID)/results.json")
- }
- } else {
-    if result == "All" {
- print("https://ergast.com/api/f1/\(year)/results/1.json")
- } else {
- // Делаем только резулятат гонки и квалификации, после UI разберемся
- print("https://ergast.com/api/f1/\(year)/\(currentID)/results.json") // трасса, победитель, команда
- }
- }
- */
-
 final class HistoricalViewModel {
     
     // MARK: - Private Properties
@@ -44,15 +15,12 @@ final class HistoricalViewModel {
     private var driversHeader = HistoricalStandingsHeader("POS", "Driver", "Constructor", "Points")
     private var constructorsHeader = HistoricalStandingsHeader("POS", "Constructor", "Points")
     private var raceHeader = HistoricalStandingsHeader("Grand Prix", "Winner", "Car")
+    private var racesDetailDriverHeader = HistoricalStandingsHeader("Grand Prix", "POS", "Time", "Points")
     
     private var driversStandings: [DriverStandings] = []
     private var construcorsStandings: [ConstructorStandings] = []
     private var races: [Race] = []
     private var racesDetailDriver: [Race] = []
-    
-    // попробывать передать id в свойтсво и с ним поиграться и делать условия через него
-    private var idenity: String?
-    
     
     // MARK: - Public Methods
     
@@ -64,7 +32,11 @@ final class HistoricalViewModel {
                 requestDriverDetail(season: year, id: id, completion: compeletion)
             }
         } else if category?.lowercased() == HistoricalCategory.teams.rawValue {
+            if id == "All" {
             requestConstructorStandings(season: year, compeletion: compeletion)
+            } else {
+                // requestConstructorDetail() ----> something
+            }
         } else {
             requestRaces(season: year, completion: compeletion)
         }
@@ -163,13 +135,17 @@ extension HistoricalViewModel: HistoricalViewModelType {
         }
     }
     
-    func viewForHeader(in section: Int, currentCategory: String?) -> HistoricalHeaderViewModel? {
+    func viewForHeader(in section: Int, currentCategory: String?, id: String?) -> HistoricalHeaderViewModel? {
         if currentCategory?.lowercased() == HistoricalCategory.drivers.rawValue {
-            return HistoricalHeaderViewModel(driverStandingsHeader: driversHeader, category: currentCategory)
+            if id == "All" {
+                return HistoricalHeaderViewModel(driverStandingsHeader: driversHeader, category: currentCategory, id: id)
+            } else {
+                return HistoricalHeaderViewModel(raceDetailDriver: racesDetailDriverHeader, category: currentCategory, id: id)
+            }
         } else if currentCategory?.lowercased() == HistoricalCategory.teams.rawValue {
-            return HistoricalHeaderViewModel(constructorStandingsHeader: constructorsHeader, category: currentCategory)
+            return HistoricalHeaderViewModel(constructorStandingsHeader: constructorsHeader, category: currentCategory, id: id)
         } else {
-            return HistoricalHeaderViewModel(raceHeader: raceHeader, category: currentCategory)
+            return HistoricalHeaderViewModel(raceHeader: raceHeader, category: currentCategory, id: id)
         }
     }
 }

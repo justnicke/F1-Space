@@ -173,7 +173,7 @@ extension HistoricalViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: HistoricalCell.reuseId, for: indexPath) as! HistoricalCell
         let viewModelCell = historicalViewModel.cellForRowAt(indexPath: indexPath, inCurrent: type().category, id: type().id)
-        cell.configureCell(viewModel: viewModelCell, byFrame: view, and: type().category, id: detailResultID)
+        cell.configureCell(viewModel: viewModelCell, byFrame: view, and: type().category, id: type().id)
         return cell
     }
     
@@ -182,8 +182,8 @@ extension HistoricalViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let viewModelHeader = historicalViewModel.viewForHeader(in: section, currentCategory: type().category)
-        header.configureHeader(viewModel: viewModelHeader, byFrame: view, and: type().category)
+        let viewModelHeader = historicalViewModel.viewForHeader(in: section, currentCategory: type().category, id: type().id)
+        header.configureHeader(viewModel: viewModelHeader, byFrame: view, and: type().category, id: type().id)
         return header
     }
     
@@ -211,7 +211,7 @@ extension HistoricalViewController: HistoricalPickerSelectedDelegate {
     
     func detailed(currentResult: String, id: String?) {
         detailResultButton.setTitle(currentResult, for: .normal)
-        
+
         detailResultID = id ?? "All"
         
         requestViewModel()

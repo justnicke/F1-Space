@@ -1,14 +1,14 @@
 //
-//  HistoricalDriverStrategy.swift
+//  HistoricalDriverDetailStrategy.swift
 //  F1 Space
 //
-//  Created by Nikita Sukachev on 24.09.2020.
+//  Created by Nikita Sukachev on 22.10.2020.
 //  Copyright © 2020 Nikita Sukachev. All rights reserved.
 //
 
 import UIKit
 
-final class HistoricalDriverStrategy: HistoricalStandingsStrategyType {
+final class HistoricalDriverDetailStrategy: HistoricalStandingsStrategyType {
     
     // MARK: - Properties
 
@@ -25,13 +25,13 @@ final class HistoricalDriverStrategy: HistoricalStandingsStrategyType {
         width[forThe.third]?.isActive = false
         labels[forThe.fourth].isHidden = false
         
-        width[forThe.first]?.constant = rootView.frame.width / 6
+        width[forThe.first]?.constant = rootView.frame.width / 3.5
         width[forThe.first]?.isActive = true
         
-        width[forThe.second]?.constant = rootView.frame.width / 4
+        width[forThe.second]?.constant = rootView.frame.width / 8
         width[forThe.second]?.isActive = true
         
-        width[forThe.fourth]?.constant = rootView.frame.width / 6
+        width[forThe.fourth]?.constant = rootView.frame.width / 8
         width[forThe.fourth]?.isActive = true
         
         [labels[forThe.fifth], labels[forThe.sixth]].forEach {

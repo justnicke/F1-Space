@@ -36,12 +36,6 @@
 		5E47932025359CC500332FB4 /* HistoricalEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E47931F25359CC500332FB4 /* HistoricalEnums.swift */; };
 		5E4793312535AA5B00332FB4 /* HistoricalViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4793302535AA5B00332FB4 /* HistoricalViewModelType.swift */; };
 		5E47933E2535ADBD00332FB4 /* HistoricalCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E47933D2535ADBD00332FB4 /* HistoricalCellViewModel.swift */; };
-		5E4A644B2523672B00A81C56 /* ContainerPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A64452523672B00A81C56 /* ContainerPicker.swift */; };
-		5E4A644C2523672B00A81C56 /* ArchiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A64462523672B00A81C56 /* ArchiveViewController.swift */; };
-		5E4A644D2523672B00A81C56 /* StandingsContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A64472523672B00A81C56 /* StandingsContainerView.swift */; };
-		5E4A644E2523672B00A81C56 /* ArchiveCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A64482523672B00A81C56 /* ArchiveCell.swift */; };
-		5E4A644F2523672B00A81C56 /* ContainerNum3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A64492523672B00A81C56 /* ContainerNum3.swift */; };
-		5E4A64502523672B00A81C56 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A644A2523672B00A81C56 /* HeaderView.swift */; };
 		5E4A6A9624D7EE100077CDBC /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A6A9524D7EE100077CDBC /* NewsViewModel.swift */; };
 		5E4A6A9924D7EEB30077CDBC /* NewsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A6A9824D7EEB30077CDBC /* NewsCellViewModel.swift */; };
 		5E4A6A9B24D82E210077CDBC /* DetailNewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A6A9A24D82E210077CDBC /* DetailNewsViewModel.swift */; };
@@ -81,6 +75,7 @@
 		5EA886FB24D1FE270079EDDC /* DetailNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA886FA24D1FE270079EDDC /* DetailNewsViewController.swift */; };
 		5EAC214724C8244F00A65A7A /* DataSourceViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC214624C8244F00A65A7A /* DataSourceViewModelType.swift */; };
 		5EB4707D2541A44B00FB93B9 /* CurrentDriverStandings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB4707C2541A44B00FB93B9 /* CurrentDriverStandings.swift */; };
+		5EB470832541AA5B00FB93B9 /* HistoricalDriverDetailStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB470822541AA5B00FB93B9 /* HistoricalDriverDetailStrategy.swift */; };
 		5EC60D6824C18DBD009C66CC /* DriverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC60D6724C18DBD009C66CC /* DriverViewModel.swift */; };
 		5EC60D6C24C1FD4E009C66CC /* DriverCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC60D6B24C1FD4E009C66CC /* DriverCellViewModel.swift */; };
 		5ECFB2A62501132800ED94EA /* TransitionDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECFB29A2501132800ED94EA /* TransitionDriver.swift */; };
@@ -141,12 +136,6 @@
 		5E47931F25359CC500332FB4 /* HistoricalEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalEnums.swift; sourceTree = "<group>"; };
 		5E4793302535AA5B00332FB4 /* HistoricalViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalViewModelType.swift; sourceTree = "<group>"; };
 		5E47933D2535ADBD00332FB4 /* HistoricalCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalCellViewModel.swift; sourceTree = "<group>"; };
-		5E4A64452523672B00A81C56 /* ContainerPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerPicker.swift; sourceTree = "<group>"; };
-		5E4A64462523672B00A81C56 /* ArchiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArchiveViewController.swift; sourceTree = "<group>"; };
-		5E4A64472523672B00A81C56 /* StandingsContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandingsContainerView.swift; sourceTree = "<group>"; };
-		5E4A64482523672B00A81C56 /* ArchiveCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArchiveCell.swift; sourceTree = "<group>"; };
-		5E4A64492523672B00A81C56 /* ContainerNum3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerNum3.swift; sourceTree = "<group>"; };
-		5E4A644A2523672B00A81C56 /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		5E4A6A9524D7EE100077CDBC /* NewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewModel.swift; sourceTree = "<group>"; };
 		5E4A6A9824D7EEB30077CDBC /* NewsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCellViewModel.swift; sourceTree = "<group>"; };
 		5E4A6A9A24D82E210077CDBC /* DetailNewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNewsViewModel.swift; sourceTree = "<group>"; };
@@ -187,6 +176,7 @@
 		5EA886FA24D1FE270079EDDC /* DetailNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNewsViewController.swift; sourceTree = "<group>"; };
 		5EAC214624C8244F00A65A7A /* DataSourceViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourceViewModelType.swift; sourceTree = "<group>"; };
 		5EB4707C2541A44B00FB93B9 /* CurrentDriverStandings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentDriverStandings.swift; sourceTree = "<group>"; };
+		5EB470822541AA5B00FB93B9 /* HistoricalDriverDetailStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalDriverDetailStrategy.swift; sourceTree = "<group>"; };
 		5EC60D6724C18DBD009C66CC /* DriverViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverViewModel.swift; sourceTree = "<group>"; };
 		5EC60D6B24C1FD4E009C66CC /* DriverCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverCellViewModel.swift; sourceTree = "<group>"; };
 		5ECFB29A2501132800ED94EA /* TransitionDriver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionDriver.swift; sourceTree = "<group>"; };
@@ -359,7 +349,6 @@
 				5E4A6A9C24D84A190077CDBC /* Views */,
 				5E40ECFB24B7551500E3AF1F /* Cells */,
 				5E82B52424C5E49100377859 /* Controllers */,
-				5E4A64532523673400A81C56 /* New Group */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -441,19 +430,6 @@
 			path = Historical;
 			sourceTree = "<group>";
 		};
-		5E4A64532523673400A81C56 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-				5E4A64482523672B00A81C56 /* ArchiveCell.swift */,
-				5E4A64462523672B00A81C56 /* ArchiveViewController.swift */,
-				5E4A64492523672B00A81C56 /* ContainerNum3.swift */,
-				5E4A64452523672B00A81C56 /* ContainerPicker.swift */,
-				5E4A644A2523672B00A81C56 /* HeaderView.swift */,
-				5E4A64472523672B00A81C56 /* StandingsContainerView.swift */,
-			);
-			path = "New Group";
-			sourceTree = "<group>";
-		};
 		5E4A6A9724D7EE1C0077CDBC /* News */ = {
 			isa = PBXGroup;
 			children = (
@@ -490,6 +466,7 @@
 				5E510D1D251CC11D00584EE2 /* HistoricalDriverStrategy.swift */,
 				5E6A1348252F0D4D0012CFEC /* HistoricalConstructorStrategy.swift */,
 				5E82ACA425387A9C0015A168 /* HistoricalRaceStrategy.swift */,
+				5EB470822541AA5B00FB93B9 /* HistoricalDriverDetailStrategy.swift */,
 			);
 			path = HistoricalStrategy;
 			sourceTree = "<group>";
@@ -742,18 +719,15 @@
 				5E65123924EFBB6700008D67 /* Races.swift in Sources */,
 				5E82ACA525387A9C0015A168 /* HistoricalRaceStrategy.swift in Sources */,
 				5E510D18251C833100584EE2 /* HistoricalCell.swift in Sources */,
-				5E4A644D2523672B00A81C56 /* StandingsContainerView.swift in Sources */,
 				5E6A1337252F002F0012CFEC /* HistoricalStandingsHeader.swift in Sources */,
 				5E5FCB622513438F00618534 /* HistoricalPickerViewModel.swift in Sources */,
 				5E4CA6E22519E1AB0035E6F6 /* HistoricalViewModel.swift in Sources */,
 				5E05CD8C24BF28E600EB2EF3 /* CommonDriver.swift in Sources */,
-				5E4A644B2523672B00A81C56 /* ContainerPicker.swift in Sources */,
 				5EFD898724FE251E00A39838 /* HistoricalViewController.swift in Sources */,
 				5E7DB98024D05A6E0029C0EE /* NewsCell.swift in Sources */,
 				5EA886F724D191730079EDDC /* String.swift in Sources */,
 				5ECFB2AE2501132800ED94EA /* TransitionDirection.swift in Sources */,
 				5ECFB2A82501132800ED94EA /* PanelTransition.swift in Sources */,
-				5E4A644C2523672B00A81C56 /* ArchiveViewController.swift in Sources */,
 				5E5F1B3224D5600200F81366 /* CustromActivityIndicator.swift in Sources */,
 				5E419EC724B5A855006421F6 /* AppDelegate.swift in Sources */,
 				5E419EF924B5DEC7006421F6 /* DriverViewController.swift in Sources */,
@@ -769,7 +743,6 @@
 				5E419EC924B5A855006421F6 /* SceneDelegate.swift in Sources */,
 				5EA886FB24D1FE270079EDDC /* DetailNewsViewController.swift in Sources */,
 				5E5F1B3824D5DDE300F81366 /* CustomAnimationActivityIndicator.swift in Sources */,
-				5E4A64502523672B00A81C56 /* HeaderView.swift in Sources */,
 				5E419EFB24B5F3C3006421F6 /* DriversCell.swift in Sources */,
 				5E9EB95424C2DA2D00023668 /* StandingsCellViewModel.swift in Sources */,
 				5ECFB2AA2501132800ED94EA /* PresentationController.swift in Sources */,
@@ -788,7 +761,6 @@
 				5E82B52224C5D6AC00377859 /* ConstructorCellViewModel.swift in Sources */,
 				5EA886F424D165DD0079EDDC /* Article.swift in Sources */,
 				5E4CA6E42519FD1B0035E6F6 /* PickerViewModelType.swift in Sources */,
-				5E4A644E2523672B00A81C56 /* ArchiveCell.swift in Sources */,
 				5EEE76DE25013F7C00D7D530 /* PanGestureRecognizer.swift in Sources */,
 				5ECFB2AC2501132800ED94EA /* PresentAnimation.swift in Sources */,
 				5E419EED24B5AB86006421F6 /* FormulaTabBarController.swift in Sources */,
@@ -801,7 +773,6 @@
 				5E05CD8E24BF2B8700EB2EF3 /* Constructor.swift in Sources */,
 				5E419F0A24B60E1F006421F6 /* StackView.swift in Sources */,
 				5E6A1349252F0D4D0012CFEC /* HistoricalConstructorStrategy.swift in Sources */,
-				5E4A644F2523672B00A81C56 /* ContainerNum3.swift in Sources */,
 				5E419EE924B5A9AA006421F6 /* StandingsViewController.swift in Sources */,
 				5E6A1330252EF4300012CFEC /* HistoricalStandings.swift in Sources */,
 				5E510D1E251CC11D00584EE2 /* HistoricalDriverStrategy.swift in Sources */,
@@ -815,6 +786,7 @@
 				5E9EB95224C2D99A00023668 /* StandingsViewModel.swift in Sources */,
 				5E14A14424BCA1A90058305B /* API.swift in Sources */,
 				5E82AC9E253838C40015A168 /* HistoricalHeaderViewModel.swift in Sources */,
+				5EB470832541AA5B00FB93B9 /* HistoricalDriverDetailStrategy.swift in Sources */,
 				5ECFB2A62501132800ED94EA /* TransitionDriver.swift in Sources */,
 				5E40ECF824B74B8100E3AF1F /* ConstructorViewController.swift in Sources */,
 			);

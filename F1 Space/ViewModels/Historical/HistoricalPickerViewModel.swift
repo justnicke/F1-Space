@@ -86,8 +86,6 @@ final class HistoricalPickerViewModel {
         }
     }
     
-
-    
     private func requestSeason(id: String?, compeletion: @escaping () -> (Void)) {
         if id == "All" {
             API.requestYearChampionship { [weak self] (dates, error) in

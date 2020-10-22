@@ -25,29 +25,41 @@ final class HistoricalHeaderViewModel {
     
     // MARK: - Constructors
     
-    init(driverStandingsHeader: HistoricalStandingsHeader?, category: String?) {
+    init(driverStandingsHeader: HistoricalStandingsHeader?, category: String?, id: String?) {
         self.historicalStandingsHeader = driverStandingsHeader
-        setup(category: category)
+        setup(category: category, id: id)
     }
     
-    init(constructorStandingsHeader: HistoricalStandingsHeader?, category: String?) {
+    init(constructorStandingsHeader: HistoricalStandingsHeader?, category: String?, id: String?) {
         self.historicalStandingsHeader = constructorStandingsHeader
-        setup(category: category)
+        setup(category: category, id: id)
     }
     
-    init(raceHeader: HistoricalStandingsHeader?, category: String?) {
+    init(raceHeader: HistoricalStandingsHeader?, category: String?, id: String?) {
         self.historicalStandingsHeader = raceHeader
-        setup(category: category)
+        setup(category: category, id: id)
+    }
+    
+    init(raceDetailDriver: HistoricalStandingsHeader?, category: String?, id: String?) {
+        self.historicalStandingsHeader = raceDetailDriver
+        setup(category: category, id: id)
     }
     
     // MARK: Private Methods
     
-    private func setup(category: String?) {
+    private func setup(category: String?, id: String?) {
         if category?.lowercased() == HistoricalCategory.drivers.rawValue {
-            first = historicalStandingsHeader?.firstHead
-            second = historicalStandingsHeader?.secondHead
-            third = historicalStandingsHeader?.thirdHead
-            fourth = historicalStandingsHeader?.fourthHead
+            if id == "All" {
+                first = historicalStandingsHeader?.firstHead
+                second = historicalStandingsHeader?.secondHead
+                third = historicalStandingsHeader?.thirdHead
+                fourth = historicalStandingsHeader?.fourthHead
+            } else {
+                first = historicalStandingsHeader?.firstHead
+                second = historicalStandingsHeader?.secondHead
+                third = historicalStandingsHeader?.thirdHead
+                fourth = historicalStandingsHeader?.fourthHead
+            }
         } else if category?.lowercased() == HistoricalCategory.teams.rawValue {
             first = historicalStandingsHeader?.firstHead
             second = historicalStandingsHeader?.secondHead
