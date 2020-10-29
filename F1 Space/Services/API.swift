@@ -20,6 +20,7 @@ final class API {
         case driverDetail(year: String, id: String)
         case driverParticipated(id: String)
         case currentDriverStandings
+        case constructorDetail(year: String, id: String)
         
         var urlComponents: URLComponents? {
             switch self {
@@ -44,6 +45,9 @@ final class API {
             case .currentDriverStandings:
                 return
                     URLComponents(string: "https://ergast.com/api/f1/current/driverStandings.json")
+            case .constructorDetail(let year, let id):
+                return
+                    URLComponents(string: "https://ergast.com/api/f1/\(year)/constructors/\(id)/results.json?limit=50")
             }
         }
     }
@@ -76,6 +80,10 @@ final class API {
     
     static func requestCurrentDriverStandings(completion: @escaping (CurrentDriverStandings?, Error?) -> Void) {
         request(endpoint: .currentDriverStandings, completion: completion)
+    }
+    
+    static func requestConstructorDetailResult(year: String, id: String, completion: @escaping (ConstructorDetail?, Error?) -> Void) {
+        request(endpoint: .constructorDetail(year: year, id: id), completion: completion)
     }
     
     // MARK: - Private Methods

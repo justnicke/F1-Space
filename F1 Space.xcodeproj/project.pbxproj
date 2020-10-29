@@ -76,6 +76,7 @@
 		5EAC214724C8244F00A65A7A /* DataSourceViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAC214624C8244F00A65A7A /* DataSourceViewModelType.swift */; };
 		5EB4707D2541A44B00FB93B9 /* CurrentDriverStandings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB4707C2541A44B00FB93B9 /* CurrentDriverStandings.swift */; };
 		5EB470832541AA5B00FB93B9 /* HistoricalDriverDetailStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB470822541AA5B00FB93B9 /* HistoricalDriverDetailStrategy.swift */; };
+		5EB470872541BC6900FB93B9 /* ConstructorDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB470862541BC6900FB93B9 /* ConstructorDetail.swift */; };
 		5EC60D6824C18DBD009C66CC /* DriverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC60D6724C18DBD009C66CC /* DriverViewModel.swift */; };
 		5EC60D6C24C1FD4E009C66CC /* DriverCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC60D6B24C1FD4E009C66CC /* DriverCellViewModel.swift */; };
 		5ECFB2A62501132800ED94EA /* TransitionDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECFB29A2501132800ED94EA /* TransitionDriver.swift */; };
@@ -88,6 +89,7 @@
 		5ECFB2AD2501132800ED94EA /* DismissAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECFB2A32501132800ED94EA /* DismissAnimation.swift */; };
 		5ECFB2AE2501132800ED94EA /* TransitionDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECFB2A42501132800ED94EA /* TransitionDirection.swift */; };
 		5EEE76DE25013F7C00D7D530 /* PanGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EEE76DD25013F7C00D7D530 /* PanGestureRecognizer.swift */; };
+		5EF191D62548340D0045FD7C /* HistoricalConstructorDetailStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF191D52548340D0045FD7C /* HistoricalConstructorDetailStrategy.swift */; };
 		5EFD898724FE251E00A39838 /* HistoricalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFD898624FE251E00A39838 /* HistoricalViewController.swift */; };
 		5EFD898924FE458200A39838 /* HistoricalPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFD898824FE458200A39838 /* HistoricalPickerViewController.swift */; };
 /* End PBXBuildFile section */
@@ -177,6 +179,7 @@
 		5EAC214624C8244F00A65A7A /* DataSourceViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourceViewModelType.swift; sourceTree = "<group>"; };
 		5EB4707C2541A44B00FB93B9 /* CurrentDriverStandings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentDriverStandings.swift; sourceTree = "<group>"; };
 		5EB470822541AA5B00FB93B9 /* HistoricalDriverDetailStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalDriverDetailStrategy.swift; sourceTree = "<group>"; };
+		5EB470862541BC6900FB93B9 /* ConstructorDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorDetail.swift; sourceTree = "<group>"; };
 		5EC60D6724C18DBD009C66CC /* DriverViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverViewModel.swift; sourceTree = "<group>"; };
 		5EC60D6B24C1FD4E009C66CC /* DriverCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverCellViewModel.swift; sourceTree = "<group>"; };
 		5ECFB29A2501132800ED94EA /* TransitionDriver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionDriver.swift; sourceTree = "<group>"; };
@@ -189,6 +192,7 @@
 		5ECFB2A32501132800ED94EA /* DismissAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissAnimation.swift; sourceTree = "<group>"; };
 		5ECFB2A42501132800ED94EA /* TransitionDirection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionDirection.swift; sourceTree = "<group>"; };
 		5EEE76DD25013F7C00D7D530 /* PanGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanGestureRecognizer.swift; sourceTree = "<group>"; };
+		5EF191D52548340D0045FD7C /* HistoricalConstructorDetailStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalConstructorDetailStrategy.swift; sourceTree = "<group>"; };
 		5EFD898624FE251E00A39838 /* HistoricalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalViewController.swift; sourceTree = "<group>"; };
 		5EFD898824FE458200A39838 /* HistoricalPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalPickerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -230,6 +234,7 @@
 				5E65123824EFBB6700008D67 /* Races.swift */,
 				5E6A133A252F01E80012CFEC /* Year.swift */,
 				5EB4707C2541A44B00FB93B9 /* CurrentDriverStandings.swift */,
+				5EB470862541BC6900FB93B9 /* ConstructorDetail.swift */,
 				5E4793492535AF3C00332FB4 /* Historical */,
 			);
 			path = Models;
@@ -467,6 +472,7 @@
 				5E6A1348252F0D4D0012CFEC /* HistoricalConstructorStrategy.swift */,
 				5E82ACA425387A9C0015A168 /* HistoricalRaceStrategy.swift */,
 				5EB470822541AA5B00FB93B9 /* HistoricalDriverDetailStrategy.swift */,
+				5EF191D52548340D0045FD7C /* HistoricalConstructorDetailStrategy.swift */,
 			);
 			path = HistoricalStrategy;
 			sourceTree = "<group>";
@@ -726,12 +732,14 @@
 				5EFD898724FE251E00A39838 /* HistoricalViewController.swift in Sources */,
 				5E7DB98024D05A6E0029C0EE /* NewsCell.swift in Sources */,
 				5EA886F724D191730079EDDC /* String.swift in Sources */,
+				5EB470872541BC6900FB93B9 /* ConstructorDetail.swift in Sources */,
 				5ECFB2AE2501132800ED94EA /* TransitionDirection.swift in Sources */,
 				5ECFB2A82501132800ED94EA /* PanelTransition.swift in Sources */,
 				5E5F1B3224D5600200F81366 /* CustromActivityIndicator.swift in Sources */,
 				5E419EC724B5A855006421F6 /* AppDelegate.swift in Sources */,
 				5E419EF924B5DEC7006421F6 /* DriverViewController.swift in Sources */,
 				5E50BEF02510D9340025963F /* HistoricalPickerSelectedDelegate.swift in Sources */,
+				5EF191D62548340D0045FD7C /* HistoricalConstructorDetailStrategy.swift in Sources */,
 				5E4A6A9B24D82E210077CDBC /* DetailNewsViewModel.swift in Sources */,
 				5E5F1B3A24D5F37F00F81366 /* RefreshView.swift in Sources */,
 				5E6A133F252F04D30012CFEC /* AuxiliaryNumbering.swift in Sources */,

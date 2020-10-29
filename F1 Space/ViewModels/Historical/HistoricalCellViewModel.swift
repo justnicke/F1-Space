@@ -25,6 +25,7 @@ final class HistoricalCellViewModel {
     private var constructorStandings: ConstructorStandings?
     private var race: Race?
     private var detailDriver: Race?
+    private var detailContructor: Race?
     
     // MARK: - Constructors
     
@@ -48,6 +49,11 @@ final class HistoricalCellViewModel {
         setup(category: category, id: id)
     }
     
+    init(raceDetailConstructor: Race?, category: String?, id: String?) {
+        self.detailContructor = raceDetailConstructor
+        setup(category: category, id: id)
+    }
+    
     // MARK: Private Methods
     
     private func setup(category: String?, id: String?) {
@@ -57,7 +63,7 @@ final class HistoricalCellViewModel {
                 second = driverStanding?.driver.familyName
                 // if the driver changed teams during the year
                 let constructors = driverStanding?.team.map { $0.name }
-                third = constructors?.joined(separator: " / ")
+                third = constructors?.joined(separator: "\n")
                 fourth = driverStanding?.points
             } else {
                 first = detailDriver?.raceName.replacingOccurrences(of: "Grand Prix", with: "")
@@ -73,9 +79,45 @@ final class HistoricalCellViewModel {
                 fourth = detailDriver?.results.first?.points
             }
         } else if category?.lowercased() == HistoricalCategory.teams.rawValue {
-            first = constructorStandings?.position
-            second = constructorStandings?.constructor.name
-            third = constructorStandings?.points
+            if id == "All" {
+                first = constructorStandings?.position
+                second = constructorStandings?.constructor.name
+                third = constructorStandings?.points
+            } else {
+                
+                first = detailContructor?.raceName.replacingOccurrences(of: "Grand Prix", with: "")
+                
+                let secondLabel = detailContructor?.results.compactMap({ $0.driver.familyName }).joined(separator: "\n")
+                
+                second = secondLabel
+                
+                let thirdLabel = detailContructor?.results.compactMap({ $0.position }).joined(separator: "\n")
+                third = thirdLabel
+                
+                let aaa = detailContructor?.results.compactMap({$0.finishStatus})
+                
+                let time = detailContructor?.results.compactMap({$0.resultTime?.time})
+                
+                var array = [String]()
+                var pass = true
+                for str in aaa! {
+                    
+                    if str.contains("Finished") {
+                        if pass {
+                            array.append(contentsOf: time!)
+                            pass = false
+                        }
+                    } else if str.contains("Lap") {
+                        array.append(str)
+                    } else {
+                        array.append("DNF")
+                    }
+                }
+                fourth = array.joined(separator: "\n")
+                
+                let fifthhLabel = detailContructor?.results.compactMap({ $0.points }).joined(separator: "\n")
+                fifth = fifthhLabel
+            }
         } else {
             first = race?.raceName.replacingOccurrences(of: "Grand Prix", with: "")
             second = race?.results.first?.driver.familyName
@@ -83,4 +125,3 @@ final class HistoricalCellViewModel {
         }
     }
 }
-

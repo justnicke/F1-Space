@@ -20,7 +20,7 @@ final class HistoricalViewController: UIViewController {
     }()
     private let categoryButton: AutoSizeButton = {
         let button = AutoSizeButton(type: .custom)
-        button.setTitle("Drivers", for: .normal)
+        button.setTitle("Teams", for: .normal)
         return button
     }()
     private let detailResultButton: AutoSizeButton = {
@@ -179,6 +179,7 @@ extension HistoricalViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
+//        return 100
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

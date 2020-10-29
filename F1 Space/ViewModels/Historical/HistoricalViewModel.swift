@@ -21,6 +21,7 @@ final class HistoricalViewModel {
     private var construcorsStandings: [ConstructorStandings] = []
     private var races: [Race] = []
     private var racesDetailDriver: [Race] = []
+    private var racesDetailConstructors: [Race] = []
     
     // MARK: - Public Methods
     
@@ -33,9 +34,9 @@ final class HistoricalViewModel {
             }
         } else if category?.lowercased() == HistoricalCategory.teams.rawValue {
             if id == "All" {
-            requestConstructorStandings(season: year, compeletion: compeletion)
+                requestConstructorStandings(season: year, compeletion: compeletion)
             } else {
-                // requestConstructorDetail() ----> something
+                requestConstructorDetail(season: year, id: id, completion: compeletion)
             }
         } else {
             requestRaces(season: year, completion: compeletion)
@@ -43,6 +44,40 @@ final class HistoricalViewModel {
     }
     
     // MARK: - Private Methods
+    
+    private func requestConstructorDetail(season: String?, id: String?, completion: @escaping () -> (Void)) {
+        guard let year = season,
+              let constructorId = id
+        else {
+            return
+        }
+        
+        API.requestConstructorDetailResult(year: year, id: constructorId) { [weak self] (teamDetail, err) in
+            guard let detailTeamRaces = teamDetail?.constructorDetailData.constructorDetailTable.races else { return }
+
+//            var aa = detailTeamRaces.compactMap({ $0.results }).compactMap({ $0.compactMap ({$0.finishStatus})})
+//            var array: [String] = []
+//            var array2 = [[String]]()
+//            for i in aa {
+//                for str in i {
+//                    if str.contains("Finished") {
+//                        array.append(str)
+//                    } else if str.contains("Lap") {
+//                        array.append(str)
+//                    } else {
+//                        array.append("DNF")
+//                    }
+//                }
+//                array2.append(array)
+//                array.removeAll()
+//            }
+//            
+//            print(array2)
+
+            self?.racesDetailConstructors = detailTeamRaces
+            completion()
+        }
+    }
     
     private func requestDriverDetail(season: String?, id: String?, completion: @escaping () -> (Void)) {
         guard let year = season,
@@ -52,14 +87,10 @@ final class HistoricalViewModel {
         }
 
         API.requestDriverDetailResult(year: year, id: driverId) { [weak self] (detail, err) in
-            let detailRaces = detail?.detailData.detail.races //else { return }
-            
-            if detailRaces!.isEmpty || detailRaces == nil {
-                
-            } else {
-                self?.racesDetailDriver = detailRaces ?? []
+            guard let detailRaces = detail?.detailData.detail.races else { return }
+
+                self?.racesDetailDriver = detailRaces
                 completion()
-            }
         }
     }
     
@@ -109,8 +140,12 @@ extension HistoricalViewModel: HistoricalViewModelType {
             } else {
                 return racesDetailDriver.count
             }
-        } else if category?.lowercased() == HistoricalCategory.teams.rawValue  {
-            return construcorsStandings.count
+        } else if category?.lowercased() == HistoricalCategory.teams.rawValue {
+            if id == "All" {
+                return construcorsStandings.count
+            } else {
+                return racesDetailConstructors.count
+            }
         } else {
             return races.count
         }
@@ -125,10 +160,14 @@ extension HistoricalViewModel: HistoricalViewModelType {
                 let detailDriver = racesDetailDriver[indexPath.row]
                 return HistoricalCellViewModel(raceDetailDriver: detailDriver, category: currentCategory, id: id)
             }
-
         } else if currentCategory?.lowercased() == HistoricalCategory.teams.rawValue {
-            let constructor = construcorsStandings[indexPath.row]
-            return HistoricalCellViewModel(constructorStandings: constructor, category: currentCategory, id: id)
+            if id == "All" {
+                let constructor = construcorsStandings[indexPath.row]
+                return HistoricalCellViewModel(constructorStandings: constructor, category: currentCategory, id: id)
+            } else {
+                let detailConstructor = racesDetailConstructors[indexPath.row]
+                return HistoricalCellViewModel(raceDetailConstructor: detailConstructor, category: currentCategory, id: id)
+            }
         } else {
             let race = races[indexPath.row]
             return HistoricalCellViewModel(race: race, category: currentCategory, id: id)

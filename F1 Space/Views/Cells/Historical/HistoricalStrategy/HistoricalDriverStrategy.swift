@@ -18,8 +18,9 @@ final class HistoricalDriverStrategy: HistoricalStandingsStrategyType {
     
     func setupUI(for labels: [UILabel], withAdjustable width: [NSLayoutConstraint?], byFrame rootView: UIView) {
         labels.forEach {
-            $0.textAlignment = . center
+            $0.textAlignment = .center
             $0.font = UIFont(name: "AvenirNext-Medium", size: 13)
+            $0.numberOfLines = 2
         }
         
         width[forThe.third]?.isActive = false
