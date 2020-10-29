@@ -45,6 +45,11 @@ final class HistoricalHeaderViewModel {
         setup(category: category, id: id)
     }
     
+    init(racesDetailConstructorHeader: HistoricalStandingsHeader?, category: String?, id: String?) {
+        self.historicalStandingsHeader = racesDetailConstructorHeader
+        setup(category: category, id: id)
+    }
+    
     // MARK: Private Methods
     
     private func setup(category: String?, id: String?) {
@@ -61,9 +66,17 @@ final class HistoricalHeaderViewModel {
                 fourth = historicalStandingsHeader?.fourthHead
             }
         } else if category?.lowercased() == HistoricalCategory.teams.rawValue {
-            first = historicalStandingsHeader?.firstHead
-            second = historicalStandingsHeader?.secondHead
-            third = historicalStandingsHeader?.thirdHead
+            if id == "All" {
+                first = historicalStandingsHeader?.firstHead
+                second = historicalStandingsHeader?.secondHead
+                third = historicalStandingsHeader?.thirdHead
+            } else {
+                first = historicalStandingsHeader?.firstHead
+                second = historicalStandingsHeader?.secondHead
+                third = historicalStandingsHeader?.thirdHead
+                fourth = historicalStandingsHeader?.fourthHead
+                fifth = historicalStandingsHeader?.fifthHead
+            }
         } else {
             first = historicalStandingsHeader?.firstHead
             second = historicalStandingsHeader?.secondHead

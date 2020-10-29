@@ -8,22 +8,6 @@
 
 import Foundation
 
-//struct DriverDetail: Codable {
-//    let detailData: DetailDriverData
-//
-//    enum CodingKeys: String, CodingKey {
-//        case detailData = "MRData"
-//    }
-//}
-
-//struct DetailDriverData: Codable {
-//    let detail: Detail
-//
-//    enum CodingKeys: String, CodingKey {
-//        case detail = "RaceTable"
-//    }
-//}
-
 struct ConstructorDetail: Codable {
     let constructorDetailData: ConstructorDetailData
 

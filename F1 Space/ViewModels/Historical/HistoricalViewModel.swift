@@ -16,6 +16,7 @@ final class HistoricalViewModel {
     private var constructorsHeader = HistoricalStandingsHeader("POS", "Constructor", "Points")
     private var raceHeader = HistoricalStandingsHeader("Grand Prix", "Winner", "Car")
     private var racesDetailDriverHeader = HistoricalStandingsHeader("Grand Prix", "POS", "Time", "Points")
+    private var racesDetailConstructorHeader = HistoricalStandingsHeader("Grand Prix", "Drivers", "POS", "Time", "Points")
     
     private var driversStandings: [DriverStandings] = []
     private var construcorsStandings: [ConstructorStandings] = []
@@ -54,25 +55,6 @@ final class HistoricalViewModel {
         
         API.requestConstructorDetailResult(year: year, id: constructorId) { [weak self] (teamDetail, err) in
             guard let detailTeamRaces = teamDetail?.constructorDetailData.constructorDetailTable.races else { return }
-
-//            var aa = detailTeamRaces.compactMap({ $0.results }).compactMap({ $0.compactMap ({$0.finishStatus})})
-//            var array: [String] = []
-//            var array2 = [[String]]()
-//            for i in aa {
-//                for str in i {
-//                    if str.contains("Finished") {
-//                        array.append(str)
-//                    } else if str.contains("Lap") {
-//                        array.append(str)
-//                    } else {
-//                        array.append("DNF")
-//                    }
-//                }
-//                array2.append(array)
-//                array.removeAll()
-//            }
-//            
-//            print(array2)
 
             self?.racesDetailConstructors = detailTeamRaces
             completion()
@@ -182,7 +164,11 @@ extension HistoricalViewModel: HistoricalViewModelType {
                 return HistoricalHeaderViewModel(raceDetailDriver: racesDetailDriverHeader, category: currentCategory, id: id)
             }
         } else if currentCategory?.lowercased() == HistoricalCategory.teams.rawValue {
-            return HistoricalHeaderViewModel(constructorStandingsHeader: constructorsHeader, category: currentCategory, id: id)
+            if id == "All" {
+                return HistoricalHeaderViewModel(constructorStandingsHeader: constructorsHeader, category: currentCategory, id: id)
+            } else {
+                return HistoricalHeaderViewModel(racesDetailConstructorHeader: racesDetailConstructorHeader, category: currentCategory, id: id)
+            }
         } else {
             return HistoricalHeaderViewModel(raceHeader: raceHeader, category: currentCategory, id: id)
         }

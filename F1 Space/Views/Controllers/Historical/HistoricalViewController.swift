@@ -147,7 +147,7 @@ final class HistoricalViewController: UIViewController {
     }
     
     @objc private func yearButtonPressed() {
-        openTransition(state: .yearChampionship, currentValues: [type().year, type().id])
+        openTransition(state: .yearChampionship, currentValues: [type().year, type().id, type().category])
     }
     
     @objc private func typeSearchButtonPressed() {
@@ -204,6 +204,7 @@ extension HistoricalViewController: HistoricalPickerSelectedDelegate {
     func category(current: String) {
         categoryButton.setTitle(current, for: .normal)
  
+        yearButton.setTitle("2020", for: .normal)
         detailResultID = "All"
         detailResultButton.setTitle("All", for: .normal)
         

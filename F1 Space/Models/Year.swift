@@ -24,6 +24,7 @@ struct Championship: Codable {
     }
 }
 
+//--------------------------------------------------
 
 // MARK: - Driver
 
@@ -63,5 +64,48 @@ struct StandingsList: Codable {
     
     enum CodingKeys: String, CodingKey {
         case season
+    }
+}
+
+// -----------------------------------------------------
+
+//// MARK: - Welcome
+struct ConstructorTakePart: Codable {
+    let сonstructorTakePartData: ConstructorTakePartData
+
+    enum CodingKeys: String, CodingKey {
+        case сonstructorTakePartData = "MRData"
+    }
+}
+
+// MARK: - MRData
+struct ConstructorTakePartData: Codable {
+    let total: String
+    let constructorTakePartTable: ConstructorTakePartTable
+
+    enum CodingKeys: String, CodingKey {
+        case total
+        case constructorTakePartTable = "StandingsTable"
+    }
+}
+
+// MARK: - StandingsTable
+struct ConstructorTakePartTable: Codable {
+    let constructorTakePartList: [ConstructorTakePartList]
+
+    enum CodingKeys: String, CodingKey {
+        case constructorTakePartList = "StandingsLists"
+    }
+}
+
+
+// MARK: - StandingsList
+struct ConstructorTakePartList: Codable {
+    let season: String
+//    let constructorStandings: [ConstructorStanding]
+
+    enum CodingKeys: String, CodingKey {
+        case season
+//        case constructorStandings = "ConstructorStandings"
     }
 }

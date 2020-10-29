@@ -21,6 +21,9 @@ final class API {
         case driverParticipated(id: String)
         case currentDriverStandings
         case constructorDetail(year: String, id: String)
+        case constructorParticipated(id: String)
+        case currentConstructorStandings
+        case constructorChampionship
         
         var urlComponents: URLComponents? {
             switch self {
@@ -48,6 +51,15 @@ final class API {
             case .constructorDetail(let year, let id):
                 return
                     URLComponents(string: "https://ergast.com/api/f1/\(year)/constructors/\(id)/results.json?limit=50")
+            case .constructorParticipated(id: let id):
+                return
+                    URLComponents(string: "https://ergast.com/api/f1/constructors/\(id)/constructorstandings.json?limit=70")
+            case .currentConstructorStandings:
+                return
+                    URLComponents(string: "https://ergast.com/api/f1/current/constructorStandings.json")
+            case .constructorChampionship:
+                return
+                    URLComponents(string: "https://ergast.com/api/f1/constructors/ferrari/constructorstandings.json")
             }
         }
     }
@@ -84,6 +96,18 @@ final class API {
     
     static func requestConstructorDetailResult(year: String, id: String, completion: @escaping (ConstructorDetail?, Error?) -> Void) {
         request(endpoint: .constructorDetail(year: year, id: id), completion: completion)
+    }
+    
+    static func requestConstructorParticipated(id: String, completion: @escaping (ConstructorTakePart?, Error?) -> Void) {
+        request(endpoint: .constructorParticipated(id: id), completion: completion)
+    }
+    
+    static func requestCurrentConstructorStandings(completion: @escaping (CurrentConstructorStandings?, Error?) -> Void) {
+        request(endpoint: .currentConstructorStandings, completion: completion)
+    }
+    
+    static func requestYearConstructorChampionship(completion: @escaping (DriverTakePartYear?, Error?) -> Void) {
+        request(endpoint: .constructorChampionship, completion: completion)
     }
     
     // MARK: - Private Methods

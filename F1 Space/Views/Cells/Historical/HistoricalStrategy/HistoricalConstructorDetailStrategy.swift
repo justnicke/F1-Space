@@ -58,10 +58,10 @@ final class HistoricalConstructorDetailStrategy: HistoricalStandingsStrategyType
     }
     
     func configureHeader(viewModel: HistoricalHeaderViewModel?, for labels: [UILabel]) {
-//        labels[forThe.first].text = viewModel?.first
-//        labels[forThe.second].text = viewModel?.second
-//        labels[forThe.third].text = viewModel?.third
-//        labels[forThe.fourth].text = viewModel?.fourth
-//        labels[forThe.fifth].text = viewModel?.fifth
+        labels[forThe.first].text = viewModel?.first
+        labels[forThe.second].text = viewModel?.second
+        labels[forThe.third].text = viewModel?.third
+        labels[forThe.fourth].text = viewModel?.fourth
+        labels[forThe.fifth].text = viewModel?.fifth
     }
 }
