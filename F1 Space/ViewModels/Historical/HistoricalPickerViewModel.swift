@@ -267,9 +267,9 @@ final class HistoricalPickerViewModel {
                 compeletion()
             }
         } else if type == HistoricalCategory.teams.rawValue {
-            API.requestConstructorStandings(year: year) { [weak self] (constructor, error) in
-                let constructors = constructor?
-                    .constructorData
+            API.requestConstructorStandings(year: year) { [weak self] (constructorz, error) in
+                let constructors = constructorz?
+                    .constructorStandingsData
                     .constructorStandingsTable
                     .constructorStandingsLists.compactMap { $0.constructorStandings }
                 

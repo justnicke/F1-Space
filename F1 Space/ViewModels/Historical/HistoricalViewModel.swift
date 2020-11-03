@@ -114,7 +114,7 @@ final class HistoricalViewModel {
         guard let year = season  else { return }
         
         API.requestConstructorStandings(year: year) { [weak self] (team, err) in
-            let teams = team?.constructorData.constructorStandingsTable.constructorStandingsLists.compactMap { $0.constructorStandings }
+            let teams = team?.constructorStandingsData.constructorStandingsTable.constructorStandingsLists.compactMap { $0.constructorStandings }
             guard let convertedTeams = teams?.reduce([], +) else { return }
             
             self?.construcorsStandings = convertedTeams

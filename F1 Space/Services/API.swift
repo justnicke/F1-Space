@@ -77,7 +77,7 @@ final class API {
         request(endpoint: .driverStandings(year: year), completion: completion)
     }
     
-    static func requestConstructorStandings(year: String, completion: @escaping (ConstructorGroup?, Error?) -> Void) {
+    static func requestConstructorStandings(year: String, completion: @escaping (ConstructorStandingsGroup?, Error?) -> Void) {
         request(endpoint: .constructorStandings(year: year), completion: completion)
     }
     

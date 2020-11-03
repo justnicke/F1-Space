@@ -26,7 +26,7 @@ final class StandingsViewModel: DataSourceViewModelType {
         }
         
         API.requestConstructorStandings(year: "2020") { [weak self] (constructor, err) in
-            let constructors = constructor?.constructorData.constructorStandingsTable.constructorStandingsLists.compactMap { $0.constructorStandings }
+            let constructors = constructor?.constructorStandingsData.constructorStandingsTable.constructorStandingsLists.compactMap { $0.constructorStandings }
             let convertedconstructors = constructors?.reduce([], +)
             self?.constructors = convertedconstructors
             compeletion()

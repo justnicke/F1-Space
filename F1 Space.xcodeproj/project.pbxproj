@@ -11,7 +11,7 @@
 		5E05CD8C24BF28E600EB2EF3 /* DriverStandingsGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E05CD8B24BF28E600EB2EF3 /* DriverStandingsGroup.swift */; };
 		5E05CD8E24BF2B8700EB2EF3 /* Constructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E05CD8D24BF2B8700EB2EF3 /* Constructor.swift */; };
 		5E05CD9024BF2B8F00EB2EF3 /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E05CD8F24BF2B8F00EB2EF3 /* Driver.swift */; };
-		5E05CD9424BF354A00EB2EF3 /* CommonConstructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E05CD9324BF354A00EB2EF3 /* CommonConstructor.swift */; };
+		5E05CD9424BF354A00EB2EF3 /* ConstructorStandingsGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E05CD9324BF354A00EB2EF3 /* ConstructorStandingsGroup.swift */; };
 		5E14A14424BCA1A90058305B /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E14A14324BCA1A90058305B /* API.swift */; };
 		5E26F1E4250F60490065907A /* AutoSizeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E26F1E3250F60490065907A /* AutoSizeButton.swift */; };
 		5E40ECF624B7400700E3AF1F /* StandingConstructorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E40ECF524B7400700E3AF1F /* StandingConstructorCell.swift */; };
@@ -112,7 +112,7 @@
 		5E05CD8B24BF28E600EB2EF3 /* DriverStandingsGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverStandingsGroup.swift; sourceTree = "<group>"; };
 		5E05CD8D24BF2B8700EB2EF3 /* Constructor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constructor.swift; sourceTree = "<group>"; };
 		5E05CD8F24BF2B8F00EB2EF3 /* Driver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Driver.swift; sourceTree = "<group>"; };
-		5E05CD9324BF354A00EB2EF3 /* CommonConstructor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonConstructor.swift; sourceTree = "<group>"; };
+		5E05CD9324BF354A00EB2EF3 /* ConstructorStandingsGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorStandingsGroup.swift; sourceTree = "<group>"; };
 		5E14A14324BCA1A90058305B /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		5E26F1E3250F60490065907A /* AutoSizeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSizeButton.swift; sourceTree = "<group>"; };
 		5E40ECF524B7400700E3AF1F /* StandingConstructorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingConstructorCell.swift; sourceTree = "<group>"; };
@@ -224,8 +224,6 @@
 		5E05CD9124BF340700EB2EF3 /* ConstructorStandings */ = {
 			isa = PBXGroup;
 			children = (
-				5E05CD9324BF354A00EB2EF3 /* CommonConstructor.swift */,
-				5E05CD8D24BF2B8700EB2EF3 /* Constructor.swift */,
 			);
 			path = ConstructorStandings;
 			sourceTree = "<group>";
@@ -381,7 +379,9 @@
 			isa = PBXGroup;
 			children = (
 				5E05CD8B24BF28E600EB2EF3 /* DriverStandingsGroup.swift */,
+				5E05CD9324BF354A00EB2EF3 /* ConstructorStandingsGroup.swift */,
 				5E05CD8F24BF2B8F00EB2EF3 /* Driver.swift */,
+				5E05CD8D24BF2B8700EB2EF3 /* Constructor.swift */,
 			);
 			path = "All Model";
 			sourceTree = "<group>";
@@ -768,7 +768,7 @@
 				5ECFB2AD2501132800ED94EA /* DismissAnimation.swift in Sources */,
 				5E47932025359CC500332FB4 /* HistoricalEnums.swift in Sources */,
 				5EA886F924D1A9A60079EDDC /* Formatter.swift in Sources */,
-				5E05CD9424BF354A00EB2EF3 /* CommonConstructor.swift in Sources */,
+				5E05CD9424BF354A00EB2EF3 /* ConstructorStandingsGroup.swift in Sources */,
 				5E05CD8A24BEF23900EB2EF3 /* ConstructorsColor.swift in Sources */,
 				5E74F75C253EC799005C67C0 /* DriverDetail.swift in Sources */,
 				5ECFB2AB2501132800ED94EA /* DarkenedPresentationController.swift in Sources */,
