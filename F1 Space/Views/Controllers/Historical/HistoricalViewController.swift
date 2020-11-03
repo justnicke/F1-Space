@@ -20,7 +20,7 @@ final class HistoricalViewController: UIViewController {
     }()
     private let categoryButton: AutoSizeButton = {
         let button = AutoSizeButton(type: .custom)
-        button.setTitle("Teams", for: .normal)
+        button.setTitle("Races", for: .normal)
         return button
     }()
     private let detailResultButton: AutoSizeButton = {
@@ -199,6 +199,10 @@ extension HistoricalViewController: HistoricalPickerSelectedDelegate {
     func year(currentСhampionship: String) {
         yearButton.setTitle(String(currentСhampionship), for: .normal)
         requestViewModel()
+        
+        if detailResultButton.titleLabel?.text != "All" {
+            detailResultButton.setTitle("All", for: .normal)
+        }
     }
     
     func category(current: String) {

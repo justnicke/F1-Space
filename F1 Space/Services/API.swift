@@ -24,42 +24,49 @@ final class API {
         case constructorParticipated(id: String)
         case currentConstructorStandings
         case constructorChampionship
+        case concreteRaceResults(year: String, roundId: String)
+        
+        // https
         
         var urlComponents: URLComponents? {
             switch self {
             case .driverStandings(let year):
                 return
-                    URLComponents(string: "https://ergast.com/api/f1/\(year)/driverStandings.json")
+                    URLComponents(string: "http://ergast.com/api/f1/\(year)/driverStandings.json")
             case .constructorStandings(let year):
                 return
-                    URLComponents(string: "https://ergast.com/api/f1/\(year)/constructorStandings.json")
+                    URLComponents(string: "http://ergast.com/api/f1/\(year)/constructorStandings.json")
             case .championship:
                 return
-                    URLComponents(string: "https://ergast.com/api/f1/seasons.json")
+                    URLComponents(string: "http://ergast.com/api/f1/seasons.json")
             case .grandPrix(let year):
                 return
-                    URLComponents(string: "https://ergast.com/api/f1/\(year)/results/1.json")
+                    URLComponents(string: "http://ergast.com/api/f1/\(year)/results/1.json")
             case .driverDetail(let year, let id):
                 return
-                    URLComponents(string: "https://ergast.com/api/f1/\(year)/drivers/\(id)/results.json")
+                    URLComponents(string: "http://ergast.com/api/f1/\(year)/drivers/\(id)/results.json")
             case .driverParticipated(let id):
                 return
-                    URLComponents(string: "https://ergast.com/api/f1/drivers/\(id)/driverStandings.json")
+                    URLComponents(string: "http://ergast.com/api/f1/drivers/\(id)/driverStandings.json")
             case .currentDriverStandings:
                 return
-                    URLComponents(string: "https://ergast.com/api/f1/current/driverStandings.json")
+                    URLComponents(string: "http://ergast.com/api/f1/current/driverStandings.json")
             case .constructorDetail(let year, let id):
                 return
-                    URLComponents(string: "https://ergast.com/api/f1/\(year)/constructors/\(id)/results.json?limit=50")
+                    URLComponents(string: "http://ergast.com/api/f1/\(year)/constructors/\(id)/results.json?limit=50")
             case .constructorParticipated(id: let id):
                 return
-                    URLComponents(string: "https://ergast.com/api/f1/constructors/\(id)/constructorstandings.json?limit=70")
+                    URLComponents(string: "http://ergast.com/api/f1/constructors/\(id)/constructorstandings.json?limit=70")
             case .currentConstructorStandings:
                 return
-                    URLComponents(string: "https://ergast.com/api/f1/current/constructorStandings.json")
+                    URLComponents(string: "http://ergast.com/api/f1/current/constructorStandings.json")
             case .constructorChampionship:
                 return
-                    URLComponents(string: "https://ergast.com/api/f1/constructors/ferrari/constructorstandings.json")
+                    URLComponents(string: "http://ergast.com/api/f1/constructors/ferrari/constructorstandings.json")
+            case .concreteRaceResults(year: let year, roundId: let round):
+                return
+                    URLComponents(string: "http://ergast.com/api/f1/\(year)/\(round)/results.json")
+                                          
             }
         }
     }
@@ -110,6 +117,11 @@ final class API {
         request(endpoint: .constructorChampionship, completion: completion)
     }
     
+    static func requestConcreteRaceResults(year: String, roundId: String, completion: @escaping (RacesDetail?, Error?) -> Void) {
+        request(endpoint: .concreteRaceResults(year: year, roundId: roundId), completion: completion)
+    }
+    
+    
     // MARK: - Private Methods
     
     /// Generic request method
@@ -134,6 +146,7 @@ final class API {
                 } catch {
                     DispatchQueue.main.async { completion(nil, error) }
                     print("ERROR!!!: \(String(describing: error))")
+                    print(error.localizedDescription)
                 }
             }
             task.resume()

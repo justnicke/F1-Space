@@ -17,12 +17,14 @@ final class HistoricalViewModel {
     private var raceHeader = HistoricalStandingsHeader("Grand Prix", "Winner", "Car")
     private var racesDetailDriverHeader = HistoricalStandingsHeader("Grand Prix", "POS", "Time", "Points")
     private var racesDetailConstructorHeader = HistoricalStandingsHeader("Grand Prix", "Drivers", "POS", "Time", "Points")
+    private var racesDetailHeader = HistoricalStandingsHeader("POS", "Drivers", "Time", "Points")
     
     private var driversStandings: [DriverStandings] = []
     private var construcorsStandings: [ConstructorStandings] = []
     private var races: [Race] = []
     private var racesDetailDriver: [Race] = []
     private var racesDetailConstructors: [Race] = []
+    private var racesDetail: [Result] = []
     
     // MARK: - Public Methods
     
@@ -40,11 +42,31 @@ final class HistoricalViewModel {
                 requestConstructorDetail(season: year, id: id, completion: compeletion)
             }
         } else {
-            requestRaces(season: year, completion: compeletion)
+            if id == "All" {
+                requestRaces(season: year, completion: compeletion)
+            } else {
+                requestRacesDetail(season: year, id: id, completion: compeletion)
+            }
         }
     }
     
     // MARK: - Private Methods
+    
+    private func requestRacesDetail(season: String?, id: String?, completion: @escaping () -> (Void)) {
+        guard let year = season,
+              let crucitId = id
+        else {
+            return
+        }
+        
+        API.requestConcreteRaceResults(year: year, roundId: crucitId) {  [weak self] (races, err) in
+            guard let racesDetail = races?.racesDetailData.racesDetaiTable.races.compactMap({ $0.results }) else { return }
+            let result = racesDetail.reduce([], +)
+            
+            self?.racesDetail = result
+            completion()
+        }
+    }
     
     private func requestConstructorDetail(season: String?, id: String?, completion: @escaping () -> (Void)) {
         guard let year = season,
@@ -129,7 +151,11 @@ extension HistoricalViewModel: HistoricalViewModelType {
                 return racesDetailConstructors.count
             }
         } else {
-            return races.count
+            if id == "All" {
+                return races.count
+            } else {
+                return racesDetail.count
+            }
         }
     }
     
@@ -151,8 +177,13 @@ extension HistoricalViewModel: HistoricalViewModelType {
                 return HistoricalCellViewModel(raceDetailConstructor: detailConstructor, category: currentCategory, id: id)
             }
         } else {
-            let race = races[indexPath.row]
-            return HistoricalCellViewModel(race: race, category: currentCategory, id: id)
+            if id == "All" {
+                let race = races[indexPath.row]
+                return HistoricalCellViewModel(race: race, category: currentCategory, id: id)
+            } else {
+                let raceDetail = racesDetail[indexPath.row]
+                return HistoricalCellViewModel(raceDetail: raceDetail, category: currentCategory, id: id)
+            }
         }
     }
     
@@ -170,7 +201,11 @@ extension HistoricalViewModel: HistoricalViewModelType {
                 return HistoricalHeaderViewModel(racesDetailConstructorHeader: racesDetailConstructorHeader, category: currentCategory, id: id)
             }
         } else {
-            return HistoricalHeaderViewModel(raceHeader: raceHeader, category: currentCategory, id: id)
+            if id == "All" {
+                return HistoricalHeaderViewModel(raceHeader: raceHeader, category: currentCategory, id: id)
+            } else {
+                return HistoricalHeaderViewModel(racesDetailHeader: racesDetailHeader, category: currentCategory, id: id)
+            }
         }
     }
 }

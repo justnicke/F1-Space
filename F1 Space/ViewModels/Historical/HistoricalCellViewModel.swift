@@ -26,6 +26,7 @@ final class HistoricalCellViewModel {
     private var race: Race?
     private var detailDriver: Race?
     private var detailContructor: Race?
+    private var detailRace: Result?
     
     // MARK: - Constructors
     
@@ -51,6 +52,11 @@ final class HistoricalCellViewModel {
     
     init(raceDetailConstructor: Race?, category: String?, id: String?) {
         self.detailContructor = raceDetailConstructor
+        setup(category: category, id: id)
+    }
+    
+    init(raceDetail: Result?, category: String?, id: String?) {
+        self.detailRace = raceDetail
         setup(category: category, id: id)
     }
     
@@ -119,9 +125,28 @@ final class HistoricalCellViewModel {
                 fifth = fifthhLabel
             }
         } else {
-            first = race?.raceName.replacingOccurrences(of: "Grand Prix", with: "")
-            second = race?.results.first?.driver.familyName
-            third = race?.results.first?.constructor.name
+            if id == "All" {
+                first = race?.raceName.replacingOccurrences(of: "Grand Prix", with: "")
+                second = race?.results.first?.driver.familyName
+                third = race?.results.first?.constructor.name
+            } else {
+                first = detailRace?.position
+                second = detailRace?.driver.familyName
+                
+                guard let finishStatus = detailRace?.finishStatus else { return }
+                let time = detailRace?.resultTime?.time
+                
+                if finishStatus.contains("Finished") {
+                    third = time
+                } else if finishStatus.contains("Lap") {
+                    third = finishStatus
+                } else {
+                    third = "DNF"
+                }
+                
+                fourth = detailRace?.points
+                
+            }
         }
     }
 }

@@ -95,68 +95,88 @@ final class HistoricalPickerViewModel {
         if category == HistoricalCategory.drivers.rawValue {
             temporaryStorageDriver(values: values, compeletion: compeletion)
         } else if category == HistoricalCategory.teams.rawValue {
+            temporaryStorageConstructor(values: values, compeletion: compeletion)
+        } else {
             if values[detailIndex] == "All" {
-                API.requestYearConstructorChampionship { [weak self] (constructorsYear, error) in
-                    self?.pickerResult.totalSeasons = constructorsYear?.takePartYear.total
-                    self?.getChampionshipYear(temporaryMinus: 0)
+                API.requestYearChampionship { [weak self] (dates, error) in
+                    self?.pickerResult.totalSeasons = dates?.championship.yearsCount
+                    self?.getChampionshipYear(temporaryMinus: 1)
                     compeletion()
                 }
             } else {
-                guard let identity = values[detailIndex] else { return }
+                print(values)
                 
-                API.requestCurrentConstructorStandings { [weak self] (currentConstructorsYear, error) in
-                    guard let checkID = currentConstructorsYear?
-                            .currentConstructorStandingsData
-                            .currentConstructorStandingsTable
-                            .currentConstructorStandingsLists.first?
-                            .constructorStandings.compactMap({ $0.constructor.constructorId }) else {
-                        return
-                    }
-                    
-                    guard let checkedCurrentSeason = currentConstructorsYear?
-                            .currentConstructorStandingsData
-                            .currentConstructorStandingsTable
-                            .currentConstructorStandingsLists.first?
-                            .season else {
-                        return
-                    }
-                    
-                    if checkID.contains(identity) {
-                        API.requestConstructorParticipated(id: identity) { [weak self] (takePart, err) in
-                            
-                            var correctTakePartConstructorYear = [String]()
-                            
-                            
-                            guard let currentTakePartConstructor = takePart?
-                                    .сonstructorTakePartData
-                                    .constructorTakePartTable
-                                    .constructorTakePartList
-                                    .compactMap({ $0.season })
-                                    .sorted(by: { $0 > $1 }) else {
-                                return
-                            }
-                            
-                            correctTakePartConstructorYear.append(checkedCurrentSeason)
-                            correctTakePartConstructorYear.append(contentsOf: currentTakePartConstructor)
-                    
-                            self?.pickerResult.championships = correctTakePartConstructorYear
-                            compeletion()
+                API.requestYearChampionship { [weak self] (dates, error) in
+                    self?.pickerResult.totalSeasons = dates?.championship.yearsCount
+                    self?.getChampionshipYear(temporaryMinus: 1)
+                    compeletion()
+                }
+            }
+        }
+    }
+    
+    func temporaryStorageConstructor(values: [String?], compeletion: @escaping () -> (Void)) {
+        if values[detailIndex] == "All" {
+            API.requestYearConstructorChampionship { [weak self] (constructorsYear, error) in
+                self?.pickerResult.totalSeasons = constructorsYear?.takePartYear.total
+                self?.getChampionshipYear(temporaryMinus: 0)
+                compeletion()
+            }
+        } else {
+            guard let identity = values[detailIndex] else { return }
+            
+            API.requestCurrentConstructorStandings { [weak self] (currentConstructorsYear, error) in
+                guard let checkID = currentConstructorsYear?
+                        .currentConstructorStandingsData
+                        .currentConstructorStandingsTable
+                        .currentConstructorStandingsLists.first?
+                        .constructorStandings.compactMap({ $0.constructor.constructorId }) else {
+                    return
+                }
+                
+                guard let checkedCurrentSeason = currentConstructorsYear?
+                        .currentConstructorStandingsData
+                        .currentConstructorStandingsTable
+                        .currentConstructorStandingsLists.first?
+                        .season else {
+                    return
+                }
+                
+                if checkID.contains(identity) {
+                    API.requestConstructorParticipated(id: identity) { [weak self] (takePart, err) in
+                        
+                        var correctTakePartConstructorYear = [String]()
+                        
+                        
+                        guard let currentTakePartConstructor = takePart?
+                                .сonstructorTakePartData
+                                .constructorTakePartTable
+                                .constructorTakePartList
+                                .compactMap({ $0.season })
+                                .sorted(by: { $0 > $1 }) else {
+                            return
                         }
-                    } else {
-                        API.requestConstructorParticipated(id: identity) { [weak self] (takePart, err) in
-                            
-                            guard let currentTakePartDriver = takePart?
-                                    .сonstructorTakePartData
-                                    .constructorTakePartTable
-                                    .constructorTakePartList
-                                    .compactMap({ $0.season })
-                                    .sorted(by: { $0 > $1 }) else {
-                                return
-                            }
-                            
-                            self?.pickerResult.championships = currentTakePartDriver
-                            compeletion()
+                        
+                        correctTakePartConstructorYear.append(checkedCurrentSeason)
+                        correctTakePartConstructorYear.append(contentsOf: currentTakePartConstructor)
+                        
+                        self?.pickerResult.championships = correctTakePartConstructorYear
+                        compeletion()
+                    }
+                } else {
+                    API.requestConstructorParticipated(id: identity) { [weak self] (takePart, err) in
+                        
+                        guard let currentTakePartDriver = takePart?
+                                .сonstructorTakePartData
+                                .constructorTakePartTable
+                                .constructorTakePartList
+                                .compactMap({ $0.season })
+                                .sorted(by: { $0 > $1 }) else {
+                            return
                         }
+                        
+                        self?.pickerResult.championships = currentTakePartDriver
+                        compeletion()
                     }
                 }
             }
@@ -236,7 +256,7 @@ final class HistoricalPickerViewModel {
                 else {
                     return
                 }
-                guard let driversID = drivers?.reduce([], +).compactMap({ $0.driver.driverID  })
+                guard let driversID = drivers?.reduce([], +).compactMap({ $0.driver.driverID })
                 else {
                     return
                 }

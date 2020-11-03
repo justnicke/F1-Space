@@ -67,6 +67,8 @@
 		5E82B52224C5D6AC00377859 /* ConstructorCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E82B52124C5D6AC00377859 /* ConstructorCellViewModel.swift */; };
 		5E8662CF24E2CE9500064D4E /* AppIncludes.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E8662CE24E2CE9500064D4E /* AppIncludes.jpg */; };
 		5E8662D124E2D6B000064D4E /* presentation.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5E8662D024E2D6B000064D4E /* presentation.gif */; };
+		5E8E01AF255147E800A52CDD /* RacesDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8E01AE255147E800A52CDD /* RacesDetail.swift */; };
+		5E8E01B3255155BD00A52CDD /* HistoricalRaceDetailStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8E01B2255155BD00A52CDD /* HistoricalRaceDetailStrategy.swift */; };
 		5E9EB95224C2D99A00023668 /* StandingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9EB95124C2D99A00023668 /* StandingsViewModel.swift */; };
 		5E9EB95424C2DA2D00023668 /* StandingsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9EB95324C2DA2D00023668 /* StandingsCellViewModel.swift */; };
 		5EA886F224D164F30079EDDC /* RSS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA886F124D164F30079EDDC /* RSS.swift */; };
@@ -171,6 +173,8 @@
 		5E8662CB24E2C7BA00064D4E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		5E8662CE24E2CE9500064D4E /* AppIncludes.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = AppIncludes.jpg; sourceTree = "<group>"; };
 		5E8662D024E2D6B000064D4E /* presentation.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = presentation.gif; sourceTree = "<group>"; };
+		5E8E01AE255147E800A52CDD /* RacesDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RacesDetail.swift; sourceTree = "<group>"; };
+		5E8E01B2255155BD00A52CDD /* HistoricalRaceDetailStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalRaceDetailStrategy.swift; sourceTree = "<group>"; };
 		5E9EB95124C2D99A00023668 /* StandingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsViewModel.swift; sourceTree = "<group>"; };
 		5E9EB95324C2DA2D00023668 /* StandingsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsCellViewModel.swift; sourceTree = "<group>"; };
 		5EA886F124D164F30079EDDC /* RSS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSS.swift; sourceTree = "<group>"; };
@@ -238,6 +242,7 @@
 				5EB4707C2541A44B00FB93B9 /* CurrentDriverStandings.swift */,
 				5E4C1D59254AF76C00C1A3BB /* CurrentConstructorStandings.swift */,
 				5EB470862541BC6900FB93B9 /* ConstructorDetail.swift */,
+				5E8E01AE255147E800A52CDD /* RacesDetail.swift */,
 				5E4793492535AF3C00332FB4 /* Historical */,
 			);
 			path = Models;
@@ -476,6 +481,7 @@
 				5E82ACA425387A9C0015A168 /* HistoricalRaceStrategy.swift */,
 				5EB470822541AA5B00FB93B9 /* HistoricalDriverDetailStrategy.swift */,
 				5EF191D52548340D0045FD7C /* HistoricalConstructorDetailStrategy.swift */,
+				5E8E01B2255155BD00A52CDD /* HistoricalRaceDetailStrategy.swift */,
 			);
 			path = HistoricalStrategy;
 			sourceTree = "<group>";
@@ -739,6 +745,7 @@
 				5EB470872541BC6900FB93B9 /* ConstructorDetail.swift in Sources */,
 				5ECFB2AE2501132800ED94EA /* TransitionDirection.swift in Sources */,
 				5ECFB2A82501132800ED94EA /* PanelTransition.swift in Sources */,
+				5E8E01AF255147E800A52CDD /* RacesDetail.swift in Sources */,
 				5E5F1B3224D5600200F81366 /* CustromActivityIndicator.swift in Sources */,
 				5E419EC724B5A855006421F6 /* AppDelegate.swift in Sources */,
 				5E419EF924B5DEC7006421F6 /* DriverViewController.swift in Sources */,
@@ -797,6 +804,7 @@
 				5EFD898924FE458200A39838 /* HistoricalPickerViewController.swift in Sources */,
 				5E9EB95224C2D99A00023668 /* StandingsViewModel.swift in Sources */,
 				5E14A14424BCA1A90058305B /* API.swift in Sources */,
+				5E8E01B3255155BD00A52CDD /* HistoricalRaceDetailStrategy.swift in Sources */,
 				5E82AC9E253838C40015A168 /* HistoricalHeaderViewModel.swift in Sources */,
 				5EB470832541AA5B00FB93B9 /* HistoricalDriverDetailStrategy.swift in Sources */,
 				5ECFB2A62501132800ED94EA /* TransitionDriver.swift in Sources */,

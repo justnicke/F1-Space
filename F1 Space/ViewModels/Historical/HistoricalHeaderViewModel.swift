@@ -49,6 +49,10 @@ final class HistoricalHeaderViewModel {
         self.historicalStandingsHeader = racesDetailConstructorHeader
         setup(category: category, id: id)
     }
+    init(racesDetailHeader: HistoricalStandingsHeader?, category: String?, id: String?) {
+        self.historicalStandingsHeader = racesDetailHeader
+        setup(category: category, id: id)
+    }
     
     // MARK: Private Methods
     
@@ -78,9 +82,16 @@ final class HistoricalHeaderViewModel {
                 fifth = historicalStandingsHeader?.fifthHead
             }
         } else {
-            first = historicalStandingsHeader?.firstHead
-            second = historicalStandingsHeader?.secondHead
-            third = historicalStandingsHeader?.thirdHead
+            if id == "All" {
+                first = historicalStandingsHeader?.firstHead
+                second = historicalStandingsHeader?.secondHead
+                third = historicalStandingsHeader?.thirdHead
+            } else {
+                first = historicalStandingsHeader?.firstHead
+                second = historicalStandingsHeader?.secondHead
+                third = historicalStandingsHeader?.thirdHead
+                fourth = historicalStandingsHeader?.thirdHead
+            }
         }
     }
 }

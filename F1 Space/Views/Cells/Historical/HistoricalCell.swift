@@ -68,9 +68,15 @@ final class HistoricalCell: UITableViewCell {
                 historicalStandingsStrategy?.configureCell(viewModel: viewModel, for: group().labels)
             }
         } else {
-            historicalStandingsStrategy = HistoricalRaceStrategy()
-            historicalStandingsStrategy?.setupUI(for: group().labels, withAdjustable: group().widths, byFrame: rootView)
-            historicalStandingsStrategy?.configureCell(viewModel: viewModel, for: group().labels)
+            if id == "All" {
+                historicalStandingsStrategy = HistoricalRaceStrategy()
+                historicalStandingsStrategy?.setupUI(for: group().labels, withAdjustable: group().widths, byFrame: rootView)
+                historicalStandingsStrategy?.configureCell(viewModel: viewModel, for: group().labels)
+            } else {
+                historicalStandingsStrategy = HistoricalRaceDetailStrategy()
+                historicalStandingsStrategy?.setupUI(for: group().labels, withAdjustable: group().widths, byFrame: rootView)
+                historicalStandingsStrategy?.configureCell(viewModel: viewModel, for: group().labels)
+            }
         }
     }
     
