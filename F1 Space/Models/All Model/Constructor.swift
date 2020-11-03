@@ -9,6 +9,15 @@
 import Foundation
 
 struct Constructor: Codable {
+    let constructorID: String
+    let url: String
     let name: String
-    let constructorId: String
+    let nationality: String
+    
+    enum CodingKeys: String, CodingKey {
+        case constructorID = "constructorId"
+        case url
+        case name
+        case nationality
+    }
 }

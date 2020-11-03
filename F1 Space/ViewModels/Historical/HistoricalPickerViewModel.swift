@@ -130,7 +130,7 @@ final class HistoricalPickerViewModel {
                         .currentConstructorStandingsData
                         .currentConstructorStandingsTable
                         .currentConstructorStandingsLists.first?
-                        .constructorStandings.compactMap({ $0.constructor.constructorId }) else {
+                        .constructorStandings.compactMap({ $0.constructor.constructorID }) else {
                     return
                 }
                 
@@ -277,7 +277,7 @@ final class HistoricalPickerViewModel {
                 else {
                     return
                 }
-                guard let constructorsID = constructors?.reduce([], +).compactMap({ $0.constructor.constructorId })
+                guard let constructorsID = constructors?.reduce([], +).compactMap({ $0.constructor.constructorID })
                 else {
                     return
                 }
