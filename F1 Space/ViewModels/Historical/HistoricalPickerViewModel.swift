@@ -250,7 +250,7 @@ final class HistoricalPickerViewModel {
         
         if type == HistoricalCategory.drivers.rawValue {
             API.requestDriverStandings(year: year) { [weak self] (driver, error) in
-                let drivers = driver?.driverData.driverStandingsTable.driverStandingsLists.compactMap { $0.driverStandings }
+                let drivers = driver?.driverStandingsData.driverStandingsTable.driverStandingsLists.compactMap { $0.driverStandings }
                 
                 guard let driver = drivers?.reduce([], +).compactMap({ $0.driver.givenName + " " + $0.driver.familyName })
                 else {

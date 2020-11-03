@@ -22,7 +22,7 @@ final class DriverCellViewModel: NSObject {
         return driver?.driver.familyName.uppercased()
     }
     var teamName: String? {
-        return driver?.team.first?.name
+        return driver?.constructors.first?.name
     }
     var numberPts: String? {
         return driver?.points

@@ -73,7 +73,7 @@ final class API {
     
     // MARK: - Public Methods
     
-    static func requestDriverStandings(year: String, completion: @escaping (DriverGroup?, Error?) -> Void) {
+    static func requestDriverStandings(year: String, completion: @escaping (DriverStandingsGroup?, Error?) -> Void) {
         request(endpoint: .driverStandings(year: year), completion: completion)
     }
     

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5E05CD8A24BEF23900EB2EF3 /* ConstructorsColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E05CD8924BEF23900EB2EF3 /* ConstructorsColor.swift */; };
-		5E05CD8C24BF28E600EB2EF3 /* CommonDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E05CD8B24BF28E600EB2EF3 /* CommonDriver.swift */; };
+		5E05CD8C24BF28E600EB2EF3 /* DriverStandingsGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E05CD8B24BF28E600EB2EF3 /* DriverStandingsGroup.swift */; };
 		5E05CD8E24BF2B8700EB2EF3 /* Constructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E05CD8D24BF2B8700EB2EF3 /* Constructor.swift */; };
 		5E05CD9024BF2B8F00EB2EF3 /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E05CD8F24BF2B8F00EB2EF3 /* Driver.swift */; };
 		5E05CD9424BF354A00EB2EF3 /* CommonConstructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E05CD9324BF354A00EB2EF3 /* CommonConstructor.swift */; };
@@ -109,7 +109,7 @@
 
 /* Begin PBXFileReference section */
 		5E05CD8924BEF23900EB2EF3 /* ConstructorsColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorsColor.swift; sourceTree = "<group>"; };
-		5E05CD8B24BF28E600EB2EF3 /* CommonDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonDriver.swift; sourceTree = "<group>"; };
+		5E05CD8B24BF28E600EB2EF3 /* DriverStandingsGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverStandingsGroup.swift; sourceTree = "<group>"; };
 		5E05CD8D24BF2B8700EB2EF3 /* Constructor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constructor.swift; sourceTree = "<group>"; };
 		5E05CD8F24BF2B8F00EB2EF3 /* Driver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Driver.swift; sourceTree = "<group>"; };
 		5E05CD9324BF354A00EB2EF3 /* CommonConstructor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonConstructor.swift; sourceTree = "<group>"; };
@@ -234,7 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				5EA886F524D165EB0079EDDC /* News */,
-				5E4793252535A79C00332FB4 /* DriverStandings */,
+				5E4793252535A79C00332FB4 /* All Model */,
 				5E05CD9124BF340700EB2EF3 /* ConstructorStandings */,
 				5E74F75B253EC799005C67C0 /* DriverDetail.swift */,
 				5E65123824EFBB6700008D67 /* Races.swift */,
@@ -377,13 +377,13 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		5E4793252535A79C00332FB4 /* DriverStandings */ = {
+		5E4793252535A79C00332FB4 /* All Model */ = {
 			isa = PBXGroup;
 			children = (
-				5E05CD8B24BF28E600EB2EF3 /* CommonDriver.swift */,
+				5E05CD8B24BF28E600EB2EF3 /* DriverStandingsGroup.swift */,
 				5E05CD8F24BF2B8F00EB2EF3 /* Driver.swift */,
 			);
-			path = DriverStandings;
+			path = "All Model";
 			sourceTree = "<group>";
 		};
 		5E4793362535AB8B00332FB4 /* Historical */ = {
@@ -737,7 +737,7 @@
 				5E6A1337252F002F0012CFEC /* HistoricalStandingsHeader.swift in Sources */,
 				5E5FCB622513438F00618534 /* HistoricalPickerViewModel.swift in Sources */,
 				5E4CA6E22519E1AB0035E6F6 /* HistoricalViewModel.swift in Sources */,
-				5E05CD8C24BF28E600EB2EF3 /* CommonDriver.swift in Sources */,
+				5E05CD8C24BF28E600EB2EF3 /* DriverStandingsGroup.swift in Sources */,
 				5EFD898724FE251E00A39838 /* HistoricalViewController.swift in Sources */,
 				5E7DB98024D05A6E0029C0EE /* NewsCell.swift in Sources */,
 				5E4C1D5A254AF76C00C1A3BB /* CurrentConstructorStandings.swift in Sources */,

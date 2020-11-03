@@ -102,7 +102,7 @@ final class HistoricalViewModel {
         guard let year = season else { return }
         
         API.requestDriverStandings(year: year) { [weak self] (driver, err) in
-            let drivers = driver?.driverData.driverStandingsTable.driverStandingsLists.compactMap { $0.driverStandings }
+            let drivers = driver?.driverStandingsData.driverStandingsTable.driverStandingsLists.compactMap { $0.driverStandings }
             guard let convertedDrivers = drivers?.reduce([], +) else { return }
             
             self?.driversStandings = convertedDrivers

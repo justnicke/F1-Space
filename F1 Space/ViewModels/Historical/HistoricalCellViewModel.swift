@@ -68,7 +68,7 @@ final class HistoricalCellViewModel {
                 first = driverStanding?.position
                 second = driverStanding?.driver.familyName
                 // if the driver changed teams during the year
-                let constructors = driverStanding?.team.map { $0.name }
+                let constructors = driverStanding?.constructors.map { $0.name }
                 third = constructors?.joined(separator: "\n")
                 fourth = driverStanding?.points
             } else {
