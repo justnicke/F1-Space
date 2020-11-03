@@ -8,23 +8,25 @@
 
 import Foundation
 
-
-
 struct Driver: Codable {
-    var driverID: String
-    var givenName: String
-    var familyName: String
-    var nationality: String
-    
+    let driverID: String
+    let permanentNumber: String
+    let code: String
+    let url: String
+    let givenName: String
+    let familyName: String
+    let dateOfBirth: String
+    let nationality: String
+
     enum CodingKeys: String, CodingKey {
         case driverID = "driverId"
-        case givenName = "givenName"
-        case familyName = "familyName"
-        case nationality = "nationality"
+        case permanentNumber
+        case code
+        case url
+        case givenName
+        case familyName
+        case dateOfBirth
+        case nationality
     }
-}
-
-struct Team: Codable {
-    let name: String
 }
 
