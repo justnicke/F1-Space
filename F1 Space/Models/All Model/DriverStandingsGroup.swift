@@ -1,5 +1,5 @@
 //
-//  CommonStanding.swift
+//  DriverStandingsGroup.swift
 //  F1 Space
 //
 //  Created by Nikita Sukachev on 15.07.2020.
@@ -23,7 +23,7 @@ struct DriverStandingsData: Codable {
     let limit: String
     let offset: String
     let total: String
-    var driverStandingsTable: DriverStandingsTable
+    let driverStandingsTable: DriverStandingsTable
     
     enum CodingKeys: String, CodingKey {
         case xmlns
@@ -38,7 +38,7 @@ struct DriverStandingsData: Codable {
 
 struct DriverStandingsTable: Codable {
     let season: String
-    var driverStandingsLists: [DriverStandingsLists]
+    let driverStandingsLists: [DriverStandingsLists]
     
     enum CodingKeys: String, CodingKey {
         case season
@@ -49,7 +49,7 @@ struct DriverStandingsTable: Codable {
 struct DriverStandingsLists: Codable {
     let season: String
     let round: String
-    var driverStandings: [DriverStandings]
+    let driverStandings: [DriverStandings]
     
     enum CodingKeys: String, CodingKey {
         case season

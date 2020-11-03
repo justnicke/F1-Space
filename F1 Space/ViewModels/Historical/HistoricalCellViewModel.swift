@@ -75,9 +75,9 @@ final class HistoricalCellViewModel {
                 first = detailDriver?.raceName.replacingOccurrences(of: "Grand Prix", with: "")
                 second = detailDriver?.results.first?.position
                 // Исправить тк круговые считаются сошедшими
-                let checkFinished = detailDriver?.results.first?.finishStatus
+                let checkFinished = detailDriver?.results.first?.status
                 if checkFinished == "Finished" {
-                    third = detailDriver?.results.first?.resultTime?.time
+                    third = detailDriver?.results.first?.time.time
                 } else {
                     third = "DNF"
                 }
@@ -100,9 +100,9 @@ final class HistoricalCellViewModel {
                 let thirdLabel = detailContructor?.results.compactMap({ $0.position }).joined(separator: "\n")
                 third = thirdLabel
                 
-                let aaa = detailContructor?.results.compactMap({$0.finishStatus})
+                let aaa = detailContructor?.results.compactMap({ $0.status })
                 
-                let time = detailContructor?.results.compactMap({$0.resultTime?.time})
+                let time = detailContructor?.results.compactMap({$0.time.time})
                 
                 var array = [String]()
                 var pass = true
@@ -133,8 +133,8 @@ final class HistoricalCellViewModel {
                 first = detailRace?.position
                 second = detailRace?.driver.familyName
                 
-                guard let finishStatus = detailRace?.finishStatus else { return }
-                let time = detailRace?.resultTime?.time
+                guard let finishStatus = detailRace?.status else { return }
+                let time = detailRace?.time.time
                 
                 if finishStatus.contains("Finished") {
                     third = time

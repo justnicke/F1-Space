@@ -1,5 +1,5 @@
 //
-//  CommonConstructor.swift
+//  ConstructorStandingsGroup.swift
 //  F1 Space
 //
 //  Created by Nikita Sukachev on 15.07.2020.
@@ -23,7 +23,7 @@ struct ConstructorStandingsData: Codable {
     let limit: String
     let offset: String
     let total: String
-    var constructorStandingsTable: ConstructorStandingsTable
+    let constructorStandingsTable: ConstructorStandingsTable
     
     enum CodingKeys: String, CodingKey {
         case xmlns
@@ -38,7 +38,7 @@ struct ConstructorStandingsData: Codable {
 
 struct ConstructorStandingsTable: Codable {
     let season: String
-    var constructorStandingsLists: [ConstructorStandingsLists]
+    let constructorStandingsLists: [ConstructorStandingsLists]
     
     enum CodingKeys: String, CodingKey {
         case season
@@ -49,7 +49,7 @@ struct ConstructorStandingsTable: Codable {
 struct ConstructorStandingsLists: Codable {
     let season: String
     let round: String
-    var constructorStandings: [ConstructorStandings]
+    let constructorStandings: [ConstructorStandings]
     
     enum CodingKeys: String, CodingKey {
         case season

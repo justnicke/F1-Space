@@ -50,7 +50,7 @@
 		5E5F1B3824D5DDE300F81366 /* CustomAnimationActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5F1B3724D5DDE300F81366 /* CustomAnimationActivityIndicator.swift */; };
 		5E5F1B3A24D5F37F00F81366 /* RefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5F1B3924D5F37F00F81366 /* RefreshView.swift */; };
 		5E5FCB622513438F00618534 /* HistoricalPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5FCB612513438F00618534 /* HistoricalPickerViewModel.swift */; };
-		5E65123924EFBB6700008D67 /* Races.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E65123824EFBB6700008D67 /* Races.swift */; };
+		5E65123924EFBB6700008D67 /* RaceResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E65123824EFBB6700008D67 /* RaceResult.swift */; };
 		5E6932BF252DA1BD0045E030 /* HistoricalHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6932BE252DA1BD0045E030 /* HistoricalHeader.swift */; };
 		5E6A132A252EE8FF0012CFEC /* HistoricalStandingsStrategyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A1329252EE8FF0012CFEC /* HistoricalStandingsStrategyType.swift */; };
 		5E6A1330252EF4300012CFEC /* HistoricalStandings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A132F252EF4300012CFEC /* HistoricalStandings.swift */; };
@@ -155,7 +155,7 @@
 		5E5F1B3724D5DDE300F81366 /* CustomAnimationActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnimationActivityIndicator.swift; sourceTree = "<group>"; };
 		5E5F1B3924D5F37F00F81366 /* RefreshView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshView.swift; sourceTree = "<group>"; };
 		5E5FCB612513438F00618534 /* HistoricalPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalPickerViewModel.swift; sourceTree = "<group>"; };
-		5E65123824EFBB6700008D67 /* Races.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Races.swift; sourceTree = "<group>"; };
+		5E65123824EFBB6700008D67 /* RaceResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceResult.swift; sourceTree = "<group>"; };
 		5E6932BE252DA1BD0045E030 /* HistoricalHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalHeader.swift; sourceTree = "<group>"; };
 		5E6A1329252EE8FF0012CFEC /* HistoricalStandingsStrategyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalStandingsStrategyType.swift; sourceTree = "<group>"; };
 		5E6A132F252EF4300012CFEC /* HistoricalStandings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalStandings.swift; sourceTree = "<group>"; };
@@ -235,7 +235,6 @@
 				5E4793252535A79C00332FB4 /* All Model */,
 				5E05CD9124BF340700EB2EF3 /* ConstructorStandings */,
 				5E74F75B253EC799005C67C0 /* DriverDetail.swift */,
-				5E65123824EFBB6700008D67 /* Races.swift */,
 				5E6A133A252F01E80012CFEC /* Year.swift */,
 				5EB4707C2541A44B00FB93B9 /* CurrentDriverStandings.swift */,
 				5E4C1D59254AF76C00C1A3BB /* CurrentConstructorStandings.swift */,
@@ -382,6 +381,7 @@
 				5E05CD9324BF354A00EB2EF3 /* ConstructorStandingsGroup.swift */,
 				5E05CD8F24BF2B8F00EB2EF3 /* Driver.swift */,
 				5E05CD8D24BF2B8700EB2EF3 /* Constructor.swift */,
+				5E65123824EFBB6700008D67 /* RaceResult.swift */,
 			);
 			path = "All Model";
 			sourceTree = "<group>";
@@ -731,7 +731,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E6932BF252DA1BD0045E030 /* HistoricalHeader.swift in Sources */,
-				5E65123924EFBB6700008D67 /* Races.swift in Sources */,
+				5E65123924EFBB6700008D67 /* RaceResult.swift in Sources */,
 				5E82ACA525387A9C0015A168 /* HistoricalRaceStrategy.swift in Sources */,
 				5E510D18251C833100584EE2 /* HistoricalCell.swift in Sources */,
 				5E6A1337252F002F0012CFEC /* HistoricalStandingsHeader.swift in Sources */,

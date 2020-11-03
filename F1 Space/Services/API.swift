@@ -85,7 +85,7 @@ final class API {
         request(endpoint: .championship, completion: completion)
     }
     
-    static func requestGrandPrix(year: String, completion: @escaping (Crucit?, Error?) -> Void) {
+    static func requestGrandPrix(year: String, completion: @escaping (RaceResult?, Error?) -> Void) {
         request(endpoint: .grandPrix(year: year), completion: completion)
     }
     

@@ -126,7 +126,7 @@ final class HistoricalViewModel {
         guard let year = season  else { return }
         
         API.requestGrandPrix(year: year) { [weak self] (gp, err) in
-            guard let grandPrix = gp?.сrucitData.grandPrix.races else { return }
+            guard let grandPrix = gp?.raceResultData.raceResultTable.races else { return }
             
             self?.races = grandPrix
             completion()
