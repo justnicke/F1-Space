@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Info about the constructor
 struct Constructor: Codable {
     let constructorID: String
     let url: String

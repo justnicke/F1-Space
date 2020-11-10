@@ -8,8 +8,8 @@
 
 import Foundation
 
-// MARK: - Welcome
-struct RacesDetail: Codable {
+/// Detailed information about a specific race
+struct RaceDetail: Codable {
     let racesDetailData: RacesDetailData
 
     enum CodingKeys: String, CodingKey {
@@ -17,7 +17,6 @@ struct RacesDetail: Codable {
     }
 }
 
-// MARK: - MRData
 struct RacesDetailData: Codable {
     let racesDetaiTable: RacesDetaiTable
 
@@ -26,7 +25,6 @@ struct RacesDetailData: Codable {
     }
 }
 
-// MARK: - RaceTable
 struct RacesDetaiTable: Codable {
     let round: String
     let races: [Race]

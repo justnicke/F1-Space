@@ -55,7 +55,7 @@
 		5E6A132A252EE8FF0012CFEC /* HistoricalStandingsStrategyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A1329252EE8FF0012CFEC /* HistoricalStandingsStrategyType.swift */; };
 		5E6A1330252EF4300012CFEC /* HistoricalStandings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A132F252EF4300012CFEC /* HistoricalStandings.swift */; };
 		5E6A1337252F002F0012CFEC /* HistoricalStandingsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A1336252F002F0012CFEC /* HistoricalStandingsHeader.swift */; };
-		5E6A133B252F01E80012CFEC /* Year.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A133A252F01E80012CFEC /* Year.swift */; };
+		5E6A133B252F01E80012CFEC /* Season.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A133A252F01E80012CFEC /* Season.swift */; };
 		5E6A133F252F04D30012CFEC /* AuxiliaryNumbering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A133E252F04D30012CFEC /* AuxiliaryNumbering.swift */; };
 		5E6A1349252F0D4D0012CFEC /* HistoricalConstructorStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A1348252F0D4D0012CFEC /* HistoricalConstructorStrategy.swift */; };
 		5E74F75C253EC799005C67C0 /* DriverDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E74F75B253EC799005C67C0 /* DriverDetail.swift */; };
@@ -69,6 +69,8 @@
 		5E8662D124E2D6B000064D4E /* presentation.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5E8662D024E2D6B000064D4E /* presentation.gif */; };
 		5E8E01AF255147E800A52CDD /* RacesDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8E01AE255147E800A52CDD /* RacesDetail.swift */; };
 		5E8E01B3255155BD00A52CDD /* HistoricalRaceDetailStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8E01B2255155BD00A52CDD /* HistoricalRaceDetailStrategy.swift */; };
+		5E90F96F255AC5900088EAAD /* ConstructorParticipated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E90F96E255AC5900088EAAD /* ConstructorParticipated.swift */; };
+		5E90F97D255AD24D0088EAAD /* DriverParticipated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E90F97C255AD24D0088EAAD /* DriverParticipated.swift */; };
 		5E9EB95224C2D99A00023668 /* StandingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9EB95124C2D99A00023668 /* StandingsViewModel.swift */; };
 		5E9EB95424C2DA2D00023668 /* StandingsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9EB95324C2DA2D00023668 /* StandingsCellViewModel.swift */; };
 		5EA886F224D164F30079EDDC /* RSS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA886F124D164F30079EDDC /* RSS.swift */; };
@@ -160,7 +162,7 @@
 		5E6A1329252EE8FF0012CFEC /* HistoricalStandingsStrategyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalStandingsStrategyType.swift; sourceTree = "<group>"; };
 		5E6A132F252EF4300012CFEC /* HistoricalStandings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalStandings.swift; sourceTree = "<group>"; };
 		5E6A1336252F002F0012CFEC /* HistoricalStandingsHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalStandingsHeader.swift; sourceTree = "<group>"; };
-		5E6A133A252F01E80012CFEC /* Year.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Year.swift; sourceTree = "<group>"; };
+		5E6A133A252F01E80012CFEC /* Season.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Season.swift; sourceTree = "<group>"; };
 		5E6A133E252F04D30012CFEC /* AuxiliaryNumbering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuxiliaryNumbering.swift; sourceTree = "<group>"; };
 		5E6A1348252F0D4D0012CFEC /* HistoricalConstructorStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalConstructorStrategy.swift; sourceTree = "<group>"; };
 		5E74F75B253EC799005C67C0 /* DriverDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverDetail.swift; sourceTree = "<group>"; };
@@ -175,6 +177,8 @@
 		5E8662D024E2D6B000064D4E /* presentation.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = presentation.gif; sourceTree = "<group>"; };
 		5E8E01AE255147E800A52CDD /* RacesDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RacesDetail.swift; sourceTree = "<group>"; };
 		5E8E01B2255155BD00A52CDD /* HistoricalRaceDetailStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalRaceDetailStrategy.swift; sourceTree = "<group>"; };
+		5E90F96E255AC5900088EAAD /* ConstructorParticipated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorParticipated.swift; sourceTree = "<group>"; };
+		5E90F97C255AD24D0088EAAD /* DriverParticipated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverParticipated.swift; sourceTree = "<group>"; };
 		5E9EB95124C2D99A00023668 /* StandingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsViewModel.swift; sourceTree = "<group>"; };
 		5E9EB95324C2DA2D00023668 /* StandingsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsCellViewModel.swift; sourceTree = "<group>"; };
 		5EA886F124D164F30079EDDC /* RSS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSS.swift; sourceTree = "<group>"; };
@@ -224,14 +228,8 @@
 		5E14A14224BCA18C0058305B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				5E90F98A255AD72F0088EAAD /* ErgastAPI */,
 				5EA886F524D165EB0079EDDC /* News */,
-				5E4793252535A79C00332FB4 /* All Model */,
-				5E74F75B253EC799005C67C0 /* DriverDetail.swift */,
-				5E6A133A252F01E80012CFEC /* Year.swift */,
-				5EB4707C2541A44B00FB93B9 /* CurrentDriverStandings.swift */,
-				5E4C1D59254AF76C00C1A3BB /* CurrentConstructorStandings.swift */,
-				5EB470862541BC6900FB93B9 /* ConstructorDetail.swift */,
-				5E8E01AE255147E800A52CDD /* RacesDetail.swift */,
 				5E4793492535AF3C00332FB4 /* Historical */,
 			);
 			path = Models;
@@ -364,18 +362,6 @@
 				5E419EFD24B5FAF6006421F6 /* Formula1-Regular.ttf */,
 			);
 			path = Fonts;
-			sourceTree = "<group>";
-		};
-		5E4793252535A79C00332FB4 /* All Model */ = {
-			isa = PBXGroup;
-			children = (
-				5E05CD8B24BF28E600EB2EF3 /* DriverStandingsGroup.swift */,
-				5E05CD9324BF354A00EB2EF3 /* ConstructorStandingsGroup.swift */,
-				5E05CD8F24BF2B8F00EB2EF3 /* Driver.swift */,
-				5E05CD8D24BF2B8700EB2EF3 /* Constructor.swift */,
-				5E65123824EFBB6700008D67 /* RaceResult.swift */,
-			);
-			path = "All Model";
 			sourceTree = "<group>";
 		};
 		5E4793362535AB8B00332FB4 /* Historical */ = {
@@ -513,6 +499,26 @@
 				5E419EEC24B5AB86006421F6 /* FormulaTabBarController.swift */,
 			);
 			path = TabBar;
+			sourceTree = "<group>";
+		};
+		5E90F98A255AD72F0088EAAD /* ErgastAPI */ = {
+			isa = PBXGroup;
+			children = (
+				5E05CD8B24BF28E600EB2EF3 /* DriverStandingsGroup.swift */,
+				5E05CD9324BF354A00EB2EF3 /* ConstructorStandingsGroup.swift */,
+				5E05CD8F24BF2B8F00EB2EF3 /* Driver.swift */,
+				5E05CD8D24BF2B8700EB2EF3 /* Constructor.swift */,
+				5E65123824EFBB6700008D67 /* RaceResult.swift */,
+				5E74F75B253EC799005C67C0 /* DriverDetail.swift */,
+				5EB470862541BC6900FB93B9 /* ConstructorDetail.swift */,
+				5E8E01AE255147E800A52CDD /* RacesDetail.swift */,
+				5E6A133A252F01E80012CFEC /* Season.swift */,
+				5EB4707C2541A44B00FB93B9 /* CurrentDriverStandings.swift */,
+				5E4C1D59254AF76C00C1A3BB /* CurrentConstructorStandings.swift */,
+				5E90F97C255AD24D0088EAAD /* DriverParticipated.swift */,
+				5E90F96E255AC5900088EAAD /* ConstructorParticipated.swift */,
+			);
+			path = ErgastAPI;
 			sourceTree = "<group>";
 		};
 		5E9EB95024C2D96600023668 /* Driver */ = {
@@ -779,6 +785,7 @@
 				5E4A6A9924D7EEB30077CDBC /* NewsCellViewModel.swift in Sources */,
 				5EA886F224D164F30079EDDC /* RSS.swift in Sources */,
 				5E40ECF624B7400700E3AF1F /* StandingConstructorCell.swift in Sources */,
+				5E90F97D255AD24D0088EAAD /* DriverParticipated.swift in Sources */,
 				5E47933E2535ADBD00332FB4 /* HistoricalCellViewModel.swift in Sources */,
 				5E50BEEE2510D81A0025963F /* HistoricalPickerResult.swift in Sources */,
 				5E05CD8E24BF2B8700EB2EF3 /* Constructor.swift in Sources */,
@@ -790,7 +797,8 @@
 				5E7DB97D24D054420029C0EE /* NewsViewController.swift in Sources */,
 				5EB4707D2541A44B00FB93B9 /* CurrentDriverStandings.swift in Sources */,
 				5E419EF624B5DBB0006421F6 /* StandingDriverCell.swift in Sources */,
-				5E6A133B252F01E80012CFEC /* Year.swift in Sources */,
+				5E6A133B252F01E80012CFEC /* Season.swift in Sources */,
+				5E90F96F255AC5900088EAAD /* ConstructorParticipated.swift in Sources */,
 				5EC60D6C24C1FD4E009C66CC /* DriverCellViewModel.swift in Sources */,
 				5E05CD9024BF2B8F00EB2EF3 /* Driver.swift in Sources */,
 				5EFD898924FE458200A39838 /* HistoricalPickerViewController.swift in Sources */,

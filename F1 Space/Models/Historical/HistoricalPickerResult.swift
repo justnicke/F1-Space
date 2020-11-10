@@ -16,8 +16,6 @@ struct HistoricalPickerResult {
     var championships = [String]()
     
     /// Category of choice for the user
-    ///
-    /// Read-only property
     let category = ["Drivers", "Teams", "Races"]
     
     /// Detailed result depending on the category selection

@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Gives the standings by constructor
 struct ConstructorStandingsGroup: Codable {
     let constructorStandingsData: ConstructorStandingsData
     

@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Info about the driver
 struct Driver: Codable {
     let driverID: String
     let url: String

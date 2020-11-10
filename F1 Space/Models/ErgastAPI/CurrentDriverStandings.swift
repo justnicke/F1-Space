@@ -8,7 +8,7 @@
 
 import Foundation
 
-// MARK: - Welcome
+/// Auxiliary model for checking the driver in the current season
 struct CurrentDriverStandings: Codable {
     let currentDriverStandingsData: CurrentDriverStandingsData
 
@@ -17,7 +17,6 @@ struct CurrentDriverStandings: Codable {
     }
 }
 
-// MARK: - MRData
 struct CurrentDriverStandingsData: Codable {
     let currentDriverStandingsTable: CurrentDriverStandingsTable
 
@@ -26,7 +25,6 @@ struct CurrentDriverStandingsData: Codable {
     }
 }
 
-// MARK: - StandingsTable
 struct CurrentDriverStandingsTable: Codable {
     let season: String
     let currentDriverStandingsLists: [CurrentDriverStandingsLists]
@@ -37,7 +35,6 @@ struct CurrentDriverStandingsTable: Codable {
     }
 }
 
-// MARK: - StandingsList
 struct CurrentDriverStandingsLists: Codable {
     let season: String
     let driverStandings: [DriverStandings]

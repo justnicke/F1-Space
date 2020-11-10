@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Race result (first place only) for the full season
 struct RaceResult: Codable {
     let raceResultData: RaceResultData
     

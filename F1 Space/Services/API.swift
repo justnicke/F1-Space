@@ -79,7 +79,7 @@ final class API {
         request(endpoint: .constructorStandings(year: year), completion: completion)
     }
     
-    static func requestYearChampionship(completion: @escaping (Year?, Error?) -> Void) {
+    static func requestYearChampionship(completion: @escaping (Season?, Error?) -> Void) {
         request(endpoint: .championship, completion: completion)
     }
     
@@ -91,7 +91,7 @@ final class API {
         request(endpoint: .driverDetail(year: year, id: id), completion: completion)
     }
     
-    static func requestDriverParticipated(id: String, completion: @escaping (DriverTakePartYear?, Error?) -> Void) {
+    static func requestDriverParticipated(id: String, completion: @escaping (DriverParticipated?, Error?) -> Void) {
         request(endpoint: .driverParticipated(id: id), completion: completion)
     }
     
@@ -103,7 +103,7 @@ final class API {
         request(endpoint: .constructorDetail(year: year, id: id), completion: completion)
     }
     
-    static func requestConstructorParticipated(id: String, completion: @escaping (ConstructorTakePart?, Error?) -> Void) {
+    static func requestConstructorParticipated(id: String, completion: @escaping (ConstructorParticipated?, Error?) -> Void) {
         request(endpoint: .constructorParticipated(id: id), completion: completion)
     }
     
@@ -111,11 +111,11 @@ final class API {
         request(endpoint: .currentConstructorStandings, completion: completion)
     }
     
-    static func requestYearConstructorChampionship(completion: @escaping (DriverTakePartYear?, Error?) -> Void) {
+    static func requestYearConstructorChampionship(completion: @escaping (DriverParticipated?, Error?) -> Void) {
         request(endpoint: .constructorChampionship, completion: completion)
     }
     
-    static func requestConcreteRaceResults(year: String, roundId: String, completion: @escaping (RacesDetail?, Error?) -> Void) {
+    static func requestConcreteRaceResults(year: String, roundId: String, completion: @escaping (RaceDetail?, Error?) -> Void) {
         request(endpoint: .concreteRaceResults(year: year, roundId: roundId), completion: completion)
     }
     

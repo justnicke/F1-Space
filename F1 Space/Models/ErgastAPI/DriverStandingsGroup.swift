@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Gives the standings by driver
 struct DriverStandingsGroup: Codable {
     let driverStandingsData: DriverStandingsData
     

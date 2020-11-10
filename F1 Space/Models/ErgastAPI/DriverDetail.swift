@@ -8,23 +8,24 @@
 
 import Foundation
 
+/// Detailed information about a specific driver
 struct DriverDetail: Codable {
-    let detailData: DetailDriverData
+    let driverDetailData: DriverDetailData
 
     enum CodingKeys: String, CodingKey {
-        case detailData = "MRData"
+        case driverDetailData = "MRData"
     }
 }
 
-struct DetailDriverData: Codable {
-    let detail: Detail
+struct DriverDetailData: Codable {
+    let driverDetailTable: DriverDetailTable
 
     enum CodingKeys: String, CodingKey {
-        case detail = "RaceTable"
+        case driverDetailTable = "RaceTable"
     }
 }
 
-struct Detail: Codable {
+struct DriverDetailTable: Codable {
     let races: [Race]
 
     enum CodingKeys: String, CodingKey {

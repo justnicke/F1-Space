@@ -8,9 +8,10 @@
 
 import Foundation
 
+/// Detailed information about a specific constructor
 struct ConstructorDetail: Codable {
     let constructorDetailData: ConstructorDetailData
-
+    
     enum CodingKeys: String, CodingKey {
         case constructorDetailData = "MRData"
     }
@@ -18,16 +19,15 @@ struct ConstructorDetail: Codable {
 
 struct ConstructorDetailData: Codable {
     let constructorDetailTable: ConstructorDetailTable
-
+    
     enum CodingKeys: String, CodingKey {
         case constructorDetailTable = "RaceTable"
     }
 }
 
-// MARK: - RaceTable
 struct ConstructorDetailTable: Codable {
     let races: [Race]
-
+    
     enum CodingKeys: String, CodingKey {
         case races = "Races"
     }

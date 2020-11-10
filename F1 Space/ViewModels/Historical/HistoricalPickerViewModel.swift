@@ -34,7 +34,6 @@ final class HistoricalPickerViewModel {
         case .detailedResult:
             let selectedValue = pickerResult.detailedResult[row]
             let selectedID = pickerResult.detailedResultID[row]
-            
             delegate?.detailed(currentResult: selectedValue, id: selectedID)
         }
     }
@@ -97,17 +96,16 @@ final class HistoricalPickerViewModel {
         } else if category == HistoricalCategory.teams.rawValue {
             temporaryStorageConstructor(values: values, compeletion: compeletion)
         } else {
+            print(values)
             if values[detailIndex] == "All" {
                 API.requestYearChampionship { [weak self] (dates, error) in
-                    self?.pickerResult.totalSeasons = dates?.championship.yearsCount
+                    self?.pickerResult.totalSeasons = dates?.championshipData.total
                     self?.getChampionshipYear(temporaryMinus: 1)
                     compeletion()
                 }
             } else {
-                print(values)
-                
                 API.requestYearChampionship { [weak self] (dates, error) in
-                    self?.pickerResult.totalSeasons = dates?.championship.yearsCount
+                    self?.pickerResult.totalSeasons = dates?.championshipData.total
                     self?.getChampionshipYear(temporaryMinus: 1)
                     compeletion()
                 }
@@ -118,7 +116,7 @@ final class HistoricalPickerViewModel {
     func temporaryStorageConstructor(values: [String?], compeletion: @escaping () -> (Void)) {
         if values[detailIndex] == "All" {
             API.requestYearConstructorChampionship { [weak self] (constructorsYear, error) in
-                self?.pickerResult.totalSeasons = constructorsYear?.takePartYear.total
+                self?.pickerResult.totalSeasons = constructorsYear?.driverParticipatedData.total
                 self?.getChampionshipYear(temporaryMinus: 0)
                 compeletion()
             }
@@ -149,9 +147,9 @@ final class HistoricalPickerViewModel {
                         
                         
                         guard let currentTakePartConstructor = takePart?
-                                .сonstructorTakePartData
-                                .constructorTakePartTable
-                                .constructorTakePartList
+                                .constructorParticipatedData
+                                .constructorParticipatedTable
+                                .constructorParticipatedList
                                 .compactMap({ $0.season })
                                 .sorted(by: { $0 > $1 }) else {
                             return
@@ -167,9 +165,9 @@ final class HistoricalPickerViewModel {
                     API.requestConstructorParticipated(id: identity) { [weak self] (takePart, err) in
                         
                         guard let currentTakePartDriver = takePart?
-                                .сonstructorTakePartData
-                                .constructorTakePartTable
-                                .constructorTakePartList
+                                .constructorParticipatedData
+                                .constructorParticipatedTable
+                                .constructorParticipatedList
                                 .compactMap({ $0.season })
                                 .sorted(by: { $0 > $1 }) else {
                             return
@@ -186,7 +184,7 @@ final class HistoricalPickerViewModel {
     func temporaryStorageDriver(values: [String?], compeletion: @escaping () -> (Void)) {
         if values[detailIndex] == "All" {
             API.requestYearChampionship { [weak self] (dates, error) in
-                self?.pickerResult.totalSeasons = dates?.championship.yearsCount
+                self?.pickerResult.totalSeasons = dates?.championshipData.total
                 self?.getChampionshipYear(temporaryMinus: 1)
                 compeletion()
             }
@@ -215,7 +213,9 @@ final class HistoricalPickerViewModel {
                         
                         var correctTakePartDriverYear = [String]()
                         
-                        guard let currentTakePartDriver = takePart?.takePartYear.standingsTable.standingsLists
+                        guard let currentTakePartDriver = takePart?.driverParticipatedData
+                                .driverParticipatedTable
+                                .driverParticipatedList
                                 .compactMap({ $0.season })
                                 .sorted(by: { $0 > $1 }) else {
                             return
@@ -229,7 +229,9 @@ final class HistoricalPickerViewModel {
                     }
                 } else {
                     API.requestDriverParticipated(id: identity) { [weak self] (takePart, err) in
-                        guard let currentTakePartDriver = takePart?.takePartYear.standingsTable.standingsLists
+                        guard let currentTakePartDriver = takePart?.driverParticipatedData
+                                .driverParticipatedTable
+                                .driverParticipatedList
                                 .compactMap({ $0.season })
                                 .sorted(by: { $0 > $1 })
                         else {
@@ -297,7 +299,7 @@ final class HistoricalPickerViewModel {
                 else {
                     return
                 }
-                
+
                 self?.pickerResult.detailedResult += grandPrixes
                 self?.pickerResult.detailedResultID += roundGP
                 
