@@ -28,11 +28,14 @@ struct RacesDetailData: Codable {
 
 // MARK: - RaceTable
 struct RacesDetaiTable: Codable {
-//    let season, round: String
+    let round: String
     let races: [Race]
 
     enum CodingKeys: String, CodingKey {
-//        case season, round
+        case round
         case races = "Races"
     }
 }
+
+
+

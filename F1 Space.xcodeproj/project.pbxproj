@@ -221,19 +221,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5E05CD9124BF340700EB2EF3 /* ConstructorStandings */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ConstructorStandings;
-			sourceTree = "<group>";
-		};
 		5E14A14224BCA18C0058305B /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				5EA886F524D165EB0079EDDC /* News */,
 				5E4793252535A79C00332FB4 /* All Model */,
-				5E05CD9124BF340700EB2EF3 /* ConstructorStandings */,
 				5E74F75B253EC799005C67C0 /* DriverDetail.swift */,
 				5E6A133A252F01E80012CFEC /* Year.swift */,
 				5EB4707C2541A44B00FB93B9 /* CurrentDriverStandings.swift */,

@@ -26,46 +26,44 @@ final class API {
         case constructorChampionship
         case concreteRaceResults(year: String, roundId: String)
         
-        // https
-        
         var urlComponents: URLComponents? {
             switch self {
             case .driverStandings(let year):
                 return
-                    URLComponents(string: "http://ergast.com/api/f1/\(year)/driverStandings.json")
+                    URLComponents(string: "https://ergast.com/api/f1/\(year)/driverStandings.json")
             case .constructorStandings(let year):
                 return
-                    URLComponents(string: "http://ergast.com/api/f1/\(year)/constructorStandings.json")
+                    URLComponents(string: "https://ergast.com/api/f1/\(year)/constructorStandings.json")
             case .championship:
                 return
-                    URLComponents(string: "http://ergast.com/api/f1/seasons.json")
+                    URLComponents(string: "https://ergast.com/api/f1/seasons.json")
             case .grandPrix(let year):
                 return
-                    URLComponents(string: "http://ergast.com/api/f1/\(year)/results/1.json")
+                    URLComponents(string: "https://ergast.com/api/f1/\(year)/results/1.json")
             case .driverDetail(let year, let id):
                 return
-                    URLComponents(string: "http://ergast.com/api/f1/\(year)/drivers/\(id)/results.json")
+                    URLComponents(string: "https://ergast.com/api/f1/\(year)/drivers/\(id)/results.json")
             case .driverParticipated(let id):
                 return
-                    URLComponents(string: "http://ergast.com/api/f1/drivers/\(id)/driverStandings.json")
+                    URLComponents(string: "https://ergast.com/api/f1/drivers/\(id)/driverStandings.json")
             case .currentDriverStandings:
                 return
-                    URLComponents(string: "http://ergast.com/api/f1/current/driverStandings.json")
+                    URLComponents(string: "https://ergast.com/api/f1/current/driverStandings.json")
             case .constructorDetail(let year, let id):
                 return
-                    URLComponents(string: "http://ergast.com/api/f1/\(year)/constructors/\(id)/results.json?limit=50")
+                    URLComponents(string: "https://ergast.com/api/f1/\(year)/constructors/\(id)/results.json?limit=50")
             case .constructorParticipated(id: let id):
                 return
-                    URLComponents(string: "http://ergast.com/api/f1/constructors/\(id)/constructorstandings.json?limit=70")
+                    URLComponents(string: "https://ergast.com/api/f1/constructors/\(id)/constructorstandings.json?limit=70")
             case .currentConstructorStandings:
                 return
-                    URLComponents(string: "http://ergast.com/api/f1/current/constructorStandings.json")
+                    URLComponents(string: "https://ergast.com/api/f1/current/constructorStandings.json")
             case .constructorChampionship:
                 return
-                    URLComponents(string: "http://ergast.com/api/f1/constructors/ferrari/constructorstandings.json")
+                    URLComponents(string: "https://ergast.com/api/f1/constructors/ferrari/constructorstandings.json")
             case .concreteRaceResults(year: let year, roundId: let round):
                 return
-                    URLComponents(string: "http://ergast.com/api/f1/\(year)/\(round)/results.json")
+                    URLComponents(string: "https://ergast.com/api/f1/\(year)/\(round)/results.json")
                                           
             }
         }

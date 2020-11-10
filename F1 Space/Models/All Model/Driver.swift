@@ -10,8 +10,6 @@ import Foundation
 
 struct Driver: Codable {
     let driverID: String
-    let permanentNumber: String
-    let code: String
     let url: String
     let givenName: String
     let familyName: String
@@ -20,8 +18,6 @@ struct Driver: Codable {
 
     enum CodingKeys: String, CodingKey {
         case driverID = "driverId"
-        case permanentNumber
-        case code
         case url
         case givenName
         case familyName
