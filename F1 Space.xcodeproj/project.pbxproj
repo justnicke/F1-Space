@@ -40,6 +40,7 @@
 		5E4A6A9924D7EEB30077CDBC /* NewsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A6A9824D7EEB30077CDBC /* NewsCellViewModel.swift */; };
 		5E4A6A9B24D82E210077CDBC /* DetailNewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A6A9A24D82E210077CDBC /* DetailNewsViewModel.swift */; };
 		5E4C1D5A254AF76C00C1A3BB /* CurrentConstructorStandings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4C1D59254AF76C00C1A3BB /* CurrentConstructorStandings.swift */; };
+		5E4CA1BE255D3A8900EA9F72 /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4CA1BD255D3A8900EA9F72 /* Optional.swift */; };
 		5E4CA6E22519E1AB0035E6F6 /* HistoricalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4CA6E12519E1AB0035E6F6 /* HistoricalViewModel.swift */; };
 		5E4CA6E42519FD1B0035E6F6 /* PickerViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4CA6E32519FD1B0035E6F6 /* PickerViewModelType.swift */; };
 		5E50BEEE2510D81A0025963F /* HistoricalPickerResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E50BEED2510D81A0025963F /* HistoricalPickerResult.swift */; };
@@ -52,7 +53,7 @@
 		5E5FCB622513438F00618534 /* HistoricalPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5FCB612513438F00618534 /* HistoricalPickerViewModel.swift */; };
 		5E65123924EFBB6700008D67 /* RaceResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E65123824EFBB6700008D67 /* RaceResult.swift */; };
 		5E6932BF252DA1BD0045E030 /* HistoricalHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6932BE252DA1BD0045E030 /* HistoricalHeader.swift */; };
-		5E6A132A252EE8FF0012CFEC /* HistoricalStandingsStrategyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A1329252EE8FF0012CFEC /* HistoricalStandingsStrategyType.swift */; };
+		5E6A132A252EE8FF0012CFEC /* HistoricalStandingsStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A1329252EE8FF0012CFEC /* HistoricalStandingsStrategy.swift */; };
 		5E6A1330252EF4300012CFEC /* HistoricalStandings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A132F252EF4300012CFEC /* HistoricalStandings.swift */; };
 		5E6A1337252F002F0012CFEC /* HistoricalStandingsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A1336252F002F0012CFEC /* HistoricalStandingsHeader.swift */; };
 		5E6A133B252F01E80012CFEC /* Season.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A133A252F01E80012CFEC /* Season.swift */; };
@@ -147,6 +148,7 @@
 		5E4A6A9824D7EEB30077CDBC /* NewsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCellViewModel.swift; sourceTree = "<group>"; };
 		5E4A6A9A24D82E210077CDBC /* DetailNewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNewsViewModel.swift; sourceTree = "<group>"; };
 		5E4C1D59254AF76C00C1A3BB /* CurrentConstructorStandings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentConstructorStandings.swift; sourceTree = "<group>"; };
+		5E4CA1BD255D3A8900EA9F72 /* Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Optional.swift; sourceTree = "<group>"; };
 		5E4CA6E12519E1AB0035E6F6 /* HistoricalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalViewModel.swift; sourceTree = "<group>"; };
 		5E4CA6E32519FD1B0035E6F6 /* PickerViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewModelType.swift; sourceTree = "<group>"; };
 		5E50BEED2510D81A0025963F /* HistoricalPickerResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalPickerResult.swift; sourceTree = "<group>"; };
@@ -159,7 +161,7 @@
 		5E5FCB612513438F00618534 /* HistoricalPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalPickerViewModel.swift; sourceTree = "<group>"; };
 		5E65123824EFBB6700008D67 /* RaceResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceResult.swift; sourceTree = "<group>"; };
 		5E6932BE252DA1BD0045E030 /* HistoricalHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalHeader.swift; sourceTree = "<group>"; };
-		5E6A1329252EE8FF0012CFEC /* HistoricalStandingsStrategyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalStandingsStrategyType.swift; sourceTree = "<group>"; };
+		5E6A1329252EE8FF0012CFEC /* HistoricalStandingsStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalStandingsStrategy.swift; sourceTree = "<group>"; };
 		5E6A132F252EF4300012CFEC /* HistoricalStandings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalStandings.swift; sourceTree = "<group>"; };
 		5E6A1336252F002F0012CFEC /* HistoricalStandingsHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalStandingsHeader.swift; sourceTree = "<group>"; };
 		5E6A133A252F01E80012CFEC /* Season.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Season.swift; sourceTree = "<group>"; };
@@ -339,6 +341,7 @@
 				5E419F0924B60E1F006421F6 /* StackView.swift */,
 				5EA886F824D1A9A60079EDDC /* Formatter.swift */,
 				5E05CD8924BEF23900EB2EF3 /* ConstructorsColor.swift */,
+				5E4CA1BD255D3A8900EA9F72 /* Optional.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -545,7 +548,7 @@
 				5E50BEEF2510D9340025963F /* HistoricalPickerSelectedDelegate.swift */,
 				5E4CA6E32519FD1B0035E6F6 /* PickerViewModelType.swift */,
 				5E4793302535AA5B00332FB4 /* HistoricalViewModelType.swift */,
-				5E6A1329252EE8FF0012CFEC /* HistoricalStandingsStrategyType.swift */,
+				5E6A1329252EE8FF0012CFEC /* HistoricalStandingsStrategy.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -753,7 +756,7 @@
 				5E5F1B3A24D5F37F00F81366 /* RefreshView.swift in Sources */,
 				5E6A133F252F04D30012CFEC /* AuxiliaryNumbering.swift in Sources */,
 				5E4793312535AA5B00332FB4 /* HistoricalViewModelType.swift in Sources */,
-				5E6A132A252EE8FF0012CFEC /* HistoricalStandingsStrategyType.swift in Sources */,
+				5E6A132A252EE8FF0012CFEC /* HistoricalStandingsStrategy.swift in Sources */,
 				5EAC214724C8244F00A65A7A /* DataSourceViewModelType.swift in Sources */,
 				5ECFB2A92501132800ED94EA /* InstantPanGestureRecognizer.swift in Sources */,
 				5EC60D6824C18DBD009C66CC /* DriverViewModel.swift in Sources */,
@@ -795,6 +798,7 @@
 				5E6A1330252EF4300012CFEC /* HistoricalStandings.swift in Sources */,
 				5E510D1E251CC11D00584EE2 /* HistoricalDriverStrategy.swift in Sources */,
 				5E7DB97D24D054420029C0EE /* NewsViewController.swift in Sources */,
+				5E4CA1BE255D3A8900EA9F72 /* Optional.swift in Sources */,
 				5EB4707D2541A44B00FB93B9 /* CurrentDriverStandings.swift in Sources */,
 				5E419EF624B5DBB0006421F6 /* StandingDriverCell.swift in Sources */,
 				5E6A133B252F01E80012CFEC /* Season.swift in Sources */,

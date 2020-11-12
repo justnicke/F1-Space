@@ -16,7 +16,7 @@ final class HistoricalCell: UITableViewCell {
     
     // MARK: - Private Properties
     
-    private var historicalStandingsStrategy: HistoricalStandingsStrategyType?
+    private var historicalStandingsStrategy: HistoricalStandingsStrategy?
     
     private let firstLabel  = UILabel()
     private let secondLabel = UILabel()

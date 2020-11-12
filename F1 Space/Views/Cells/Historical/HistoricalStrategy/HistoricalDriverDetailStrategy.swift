@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class HistoricalDriverDetailStrategy: HistoricalStandingsStrategyType {
+final class HistoricalDriverDetailStrategy: HistoricalStandingsStrategy {
     
     // MARK: - Properties
 

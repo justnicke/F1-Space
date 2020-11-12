@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol HistoricalStandingsStrategyType: class {
+protocol HistoricalStandingsStrategy: class {
     var forThe: AuxiliaryNumbering { get }
     func setupUI(for labels: [UILabel], withAdjustable width: [NSLayoutConstraint?], byFrame rootView: UIView)
     func configureCell(viewModel: HistoricalCellViewModel?, for labels: [UILabel])

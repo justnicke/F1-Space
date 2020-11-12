@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class HistoricalConstructorStrategy: HistoricalStandingsStrategyType {
+final class HistoricalConstructorStrategy: HistoricalStandingsStrategy {
     
     // MARK: - Properties
     

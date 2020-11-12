@@ -42,7 +42,7 @@ final class HistoricalViewController: UIViewController {
         view.backgroundColor = .green
         
         setupTopView()
-        initViewModel()
+//        initViewModel()
         requestViewModel()
         setupTableView()
         
@@ -113,19 +113,17 @@ final class HistoricalViewController: UIViewController {
     }
     
     private func initViewModel() {
+//        historicalViewModel = HistoricalViewModel(year: type().year, category: type().category, id: <#T##String?#>)
         historicalViewModel = HistoricalViewModel(year: type().year, category: type().category, id: type().id)
-//        historicalViewModel = HistoricalViewModel()
     }
 
     private func requestViewModel() {
-//        initViewModel()
+        initViewModel()
         // запросил невалидный индекс id и он вернул в callback (All)
         // Соответсвено он и не запрашивал, то,  что нужно было
-//        print(type().category, type().year, detailResultID)
-        historicalViewModel.request(
-            current: type().category,
-            inThat: type().year,
-            id: type().id) { [weak self] in
+        print(type().category, type().year, detailResultID)
+        
+        historicalViewModel.request() { [weak self] in
             
             let indexPath = IndexPath(row: 0, section: 0)
             
@@ -145,7 +143,7 @@ final class HistoricalViewController: UIViewController {
     }
     
     /// Quick access to the current state of the button text or identity
-    private func type() -> (year: String?, category: String?, detailed: String?, id: String?) {
+    private func type() -> (year: String?, category: HistoricalCategory.RawValue?, detailed: String?, id: String?) {
         return (
             yearButton.titleLabel?.text,
             categoryButton.titleLabel?.text,

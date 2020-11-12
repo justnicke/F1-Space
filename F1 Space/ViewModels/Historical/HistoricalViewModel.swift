@@ -8,177 +8,232 @@
 
 import Foundation
 
+struct Collector {
+    // Header
+    let driverStandingsHeader        = HistoricalStandingsHeader("POS", "Driver", "Constructor", "Points")
+    let constructorStandingsHeader   = HistoricalStandingsHeader("POS", "Constructor", "Points")
+    let firstPlaceResultInRaceHeader = HistoricalStandingsHeader("Grand Prix", "Winner", "Car")
+    let racesDetailDriverHeader      = HistoricalStandingsHeader("Grand Prix", "POS", "Time", "Points")
+    let racesDetailConstructorHeader = HistoricalStandingsHeader("Grand Prix", "Drivers", "POS", "Time", "Points")
+    let racesDetailHeader            = HistoricalStandingsHeader("POS", "Drivers", "Time", "Points")
+    
+    // Table
+    var driverStandings: [DriverStandings] = []
+    var constructorStandings: [ConstructorStandings] = []
+    var firstPlaceResultInRace: [Race] = []
+    var racesDetailDriver: [Race] = []
+    var racesDetailConstructors: [Race] = []
+    var racesDetail: [Result] = []
+}
+
 final class HistoricalViewModel {
     
     // MARK: - Private Properties
     
-    private var driversHeader = HistoricalStandingsHeader("POS", "Driver", "Constructor", "Points")
-    private var constructorsHeader = HistoricalStandingsHeader("POS", "Constructor", "Points")
-    private var raceHeader = HistoricalStandingsHeader("Grand Prix", "Winner", "Car")
-    private var racesDetailDriverHeader = HistoricalStandingsHeader("Grand Prix", "POS", "Time", "Points")
-    private var racesDetailConstructorHeader = HistoricalStandingsHeader("Grand Prix", "Drivers", "POS", "Time", "Points")
-    private var racesDetailHeader = HistoricalStandingsHeader("POS", "Drivers", "Time", "Points")
-    
-    private var driversStandings: [DriverStandings] = []
-    private var construcorsStandings: [ConstructorStandings] = []
-    private var races: [Race] = []
-    private var racesDetailDriver: [Race] = []
-    private var racesDetailConstructors: [Race] = []
-    private var racesDetail: [Result] = []
-    
-    private let year: String?
-    private let category: String?
+    private var take = Collector()
+        
+    private var year: String?
     private var id: String?
+    private var category: HistoricalCategory?
     
+
     // MARK: - Constructors
     
-    init(year: String?, category: String?, id: String?) {
-
+    init(year: String?, category: HistoricalCategory.RawValue?, id: String?) {
         self.year = year
-        self.category = category
+        self.category = HistoricalCategory(rawValue: category.unwrap.lowercased())
         self.id = id
-
-        testRequest(year: self.year, id: self.id) { (str) -> (Void) in
-//            print(str)
-        }
-
-
-//        print(self.year, self.category, self.id)
     }
     
-    func testRequest(year: String?, id: String?, callback: @escaping (String?) -> (Void)) {
-        guard let year = year,
-              let crucitId = id
-        else {
-            return
-        }
-        API.requestConcreteRaceResults(year: year, roundId: crucitId) { [weak self] (crucit, err) in
-            let aa = crucit?.racesDetailData.racesDetaiTable.races.first?.round
-//            print(aa)
-            if aa != nil{
-                callback(id)
-            } else {
-                callback("All")
-            }
-        }
-    }
+//    func testRequest(year: String?, id: String?, callback: @escaping (String?) -> (Void)) {
+//        guard let year = year,
+//              let crucitId = id
+//        else {
+//            return
+//        }
+//        API.requestConcreteRaceResults(year: year, roundId: crucitId) { (crucit, err) in
+//            let aa = crucit?.racesDetailData.racesDetaiTable.races.first?.round
+//            if aa != nil{
+//                callback(id)
+//            } else {
+//                callback("All")
+//            }
+//        }
+//    }
     
     // MARK: - Public Methods
     
-    func request(current category: String?, inThat year: String?, id: String?, compeletion: @escaping () -> (Void),
-                                                                               callback: @escaping (String) -> (Void)) {
-        if category?.lowercased() == HistoricalCategory.drivers.rawValue {
-            if id == "All" {
-                requestDriverStandings(season: year, compeletion: compeletion)
-            } else {
-                requestDriverDetail(season: year, id: id, completion: compeletion)
-            }
-        } else if category?.lowercased() == HistoricalCategory.teams.rawValue {
-            if id == "All" {
-                requestConstructorStandings(season: year, compeletion: compeletion)
-            } else {
-                requestConstructorDetail(season: year, id: id, completion: compeletion)
-            }
-        } else {
-            testRequest(year: year, id: id) { [weak self] (identity) in
-//                print(identity)
-//                print(id)
-                if identity == "All" {
-                    self?.requestRaces(season: year, completion: compeletion)
-                } else {
-                    self?.requestRacesDetail(season: year, id: identity, completion: compeletion, callback: callback)
-                }
-            }
+    func request(completion: @escaping () -> (Void), callback: @escaping (String) -> (Void)) {
+        switch category {
+        case .drivers:
+            compareDriverID(completion: completion)
+        case .teams:
+            compareConstructorID(completion: completion)
+        case .races:
+            compareRaceID(completion: completion)
+        default:
+            fatalError("This shouldn't happen at all! Func: \(#function)")
         }
     }
     
     // MARK: - Private Methods
     
-    private func requestRacesDetail(season: String?, id: String?, completion: @escaping () -> (Void),
-                                                                  callback: @escaping (String) -> (Void)) {
-        guard let year = season,
-              let crucitId = id
-        else {
-            return
+    // DRIVER
+    
+    private func compareDriverID(completion: @escaping () -> (Void)) {
+        switch id.isAll() {
+        case true: requestDriverStandings(completion: completion)
+        case false: requestDriverDetail(completion: completion)
         }
-        
-        API.requestConcreteRaceResults(year: year, roundId: crucitId) {  [weak self] (races, err) in
-            guard let racesDetail = races?.racesDetailData.racesDetaiTable.races.compactMap({ $0.results }) else { return }
-            let result = racesDetail.reduce([], +)
-            
-            if !result.isEmpty {
-                self?.racesDetail = result
-                completion()
-            } else {
-                callback("All")
+    }
+
+    private func requestDriverStandings(completion: @escaping () -> (Void)) {
+        API.requestDriverStandings(year: self.year.unwrap) { [weak self] (driverStandingsGroup, error) in
+            DispatchQueue.global().async {
+                guard let driverStandings = driverStandingsGroup?
+                        .driverStandingsData
+                        .driverStandingsTable
+                        .driverStandingsLists
+                        .compactMap({ $0.driverStandings })
+                        .reduce([], +) else {
+                    return
+                }
+                
+                self?.take.driverStandings = driverStandings
+                
+                DispatchQueue.main.async {
+                    completion()
+                }
             }
         }
     }
     
-    private func requestConstructorDetail(season: String?, id: String?, completion: @escaping () -> (Void)) {
-        guard let year = season,
-              let constructorId = id
-        else {
-            return
+    private func requestDriverDetail(completion: @escaping () -> (Void)) {
+        API.requestDriverDetailResult(year: year.unwrap, id: id.unwrap) { [weak self] (driverDetail, error) in
+            DispatchQueue.global().async {
+                guard let racesInfo = driverDetail?
+                        .driverDetailData
+                        .driverDetailTable
+                        .races else {
+                    return
+                }
+                
+                self?.take.racesDetailDriver = racesInfo
+                
+                DispatchQueue.main.async {
+                    completion()
+                }
+            }
         }
-        
-        API.requestConstructorDetailResult(year: year, id: constructorId) { [weak self] (teamDetail, err) in
-            guard let detailTeamRaces = teamDetail?.constructorDetailData.constructorDetailTable.races else { return }
+    }
+    
+    // CONSTRUCTOR
+    
+    private func compareConstructorID(completion: @escaping () -> (Void)) {
+        switch id.isAll() {
+        case true: requestConstructorStandings(completion: completion)
+        case false: requestConstructorDetail(completion: completion)
+        }
+    }
+    
+    private func requestConstructorStandings(completion: @escaping () -> (Void)) {
+        API.requestConstructorStandings(year: year.unwrap) { [weak self] (constructorStandingsGroup, error) in
+            DispatchQueue.global().async {
+                guard let constructorStandings = constructorStandingsGroup?
+                        .constructorStandingsData
+                        .constructorStandingsTable
+                        .constructorStandingsLists
+                        .compactMap({ $0.constructorStandings })
+                        .reduce([], +) else {
+                    return
+                }
+                
+                self?.take.constructorStandings = constructorStandings
+                
+                DispatchQueue.main.async {
+                    completion()
+                }
+            }
+        }
+    }
+    
+    private func requestConstructorDetail(completion: @escaping () -> (Void)) {
+        API.requestConstructorDetailResult(year: year.unwrap, id: id.unwrap) { [weak self] (constructorDetail, error) in
+            DispatchQueue.global().async {
+                guard let racesInfo = constructorDetail?
+                        .constructorDetailData
+                        .constructorDetailTable
+                        .races else {
+                    return
+                }
+                
+                self?.take.racesDetailConstructors = racesInfo
+                
+                DispatchQueue.main.async {
+                    completion()
+                }
+            }
+        }
+    }
+    
+    
+    // RACE
+    
+    private func compareRaceID(completion: @escaping () -> (Void)) {
+        switch id.isAll() {
+        case true: requestRaces(completion: completion)
+        case false: requestRacesDetail(completion: completion)
+        }
+    }
+    
+    private func requestRaces(completion: @escaping () -> (Void)) {
+        API.requestFirstPlaceResultInSeason(year: year.unwrap) { [weak self] (raceResult, error) in
+            DispatchQueue.global().async {
+                guard let raceInfo = raceResult?
+                        .raceResultData
+                        .raceResultTable
+                        .races else {
+                    return
+                }
+                
+                self?.take.firstPlaceResultInRace = raceInfo
+                
+                DispatchQueue.main.async {
+                    completion()
+                }
+            }
+        }
+    }
+    
+    private func requestRacesDetail(completion: @escaping () -> (Void)) {
+        API.requestConcreteRaceResults(year: year.unwrap, roundId: id.unwrap) {  [weak self] (raceDetail, error) in
+            DispatchQueue.global().async {
+                guard let results = raceDetail?
+                        .racesDetailData
+                        .racesDetaiTable
+                        .races
+                        .compactMap({ $0.results })
+                        .reduce([], +) else {
+                    return
+                }
+                self?.take.racesDetail = results
+                
+                DispatchQueue.main.async {
+                    completion()
+                }
+            }
+        }
+    }
+    
+  
+    
 
-            self?.racesDetailConstructors = detailTeamRaces
-            completion()
-        }
-    }
     
-    private func requestDriverDetail(season: String?, id: String?, completion: @escaping () -> (Void)) {
-        guard let year = season,
-              let driverId = id
-        else {
-            return
-        }
 
-        API.requestDriverDetailResult(year: year, id: driverId) { [weak self] (detail, err) in
-            guard let detailRaces = detail?.driverDetailData.driverDetailTable.races else { return }
-            
-                self?.racesDetailDriver = detailRaces
-                completion()
-        }
-    }
     
-    private func requestDriverStandings(season: String?, compeletion: @escaping () -> (Void)) {
-        guard let year = season else { return }
-        
-        API.requestDriverStandings(year: year) { [weak self] (driver, err) in
-            let drivers = driver?.driverStandingsData.driverStandingsTable.driverStandingsLists.compactMap { $0.driverStandings }
-            guard let convertedDrivers = drivers?.reduce([], +) else { return }
-            
-            self?.driversStandings = convertedDrivers
-            compeletion()
-        }
-    }
+ 
     
-    private func requestConstructorStandings(season: String?, compeletion: @escaping () -> (Void)) {
-        guard let year = season  else { return }
-        
-        API.requestConstructorStandings(year: year) { [weak self] (team, err) in
-            let teams = team?.constructorStandingsData.constructorStandingsTable.constructorStandingsLists.compactMap { $0.constructorStandings }
-            guard let convertedTeams = teams?.reduce([], +) else { return }
-            
-            self?.construcorsStandings = convertedTeams
-            compeletion()
-        }
-    }
-    
-    private func requestRaces(season: String?, completion: @escaping () -> (Void)) {
-        guard let year = season  else { return }
-        
-        API.requestFirstPlaceResultInSeason(year: year) { [weak self] (gp, err) in
-            guard let grandPrix = gp?.raceResultData.raceResultTable.races else { return }
-//            print(grandPrix)
-            self?.races = grandPrix
-            completion()
-        }
-    }
+
 }
 
 // MARK: - Extension HistoricalViewModelType
@@ -187,21 +242,21 @@ extension HistoricalViewModel: HistoricalViewModelType {
     func numberOfRows(inCurrent category: String?, id: String?) -> Int {
         if category?.lowercased() == HistoricalCategory.drivers.rawValue {
             if id == "All" {
-            return driversStandings.count
+                return take.driverStandings.count
             } else {
-                return racesDetailDriver.count
+                return take.racesDetailDriver.count
             }
         } else if category?.lowercased() == HistoricalCategory.teams.rawValue {
             if id == "All" {
-                return construcorsStandings.count
+                return take.constructorStandings.count
             } else {
-                return racesDetailConstructors.count
+                return take.racesDetailConstructors.count
             }
         } else {
             if id == "All" {
-                return races.count
+                return take.firstPlaceResultInRace.count
             } else {
-                return racesDetail.count
+                return take.racesDetail.count
             }
         }
     }
@@ -209,26 +264,26 @@ extension HistoricalViewModel: HistoricalViewModelType {
     func cellForRowAt(indexPath: IndexPath, inCurrent currentCategory: String?, id: String?) -> HistoricalCellViewModel? {
         if currentCategory?.lowercased() == HistoricalCategory.drivers.rawValue {
             if id == "All" {
-                let driver = driversStandings[indexPath.row]
+                let driver = take.driverStandings[indexPath.row]
                 return HistoricalCellViewModel(driverStanding: driver, category: currentCategory, id: id)
             } else {
-                let detailDriver = racesDetailDriver[indexPath.row]
+                let detailDriver = take.racesDetailDriver[indexPath.row]
                 return HistoricalCellViewModel(raceDetailDriver: detailDriver, category: currentCategory, id: id)
             }
         } else if currentCategory?.lowercased() == HistoricalCategory.teams.rawValue {
             if id == "All" {
-                let constructor = construcorsStandings[indexPath.row]
+                let constructor = take.constructorStandings[indexPath.row]
                 return HistoricalCellViewModel(constructorStandings: constructor, category: currentCategory, id: id)
             } else {
-                let detailConstructor = racesDetailConstructors[indexPath.row]
+                let detailConstructor = take.racesDetailConstructors[indexPath.row]
                 return HistoricalCellViewModel(raceDetailConstructor: detailConstructor, category: currentCategory, id: id)
             }
         } else {
             if id == "All" {
-                let race = races[indexPath.row]
+                let race = take.firstPlaceResultInRace[indexPath.row]
                 return HistoricalCellViewModel(race: race, category: currentCategory, id: id)
             } else {
-                let raceDetail = racesDetail[indexPath.row]
+                let raceDetail = take.racesDetail[indexPath.row]
                 return HistoricalCellViewModel(raceDetail: raceDetail, category: currentCategory, id: id)
             }
         }
@@ -237,21 +292,21 @@ extension HistoricalViewModel: HistoricalViewModelType {
     func viewForHeader(in section: Int, currentCategory: String?, id: String?) -> HistoricalHeaderViewModel? {
         if currentCategory?.lowercased() == HistoricalCategory.drivers.rawValue {
             if id == "All" {
-                return HistoricalHeaderViewModel(driverStandingsHeader: driversHeader, category: currentCategory, id: id)
+                return HistoricalHeaderViewModel(driverStandingsHeader: take.driverStandingsHeader, category: currentCategory, id: id)
             } else {
-                return HistoricalHeaderViewModel(raceDetailDriver: racesDetailDriverHeader, category: currentCategory, id: id)
+                return HistoricalHeaderViewModel(raceDetailDriver: take.racesDetailDriverHeader, category: currentCategory, id: id)
             }
         } else if currentCategory?.lowercased() == HistoricalCategory.teams.rawValue {
             if id == "All" {
-                return HistoricalHeaderViewModel(constructorStandingsHeader: constructorsHeader, category: currentCategory, id: id)
+                return HistoricalHeaderViewModel(constructorStandingsHeader: take.constructorStandingsHeader, category: currentCategory, id: id)
             } else {
-                return HistoricalHeaderViewModel(racesDetailConstructorHeader: racesDetailConstructorHeader, category: currentCategory, id: id)
+                return HistoricalHeaderViewModel(racesDetailConstructorHeader: take.racesDetailConstructorHeader, category: currentCategory, id: id)
             }
         } else {
             if id == "All" {
-                return HistoricalHeaderViewModel(raceHeader: raceHeader, category: currentCategory, id: id)
+                return HistoricalHeaderViewModel(raceHeader: take.firstPlaceResultInRaceHeader, category: currentCategory, id: id)
             } else {
-                return HistoricalHeaderViewModel(racesDetailHeader: racesDetailHeader, category: currentCategory, id: id)
+                return HistoricalHeaderViewModel(racesDetailHeader: take.racesDetailHeader, category: currentCategory, id: id)
             }
         }
     }
