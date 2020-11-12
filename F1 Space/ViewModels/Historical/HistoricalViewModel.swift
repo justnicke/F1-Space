@@ -26,9 +26,47 @@ final class HistoricalViewModel {
     private var racesDetailConstructors: [Race] = []
     private var racesDetail: [Result] = []
     
+    private let year: String?
+    private let category: String?
+    private var id: String?
+    
+    // MARK: - Constructors
+    
+    init(year: String?, category: String?, id: String?) {
+
+        self.year = year
+        self.category = category
+        self.id = id
+
+        testRequest(year: self.year, id: self.id) { (str) -> (Void) in
+//            print(str)
+        }
+
+
+//        print(self.year, self.category, self.id)
+    }
+    
+    func testRequest(year: String?, id: String?, callback: @escaping (String?) -> (Void)) {
+        guard let year = year,
+              let crucitId = id
+        else {
+            return
+        }
+        API.requestConcreteRaceResults(year: year, roundId: crucitId) { [weak self] (crucit, err) in
+            let aa = crucit?.racesDetailData.racesDetaiTable.races.first?.round
+//            print(aa)
+            if aa != nil{
+                callback(id)
+            } else {
+                callback("All")
+            }
+        }
+    }
+    
     // MARK: - Public Methods
     
-    func request(current category: String?, inThat year: String?, id: String?, compeletion: @escaping () -> (Void)) {
+    func request(current category: String?, inThat year: String?, id: String?, compeletion: @escaping () -> (Void),
+                                                                               callback: @escaping (String) -> (Void)) {
         if category?.lowercased() == HistoricalCategory.drivers.rawValue {
             if id == "All" {
                 requestDriverStandings(season: year, compeletion: compeletion)
@@ -42,17 +80,22 @@ final class HistoricalViewModel {
                 requestConstructorDetail(season: year, id: id, completion: compeletion)
             }
         } else {
-            if id == "All" {
-                requestRaces(season: year, completion: compeletion)
-            } else {
-                requestRacesDetail(season: year, id: id, completion: compeletion)
+            testRequest(year: year, id: id) { [weak self] (identity) in
+//                print(identity)
+//                print(id)
+                if identity == "All" {
+                    self?.requestRaces(season: year, completion: compeletion)
+                } else {
+                    self?.requestRacesDetail(season: year, id: identity, completion: compeletion, callback: callback)
+                }
             }
         }
     }
     
     // MARK: - Private Methods
     
-    private func requestRacesDetail(season: String?, id: String?, completion: @escaping () -> (Void)) {
+    private func requestRacesDetail(season: String?, id: String?, completion: @escaping () -> (Void),
+                                                                  callback: @escaping (String) -> (Void)) {
         guard let year = season,
               let crucitId = id
         else {
@@ -63,8 +106,12 @@ final class HistoricalViewModel {
             guard let racesDetail = races?.racesDetailData.racesDetaiTable.races.compactMap({ $0.results }) else { return }
             let result = racesDetail.reduce([], +)
             
-            self?.racesDetail = result
-            completion()
+            if !result.isEmpty {
+                self?.racesDetail = result
+                completion()
+            } else {
+                callback("All")
+            }
         }
     }
     
@@ -91,8 +138,8 @@ final class HistoricalViewModel {
         }
 
         API.requestDriverDetailResult(year: year, id: driverId) { [weak self] (detail, err) in
-            guard let detailRaces = detail?.detailData.detail.races else { return }
-
+            guard let detailRaces = detail?.driverDetailData.driverDetailTable.races else { return }
+            
                 self?.racesDetailDriver = detailRaces
                 completion()
         }
@@ -125,9 +172,9 @@ final class HistoricalViewModel {
     private func requestRaces(season: String?, completion: @escaping () -> (Void)) {
         guard let year = season  else { return }
         
-        API.requestGrandPrix(year: year) { [weak self] (gp, err) in
+        API.requestFirstPlaceResultInSeason(year: year) { [weak self] (gp, err) in
             guard let grandPrix = gp?.raceResultData.raceResultTable.races else { return }
-            
+//            print(grandPrix)
             self?.races = grandPrix
             completion()
         }

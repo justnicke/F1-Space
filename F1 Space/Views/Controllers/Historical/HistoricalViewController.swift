@@ -20,7 +20,7 @@ final class HistoricalViewController: UIViewController {
     }()
     private let categoryButton: AutoSizeButton = {
         let button = AutoSizeButton(type: .custom)
-        button.setTitle("Drivers", for: .normal)
+        button.setTitle("Races", for: .normal)
         return button
     }()
     private let detailResultButton: AutoSizeButton = {
@@ -32,7 +32,7 @@ final class HistoricalViewController: UIViewController {
     private var tableView: UITableView!
     private let transition = PanelTransition()
     private let header = HistoricalHeaderView()
-    private var historicalViewModel = HistoricalViewModel()
+    private var historicalViewModel: HistoricalViewModel!
     
     // MARK: - Public Methods
     
@@ -42,6 +42,7 @@ final class HistoricalViewController: UIViewController {
         view.backgroundColor = .green
         
         setupTopView()
+        initViewModel()
         requestViewModel()
         setupTableView()
         
@@ -49,7 +50,7 @@ final class HistoricalViewController: UIViewController {
         categoryButton.addTarget(self, action: #selector(typeSearchButtonPressed), for: .touchUpInside)
         detailResultButton.addTarget(self, action: #selector(detailResultButtonPressed), for: .touchUpInside)
     }
-    
+
     // MARK: - Private Methods
     
     private func setupTopView() {
@@ -111,11 +112,29 @@ final class HistoricalViewController: UIViewController {
         tableView.register(HistoricalCell.self, forCellReuseIdentifier: HistoricalCell.reuseId)
     }
     
+    private func initViewModel() {
+        historicalViewModel = HistoricalViewModel(year: type().year, category: type().category, id: type().id)
+//        historicalViewModel = HistoricalViewModel()
+    }
+
     private func requestViewModel() {
+//        initViewModel()
+        // запросил невалидный индекс id и он вернул в callback (All)
+        // Соответсвено он и не запрашивал, то,  что нужно было
+//        print(type().category, type().year, detailResultID)
         historicalViewModel.request(
             current: type().category,
             inThat: type().year,
             id: type().id) { [weak self] in
+            
+            let indexPath = IndexPath(row: 0, section: 0)
+            
+            self?.tableView.reloadData()
+            self?.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
+            
+        } callback: { [weak self] (str) in
+            self?.detailResultID = str
+            self?.detailResultButton.setTitle(str, for: .normal)
             
             
             let indexPath = IndexPath(row: 0, section: 0)
@@ -198,11 +217,13 @@ extension HistoricalViewController: UITableViewDataSource, UITableViewDelegate {
 extension HistoricalViewController: HistoricalPickerSelectedDelegate {
     func year(currentСhampionship: String) {
         yearButton.setTitle(String(currentСhampionship), for: .normal)
-        requestViewModel()
         
-        if detailResultButton.titleLabel?.text != "All" {
+        if type().category == "Races" && type().detailed != "All" {
             detailResultButton.setTitle("All", for: .normal)
         }
+        
+        
+        requestViewModel()
     }
     
     func category(current: String) {

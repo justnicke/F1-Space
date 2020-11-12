@@ -98,13 +98,13 @@ final class HistoricalPickerViewModel {
         } else {
             print(values)
             if values[detailIndex] == "All" {
-                API.requestYearChampionship { [weak self] (dates, error) in
+                API.requestSeasons { [weak self] (dates, error) in
                     self?.pickerResult.totalSeasons = dates?.championshipData.total
                     self?.getChampionshipYear(temporaryMinus: 1)
                     compeletion()
                 }
             } else {
-                API.requestYearChampionship { [weak self] (dates, error) in
+                API.requestSeasons { [weak self] (dates, error) in
                     self?.pickerResult.totalSeasons = dates?.championshipData.total
                     self?.getChampionshipYear(temporaryMinus: 1)
                     compeletion()
@@ -115,8 +115,8 @@ final class HistoricalPickerViewModel {
     
     func temporaryStorageConstructor(values: [String?], compeletion: @escaping () -> (Void)) {
         if values[detailIndex] == "All" {
-            API.requestYearConstructorChampionship { [weak self] (constructorsYear, error) in
-                self?.pickerResult.totalSeasons = constructorsYear?.driverParticipatedData.total
+            API.requestSeasonsOfficialConstructorsCup { [weak self] (constructorsYear, error) in
+                self?.pickerResult.totalSeasons = constructorsYear?.twoOptionsData.total
                 self?.getChampionshipYear(temporaryMinus: 0)
                 compeletion()
             }
@@ -183,7 +183,7 @@ final class HistoricalPickerViewModel {
     
     func temporaryStorageDriver(values: [String?], compeletion: @escaping () -> (Void)) {
         if values[detailIndex] == "All" {
-            API.requestYearChampionship { [weak self] (dates, error) in
+            API.requestSeasons { [weak self] (dates, error) in
                 self?.pickerResult.totalSeasons = dates?.championshipData.total
                 self?.getChampionshipYear(temporaryMinus: 1)
                 compeletion()
@@ -213,7 +213,7 @@ final class HistoricalPickerViewModel {
                         
                         var correctTakePartDriverYear = [String]()
                         
-                        guard let currentTakePartDriver = takePart?.driverParticipatedData
+                        guard let currentTakePartDriver = takePart?.twoOptionsData
                                 .driverParticipatedTable
                                 .driverParticipatedList
                                 .compactMap({ $0.season })
@@ -229,7 +229,7 @@ final class HistoricalPickerViewModel {
                     }
                 } else {
                     API.requestDriverParticipated(id: identity) { [weak self] (takePart, err) in
-                        guard let currentTakePartDriver = takePart?.driverParticipatedData
+                        guard let currentTakePartDriver = takePart?.twoOptionsData
                                 .driverParticipatedTable
                                 .driverParticipatedList
                                 .compactMap({ $0.season })
@@ -290,7 +290,7 @@ final class HistoricalPickerViewModel {
                 compeletion()
             }
         } else {
-            API.requestGrandPrix(year: year) { [weak self] (grandPrix, error) in
+            API.requestFirstPlaceResultInSeason(year: year) { [weak self] (grandPrix, error) in
                 guard let grandPrixes = grandPrix?.raceResultData.raceResultTable.races.compactMap({ $0.raceName })
                 else {
                     return

@@ -15,15 +15,16 @@ final class API {
     private enum EndPoint {
         case driverStandings(year: String)
         case constructorStandings(year: String)
-        case championship
-        case grandPrix(year: String)
+        case season
+        case firstPlaceResultInSeason(year: String)
         case driverDetail(year: String, id: String)
         case driverParticipated(id: String)
         case currentDriverStandings
         case constructorDetail(year: String, id: String)
         case constructorParticipated(id: String)
         case currentConstructorStandings
-        case constructorChampionship
+        /// Ferrari since the Foundation of Formula 1. So we take its API by Ferrari
+        case seasonsOfficialConstructorsCup
         case concreteRaceResults(year: String, roundId: String)
         
         var urlComponents: URLComponents? {
@@ -34,10 +35,10 @@ final class API {
             case .constructorStandings(let year):
                 return
                     URLComponents(string: "https://ergast.com/api/f1/\(year)/constructorStandings.json")
-            case .championship:
+            case .season:
                 return
                     URLComponents(string: "https://ergast.com/api/f1/seasons.json")
-            case .grandPrix(let year):
+            case .firstPlaceResultInSeason(let year):
                 return
                     URLComponents(string: "https://ergast.com/api/f1/\(year)/results/1.json")
             case .driverDetail(let year, let id):
@@ -58,7 +59,7 @@ final class API {
             case .currentConstructorStandings:
                 return
                     URLComponents(string: "https://ergast.com/api/f1/current/constructorStandings.json")
-            case .constructorChampionship:
+            case .seasonsOfficialConstructorsCup:
                 return
                     URLComponents(string: "https://ergast.com/api/f1/constructors/ferrari/constructorstandings.json")
             case .concreteRaceResults(year: let year, roundId: let round):
@@ -79,19 +80,19 @@ final class API {
         request(endpoint: .constructorStandings(year: year), completion: completion)
     }
     
-    static func requestYearChampionship(completion: @escaping (Season?, Error?) -> Void) {
-        request(endpoint: .championship, completion: completion)
+    static func requestSeasons(completion: @escaping (Season?, Error?) -> Void) {
+        request(endpoint: .season, completion: completion)
     }
     
-    static func requestGrandPrix(year: String, completion: @escaping (RaceResult?, Error?) -> Void) {
-        request(endpoint: .grandPrix(year: year), completion: completion)
+    static func requestFirstPlaceResultInSeason(year: String, completion: @escaping (RaceResult?, Error?) -> Void) {
+        request(endpoint: .firstPlaceResultInSeason(year: year), completion: completion)
     }
     
     static func requestDriverDetailResult(year: String, id: String, completion: @escaping (DriverDetail?, Error?) -> Void) {
         request(endpoint: .driverDetail(year: year, id: id), completion: completion)
     }
     
-    static func requestDriverParticipated(id: String, completion: @escaping (DriverParticipated?, Error?) -> Void) {
+    static func requestDriverParticipated(id: String, completion: @escaping (TwoOptions?, Error?) -> Void) {
         request(endpoint: .driverParticipated(id: id), completion: completion)
     }
     
@@ -111,8 +112,8 @@ final class API {
         request(endpoint: .currentConstructorStandings, completion: completion)
     }
     
-    static func requestYearConstructorChampionship(completion: @escaping (DriverParticipated?, Error?) -> Void) {
-        request(endpoint: .constructorChampionship, completion: completion)
+    static func requestSeasonsOfficialConstructorsCup(completion: @escaping (TwoOptions?, Error?) -> Void) {
+        request(endpoint: .seasonsOfficialConstructorsCup, completion: completion)
     }
     
     static func requestConcreteRaceResults(year: String, roundId: String, completion: @escaping (RaceDetail?, Error?) -> Void) {
@@ -130,7 +131,7 @@ final class API {
             let request = URLRequest(url: url)
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
                 guard error == nil else {
-                    print("ERRORZZZ: \(String(describing: error))")
+                    print("ERROR1: \(String(describing: error))")
                     return
                 }
                 
@@ -143,7 +144,7 @@ final class API {
                     DispatchQueue.main.async { completion(object, nil) }
                 } catch {
                     DispatchQueue.main.async { completion(nil, error) }
-                    print("ERROR!!!: \(String(describing: error))")
+                    print("ERROR2: \(String(describing: error))")
                     print(error.localizedDescription)
                 }
             }

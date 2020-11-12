@@ -8,16 +8,18 @@
 
 import Foundation
 
-/// A specific driver participated in the championship by year
-struct DriverParticipated: Codable {
-    let driverParticipatedData: DriverParticipatedData
+/**
+ Model for the driver who participated in the championship and the official number of years of the constructors Cup
+ */
+struct TwoOptions: Codable {
+    let twoOptionsData: TwoOptionsData
     
     enum CodingKeys: String, CodingKey {
-        case driverParticipatedData = "MRData"
+        case twoOptionsData = "MRData"
     }
 }
 
-struct DriverParticipatedData: Codable {
+struct TwoOptionsData: Codable {
     let total: String
     let driverParticipatedTable: DriverParticipatedTable
     
