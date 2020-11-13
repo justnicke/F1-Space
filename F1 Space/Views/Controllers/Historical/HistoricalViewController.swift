@@ -184,23 +184,22 @@ final class HistoricalViewController: UIViewController {
 
 extension HistoricalViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return historicalViewModel.numberOfRows(inCurrent: type().category, id: type().id)
+        return historicalViewModel.numberOfRows()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: HistoricalCell.reuseId, for: indexPath) as! HistoricalCell
-        let viewModelCell = historicalViewModel.cellForRowAt(indexPath: indexPath, inCurrent: type().category, id: type().id)
+        let viewModelCell = historicalViewModel.cellForRowAt(indexPath: indexPath)
         cell.configureCell(viewModel: viewModelCell, byFrame: view, and: type().category, id: type().id)
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
-//        return 100
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let viewModelHeader = historicalViewModel.viewForHeader(in: section, currentCategory: type().category, id: type().id)
+        let viewModelHeader = historicalViewModel.viewForHeader(in: section)
         header.configureHeader(viewModel: viewModelHeader, byFrame: view, and: type().category, id: type().id)
         return header
     }

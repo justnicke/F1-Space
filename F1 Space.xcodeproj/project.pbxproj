@@ -33,6 +33,7 @@
 		5E419F0224B5FB08006421F6 /* Formula1-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E419F0124B5FB08006421F6 /* Formula1-Bold.ttf */; };
 		5E419F0424B5FB0D006421F6 /* Formula1-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E419F0324B5FB0D006421F6 /* Formula1-Black.ttf */; };
 		5E419F0A24B60E1F006421F6 /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E419F0924B60E1F006421F6 /* StackView.swift */; };
+		5E4630A1255ECF6700635A3F /* Collector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4630A0255ECF6700635A3F /* Collector.swift */; };
 		5E47932025359CC500332FB4 /* HistoricalEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E47931F25359CC500332FB4 /* HistoricalEnums.swift */; };
 		5E4793312535AA5B00332FB4 /* HistoricalViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4793302535AA5B00332FB4 /* HistoricalViewModelType.swift */; };
 		5E47933E2535ADBD00332FB4 /* HistoricalCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E47933D2535ADBD00332FB4 /* HistoricalCellViewModel.swift */; };
@@ -141,6 +142,7 @@
 		5E419F0124B5FB08006421F6 /* Formula1-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Formula1-Bold.ttf"; path = "../../../../../Fonts/Formula1-Bold.ttf"; sourceTree = "<group>"; };
 		5E419F0324B5FB0D006421F6 /* Formula1-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Formula1-Black.ttf"; path = "../../../../../Fonts/Formula1-Black.ttf"; sourceTree = "<group>"; };
 		5E419F0924B60E1F006421F6 /* StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackView.swift; sourceTree = "<group>"; };
+		5E4630A0255ECF6700635A3F /* Collector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collector.swift; sourceTree = "<group>"; };
 		5E47931F25359CC500332FB4 /* HistoricalEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalEnums.swift; sourceTree = "<group>"; };
 		5E4793302535AA5B00332FB4 /* HistoricalViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalViewModelType.swift; sourceTree = "<group>"; };
 		5E47933D2535ADBD00332FB4 /* HistoricalCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalCellViewModel.swift; sourceTree = "<group>"; };
@@ -402,6 +404,7 @@
 				5E50BEED2510D81A0025963F /* HistoricalPickerResult.swift */,
 				5E6A132F252EF4300012CFEC /* HistoricalStandings.swift */,
 				5E6A1336252F002F0012CFEC /* HistoricalStandingsHeader.swift */,
+				5E4630A0255ECF6700635A3F /* Collector.swift */,
 			);
 			path = Historical;
 			sourceTree = "<group>";
@@ -799,6 +802,7 @@
 				5E510D1E251CC11D00584EE2 /* HistoricalDriverStrategy.swift in Sources */,
 				5E7DB97D24D054420029C0EE /* NewsViewController.swift in Sources */,
 				5E4CA1BE255D3A8900EA9F72 /* Optional.swift in Sources */,
+				5E4630A1255ECF6700635A3F /* Collector.swift in Sources */,
 				5EB4707D2541A44B00FB93B9 /* CurrentDriverStandings.swift in Sources */,
 				5E419EF624B5DBB0006421F6 /* StandingDriverCell.swift in Sources */,
 				5E6A133B252F01E80012CFEC /* Season.swift in Sources */,

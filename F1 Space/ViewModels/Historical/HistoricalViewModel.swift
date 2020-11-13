@@ -8,35 +8,15 @@
 
 import Foundation
 
-struct Collector {
-    // Header
-    let driverStandingsHeader        = HistoricalStandingsHeader("POS", "Driver", "Constructor", "Points")
-    let constructorStandingsHeader   = HistoricalStandingsHeader("POS", "Constructor", "Points")
-    let firstPlaceResultInRaceHeader = HistoricalStandingsHeader("Grand Prix", "Winner", "Car")
-    let racesDetailDriverHeader      = HistoricalStandingsHeader("Grand Prix", "POS", "Time", "Points")
-    let racesDetailConstructorHeader = HistoricalStandingsHeader("Grand Prix", "Drivers", "POS", "Time", "Points")
-    let racesDetailHeader            = HistoricalStandingsHeader("POS", "Drivers", "Time", "Points")
-    
-    // Table
-    var driverStandings: [DriverStandings] = []
-    var constructorStandings: [ConstructorStandings] = []
-    var firstPlaceResultInRace: [Race] = []
-    var racesDetailDriver: [Race] = []
-    var racesDetailConstructors: [Race] = []
-    var racesDetail: [Result] = []
-}
+final class HistoricalViewModel: TestProtocol {
 
-final class HistoricalViewModel {
-    
     // MARK: - Private Properties
     
-    private var take = Collector()
-        
-    private var year: String?
-    private var id: String?
-    private var category: HistoricalCategory?
+    private(set) var year: String?
+    private(set) var category: HistoricalCategory?
+    private(set) var id: String?
+    private(set) var take: Collector = Collector()
     
-
     // MARK: - Constructors
     
     init(year: String?, category: HistoricalCategory.RawValue?, id: String?) {
@@ -44,22 +24,6 @@ final class HistoricalViewModel {
         self.category = HistoricalCategory(rawValue: category.unwrap.lowercased())
         self.id = id
     }
-    
-//    func testRequest(year: String?, id: String?, callback: @escaping (String?) -> (Void)) {
-//        guard let year = year,
-//              let crucitId = id
-//        else {
-//            return
-//        }
-//        API.requestConcreteRaceResults(year: year, roundId: crucitId) { (crucit, err) in
-//            let aa = crucit?.racesDetailData.racesDetaiTable.races.first?.round
-//            if aa != nil{
-//                callback(id)
-//            } else {
-//                callback("All")
-//            }
-//        }
-//    }
     
     // MARK: - Public Methods
     
@@ -176,7 +140,6 @@ final class HistoricalViewModel {
         }
     }
     
-    
     // RACE
     
     private func compareRaceID(completion: @escaping () -> (Void)) {
@@ -224,92 +187,71 @@ final class HistoricalViewModel {
             }
         }
     }
-    
-  
-    
-
-    
-
-    
- 
-    
-
 }
 
 // MARK: - Extension HistoricalViewModelType
 
 extension HistoricalViewModel: HistoricalViewModelType {
-    func numberOfRows(inCurrent category: String?, id: String?) -> Int {
-        if category?.lowercased() == HistoricalCategory.drivers.rawValue {
-            if id == "All" {
-                return take.driverStandings.count
-            } else {
-                return take.racesDetailDriver.count
+    func numberOfRows() -> Int {
+        switch category {
+        case .drivers:
+            switch id.isAll() {
+            case true:  return take.driverStandings.count
+            case false: return take.racesDetailDriver.count
             }
-        } else if category?.lowercased() == HistoricalCategory.teams.rawValue {
-            if id == "All" {
-                return take.constructorStandings.count
-            } else {
-                return take.racesDetailConstructors.count
+        case .teams:
+            switch id.isAll() {
+            case true:  return take.constructorStandings.count
+            case false: return take.racesDetailConstructors.count
             }
-        } else {
-            if id == "All" {
-                return take.firstPlaceResultInRace.count
-            } else {
-                return take.racesDetail.count
+        case .races:
+            switch id.isAll() {
+            case true:  return take.firstPlaceResultInRace.count
+            case false: return take.racesDetail.count
             }
+        default: return 0
         }
     }
     
-    func cellForRowAt(indexPath: IndexPath, inCurrent currentCategory: String?, id: String?) -> HistoricalCellViewModel? {
-        if currentCategory?.lowercased() == HistoricalCategory.drivers.rawValue {
-            if id == "All" {
-                let driver = take.driverStandings[indexPath.row]
-                return HistoricalCellViewModel(driverStanding: driver, category: currentCategory, id: id)
-            } else {
-                let detailDriver = take.racesDetailDriver[indexPath.row]
-                return HistoricalCellViewModel(raceDetailDriver: detailDriver, category: currentCategory, id: id)
+    func cellForRowAt(indexPath: IndexPath) -> HistoricalCellViewModel? {
+        switch category {
+        case .drivers:
+            switch id.isAll() {
+            case true:  return HistoricalCellViewModel(driverStanding: take.driverStandings[indexPath.row], category: category?.rawValue, id: id)
+            case false: return HistoricalCellViewModel(raceDetailDriver: take.racesDetailDriver[indexPath.row], category: category?.rawValue, id: id)
             }
-        } else if currentCategory?.lowercased() == HistoricalCategory.teams.rawValue {
-            if id == "All" {
-                let constructor = take.constructorStandings[indexPath.row]
-                return HistoricalCellViewModel(constructorStandings: constructor, category: currentCategory, id: id)
-            } else {
-                let detailConstructor = take.racesDetailConstructors[indexPath.row]
-                return HistoricalCellViewModel(raceDetailConstructor: detailConstructor, category: currentCategory, id: id)
+        case .teams:
+            switch id.isAll() {
+            case true:  return HistoricalCellViewModel(constructorStandings: take.constructorStandings[indexPath.row], category: category?.rawValue, id: id)
+            case false: return HistoricalCellViewModel(raceDetailConstructor: take.racesDetailConstructors[indexPath.row], category: category?.rawValue, id: id)
             }
-        } else {
-            if id == "All" {
-                let race = take.firstPlaceResultInRace[indexPath.row]
-                return HistoricalCellViewModel(race: race, category: currentCategory, id: id)
-            } else {
-                let raceDetail = take.racesDetail[indexPath.row]
-                return HistoricalCellViewModel(raceDetail: raceDetail, category: currentCategory, id: id)
+        case .races:
+            switch id.isAll() {
+            case true:  return HistoricalCellViewModel(race: take.firstPlaceResultInRace[indexPath.row], category: category?.rawValue, id: id)
+            case false: return HistoricalCellViewModel(raceDetail: take.racesDetail[indexPath.row], category: category?.rawValue, id: id)
             }
+        default: return nil
         }
     }
     
-    func viewForHeader(in section: Int, currentCategory: String?, id: String?) -> HistoricalHeaderViewModel? {
-        if currentCategory?.lowercased() == HistoricalCategory.drivers.rawValue {
-            if id == "All" {
-                return HistoricalHeaderViewModel(driverStandingsHeader: take.driverStandingsHeader, category: currentCategory, id: id)
-            } else {
-                return HistoricalHeaderViewModel(raceDetailDriver: take.racesDetailDriverHeader, category: currentCategory, id: id)
+    func viewForHeader(in section: Int) -> HistoricalHeaderViewModel? {
+        switch category {
+        case .drivers:
+            switch id.isAll() {
+            case true:  return HistoricalHeaderViewModel(driverStandingsHeader: take.driverStandingsHeader, category: category?.rawValue, id: id)
+            case false: return HistoricalHeaderViewModel(raceDetailDriver: take.racesDetailDriverHeader, category: category?.rawValue, id: id)
             }
-        } else if currentCategory?.lowercased() == HistoricalCategory.teams.rawValue {
-            if id == "All" {
-                return HistoricalHeaderViewModel(constructorStandingsHeader: take.constructorStandingsHeader, category: currentCategory, id: id)
-            } else {
-                return HistoricalHeaderViewModel(racesDetailConstructorHeader: take.racesDetailConstructorHeader, category: currentCategory, id: id)
+        case .teams:
+            switch id.isAll() {
+            case true:  return HistoricalHeaderViewModel(constructorStandingsHeader: take.constructorStandingsHeader, category: category?.rawValue, id: id)
+            case false: return HistoricalHeaderViewModel(racesDetailConstructorHeader: take.racesDetailConstructorHeader, category: category?.rawValue, id: id)
             }
-        } else {
-            if id == "All" {
-                return HistoricalHeaderViewModel(raceHeader: take.firstPlaceResultInRaceHeader, category: currentCategory, id: id)
-            } else {
-                return HistoricalHeaderViewModel(racesDetailHeader: take.racesDetailHeader, category: currentCategory, id: id)
+        case .races:
+            switch id.isAll() {
+            case true:  return HistoricalHeaderViewModel(raceHeader: take.firstPlaceResultInRaceHeader, category: category?.rawValue, id: id)
+            case false: return HistoricalHeaderViewModel(racesDetailHeader: take.racesDetailHeader, category: category?.rawValue, id: id)
             }
+        default: return nil
         }
     }
 }
-
-
