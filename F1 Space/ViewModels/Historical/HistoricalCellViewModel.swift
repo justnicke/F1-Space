@@ -39,10 +39,10 @@ final class HistoricalCellViewModel: HistoricalCellViewModelType {
     }
     
     /// The initializer is designed for the three data models
-    /// - Parameter race: Designed for the driver, constructor and race winner
+    /// - Parameter race: Designed for the driver, constructor and race winner model
     /// - Parameter category: Picker Selected - driver, constructor or races
     /// - Parameter id: Picker Selected  - "All" or "specific choice"
-    init(_ race: Race?, by category: HistoricalCategory?, and id: String?) {
+    init(for race: Race?, by category: HistoricalCategory?, and id: String?) {
         self.race = race
         setup(by: category, and: id)
     }

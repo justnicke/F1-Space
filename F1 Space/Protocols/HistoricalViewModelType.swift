@@ -52,20 +52,20 @@ extension HistoricalViewModelType {
     func cellForRowDriver(at indexPath: IndexPath) -> HistoricalCellViewModel? {
         switch id.isAll() {
         case true:  return HistoricalCellViewModel(for: take.driverStandings[indexPath.row], by: category, and: id)
-        case false: return HistoricalCellViewModel(take.racesDetailDriver[indexPath.row], by: category, and: id)
+        case false: return HistoricalCellViewModel(for: take.racesDetailDriver[indexPath.row], by: category, and: id)
         }
     }
     
     func cellForRowConstructor(at indexPath: IndexPath) -> HistoricalCellViewModel? {
         switch id.isAll() {
         case true:  return HistoricalCellViewModel(for: take.constructorStandings[indexPath.row], by: category, and: id)
-        case false: return HistoricalCellViewModel(take.racesDetailConstructors[indexPath.row], by: category, and: id)
+        case false: return HistoricalCellViewModel(for: take.racesDetailConstructors[indexPath.row], by: category, and: id)
         }
     }
     
     func cellForRowRace(at indexPath: IndexPath) -> HistoricalCellViewModel? {
         switch id.isAll() {
-        case true:  return HistoricalCellViewModel(take.firstPlaceResultInRace[indexPath.row], by: category, and: id)
+        case true:  return HistoricalCellViewModel(for: take.firstPlaceResultInRace[indexPath.row], by: category, and: id)
         case false: return HistoricalCellViewModel(for: take.racesDetail[indexPath.row], by: category, and: id)
         }
     }
@@ -76,22 +76,22 @@ extension HistoricalViewModelType {
 extension HistoricalViewModelType {
     func viewForHeaderDriver(in section: Int) -> HistoricalHeaderViewModel? {
         switch id.isAll() {
-        case true:  return HistoricalHeaderViewModel(driverStandingsHeader: take.driverStandingsHeader, category: category?.rawValue, id: id)
-        case false: return HistoricalHeaderViewModel(raceDetailDriver: take.racesDetailDriverHeader, category: category?.rawValue, id: id)
+        case true:  return HistoricalHeaderViewModel(for: take.driverStandingsHeader, by: category, and: id)
+        case false: return HistoricalHeaderViewModel(for: take.racesDetailDriverHeader, by: category, and: id)
         }
     }
     
     func viewForHeaderConstructor(in section: Int) -> HistoricalHeaderViewModel? {
         switch id.isAll() {
-        case true:  return HistoricalHeaderViewModel(constructorStandingsHeader: take.constructorStandingsHeader, category: category?.rawValue, id: id)
-        case false: return HistoricalHeaderViewModel(racesDetailConstructorHeader: take.racesDetailConstructorHeader, category: category?.rawValue, id: id)
+        case true:  return HistoricalHeaderViewModel(for: take.constructorStandingsHeader, by: category, and: id)
+        case false: return HistoricalHeaderViewModel(for: take.racesDetailConstructorHeader, by: category, and: id)
         }
     }
     
     func viewForHeaderRace(in section: Int) -> HistoricalHeaderViewModel? {
         switch id.isAll() {
-        case true:  return HistoricalHeaderViewModel(raceHeader: take.firstPlaceResultInRaceHeader, category: category?.rawValue, id: id)
-        case false: return HistoricalHeaderViewModel(racesDetailHeader: take.racesDetailHeader, category: category?.rawValue, id: id)
+        case true:  return HistoricalHeaderViewModel(for: take.firstPlaceResultInRaceHeader, by: category, and: id)
+        case false: return HistoricalHeaderViewModel(for: take.racesDetailHeader, by: category, and: id)
         }
     }
 }

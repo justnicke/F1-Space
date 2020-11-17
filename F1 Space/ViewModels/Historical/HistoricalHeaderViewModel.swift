@@ -25,73 +25,65 @@ final class HistoricalHeaderViewModel {
     
     // MARK: - Constructors
     
-    init(driverStandingsHeader: HistoricalStandingsHeader?, category: String?, id: String?) {
-        self.historicalStandingsHeader = driverStandingsHeader
+    init(for different: HistoricalStandingsHeader?, by category: HistoricalCategory?, and id: String?) {
+        self.historicalStandingsHeader = different
         setup(category: category, id: id)
     }
-    
-    init(constructorStandingsHeader: HistoricalStandingsHeader?, category: String?, id: String?) {
-        self.historicalStandingsHeader = constructorStandingsHeader
-        setup(category: category, id: id)
-    }
-    
-    init(raceHeader: HistoricalStandingsHeader?, category: String?, id: String?) {
-        self.historicalStandingsHeader = raceHeader
-        setup(category: category, id: id)
-    }
-    
-    init(raceDetailDriver: HistoricalStandingsHeader?, category: String?, id: String?) {
-        self.historicalStandingsHeader = raceDetailDriver
-        setup(category: category, id: id)
-    }
-    
-    init(racesDetailConstructorHeader: HistoricalStandingsHeader?, category: String?, id: String?) {
-        self.historicalStandingsHeader = racesDetailConstructorHeader
-        setup(category: category, id: id)
-    }
-    init(racesDetailHeader: HistoricalStandingsHeader?, category: String?, id: String?) {
-        self.historicalStandingsHeader = racesDetailHeader
-        setup(category: category, id: id)
-    }
+
     
     // MARK: Private Methods
     
-    private func setup(category: String?, id: String?) {
-        if category?.lowercased() == HistoricalCategory.drivers.rawValue {
-            if id == "All" {
-                first = historicalStandingsHeader?.firstHead
-                second = historicalStandingsHeader?.secondHead
-                third = historicalStandingsHeader?.thirdHead
-                fourth = historicalStandingsHeader?.fourthHead
-            } else {
-                first = historicalStandingsHeader?.firstHead
-                second = historicalStandingsHeader?.secondHead
-                third = historicalStandingsHeader?.thirdHead
-                fourth = historicalStandingsHeader?.fourthHead
-            }
-        } else if category?.lowercased() == HistoricalCategory.teams.rawValue {
-            if id == "All" {
-                first = historicalStandingsHeader?.firstHead
-                second = historicalStandingsHeader?.secondHead
-                third = historicalStandingsHeader?.thirdHead
-            } else {
-                first = historicalStandingsHeader?.firstHead
-                second = historicalStandingsHeader?.secondHead
-                third = historicalStandingsHeader?.thirdHead
-                fourth = historicalStandingsHeader?.fourthHead
-                fifth = historicalStandingsHeader?.fifthHead
-            }
-        } else {
-            if id == "All" {
-                first = historicalStandingsHeader?.firstHead
-                second = historicalStandingsHeader?.secondHead
-                third = historicalStandingsHeader?.thirdHead
-            } else {
-                first = historicalStandingsHeader?.firstHead
-                second = historicalStandingsHeader?.secondHead
-                third = historicalStandingsHeader?.thirdHead
-                fourth = historicalStandingsHeader?.thirdHead
-            }
+    private func setup(category: HistoricalCategory?, id: String?) {
+        switch category {
+        case .drivers: driverHeader(by: id)
+        case .teams:   constructorHeader(by: id)
+        case .races:   raceHeader(by: id)
+        default:       fatalError("Unknown error \(#function)")
+        }
+    }
+    
+    private func driverHeader(by id: String?) {
+        switch id.isAll() {
+        case true:
+            first = historicalStandingsHeader?.firstHead
+            second = historicalStandingsHeader?.secondHead
+            third = historicalStandingsHeader?.thirdHead
+            fourth = historicalStandingsHeader?.fourthHead
+        case false:
+            first = historicalStandingsHeader?.firstHead
+            second = historicalStandingsHeader?.secondHead
+            third = historicalStandingsHeader?.thirdHead
+            fourth = historicalStandingsHeader?.fourthHead
+        }
+    }
+    
+    private func constructorHeader(by id: String?) {
+        switch id.isAll() {
+        case true:
+            first = historicalStandingsHeader?.firstHead
+            second = historicalStandingsHeader?.secondHead
+            third = historicalStandingsHeader?.thirdHead
+        case false:
+            first = historicalStandingsHeader?.firstHead
+            second = historicalStandingsHeader?.secondHead
+            third = historicalStandingsHeader?.thirdHead
+            fourth = historicalStandingsHeader?.fourthHead
+            fifth = historicalStandingsHeader?.fifthHead
+        }
+    }
+    
+    private func raceHeader(by id: String?) {
+        switch id.isAll() {
+        case true:
+            first = historicalStandingsHeader?.firstHead
+            second = historicalStandingsHeader?.secondHead
+            third = historicalStandingsHeader?.thirdHead
+        case false:
+            first = historicalStandingsHeader?.firstHead
+            second = historicalStandingsHeader?.secondHead
+            third = historicalStandingsHeader?.thirdHead
+            fourth = historicalStandingsHeader?.thirdHead
         }
     }
 }
+
