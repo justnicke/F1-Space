@@ -20,7 +20,7 @@ final class HistoricalViewController: UIViewController {
     }()
     private let categoryButton: AutoSizeButton = {
         let button = AutoSizeButton(type: .custom)
-        button.setTitle("Races", for: .normal)
+        button.setTitle("Drivers", for: .normal)
         return button
     }()
     private let detailResultButton: AutoSizeButton = {

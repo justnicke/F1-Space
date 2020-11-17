@@ -19,6 +19,7 @@ extension Optional where Wrapped == String {
         return unwrapped
     }
     
+    /// The picker detailed information is  "All"
      func isAll() -> Bool {
         switch unwrap == "All" {
         case true:  return true

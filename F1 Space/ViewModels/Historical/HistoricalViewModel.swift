@@ -8,9 +8,9 @@
 
 import Foundation
 
-final class HistoricalViewModel: TestProtocol {
-
-    // MARK: - Private Properties
+final class HistoricalViewModel {
+    
+    // MARK: - Public Properties
     
     private(set) var year: String?
     private(set) var category: HistoricalCategory?
@@ -50,7 +50,7 @@ final class HistoricalViewModel: TestProtocol {
         case false: requestDriverDetail(completion: completion)
         }
     }
-
+    
     private func requestDriverStandings(completion: @escaping () -> (Void)) {
         API.requestDriverStandings(year: self.year.unwrap) { [weak self] (driverStandingsGroup, error) in
             DispatchQueue.global().async {
@@ -194,64 +194,29 @@ final class HistoricalViewModel: TestProtocol {
 extension HistoricalViewModel: HistoricalViewModelType {
     func numberOfRows() -> Int {
         switch category {
-        case .drivers:
-            switch id.isAll() {
-            case true:  return take.driverStandings.count
-            case false: return take.racesDetailDriver.count
-            }
-        case .teams:
-            switch id.isAll() {
-            case true:  return take.constructorStandings.count
-            case false: return take.racesDetailConstructors.count
-            }
-        case .races:
-            switch id.isAll() {
-            case true:  return take.firstPlaceResultInRace.count
-            case false: return take.racesDetail.count
-            }
-        default: return 0
+        case .drivers: return numberOfRowsDrivers()
+        case .teams:   return numberOfRowsConstructors()
+        case .races:   return numberOfRowsRaces()
+        default:       return 0
         }
     }
     
     func cellForRowAt(indexPath: IndexPath) -> HistoricalCellViewModel? {
         switch category {
-        case .drivers:
-            switch id.isAll() {
-            case true:  return HistoricalCellViewModel(driverStanding: take.driverStandings[indexPath.row], category: category?.rawValue, id: id)
-            case false: return HistoricalCellViewModel(raceDetailDriver: take.racesDetailDriver[indexPath.row], category: category?.rawValue, id: id)
-            }
-        case .teams:
-            switch id.isAll() {
-            case true:  return HistoricalCellViewModel(constructorStandings: take.constructorStandings[indexPath.row], category: category?.rawValue, id: id)
-            case false: return HistoricalCellViewModel(raceDetailConstructor: take.racesDetailConstructors[indexPath.row], category: category?.rawValue, id: id)
-            }
-        case .races:
-            switch id.isAll() {
-            case true:  return HistoricalCellViewModel(race: take.firstPlaceResultInRace[indexPath.row], category: category?.rawValue, id: id)
-            case false: return HistoricalCellViewModel(raceDetail: take.racesDetail[indexPath.row], category: category?.rawValue, id: id)
-            }
-        default: return nil
+        case .drivers: return cellForRowDriver(at: indexPath)
+        case .teams:   return cellForRowConstructor(at: indexPath)
+        case .races:   return cellForRowRace(at: indexPath)
+        default:       return nil
         }
     }
     
     func viewForHeader(in section: Int) -> HistoricalHeaderViewModel? {
         switch category {
-        case .drivers:
-            switch id.isAll() {
-            case true:  return HistoricalHeaderViewModel(driverStandingsHeader: take.driverStandingsHeader, category: category?.rawValue, id: id)
-            case false: return HistoricalHeaderViewModel(raceDetailDriver: take.racesDetailDriverHeader, category: category?.rawValue, id: id)
-            }
-        case .teams:
-            switch id.isAll() {
-            case true:  return HistoricalHeaderViewModel(constructorStandingsHeader: take.constructorStandingsHeader, category: category?.rawValue, id: id)
-            case false: return HistoricalHeaderViewModel(racesDetailConstructorHeader: take.racesDetailConstructorHeader, category: category?.rawValue, id: id)
-            }
-        case .races:
-            switch id.isAll() {
-            case true:  return HistoricalHeaderViewModel(raceHeader: take.firstPlaceResultInRaceHeader, category: category?.rawValue, id: id)
-            case false: return HistoricalHeaderViewModel(racesDetailHeader: take.racesDetailHeader, category: category?.rawValue, id: id)
-            }
-        default: return nil
+        case .drivers: return viewForHeaderDriver(in: section)
+        case .teams:   return viewForHeaderConstructor(in: section)
+        case .races:   return viewForHeaderRace(in: section)
+        default:       return nil
         }
     }
 }
+
