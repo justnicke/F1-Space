@@ -27,3 +27,29 @@ extension Optional where Wrapped == String {
         }
     }
 }
+
+extension Optional where Wrapped == HistoricalPickerSelected {
+    /// Unwrapping optional HistoricalPickerSelected
+    ///
+    /// If the property is nil, it returns yearChampionship
+    var unwrap: HistoricalPickerSelected {
+        guard let unwrapped = self else {
+            return HistoricalPickerSelected.yearChampionship
+        }
+        return unwrapped
+    }
+}
+
+extension Optional where Wrapped == [String] {
+    /// Unwrapping optional HistoricalPickerSelected
+    ///
+    /// If the property is nil, it returns empty Array
+    var unwrap: [String] {
+        guard let unwrapped = self else {
+            return [""]
+        }
+        return unwrapped
+    }
+}
+
+

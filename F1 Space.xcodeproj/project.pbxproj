@@ -42,6 +42,7 @@
 		5E4A6A9B24D82E210077CDBC /* DetailNewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A6A9A24D82E210077CDBC /* DetailNewsViewModel.swift */; };
 		5E4C1D5A254AF76C00C1A3BB /* CurrentConstructorStandings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4C1D59254AF76C00C1A3BB /* CurrentConstructorStandings.swift */; };
 		5E4C64B12563B9A8002DC545 /* HistoricalCellViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4C64B02563B9A8002DC545 /* HistoricalCellViewModelType.swift */; };
+		5E4C64B9256402A4002DC545 /* ExtensionHistoricalPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4C64B8256402A4002DC545 /* ExtensionHistoricalPickerViewModel.swift */; };
 		5E4CA1BE255D3A8900EA9F72 /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4CA1BD255D3A8900EA9F72 /* Optional.swift */; };
 		5E4CA6E22519E1AB0035E6F6 /* HistoricalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4CA6E12519E1AB0035E6F6 /* HistoricalViewModel.swift */; };
 		5E4CA6E42519FD1B0035E6F6 /* PickerViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4CA6E32519FD1B0035E6F6 /* PickerViewModelType.swift */; };
@@ -152,6 +153,7 @@
 		5E4A6A9A24D82E210077CDBC /* DetailNewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNewsViewModel.swift; sourceTree = "<group>"; };
 		5E4C1D59254AF76C00C1A3BB /* CurrentConstructorStandings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentConstructorStandings.swift; sourceTree = "<group>"; };
 		5E4C64B02563B9A8002DC545 /* HistoricalCellViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalCellViewModelType.swift; sourceTree = "<group>"; };
+		5E4C64B8256402A4002DC545 /* ExtensionHistoricalPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionHistoricalPickerViewModel.swift; sourceTree = "<group>"; };
 		5E4CA1BD255D3A8900EA9F72 /* Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Optional.swift; sourceTree = "<group>"; };
 		5E4CA6E12519E1AB0035E6F6 /* HistoricalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalViewModel.swift; sourceTree = "<group>"; };
 		5E4CA6E32519FD1B0035E6F6 /* PickerViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewModelType.swift; sourceTree = "<group>"; };
@@ -374,10 +376,8 @@
 		5E4793362535AB8B00332FB4 /* Historical */ = {
 			isa = PBXGroup;
 			children = (
-				5E4CA6E12519E1AB0035E6F6 /* HistoricalViewModel.swift */,
-				5E47933D2535ADBD00332FB4 /* HistoricalCellViewModel.swift */,
-				5E82AC9D253838C40015A168 /* HistoricalHeaderViewModel.swift */,
-				5E5FCB612513438F00618534 /* HistoricalPickerViewModel.swift */,
+				5E4B49542566A17900E65508 /* ViewController */,
+				5E4B49512566A15500E65508 /* Picker */,
 			);
 			path = Historical;
 			sourceTree = "<group>";
@@ -456,6 +456,25 @@
 				5E5F1B3724D5DDE300F81366 /* CustomAnimationActivityIndicator.swift */,
 			);
 			path = ActivityIndicator;
+			sourceTree = "<group>";
+		};
+		5E4B49512566A15500E65508 /* Picker */ = {
+			isa = PBXGroup;
+			children = (
+				5E5FCB612513438F00618534 /* HistoricalPickerViewModel.swift */,
+				5E4C64B8256402A4002DC545 /* ExtensionHistoricalPickerViewModel.swift */,
+			);
+			path = Picker;
+			sourceTree = "<group>";
+		};
+		5E4B49542566A17900E65508 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				5E4CA6E12519E1AB0035E6F6 /* HistoricalViewModel.swift */,
+				5E47933D2535ADBD00332FB4 /* HistoricalCellViewModel.swift */,
+				5E82AC9D253838C40015A168 /* HistoricalHeaderViewModel.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		5E6A1328252EE8970012CFEC /* HistoricalStrategy */ = {
@@ -769,6 +788,7 @@
 				5E419EC924B5A855006421F6 /* SceneDelegate.swift in Sources */,
 				5EA886FB24D1FE270079EDDC /* DetailNewsViewController.swift in Sources */,
 				5E5F1B3824D5DDE300F81366 /* CustomAnimationActivityIndicator.swift in Sources */,
+				5E4C64B9256402A4002DC545 /* ExtensionHistoricalPickerViewModel.swift in Sources */,
 				5E419EFB24B5F3C3006421F6 /* DriversCell.swift in Sources */,
 				5E9EB95424C2DA2D00023668 /* StandingsCellViewModel.swift in Sources */,
 				5ECFB2AA2501132800ED94EA /* PresentationController.swift in Sources */,

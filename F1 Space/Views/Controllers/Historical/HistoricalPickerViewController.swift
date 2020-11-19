@@ -34,8 +34,20 @@ final class HistoricalPickerViewController: UIViewController {
         return button
     }()
     private let handleDismissView = UIView()
-    private let historicalPickerViewModel = HistoricalPickerViewModel()
-        
+    private lazy var historicalPickerViewModel = HistoricalPickerViewModel(currentValues: currentValues, by: count)
+    
+    // MARK: - Constructors
+    
+    init(currentValues: [String?], by state: HistoricalPickerSelected?) {
+        super.init(nibName: nil, bundle: nil)
+        self.currentValues = currentValues
+        self.count = state
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - Public Methods
     
     override func viewDidLoad() {
@@ -44,7 +56,7 @@ final class HistoricalPickerViewController: UIViewController {
         view.layer.cornerRadius = 25
         view.layer.masksToBounds = true
         view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        
+
         setupUI()
         updateViewModel()
 
@@ -94,7 +106,7 @@ final class HistoricalPickerViewController: UIViewController {
     }
     
     private func updateViewModel() {
-        historicalPickerViewModel.requestForSelection(from: currentValues, by: count!) { [weak self] in
+        historicalPickerViewModel.requestForSelection() { [weak self] in
             self?.picker.reloadAllComponents()
             self?.initPicker()
             self?.currentPickerValue()
@@ -102,18 +114,15 @@ final class HistoricalPickerViewController: UIViewController {
     }
     
     private func currentPickerValue() {
-        picker.selectRow(
-            historicalPickerViewModel.selectedRowPicker(from: currentValues, by: count!),
-            inComponent: 0,
-            animated: false
-        )
+        let row = historicalPickerViewModel.selectedRowPicker()
+        picker.selectRow(row, inComponent: 0, animated: false)
     }
     
     @objc private func handleReturnValue() {
         let selectedRow = picker.selectedRow(inComponent: 0)
         
         dismiss(animated: true) {
-            self.historicalPickerViewModel.sendValueFromPicker(by: self.count!, and: selectedRow)
+            self.historicalPickerViewModel.sendValueFromPicker(row: selectedRow)
         }
     }
 }

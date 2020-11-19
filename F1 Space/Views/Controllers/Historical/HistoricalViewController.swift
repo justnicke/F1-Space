@@ -121,7 +121,7 @@ final class HistoricalViewController: UIViewController {
         initViewModel()
         // запросил невалидный индекс id и он вернул в callback (All)
         // Соответсвено он и не запрашивал, то,  что нужно было
-        print(type().category, type().year, detailResultID)
+//        print(type().category, type().year, detailResultID)
         
         historicalViewModel.request() { [weak self] in
             
@@ -153,12 +153,13 @@ final class HistoricalViewController: UIViewController {
     }
     
     private func openTransition(state: HistoricalPickerSelected, currentValues: [String?]) {
-        let historicalPickerView = HistoricalPickerViewController()
+        let historicalPickerView = HistoricalPickerViewController(currentValues: currentValues, by: state)
         historicalPickerView.giveDelegate(for: self)
         historicalPickerView.transitioningDelegate = transition
         historicalPickerView.modalPresentationStyle = .custom
-        historicalPickerView.count = state
-        historicalPickerView.currentValues.append(contentsOf: currentValues)
+//        historicalPickerView.count = state
+//        historicalPickerView.currentValues.append(contentsOf: currentValues)
+//        print(currentValues)
         
         present(historicalPickerView, animated: true)
     }
@@ -171,12 +172,8 @@ final class HistoricalViewController: UIViewController {
         openTransition(state: .category, currentValues: [type().category])
     }
     
-    @objc private func detailResultButtonPressed() {
-        let currentValues = [type().year,
-                             type().category,
-                             type().detailed]
-        
-        openTransition(state: .detailedResult, currentValues: currentValues)
+    @objc private func detailResultButtonPressed() {        
+        openTransition(state: .detailedResult, currentValues: [type().year, type().detailed, type().category])
     }
 }
 
@@ -213,6 +210,7 @@ extension HistoricalViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension HistoricalViewController: HistoricalPickerSelectedDelegate {
     func year(currentСhampionship: String) {
+//        print(currentСhampionship)
         yearButton.setTitle(String(currentСhampionship), for: .normal)
         
         if type().category == "Races" && type().detailed != "All" {
@@ -224,6 +222,7 @@ extension HistoricalViewController: HistoricalPickerSelectedDelegate {
     }
     
     func category(current: String) {
+//        print(current)
         categoryButton.setTitle(current, for: .normal)
  
         yearButton.setTitle("2020", for: .normal)
@@ -234,6 +233,8 @@ extension HistoricalViewController: HistoricalPickerSelectedDelegate {
     }
     
     func detailed(currentResult: String, id: String?) {
+//        print(currentResult)
+//        print(id)
         detailResultButton.setTitle(currentResult, for: .normal)
 
         detailResultID = id ?? "All"

@@ -52,17 +52,14 @@ final class HistoricalCellViewModel: HistoricalCellViewModelType {
         setup(by: category, and: id)
     }
     
-    // MARK: Public Methods
+    // MARK: Private Methods
     
-    func setup(by category: HistoricalCategory?, and id: String?) {
+    private func setup(by category: HistoricalCategory?, and id: String?) {
         switch category {
-        case .drivers:
-            setupDriver(by: category, and: id)
-        case .teams:
-            setupConstructor(by: category, and: id)
-        case .races:
-            setupRaces(by: category, and: id)
-        default: fatalError("This shouldn't happen at all! Func: \(#function)")
+        case .drivers: setupDriver(by: category, and: id)
+        case .teams:   setupConstructor(by: category, and: id)
+        case .races:   setupRaces(by: category, and: id)
+        default:       fatalError("This shouldn't happen at all! Func: \(#function)")
         }
     }
 }
