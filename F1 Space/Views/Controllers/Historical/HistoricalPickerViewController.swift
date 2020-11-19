@@ -71,6 +71,7 @@ final class HistoricalPickerViewController: UIViewController {
     
     private func setupUI() {
         handleDismissView.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
+        
         view.addSubview(handleDismissView)
         handleDismissView.anchor(
             top: view.topAnchor,
@@ -136,14 +137,17 @@ extension HistoricalPickerViewController: UIPickerViewDataSource, UIPickerViewDe
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return historicalPickerViewModel.numberOfRowsInComponent(component, by: count!)
+        return historicalPickerViewModel.numberOfRowsInComponent(component)
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return historicalPickerViewModel.titleForRow(row, by: count!)
+        return historicalPickerViewModel.titleForRow(row)
     }
     
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+    func pickerView(_ pickerView: UIPickerView,
+                    viewForRow row: Int,
+                    forComponent component: Int,
+                    reusing view: UIView?) -> UIView {
         
         for lineSubview in pickerView.subviews {
             if lineSubview.frame.size.height < 1 {
@@ -165,8 +169,7 @@ extension HistoricalPickerViewController: UIPickerViewDataSource, UIPickerViewDe
         label?.attributedText = historicalPickerViewModel.viewForRow(
             row,
             with: title,
-            and: [NSAttributedString.Key.font: UIFont(name: "AvenirNext-Bold", size: 22)!],
-            by: count!
+            and: [NSAttributedString.Key.font: UIFont(name: "AvenirNext-Bold", size: 22)!]
         )
         label?.textColor = #colorLiteral(red: 0.3819147944, green: 0.3267760873, blue: 0.8082862496, alpha: 1)
         label?.textAlignment = .center

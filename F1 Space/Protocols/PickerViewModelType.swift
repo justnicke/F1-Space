@@ -8,14 +8,19 @@
 
 import Foundation
 
-protocol PickerViewModelType: PickerPropertyRequestable {
-    func numberOfRowsInComponent(_ component: Int, by state: HistoricalPickerSelected) -> Int
-    func titleForRow(_ row: Int, by state: HistoricalPickerSelected) -> String?
-    func viewForRow(_ row: Int, with title: NSAttributedString, and attributes: [NSAttributedString.Key : Any], by state: HistoricalPickerSelected) -> NSAttributedString
-    func requestForSelection(completion: @escaping () -> (Void))
+protocol PickerViewModelType: PickerPropertyInitable {
+    func numberOfRowsInComponent(_ component: Int) -> Int
+    func titleForRow(_ row: Int) -> String?
+    func viewForRow(_ row: Int, with title: NSAttributedString, and attributes: [NSAttributedString.Key : Any]) -> NSAttributedString
 }
 
-protocol PickerPropertyRequestable: class {
+protocol PickerViewModelRequestType: PickerPropertyInitable {
+    func requestForSelection(completion: @escaping () -> (Void))
+    func sendValueFromPicker(row: Int)
+    func selectedRowPicker() -> Array<Int>.Index
+}
+
+protocol PickerPropertyInitable: class {
     var currentValues: [String?] { get }
     var state: HistoricalPickerSelected? { get }
     var pickerResult: HistoricalPickerResult { get set }

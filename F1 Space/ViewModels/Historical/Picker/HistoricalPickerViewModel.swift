@@ -14,15 +14,17 @@ final class HistoricalPickerViewModel {
     
     weak var delegate: HistoricalPickerSelectedDelegate?
     
+    var pickerResult = HistoricalPickerResult(
+        totalSeasons: nil,
+        championships: [],
+        detailedResult: ["All"],
+        detailedResultID: ["All"]
+    )
+    
     // MARK: - Private Properties
-    
-    var pickerResult = HistoricalPickerResult(totalSeasons: nil,
-                                                      championships: [],
-                                                      detailedResult: ["All"],
-                                                      detailedResultID: ["All"])
-    
-    var currentValues: [String?]
-    var state: HistoricalPickerSelected?
+
+    private(set) var currentValues: [String?]
+    private(set) var state: HistoricalPickerSelected?
     
     // MARK: - Constructors
     
@@ -30,9 +32,11 @@ final class HistoricalPickerViewModel {
         self.currentValues = currentValues
         self.state = state
     }
-    
-    // MARK: - Public Methods
-    
+}
+
+// MARK: - Extension PickerViewModelRequestType
+
+extension HistoricalPickerViewModel: PickerViewModelRequestType {
     func sendValueFromPicker(row: Int) {
         switch state {
         case .yearChampionship:
@@ -45,12 +49,24 @@ final class HistoricalPickerViewModel {
             let selectedValue = pickerResult.detailedResult[row]
             let selectedID = pickerResult.detailedResultID[row]
             delegate?.detailed(currentResult: selectedValue, id: selectedID)
-        default: fatalError("Не должно быть!")
+        default: fatalError("This shouldn't happen at all! Func: \(#function)")
+        }
+    }
+    
+    func requestForSelection(completion: @escaping () -> (Void)) {
+        switch state {
+        case .yearChampionship:
+            requestSeason(completion: completion)
+        case .category:
+            completion()
+        case .detailedResult:
+            selectedRequest(completion: completion)
+        default: fatalError("This shouldn't happen at all! Func: \(#function)")
         }
     }
     
     func selectedRowPicker() -> Array<Int>.Index {
-        switch self.state {
+        switch state {
         case .yearChampionship:
             if let year = currentValues[state.unwrap.rawValue],
                let index = pickerResult.championships.firstIndex(of: year) {
@@ -70,70 +86,37 @@ final class HistoricalPickerViewModel {
         }
         return 0
     }
-    
-    let detailIndex = 1
-    let categoryIndex = 2
-    
-    // запротоколирован
-    func requestForSelection(completion: @escaping () -> (Void)) {
-        switch self.state {
-        case .yearChampionship:
-            requestSeason(completion: completion)
-        case .category:
-            completion()
-        case .detailedResult:
-            selectedRequest(completion: completion)
-        default: fatalError("Не должно быть!")
-        }
-    }
-    
-    // MARK: - Private Methods
-    
-    private func requestSeason(completion: @escaping () -> (Void)) {
-        guard let category = currentValues[HIndex.category.rawValue]?.lowercased() else { return }
-        
-        if category == HistoricalCategory.drivers.rawValue {
-            requestYearDataForDriver(completion: completion)
-        } else if category == HistoricalCategory.teams.rawValue {
-            requestYearDataForConstructor(completion: completion)
-        } else {
-            requestYearDataForRace(completion: completion)
-        }
-    }
 }
+
 
 // MARK: - Extension PickerViewModelType
 
 extension HistoricalPickerViewModel: PickerViewModelType {
-    
-    func numberOfRowsInComponent(_ component: Int, by state: HistoricalPickerSelected) -> Int {
-        switch self.state {
-        case .yearChampionship:
-            return pickerResult.championships.count
-        case .category:
-            return pickerResult.category.count
-        case .detailedResult:
-            return pickerResult.detailedResult.count
-        default: fatalError("Не должно быть!")
+    func numberOfRowsInComponent(_ component: Int) -> Int {
+        switch state {
+        case .yearChampionship: return pickerResult.championships.count
+        case .category:         return pickerResult.category.count
+        case .detailedResult:   return pickerResult.detailedResult.count
+        default:                fatalError("This shouldn't happen at all! Func: \(#function)")
         }
     }
     
-    func titleForRow(_ row: Int, by state: HistoricalPickerSelected) -> String? {
-        switch self.state {
-        case .yearChampionship:
-            return String(pickerResult.championships[row])
-        case .category:
-            return pickerResult.category[row]
-        case .detailedResult:
-            return pickerResult.detailedResult[row]
-        default: fatalError("Не должно быть!")
+    func titleForRow(_ row: Int) -> String? {
+        switch state {
+        case .yearChampionship: return String(pickerResult.championships[row])
+        case .category:         return pickerResult.category[row]
+        case .detailedResult:   return pickerResult.detailedResult[row]
+        default:                fatalError("This shouldn't happen at all! Func: \(#function)")
         }
     }
     
-    func viewForRow(_ row: Int, with title: NSAttributedString, and attributes: [NSAttributedString.Key : Any], by state: HistoricalPickerSelected) -> NSAttributedString {
+    func viewForRow(_ row: Int,
+                    with title: NSAttributedString,
+                    and attributes: [NSAttributedString.Key : Any]) -> NSAttributedString {
+        
         var title = title
         
-        switch self.state {
+        switch state {
         case .yearChampionship:
             title = NSAttributedString(string: String(pickerResult.championships[row]), attributes: attributes)
             return title
@@ -143,7 +126,7 @@ extension HistoricalPickerViewModel: PickerViewModelType {
         case .detailedResult:
             title = NSAttributedString(string: pickerResult.detailedResult[row], attributes: attributes)
             return title
-        default: fatalError("Не должно быть!")
+        default: fatalError("This shouldn't happen at all! Func: \(#function)")
         }
     }
 }

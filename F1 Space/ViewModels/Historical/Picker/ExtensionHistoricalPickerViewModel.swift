@@ -21,10 +21,22 @@ import Foundation
         case category = 2
     }
     
+    func requestSeason(completion: @escaping () -> (Void)) {
+        guard let category = currentValues[HIndex.category.rawValue]?.lowercased() else { return }
+        
+        if category == HistoricalCategory.drivers.rawValue {
+            requestYearDataForDriver(completion: completion)
+        } else if category == HistoricalCategory.teams.rawValue {
+            requestYearDataForConstructor(completion: completion)
+        } else {
+            requestYearDataForRace(completion: completion)
+        }
+    }
+    
     /// Provides a year
     ///
     /// - Parameter num: Managing the number helps you get the correct year for each model
-    func getChampionshipYear(num: Int) {
+    private func getChampionshipYear(num: Int) {
         let date = Date()
         let calendar = Calendar.current
         let currentYear = calendar.component(.year, from: date)
@@ -37,7 +49,7 @@ import Foundation
         }
     }
     
-    func requestYearDataForDriver(completion: @escaping () -> (Void)) {
+    private func requestYearDataForDriver(completion: @escaping () -> (Void)) {
         switch currentValues[HIndex.detail.rawValue].isAll() {
         case true:
             API.requestSeasons { [weak self] (totalYears, error) in
@@ -95,7 +107,7 @@ import Foundation
         }
     }
     
-    func requestYearDataForConstructor(completion: @escaping () -> (Void)) {
+    private func requestYearDataForConstructor(completion: @escaping () -> (Void)) {
         switch currentValues[HIndex.detail.rawValue].isAll() {
         case true:
             API.requestSeasonsOfficialConstructorsCup { [weak self] (totalYears, error) in
@@ -153,7 +165,7 @@ import Foundation
         }
     }
     
-    func requestYearDataForRace(completion: @escaping () -> (Void)) {
+    private func requestYearDataForRace(completion: @escaping () -> (Void)) {
         API.requestSeasons { [weak self] (totalYears, error) in
             self?.pickerResult.totalSeasons = totalYears?.championshipData.total
             self?.getChampionshipYear(num: 1)
