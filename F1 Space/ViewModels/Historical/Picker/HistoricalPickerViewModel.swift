@@ -110,9 +110,7 @@ extension HistoricalPickerViewModel: PickerViewModelType {
         }
     }
     
-    func viewForRow(_ row: Int,
-                    with title: NSAttributedString,
-                    and attributes: [NSAttributedString.Key : Any]) -> NSAttributedString {
+    func viewForRow(_ row: Int, with title: NSAttributedString, and attributes: [NSAttributedString.Key : Any]) -> NSAttributedString {
         
         var title = title
         

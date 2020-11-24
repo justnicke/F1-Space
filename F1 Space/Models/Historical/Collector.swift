@@ -23,5 +23,5 @@ struct Collector {
     var firstPlaceResultInRace: [Race] = []
     var racesDetailDriver: [Race] = []
     var racesDetailConstructors: [Race] = []
-    var racesDetail: [Result] = []
+    var racesDetail: [ResultF1] = []
 }

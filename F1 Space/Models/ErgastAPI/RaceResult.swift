@@ -36,7 +36,7 @@ struct RaceResultTable: Codable {
 struct Race: Codable {
     let round: String
     let raceName: String
-    let results: [Result]
+    let results: [ResultF1]
     
     enum CodingKeys: String, CodingKey {
         case raceName = "raceName"
@@ -45,7 +45,7 @@ struct Race: Codable {
     }
 }
 
-struct Result: Codable {
+struct ResultF1: Codable {
     let position: String
     let points: String
     let driver: Driver

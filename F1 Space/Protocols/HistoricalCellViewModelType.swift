@@ -19,7 +19,7 @@ protocol HistoricalCellViewModelType: class {
     var driverStanding: DriverStandings? { get }
     var constructorStandings: ConstructorStandings? { get }
     var race: Race? { get }
-    var ditailedRace: Result? { get }
+    var ditailedRace: ResultF1? { get }
 }
 
 // MARK: - Extension HistoricalCellViewModelType
@@ -73,7 +73,9 @@ extension HistoricalCellViewModelType {
 // MARK: - Extension HistoricalCellViewModelType Helper
 
 extension HistoricalCellViewModelType {
+    
     /// Depending on how the driver finished the answer will be given
+    ///
     /// - Parameter selected: "True" for the driver category. "False" for the races category.
     func finished(_ selected: Bool) -> String? {
         // TRUE

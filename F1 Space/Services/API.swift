@@ -12,7 +12,7 @@ final class API {
     
     // MARK: - Private Nested
     
-    private enum EndPoint {
+    enum EndPoint {
         case driverStandings(year: String)
         case constructorStandings(year: String)
         case season
@@ -65,11 +65,11 @@ final class API {
             case .concreteRaceResults(year: let year, roundId: let round):
                 return
                     URLComponents(string: "https://ergast.com/api/f1/\(year)/\(round)/results.json")
-                                          
             }
         }
     }
     
+
     // MARK: - Public Methods
     
     static func requestDriverStandings(year: String, completion: @escaping (DriverStandingsGroup?, Error?) -> Void) {
@@ -152,3 +152,4 @@ final class API {
         }
     }
 }
+

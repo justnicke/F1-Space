@@ -12,13 +12,9 @@ import UIKit
 
 final class HistoricalPickerViewController: UIViewController {
     
-    // MARK: - Public Properties
-    
-    var count = HistoricalPickerSelected(rawValue: .zero)
-    var currentValues: [String?] = []
-    
     // MARK: - Private Properties
-    
+    private var count = HistoricalPickerSelected(rawValue: .zero)
+    private var currentValues: [String?] = []
     private var picker = UIPickerView()
     private var doneButton: UIButton = {
         let button = UIButton(type: .system)
@@ -144,38 +140,35 @@ extension HistoricalPickerViewController: UIPickerViewDataSource, UIPickerViewDe
         return historicalPickerViewModel.titleForRow(row)
     }
     
-    func pickerView(_ pickerView: UIPickerView,
-                    viewForRow row: Int,
-                    forComponent component: Int,
-                    reusing view: UIView?) -> UIView {
-        
-        for lineSubview in pickerView.subviews {
-            if lineSubview.frame.size.height < 1 {
-                var frame = lineSubview.frame
-                frame.size.height = 2
-                lineSubview.frame = frame
-                lineSubview.backgroundColor = UIColor.black.withAlphaComponent(0.1)
-            }
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+    
+    for lineSubview in pickerView.subviews {
+        if lineSubview.frame.size.height < 1 {
+            var frame = lineSubview.frame
+            frame.size.height = 2
+            lineSubview.frame = frame
+            lineSubview.backgroundColor = UIColor.black.withAlphaComponent(0.1)
         }
-        
-        var label = view as! UILabel?
-        
-        if label == nil {
-            label = UILabel()
-        }
-        
-        let title = NSAttributedString()
-        
-        label?.attributedText = historicalPickerViewModel.viewForRow(
-            row,
-            with: title,
-            and: [NSAttributedString.Key.font: UIFont(name: "AvenirNext-Bold", size: 22)!]
-        )
-        label?.textColor = #colorLiteral(red: 0.3819147944, green: 0.3267760873, blue: 0.8082862496, alpha: 1)
-        label?.textAlignment = .center
-        
-        return label ?? UIView()
     }
+    
+    var label = view as! UILabel?
+    
+    if label == nil {
+        label = UILabel()
+    }
+    
+    let title = NSAttributedString()
+    
+    label?.attributedText = historicalPickerViewModel.viewForRow(
+        row,
+        with: title,
+        and: [NSAttributedString.Key.font: UIFont(name: "AvenirNext-Bold", size: 22)!]
+    )
+    label?.textColor = #colorLiteral(red: 0.3819147944, green: 0.3267760873, blue: 0.8082862496, alpha: 1)
+    label?.textAlignment = .center
+    
+    return label ?? UIView()
+}
     
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
         return 50

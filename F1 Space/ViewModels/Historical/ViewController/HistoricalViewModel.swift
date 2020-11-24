@@ -27,7 +27,7 @@ final class HistoricalViewModel {
     
     // MARK: - Public Methods
     
-    func request(completion: @escaping () -> (Void), callback: @escaping (String) -> (Void)) {
+    func request(completion: @escaping () -> (Void)) {
         switch category {
         case .drivers:
             compareDriverID(completion: completion)

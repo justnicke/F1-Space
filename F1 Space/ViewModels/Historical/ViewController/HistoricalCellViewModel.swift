@@ -24,7 +24,7 @@ final class HistoricalCellViewModel: HistoricalCellViewModelType {
     private(set) var driverStanding: DriverStandings?
     private(set) var constructorStandings: ConstructorStandings?
     private(set) var race: Race?
-    private(set) var ditailedRace: Result?
+    private(set) var ditailedRace: ResultF1?
     
     // MARK: - Constructors
     
@@ -47,7 +47,7 @@ final class HistoricalCellViewModel: HistoricalCellViewModelType {
         setup(by: category, and: id)
     }
     
-    init(for ditailedRace: Result?, by category: HistoricalCategory?, and id: String?) {
+    init(for ditailedRace: ResultF1?, by category: HistoricalCategory?, and id: String?) {
         self.ditailedRace = ditailedRace
         setup(by: category, and: id)
     }
