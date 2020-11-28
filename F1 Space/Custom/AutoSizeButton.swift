@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import EMTNeumorphicView
 
-final class AutoSizeButton: UIButton {
+final class AutoSizeButton: UIButton, EMTNeumorphicElementProtocol {
+    var neumorphicLayer: EMTNeumorphicLayer?
+    var a: EMTNeumorphicButton!
     
     override var intrinsicContentSize: CGSize {
         let width = self.titleLabel!.intrinsicContentSize.width + 20

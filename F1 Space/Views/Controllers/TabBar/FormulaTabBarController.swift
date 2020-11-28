@@ -7,16 +7,22 @@
 //
 
 import UIKit
+import EMTNeumorphicView
 
 final class FormulaTabBarController: UITabBarController {
     
     // MARK: Public Methods
+    
+    var slv = EMTNeumorphicView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tabBar.tintColor = .red
-        tabBar.backgroundColor = .white
+//        view.addSubview(slv)
+//        slv.backgroundColor = .red
+//        slv.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor)
+        
+        tabBar.barStyle = .black
         
         viewControllers = [
             createNavController(vc: HistoricalViewController(), title: "Historical", image: #imageLiteral(resourceName: "newsTrue"), selectedImage: nil),
@@ -40,7 +46,7 @@ final class FormulaTabBarController: UITabBarController {
         ]
         
         let appearance = UINavigationBarAppearance()
-        appearance.backgroundColor = .red
+        appearance.backgroundColor = #colorLiteral(red: 0.1770213544, green: 0.1959984004, blue: 0.2182722688, alpha: 1)
         appearance.titleTextAttributes = titleFontAttrs
         appearance.shadowColor = UIColor.clear
         

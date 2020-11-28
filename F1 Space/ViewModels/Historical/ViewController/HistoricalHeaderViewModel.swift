@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 final class HistoricalHeaderViewModel {
     
     // MARK: - Public Properties

@@ -7,39 +7,42 @@
 //
 
 import UIKit
+import EMTNeumorphicView
 
 final class HistoricalViewController: UIViewController {
     
     // MARK: - Private Properties
     
-    private let topView = UIScrollView()
-    private let yearButton: AutoSizeButton = {
-        let button = AutoSizeButton(type: .custom)
+    let topView = UIScrollView()
+    let yearButton: EMTNeumorphicButton = {
+        let button = EMTNeumorphicButton(type: .custom)
         button.setTitle("2020", for: .normal)
         return button
     }()
-    private let categoryButton: AutoSizeButton = {
-        let button = AutoSizeButton(type: .custom)
+    let categoryButton: EMTNeumorphicButton = {
+        let button = EMTNeumorphicButton(type: .custom)
         button.setTitle("Drivers", for: .normal)
         return button
     }()
-    private let detailResultButton: AutoSizeButton = {
-        let button = AutoSizeButton()
+    let detailResultButton: EMTNeumorphicButton = {
+        let button = EMTNeumorphicButton()
         button.setTitle("All", for: .normal)
         return button
     }()
-    private var detailResultID = "All"
-    private var tableView: UITableView!
-    private let transition = PanelTransition()
-    private let header = HistoricalHeaderView()
-    private var historicalViewModel: HistoricalViewModel!
+    var detailResultID = "All"
+    var tableView: UITableView!
+    let transition = PanelTransition()
+    let header = HistoricalHeaderView()
+    var historicalViewModel: HistoricalViewModel!
+    
+    let canvasView = EMTNeumorphicView()
     
     // MARK: - Public Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .green
+        view.backgroundColor = #colorLiteral(red: 0.1770213544, green: 0.1959984004, blue: 0.2182722688, alpha: 1)
         
         setupTopView()
         requestViewModel()
@@ -48,115 +51,6 @@ final class HistoricalViewController: UIViewController {
         yearButton.addTarget(self, action: #selector(yearButtonPressed), for: .touchUpInside)
         categoryButton.addTarget(self, action: #selector(typeSearchButtonPressed), for: .touchUpInside)
         detailResultButton.addTarget(self, action: #selector(detailResultButtonPressed), for: .touchUpInside)
-    }
-
-    // MARK: - Private Methods
-    
-    private func setupTopView() {
-        view.addSubview(topView)
-        topView.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
-        topView.anchor(
-            top: view.safeAreaLayoutGuide.topAnchor,
-            leading: view.leadingAnchor,
-            bottom: nil,
-            trailing: view.trailingAnchor,
-            size: .init(width: 0, height: 50)
-        )
-        
-        set(for: [yearButton, categoryButton, detailResultButton])
-        
-        let buttonStackView = UIStackView(
-            arrangedSubviews: [yearButton, categoryButton, detailResultButton],
-            axis: .horizontal,
-            spacing: 10
-        )
-        
-        topView.addSubview(buttonStackView)
-        buttonStackView.anchor(
-            top: topView.topAnchor,
-            leading: topView.leadingAnchor,
-            bottom: topView.bottomAnchor,
-            trailing: topView.trailingAnchor,
-            padding: .init(top: 10, left: 10, bottom: 10, right: 10)
-        )
-    }
-    
-    private func set(for buttons: [AutoSizeButton]) {
-        buttons.forEach {
-            $0.backgroundColor = #colorLiteral(red: 0.6764943004, green: 0.6070100665, blue: 0.899546206, alpha: 1)
-            $0.titleLabel?.font = UIFont(name: "AvenirNext-Medium", size: 13)
-            $0.titleLabel?.numberOfLines = 1
-            $0.titleLabel?.textAlignment = .center
-            $0.tintColor = .white
-            $0.clipsToBounds = true
-            $0.layer.cornerRadius = 15
-        }
-    }
-    
-    private func setupTableView() {
-        tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(tableView)
-        tableView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.separatorStyle = .singleLine
-        tableView.tableFooterView = UIView()
-        
-        tableView.topAnchor.constraint(equalTo: topView.bottomAnchor).isActive = true
-        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        
-        tableView.register(HistoricalCell.self, forCellReuseIdentifier: HistoricalCell.reuseId)
-    }
-    
-    private func initViewModel() {
-        historicalViewModel = HistoricalViewModel(
-            year: type().year,
-            category: type().category,
-            id: type().id)
-    }
-
-    private func requestViewModel() {
-        initViewModel()
-        
-        historicalViewModel.request() { [weak self] in
-            let indexPath = IndexPath(row: 0, section: 0)
-            
-            self?.tableView.reloadData()
-            self?.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
-        }
-    }
-    
-    /// Quick access to the current state of the button text or identity
-    private func type() -> (year: String?, category: HistoricalCategory.RawValue?, detailed: String?, id: String?) {
-        return (
-            yearButton.titleLabel?.text,
-            categoryButton.titleLabel?.text,
-            detailResultButton.titleLabel?.text,
-            detailResultID
-        )
-    }
-    
-    private func openTransition(state: HistoricalPickerSelected, currentValues: [String?]) {
-        let historicalPickerView = HistoricalPickerViewController(currentValues: currentValues, by: state)
-        historicalPickerView.giveDelegate(for: self)
-        historicalPickerView.transitioningDelegate = transition
-        historicalPickerView.modalPresentationStyle = .custom
-        present(historicalPickerView, animated: true)
-    }
-    
-    @objc private func yearButtonPressed() {
-        openTransition(state: .yearChampionship, currentValues: [type().year, type().id, type().category])
-    }
-    
-    @objc private func typeSearchButtonPressed() {
-        openTransition(state: .category, currentValues: [type().category])
-    }
-    
-    @objc private func detailResultButtonPressed() {        
-        openTransition(state: .detailedResult, currentValues: [type().year, type().detailed, type().category])
     }
 }
 
@@ -175,7 +69,7 @@ extension HistoricalViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return 50
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -189,51 +83,6 @@ extension HistoricalViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-// MARK: - Extension HistoricalPickerSelectedDelegate
-
-extension HistoricalViewController: HistoricalPickerSelectedDelegate {
-    
-    func checkCorrectId(_ oldYear: String?) {
-        if type().category == "Races" && type().detailed != "All" && type().year != oldYear {
-            detailResultButton.setTitle("All", for: .normal)
-            detailResultID = "All"
-        }
-    }
-    
-    func checkCorrectYearForTeam() {
-        if type().category == "Teams" && type().year.unwrap < "1958" {
-            yearButton.setTitle("1958", for: .normal)
-        }
-    }
-    
-    func year(currentСhampionship: String) {
-        let oldYear = yearButton.titleLabel?.text
-        
-        yearButton.setTitle(String(currentСhampionship), for: .normal)
-        
-        checkCorrectId(oldYear)
-        
-        requestViewModel()
-    }
-    
-    func category(current: String) {
-        categoryButton.setTitle(current, for: .normal)
-    
-        detailResultButton.setTitle("All", for: .normal)
-        detailResultID = "All"
-        
-        checkCorrectYearForTeam()
-        
-        requestViewModel()
-    }
-    
-    func detailed(currentResult: String, id: String?) {
-        detailResultButton.setTitle(currentResult, for: .normal)
-        detailResultID = id ?? "All"
-        
-        requestViewModel()
-    }
-}
 
 
 

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import EMTNeumorphicView
 
 
 final class HistoricalPickerViewController: UIViewController {
@@ -16,21 +16,24 @@ final class HistoricalPickerViewController: UIViewController {
     private var count = HistoricalPickerSelected(rawValue: .zero)
     private var currentValues: [String?] = []
     private var picker = UIPickerView()
-    private var doneButton: UIButton = {
-        let button = UIButton(type: .system)
+    private var doneButton: EMTNeumorphicButton = {
+        let button = EMTNeumorphicButton(type: .custom)
         button.setTitle("DONE", for: .normal)
         button.titleLabel?.font = UIFont(name: "AvenirNext-Bold", size: 18)
-        button.tintColor = #colorLiteral(red: 0.3819147944, green: 0.3267760873, blue: 0.8082862496, alpha: 1)
-        button.backgroundColor = .white
-        button.layer.cornerRadius = 20
-        button.layer.borderWidth = 2
-        let opacity: CGFloat = 0.3
-        let borderColor = #colorLiteral(red: 0.3819147944, green: 0.3267760873, blue: 0.8082862496, alpha: 1)
-        button.layer.borderColor = borderColor.withAlphaComponent(opacity).cgColor
+        button.tintColor = .red
+        button.neumorphicLayer?.elementBackgroundColor = #colorLiteral(red: 0.1770213544, green: 0.1959984004, blue: 0.2182722688, alpha: 1)
+        button.neumorphicLayer?.cornerRadius = 15
+        button.neumorphicLayer?.depthType = .convex
+        button.neumorphicLayer?.elementDepth = 5
+        button.neumorphicLayer?.darkShadowOpacity = 0.9
+        button.neumorphicLayer?.lightShadowOpacity = 0.08
+        button.alpha = 0.5
         return button
     }()
     private let handleDismissView = UIView()
     private lazy var historicalPickerViewModel = HistoricalPickerViewModel(currentValues: currentValues, by: count)
+    
+    let neumorphicView = EMTNeumorphicView()
     
     // MARK: - Constructors
     
@@ -51,10 +54,22 @@ final class HistoricalPickerViewController: UIViewController {
 
         view.layer.cornerRadius = 25
         view.layer.masksToBounds = true
-        view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 0.1770213544, green: 0.1959984004, blue: 0.2182722688, alpha: 1)
+        
+       
 
         setupUI()
         updateViewModel()
+        
+        picker.addSubview(neumorphicView)
+        
+        neumorphicView.neumorphicLayer?.elementBackgroundColor = #colorLiteral(red: 0.1770213544, green: 0.1959984004, blue: 0.2182722688, alpha: 1)
+        neumorphicView.neumorphicLayer?.cornerRadius = 15
+        neumorphicView.neumorphicLayer?.depthType = .concave
+        neumorphicView.neumorphicLayer?.elementDepth = 5
+        neumorphicView.neumorphicLayer?.darkShadowOpacity = 0.9
+        neumorphicView.neumorphicLayer?.lightShadowOpacity = 0.08
+        neumorphicView.alpha = 0.5
 
         doneButton.addTarget(self, action: #selector(handleReturnValue), for: .touchUpInside)
     }
@@ -141,34 +156,33 @@ extension HistoricalPickerViewController: UIPickerViewDataSource, UIPickerViewDe
     }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-    
-    for lineSubview in pickerView.subviews {
-        if lineSubview.frame.size.height < 1 {
+        for lineSubview in pickerView.subviews {
             var frame = lineSubview.frame
-            frame.size.height = 2
+            frame.size.height = 52
             lineSubview.frame = frame
-            lineSubview.backgroundColor = UIColor.black.withAlphaComponent(0.1)
+            neumorphicView.frame = lineSubview.frame
+            lineSubview.backgroundColor = UIColor
+                .init(red: 0.1770213544, green: 0.1959984004, blue: 0.2182722688, alpha: 1).withAlphaComponent(0.01)
         }
+
+        var label = view as! UILabel?
+        
+        if label == nil {
+            label = UILabel()
+        }
+        
+        let title = NSAttributedString()
+        
+        label?.attributedText = historicalPickerViewModel.viewForRow(
+            row,
+            with: title,
+            and: [NSAttributedString.Key.font: UIFont(name: "AvenirNext-Bold", size: 22)!]
+        )
+        label?.textColor = .white
+        label?.textAlignment = .center
+        
+        return label ?? UIView()
     }
-    
-    var label = view as! UILabel?
-    
-    if label == nil {
-        label = UILabel()
-    }
-    
-    let title = NSAttributedString()
-    
-    label?.attributedText = historicalPickerViewModel.viewForRow(
-        row,
-        with: title,
-        and: [NSAttributedString.Key.font: UIFont(name: "AvenirNext-Bold", size: 22)!]
-    )
-    label?.textColor = #colorLiteral(red: 0.3819147944, green: 0.3267760873, blue: 0.8082862496, alpha: 1)
-    label?.textAlignment = .center
-    
-    return label ?? UIView()
-}
     
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
         return 50

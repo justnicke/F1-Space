@@ -1,0 +1,6 @@
+framework module Pods_F1_Space {
+  umbrella header "Pods-F1 Space-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -16,6 +16,7 @@ final class HistoricalRaceStrategy: HistoricalStandingsStrategy {
         labels.forEach {
             $0.textAlignment = . center
             $0.font = UIFont(name: "AvenirNext-Medium", size: 13)
+            $0.textColor = .white
         }
         
         width[forThe.first]?.isActive = false
