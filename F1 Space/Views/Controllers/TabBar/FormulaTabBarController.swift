@@ -46,7 +46,7 @@ final class FormulaTabBarController: UITabBarController {
         ]
         
         let appearance = UINavigationBarAppearance()
-        appearance.backgroundColor = #colorLiteral(red: 0.1770213544, green: 0.1959984004, blue: 0.2182722688, alpha: 1)
+        appearance.backgroundColor = #colorLiteral(red: 1, green: 0.006045155227, blue: 0, alpha: 1)
         appearance.titleTextAttributes = titleFontAttrs
         appearance.shadowColor = UIColor.clear
         

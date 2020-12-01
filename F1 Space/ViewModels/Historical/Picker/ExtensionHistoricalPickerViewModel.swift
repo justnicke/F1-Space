@@ -33,10 +33,10 @@ import Foundation
         }
     }
     
-    /// Provides a year
+    /// Provides  years
     ///
     /// - Parameter num: Managing the number helps you get the correct year for each model
-    private func getChampionshipYear(num: Int) {
+    func getChampionshipYear(num: Int) {
         let date = Date()
         let calendar = Calendar.current
         let currentYear = calendar.component(.year, from: date)
@@ -59,7 +59,6 @@ import Foundation
             }
         case false:
             let identity = currentValues[HIndex.detail.rawValue].unwrap.lowercased()
-            print(identity)
             
             API.requestCurrentDriverStandings { [weak self] (currentDriverStandings, err) in
                 let checkID = currentDriverStandings?

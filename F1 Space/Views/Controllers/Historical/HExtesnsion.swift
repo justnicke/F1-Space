@@ -28,7 +28,7 @@ extension HistoricalViewController {
     func setupTableView() {
         view.addSubview(canvasView)
 //        canvasView.designSetup2()
-        canvasView.neumorphicLayer?.elementBackgroundColor = view.backgroundColor?.cgColor ?? #colorLiteral(red: 0.1770213544, green: 0.1959984004, blue: 0.2182722688, alpha: 1)
+        canvasView.neumorphicLayer?.elementBackgroundColor = #colorLiteral(red: 0.2760616408, green: 0.6389906679, blue: 1, alpha: 1) //view.backgroundColor?.cgColor ?? #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
         canvasView.neumorphicLayer?.cornerRadius = 15
         canvasView.neumorphicLayer?.depthType = .convex
         canvasView.neumorphicLayer?.elementDepth = 7
@@ -41,9 +41,9 @@ extension HistoricalViewController {
         
         canvasView.anchor(top: topView.bottomAnchor,
                       leading: view.leadingAnchor,
-                      bottom: view.safeAreaLayoutGuide.bottomAnchor,
+                      bottom: view.bottomAnchor,
                       trailing: view.trailingAnchor,
-                      padding: .init(top: 15, left: 0, bottom: -10, right: 0))
+                      padding: .init(top: 15, left: 0, bottom: 0, right: 0))
         
         
         tableView = UITableView()
@@ -55,11 +55,15 @@ extension HistoricalViewController {
         tableView.separatorStyle = .none
 //        tableView.tableFooterView = UIView()
         tableView.showsVerticalScrollIndicator = false
+        tableView.bounces = false
+        tableView.alwaysBounceVertical = true
         tableView.layer.cornerRadius = 15
+
+
         
         tableView.topAnchor.constraint(equalTo: canvasView.topAnchor, constant: 10).isActive = true
         tableView.leadingAnchor.constraint(equalTo: canvasView.leadingAnchor, constant: 5).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: canvasView.bottomAnchor, constant: -10).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: canvasView.bottomAnchor, constant: -110).isActive = true
         tableView.trailingAnchor.constraint(equalTo: canvasView.trailingAnchor, constant: -5).isActive = true
         
         tableView.register(HistoricalCell.self, forCellReuseIdentifier: HistoricalCell.reuseId)

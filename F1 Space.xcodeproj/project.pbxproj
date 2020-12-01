@@ -41,6 +41,9 @@
 		5E4A6A9624D7EE100077CDBC /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A6A9524D7EE100077CDBC /* NewsViewModel.swift */; };
 		5E4A6A9924D7EEB30077CDBC /* NewsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A6A9824D7EEB30077CDBC /* NewsCellViewModel.swift */; };
 		5E4A6A9B24D82E210077CDBC /* DetailNewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A6A9A24D82E210077CDBC /* DetailNewsViewModel.swift */; };
+		5E4BA4A225767EC0004D3735 /* ControllerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4BA4A125767EC0004D3735 /* ControllerType.swift */; };
+		5E4BA4AC25767FED004D3735 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4BA4AB25767FED004D3735 /* CustomTabBarController.swift */; };
+		5E4BA4B02576804E004D3735 /* NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4BA4AF2576804E004D3735 /* NavigationView.swift */; };
 		5E4C1D5A254AF76C00C1A3BB /* CurrentConstructorStandings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4C1D59254AF76C00C1A3BB /* CurrentConstructorStandings.swift */; };
 		5E4C64B12563B9A8002DC545 /* HistoricalCellViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4C64B02563B9A8002DC545 /* HistoricalCellViewModelType.swift */; };
 		5E4C64B9256402A4002DC545 /* ExtensionHistoricalPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4C64B8256402A4002DC545 /* ExtensionHistoricalPickerViewModel.swift */; };
@@ -88,6 +91,7 @@
 		5EB4707D2541A44B00FB93B9 /* CurrentDriverStandings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB4707C2541A44B00FB93B9 /* CurrentDriverStandings.swift */; };
 		5EB470832541AA5B00FB93B9 /* HistoricalDriverDetailStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB470822541AA5B00FB93B9 /* HistoricalDriverDetailStrategy.swift */; };
 		5EB470872541BC6900FB93B9 /* ConstructorDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB470862541BC6900FB93B9 /* ConstructorDetail.swift */; };
+		5EB72B922574E0900023A90B /* HistoricalPickerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB72B912574E0900023A90B /* HistoricalPickerViewModelTests.swift */; };
 		5EC60D6824C18DBD009C66CC /* DriverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC60D6724C18DBD009C66CC /* DriverViewModel.swift */; };
 		5EC60D6C24C1FD4E009C66CC /* DriverCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC60D6B24C1FD4E009C66CC /* DriverCellViewModel.swift */; };
 		5ECFB2A62501132800ED94EA /* TransitionDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECFB29A2501132800ED94EA /* TransitionDriver.swift */; };
@@ -156,6 +160,9 @@
 		5E4A6A9524D7EE100077CDBC /* NewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewModel.swift; sourceTree = "<group>"; };
 		5E4A6A9824D7EEB30077CDBC /* NewsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCellViewModel.swift; sourceTree = "<group>"; };
 		5E4A6A9A24D82E210077CDBC /* DetailNewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNewsViewModel.swift; sourceTree = "<group>"; };
+		5E4BA4A125767EC0004D3735 /* ControllerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerType.swift; sourceTree = "<group>"; };
+		5E4BA4AB25767FED004D3735 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		5E4BA4AF2576804E004D3735 /* NavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationView.swift; sourceTree = "<group>"; };
 		5E4C1D59254AF76C00C1A3BB /* CurrentConstructorStandings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentConstructorStandings.swift; sourceTree = "<group>"; };
 		5E4C64B02563B9A8002DC545 /* HistoricalCellViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalCellViewModelType.swift; sourceTree = "<group>"; };
 		5E4C64B8256402A4002DC545 /* ExtensionHistoricalPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionHistoricalPickerViewModel.swift; sourceTree = "<group>"; };
@@ -204,6 +211,7 @@
 		5EB4707C2541A44B00FB93B9 /* CurrentDriverStandings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentDriverStandings.swift; sourceTree = "<group>"; };
 		5EB470822541AA5B00FB93B9 /* HistoricalDriverDetailStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalDriverDetailStrategy.swift; sourceTree = "<group>"; };
 		5EB470862541BC6900FB93B9 /* ConstructorDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorDetail.swift; sourceTree = "<group>"; };
+		5EB72B912574E0900023A90B /* HistoricalPickerViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalPickerViewModelTests.swift; sourceTree = "<group>"; };
 		5EC60D6724C18DBD009C66CC /* DriverViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverViewModel.swift; sourceTree = "<group>"; };
 		5EC60D6B24C1FD4E009C66CC /* DriverCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverCellViewModel.swift; sourceTree = "<group>"; };
 		5ECFB29A2501132800ED94EA /* TransitionDriver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionDriver.swift; sourceTree = "<group>"; };
@@ -339,6 +347,7 @@
 			isa = PBXGroup;
 			children = (
 				5E419EEB24B5AAC6006421F6 /* StartingTestFiles */,
+				5EB72B952574E0A10023A90B /* ViewModel */,
 			);
 			path = "F1 SpaceTests";
 			sourceTree = "<group>";
@@ -539,6 +548,9 @@
 			isa = PBXGroup;
 			children = (
 				5E419EEC24B5AB86006421F6 /* FormulaTabBarController.swift */,
+				5E4BA4A125767EC0004D3735 /* ControllerType.swift */,
+				5E4BA4AB25767FED004D3735 /* CustomTabBarController.swift */,
+				5E4BA4AF2576804E004D3735 /* NavigationView.swift */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -620,6 +632,14 @@
 				5E40ECF724B74B8100E3AF1F /* ConstructorViewController.swift */,
 			);
 			path = DriverAndConstructor;
+			sourceTree = "<group>";
+		};
+		5EB72B952574E0A10023A90B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5EB72B912574E0900023A90B /* HistoricalPickerViewModelTests.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		5EC60D6924C18DF7009C66CC /* ViewModels */ = {
@@ -924,7 +944,9 @@
 				5E419F0A24B60E1F006421F6 /* StackView.swift in Sources */,
 				5E6A1349252F0D4D0012CFEC /* HistoricalConstructorStrategy.swift in Sources */,
 				5E419EE924B5A9AA006421F6 /* StandingsViewController.swift in Sources */,
+				5E4BA4A225767EC0004D3735 /* ControllerType.swift in Sources */,
 				5E4C64B12563B9A8002DC545 /* HistoricalCellViewModelType.swift in Sources */,
+				5E4BA4B02576804E004D3735 /* NavigationView.swift in Sources */,
 				5E6A1330252EF4300012CFEC /* HistoricalStandings.swift in Sources */,
 				5E510D1E251CC11D00584EE2 /* HistoricalDriverStrategy.swift in Sources */,
 				5E7DB97D24D054420029C0EE /* NewsViewController.swift in Sources */,
@@ -939,6 +961,7 @@
 				5EFD898924FE458200A39838 /* HistoricalPickerViewController.swift in Sources */,
 				5E9EB95224C2D99A00023668 /* StandingsViewModel.swift in Sources */,
 				5E14A14424BCA1A90058305B /* API.swift in Sources */,
+				5E4BA4AC25767FED004D3735 /* CustomTabBarController.swift in Sources */,
 				5E8E01B3255155BD00A52CDD /* HistoricalRaceDetailStrategy.swift in Sources */,
 				5E82AC9E253838C40015A168 /* HistoricalHeaderViewModel.swift in Sources */,
 				5EB470832541AA5B00FB93B9 /* HistoricalDriverDetailStrategy.swift in Sources */,
@@ -951,6 +974,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EB72B922574E0900023A90B /* HistoricalPickerViewModelTests.swift in Sources */,
 				5E419EDE24B5A858006421F6 /* F1_SpaceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

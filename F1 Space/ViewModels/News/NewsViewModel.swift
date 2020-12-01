@@ -58,7 +58,7 @@ final class NewsViewModel: DataSourceViewModelType {
     
     func cellForItemAt(indexPath: IndexPath) -> NewsCellViewModel? {
         let article = articles[indexPath.row]
-        print(article)
+//        print(article)
         return NewsCellViewModel(article: article)
     }
     
