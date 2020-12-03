@@ -98,7 +98,7 @@ final class HistoricalCell: UITableViewCell {
         )
         
         group().labels.forEach {
-            $0.backgroundColor = .testColor
+            $0.backgroundColor = .mainDark
         }
     }
     

@@ -95,7 +95,7 @@ final class HistoricalHeaderView: UIView {
         
         group().labels.forEach {
 //            $0.backgroundColor = .testColor
-            $0.backgroundColor = .testColor
+            $0.backgroundColor = .mainDark
         }
     }
     

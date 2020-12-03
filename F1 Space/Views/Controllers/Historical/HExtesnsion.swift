@@ -12,7 +12,7 @@ import EMTNeumorphicView
 extension HistoricalViewController {
     func set(for buttons: [EMTNeumorphicButton]) {
         buttons.forEach {
-            $0.backgroundColor = .testColor
+            $0.backgroundColor = .mainDark
             $0.titleLabel?.font = UIFont(name: "AvenirNext-Medium", size: 13)
             $0.titleLabel?.numberOfLines = 1
             $0.titleLabel?.textAlignment = .center
@@ -79,7 +79,7 @@ extension HistoricalViewController {
     
      func setupTopView() {
         view.addSubview(topView)
-        topView.backgroundColor = .testColor
+        topView.backgroundColor = .mainDark
         topView.anchor(
             top: view.safeAreaLayoutGuide.topAnchor,
             leading: view.leadingAnchor,
@@ -210,7 +210,7 @@ extension EMTNeumorphicButton{
 //        self.neumorphicLayer?.darkShadowOpacity = 0.9
 //        self.neumorphicLayer?.lightShadowOpacity = 0.05
         
-        self.neumorphicLayer?.elementBackgroundColor = UIColor.testColor.cgColor
+        self.neumorphicLayer?.elementBackgroundColor = UIColor.mainDark.cgColor
         self.neumorphicLayer?.cornerRadius = 15
 //        self.neumorphicLayer?.cornerType = .topRow
         self.neumorphicLayer?.depthType = .convex
@@ -222,7 +222,7 @@ extension EMTNeumorphicButton{
 
 extension EMTNeumorphicView {
     func designSetup() {
-        self.neumorphicLayer?.elementBackgroundColor = UIColor.testColor.cgColor
+        self.neumorphicLayer?.elementBackgroundColor = UIColor.mainDark.cgColor
         self.neumorphicLayer?.cornerRadius = 15
 //        self.neumorphicLayer?.cornerType
         self.neumorphicLayer?.depthType = .convex
@@ -232,7 +232,7 @@ extension EMTNeumorphicView {
     }
     
     func designSetup2() {
-        self.neumorphicLayer?.elementBackgroundColor = UIColor.testColor.cgColor
+        self.neumorphicLayer?.elementBackgroundColor = UIColor.mainDark.cgColor
 //        self.neumorphicLayer?.cornerRadius = 15
         self.neumorphicLayer?.cornerType = .topRow
         self.neumorphicLayer?.depthType = .convex

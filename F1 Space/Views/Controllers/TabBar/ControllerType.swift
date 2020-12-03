@@ -43,12 +43,11 @@ enum ControllerType: String, CaseIterable {
         ]
         
         let appearance = UINavigationBarAppearance()
-        appearance.backgroundColor = .testColor
+        appearance.backgroundColor = .mainDark
         appearance.titleTextAttributes = titleFontAttrs
         appearance.shadowColor = UIColor.clear
         
         navigationController.navigationBar.standardAppearance = appearance
-        
         vc.navigationItem.title = title
         
         return navigationController
@@ -57,6 +56,4 @@ enum ControllerType: String, CaseIterable {
 
 final class AnyViewController: UIViewController {}
 
-extension UIColor {
-    static let testColor = UIColor.init(red: 0.1091516837, green: 0.1135619357, blue: 0.1351742446, alpha: 1)
-}
+

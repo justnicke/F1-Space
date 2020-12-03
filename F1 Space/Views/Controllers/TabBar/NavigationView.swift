@@ -83,7 +83,7 @@ final class NavigationView: UIView {
                 leading: decorationView.leadingAnchor,
                 bottom: nil,
                 trailing: nil,
-                padding: .init(top: 5, left: leadingAnchor + 25, bottom: 0, right: 0),
+                padding: .init(top: 7, left: leadingAnchor + 25, bottom: 0, right: 0),
                 size: .init(width: 40, height: 40)
             )
         }

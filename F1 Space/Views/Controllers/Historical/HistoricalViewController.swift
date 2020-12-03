@@ -42,7 +42,7 @@ final class HistoricalViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .testColor
+        view.backgroundColor = .mainDark
         
         setupTopView()
         requestViewModel()

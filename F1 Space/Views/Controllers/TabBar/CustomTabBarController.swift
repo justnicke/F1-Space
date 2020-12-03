@@ -11,43 +11,47 @@ import EMTNeumorphicView
 
 final class CustomTabBarController: UITabBarController {
     
-    let controllerType: [ControllerType] = [.historical, .standings, .news, .any]
-    var navigationView: NavigationView!
+    // MARK: - Private Properties
+    
+    private let controllerType: [ControllerType] = [.historical, .standings, .news, .any]
+    private var navigationView: NavigationView!
     private var barHeight: CGFloat = 74
         
+    // MARK: - Public Methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadBar()
     }
     
-    
+    // MARK: - Private Methods
 
-    func loadBar() {
-        setupCustomTabMenu(controllerType) { (controllers) in
+    private func loadBar() {
+        setupCustomTabBar(controllerType) { (controllers) in
             self.viewControllers = controllers
         }
         selectedIndex = 0
     }
     
-    func setupCustomTabMenu(_ items: [ControllerType], completion: @escaping ([UIViewController]) -> Void) {
-        
+    private func setupCustomTabBar(_ items: [ControllerType], completion: @escaping ([UIViewController]) -> Void) {
         let frame = tabBar.frame
         var controllers = [UIViewController]()
         
         tabBar.isHidden = true
-        
+
         navigationView = NavigationView(items: controllerType, frame: frame)
-        navigationView.translatesAutoresizingMaskIntoConstraints = false
-        navigationView.clipsToBounds = true
-        navigationView.itemTapped = changeTab
         
         view.addSubview(navigationView)
-        navigationView.leadingAnchor.constraint(equalTo: tabBar.leadingAnchor).isActive = true
-        navigationView.trailingAnchor.constraint(equalTo: tabBar.trailingAnchor).isActive = true
-        navigationView.bottomAnchor.constraint(equalTo: tabBar.bottomAnchor).isActive = true
-        navigationView.widthAnchor.constraint(equalToConstant: tabBar.frame.width).isActive = true
-        navigationView.heightAnchor.constraint(equalToConstant: barHeight).isActive = true
-        
+        navigationView.clipsToBounds = true
+        navigationView.itemTapped = changeButton
+        navigationView.anchor(
+            top: nil,
+            leading: tabBar.leadingAnchor,
+            bottom: tabBar.bottomAnchor,
+            trailing: tabBar.trailingAnchor,
+            size: .init(width: tabBar.frame.width, height: barHeight)
+        )
+         
         for i in 0 ..< items.count {
             controllers.append(items[i].viewController)
         }
@@ -56,7 +60,7 @@ final class CustomTabBarController: UITabBarController {
         completion(controllers)
     }
     
-    func changeTab(tab: Int) {
-        self.selectedIndex = tab
+    private func changeButton(tag: Int) {
+        self.selectedIndex = tag
     }
 }
