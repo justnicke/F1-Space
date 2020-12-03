@@ -58,5 +58,5 @@ enum ControllerType: String, CaseIterable {
 final class AnyViewController: UIViewController {}
 
 extension UIColor {
-    static let testColor = UIColor.init(red: 0.1770018041, green: 0.1963871717, blue: 0.2177612185, alpha: 1)
+    static let testColor = UIColor.init(red: 0.1091516837, green: 0.1135619357, blue: 0.1351742446, alpha: 1)
 }

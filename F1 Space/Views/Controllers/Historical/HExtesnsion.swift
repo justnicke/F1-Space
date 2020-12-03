@@ -12,7 +12,7 @@ import EMTNeumorphicView
 extension HistoricalViewController {
     func set(for buttons: [EMTNeumorphicButton]) {
         buttons.forEach {
-            $0.backgroundColor = #colorLiteral(red: 0.1770213544, green: 0.1959984004, blue: 0.2182722688, alpha: 1)
+            $0.backgroundColor = .testColor
             $0.titleLabel?.font = UIFont(name: "AvenirNext-Medium", size: 13)
             $0.titleLabel?.numberOfLines = 1
             $0.titleLabel?.textAlignment = .center
@@ -26,29 +26,31 @@ extension HistoricalViewController {
     
     
     func setupTableView() {
-        view.addSubview(canvasView)
+//        view.addSubview(canvasView)
 //        canvasView.designSetup2()
-        canvasView.neumorphicLayer?.elementBackgroundColor = #colorLiteral(red: 0.2760616408, green: 0.6389906679, blue: 1, alpha: 1) //view.backgroundColor?.cgColor ?? #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
-        canvasView.neumorphicLayer?.cornerRadius = 15
-        canvasView.neumorphicLayer?.depthType = .convex
-        canvasView.neumorphicLayer?.elementDepth = 7
-        canvasView.neumorphicLayer?.darkShadowOpacity = 0
-        canvasView.neumorphicLayer?.lightShadowOpacity = 0.07
+//        canvasView.neumorphicLayer?.elementBackgroundColor = #colorLiteral(red: 0.1770213544, green: 0.1959984004, blue: 0.2182722688, alpha: 1)
+        //view.backgroundColor?.cgColor ?? #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
+//        canvasView.neumorphicLayer?.elementBackgroundColor = UIColor.testColor.cgColor
+//        canvasView.neumorphicLayer?.cornerRadius = 15
+//        canvasView.neumorphicLayer?.depthType = .convex
+//        canvasView.neumorphicLayer?.elementDepth = 7
+//        canvasView.neumorphicLayer?.darkShadowOpacity = 0
+//        canvasView.neumorphicLayer?.lightShadowOpacity = 0.03
 
 //        canvasView.layer.masksToBounds = true
 //        canvasView.neumorphicLayer?.masksToBounds = false
         
         
-        canvasView.anchor(top: topView.bottomAnchor,
-                      leading: view.leadingAnchor,
-                      bottom: view.bottomAnchor,
-                      trailing: view.trailingAnchor,
-                      padding: .init(top: 15, left: 0, bottom: 0, right: 0))
-        
+//        canvasView.anchor(top: topView.bottomAnchor,
+//                      leading: view.leadingAnchor,
+//                      bottom: view.bottomAnchor,
+//                      trailing: view.trailingAnchor,
+//                      padding: .init(top: 15, left: 0, bottom: 0, right: 0))
+//
         
         tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        canvasView.addSubview(tableView)
+        view.addSubview(tableView)
         tableView.backgroundColor = .clear
         tableView.dataSource = self
         tableView.delegate = self
@@ -59,13 +61,16 @@ extension HistoricalViewController {
         tableView.alwaysBounceVertical = true
         tableView.layer.cornerRadius = 15
 
-
+        tableView.anchor(top: topView.bottomAnchor,
+                      leading: view.leadingAnchor,
+                      bottom: view.bottomAnchor,
+                      trailing: view.trailingAnchor,
+                      padding: .init(top: 15, left: 0, bottom: 0, right: 0))
         
-        tableView.topAnchor.constraint(equalTo: canvasView.topAnchor, constant: 10).isActive = true
-        tableView.leadingAnchor.constraint(equalTo: canvasView.leadingAnchor, constant: 5).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: canvasView.bottomAnchor, constant: -110).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: canvasView.trailingAnchor, constant: -5).isActive = true
-        
+//        tableView.topAnchor.constraint(equalTo: canvasView.topAnchor, constant: 10).isActive = true
+//        tableView.leadingAnchor.constraint(equalTo: canvasView.leadingAnchor, constant: 5).isActive = true
+//        tableView.bottomAnchor.constraint(equalTo: canvasView.bottomAnchor, constant: -74).isActive = true
+//        tableView.trailingAnchor.constraint(equalTo: canvasView.trailingAnchor, constant: -5).isActive = true
         tableView.register(HistoricalCell.self, forCellReuseIdentifier: HistoricalCell.reuseId)
     }
     
@@ -74,7 +79,7 @@ extension HistoricalViewController {
     
      func setupTopView() {
         view.addSubview(topView)
-        topView.backgroundColor = #colorLiteral(red: 0.1770213544, green: 0.1959984004, blue: 0.2182722688, alpha: 1)
+        topView.backgroundColor = .testColor
         topView.anchor(
             top: view.safeAreaLayoutGuide.topAnchor,
             leading: view.leadingAnchor,
@@ -205,7 +210,7 @@ extension EMTNeumorphicButton{
 //        self.neumorphicLayer?.darkShadowOpacity = 0.9
 //        self.neumorphicLayer?.lightShadowOpacity = 0.05
         
-        self.neumorphicLayer?.elementBackgroundColor = #colorLiteral(red: 0.1770213544, green: 0.1959984004, blue: 0.2182722688, alpha: 1)
+        self.neumorphicLayer?.elementBackgroundColor = UIColor.testColor.cgColor
         self.neumorphicLayer?.cornerRadius = 15
 //        self.neumorphicLayer?.cornerType = .topRow
         self.neumorphicLayer?.depthType = .convex
@@ -217,7 +222,7 @@ extension EMTNeumorphicButton{
 
 extension EMTNeumorphicView {
     func designSetup() {
-        self.neumorphicLayer?.elementBackgroundColor = #colorLiteral(red: 0.1770213544, green: 0.1959984004, blue: 0.2182722688, alpha: 1)
+        self.neumorphicLayer?.elementBackgroundColor = UIColor.testColor.cgColor
         self.neumorphicLayer?.cornerRadius = 15
 //        self.neumorphicLayer?.cornerType
         self.neumorphicLayer?.depthType = .convex
@@ -227,7 +232,7 @@ extension EMTNeumorphicView {
     }
     
     func designSetup2() {
-        self.neumorphicLayer?.elementBackgroundColor = #colorLiteral(red: 0.1770213544, green: 0.1959984004, blue: 0.2182722688, alpha: 1)
+        self.neumorphicLayer?.elementBackgroundColor = UIColor.testColor.cgColor
 //        self.neumorphicLayer?.cornerRadius = 15
         self.neumorphicLayer?.cornerType = .topRow
         self.neumorphicLayer?.depthType = .convex

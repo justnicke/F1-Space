@@ -7,25 +7,26 @@
 //
 
 import UIKit
+import EMTNeumorphicView
 
 final class CustomTabBarController: UITabBarController {
     
     let controllerType: [ControllerType] = [.historical, .standings, .news, .any]
     var navigationView: NavigationView!
-    var tabBarHeight: CGFloat = 100
-    
+    private var barHeight: CGFloat = 74
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         loadBar()
-        
-//        view.backgroundColor = .yellow
     }
     
+    
+
     func loadBar() {
         setupCustomTabMenu(controllerType) { (controllers) in
             self.viewControllers = controllers
         }
-        selectedIndex = 0 // default our selected index to the first item
+        selectedIndex = 0
     }
     
     func setupCustomTabMenu(_ items: [ControllerType], completion: @escaping ([UIViewController]) -> Void) {
@@ -35,7 +36,7 @@ final class CustomTabBarController: UITabBarController {
         
         tabBar.isHidden = true
         
-        navigationView = NavigationView(menuItems: controllerType, frame: frame)
+        navigationView = NavigationView(items: controllerType, frame: frame)
         navigationView.translatesAutoresizingMaskIntoConstraints = false
         navigationView.clipsToBounds = true
         navigationView.itemTapped = changeTab
@@ -45,7 +46,7 @@ final class CustomTabBarController: UITabBarController {
         navigationView.trailingAnchor.constraint(equalTo: tabBar.trailingAnchor).isActive = true
         navigationView.bottomAnchor.constraint(equalTo: tabBar.bottomAnchor).isActive = true
         navigationView.widthAnchor.constraint(equalToConstant: tabBar.frame.width).isActive = true
-        navigationView.heightAnchor.constraint(equalToConstant: tabBarHeight).isActive = true
+        navigationView.heightAnchor.constraint(equalToConstant: barHeight).isActive = true
         
         for i in 0 ..< items.count {
             controllers.append(items[i].viewController)

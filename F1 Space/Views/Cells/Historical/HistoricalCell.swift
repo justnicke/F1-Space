@@ -97,12 +97,9 @@ final class HistoricalCell: UITableViewCell {
             trailing: trailingAnchor
         )
         
-        firstLabel.backgroundColor  = #colorLiteral(red: 0.1770213544, green: 0.1959984004, blue: 0.2182722688, alpha: 1)
-        secondLabel.backgroundColor = #colorLiteral(red: 0.1770213544, green: 0.1959984004, blue: 0.2182722688, alpha: 1)
-        thirdLabel.backgroundColor  = #colorLiteral(red: 0.1770213544, green: 0.1959984004, blue: 0.2182722688, alpha: 1)
-        fouthLabel.backgroundColor  = #colorLiteral(red: 0.1770213544, green: 0.1959984004, blue: 0.2182722688, alpha: 1)
-        fifthLabel.backgroundColor  = #colorLiteral(red: 0.1770213544, green: 0.1959984004, blue: 0.2182722688, alpha: 1)
-        sixthLabel.backgroundColor  = #colorLiteral(red: 0.1770213544, green: 0.1959984004, blue: 0.2182722688, alpha: 1)
+        group().labels.forEach {
+            $0.backgroundColor = .testColor
+        }
     }
     
     private func group() -> (labels: [UILabel], widths: [NSLayoutConstraint?]) {

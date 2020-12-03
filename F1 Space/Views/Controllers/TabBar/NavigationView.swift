@@ -11,151 +11,125 @@ import Foundation
 import UIKit
 import EMTNeumorphicView
 
-extension UIColor {
-    static let offWhite = UIColor.init(red: 225/255, green: 225/255, blue: 235/255, alpha: 1)
-}
-
 final class NavigationView: UIView {
     
-    var itemTapped: ((_ tab: Int) -> Void)?
-    var activeItem: Int = 0
-    let decorationView = EMTNeumorphicView()
+    // MARK: - Public Properties
     
+    var itemTapped: ((_ tab: Int) -> Void)?
+    
+    // MARK: - Private Properties
+    
+    private let decorationView = EMTNeumorphicView()
+    private var activeItem: Int = 0
+    
+    private let historicalButton = EMTNeumorphicButton(type: .custom)
+    private let any1Button = EMTNeumorphicButton(type: .custom)
+    private let any2Button = EMTNeumorphicButton(type: .custom)
+    private let any3Button = EMTNeumorphicButton(type: .custom)
+    
+    // MARK: - Constructors
+        
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-//        backgroundColor = .offWhite
-        backgroundColor = .testColor
+        backgroundColor = .tabBarDark
         layer.cornerRadius = 10
-        // clipsToBounds = true
-
-        addSubview(decorationView)
-        decorationView.translatesAutoresizingMaskIntoConstraints = false
-
-//        decorationView.neumorphicLayer?.elementBackgroundColor = UIColor.offWhite.cgColor
-        decorationView.neumorphicLayer?.elementBackgroundColor = UIColor.testColor.cgColor
-        decorationView.neumorphicLayer?.cornerRadius = 10
-        decorationView.neumorphicLayer?.cornerType = .bottomRow
-        decorationView.neumorphicLayer?.depthType = .concave
-        decorationView.neumorphicLayer?.elementDepth = 5
-        decorationView.neumorphicLayer?.darkShadowOpacity = 0.5
-        decorationView.neumorphicLayer?.lightShadowOpacity = 0.05
-
-        decorationView.translatesAutoresizingMaskIntoConstraints = false
-        decorationView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        decorationView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        decorationView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        decorationView.heightAnchor.constraint(equalToConstant: 65).isActive = true
+        
+        setupDecorationView()
     }
-    
-    
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    convenience init(menuItems: [ControllerType], frame: CGRect) {
+    convenience init(items: [ControllerType], frame: CGRect) {
         self.init(frame: frame)
-
-        for i in 0..<menuItems.count {
-            let itemWidth = self.frame.width / CGFloat(menuItems.count)
+        
+        setButtons(with: items, and: frame)
+        
+        historicalButton.addTarget(self, action: #selector(pressHistorical(_:)), for: .touchUpInside)
+        any1Button.addTarget(self, action: #selector(handleTap2(_:)), for: .touchUpInside)
+        any2Button.addTarget(self, action: #selector(handleTap3(_:)), for: .touchUpInside)
+        any3Button.addTarget(self, action: #selector(handleTap4(_:)), for: .touchUpInside)
+    }
+    
+    // MARK: - Private Methods
+    
+    private func setupDecorationView() {
+        addSubview(decorationView)
+        decorationView.setDesignForDecorationView(with: backgroundColor)
+        decorationView.anchor(
+            top: topAnchor,
+            leading: leadingAnchor,
+            bottom: nil,
+            trailing: trailingAnchor,
+            size: .init(width: 0, height: 54)
+        )
+    }
+    
+    private func setButtons(with items: [ControllerType], and frame: CGRect) {
+        for i in 0..<items.count {
+            let itemWidth = self.frame.width / CGFloat(items.count)
             let leadingAnchor = itemWidth * CGFloat(i)
-            let itemView = createButtons(item: menuItems[i])
-
-            itemView[i].translatesAutoresizingMaskIntoConstraints = false
-            itemView[i].clipsToBounds = true
-            itemView[i].tag = i
-
-            itemView[i].layer.cornerRadius = 10
-            decorationView.addSubview(itemView[i])
-            itemView[i].topAnchor.constraint(equalTo: decorationView.topAnchor, constant: 10).isActive = true
-            itemView[i].leadingAnchor.constraint(equalTo: decorationView.leadingAnchor, constant: leadingAnchor + 25).isActive = true
-
-            itemView[i].heightAnchor.constraint(equalToConstant: 45).isActive = true
-            itemView[i].widthAnchor.constraint(equalToConstant: 45).isActive = true
+            let buttons = createButtons(item: items[i])
+            
+            decorationView.addSubview(buttons[i])
+            buttons[i].setDesignInTabBar(with: backgroundColor)
+            buttons[i].clipsToBounds = true
+            buttons[i].tag = i
+            buttons[i].layer.cornerRadius = 10
+            buttons[i].anchor(
+                top: decorationView.topAnchor,
+                leading: decorationView.leadingAnchor,
+                bottom: nil,
+                trailing: nil,
+                padding: .init(top: 5, left: leadingAnchor + 25, bottom: 0, right: 0),
+                size: .init(width: 40, height: 40)
+            )
         }
-
-        setNeedsLayout()
-        layoutIfNeeded()
-        activateTab(tab: 0)
+        
+        historicalButton.isSelected = true
+        activateButton(tag: 0)
     }
     
-        
-    var firstButton = EMTNeumorphicButton(type: .custom)
-    var secondButton = EMTNeumorphicButton(type: .custom)
-    var thirdButton = EMTNeumorphicButton(type: .custom)
-    var fourthButton = EMTNeumorphicButton(type: .custom)
+    private func createButtons(item: ControllerType) -> [EMTNeumorphicButton] {
+        return [historicalButton, any1Button, any2Button, any3Button]
+    }
     
-    func createButtons(item: ControllerType) -> [EMTNeumorphicButton] {
-        var arrayButton = [EMTNeumorphicButton]()
-//
-//        let boldConfig = UIImage.SymbolConfiguration(weight: .bold)
-//        let image = UIImage(systemName: "arrow.right", withConfiguration: boldConfig)
-        
-        firstButton.neumorphicLayer?.elementBackgroundColor = backgroundColor?.cgColor ?? UIColor.testColor.cgColor
-        firstButton.addTarget(self, action: #selector(handleTap1(_:)), for: .touchUpInside)
-        firstButton.neumorphicLayer?.lightShadowOpacity = 0.08
-        firstButton.neumorphicLayer?.darkShadowOpacity = 0.5
-        arrayButton.append(firstButton)
-        
-        secondButton.neumorphicLayer?.elementBackgroundColor = backgroundColor?.cgColor ?? UIColor.testColor.cgColor
-        secondButton.addTarget(self, action: #selector(handleTap2(_:)), for: .touchUpInside)
-        secondButton.neumorphicLayer?.lightShadowOpacity = 0.08
-        secondButton.neumorphicLayer?.darkShadowOpacity = 0.5
-        arrayButton.append(secondButton)
-        
-        thirdButton.neumorphicLayer?.elementBackgroundColor = backgroundColor?.cgColor ?? UIColor.testColor.cgColor
-        thirdButton.addTarget(self, action: #selector(handleTap3(_:)), for: .touchUpInside)
-        thirdButton.neumorphicLayer?.lightShadowOpacity = 0.08
-        thirdButton.neumorphicLayer?.darkShadowOpacity = 0.5
-        arrayButton.append(thirdButton)
-        
-        fourthButton.neumorphicLayer?.elementBackgroundColor = backgroundColor?.cgColor ?? UIColor.testColor.cgColor
-        fourthButton.addTarget(self, action: #selector(handleTap4(_:)), for: .touchUpInside)
-        fourthButton.neumorphicLayer?.lightShadowOpacity = 0.08
-        fourthButton.neumorphicLayer?.darkShadowOpacity = 0.5
-        arrayButton.append(fourthButton)
-        
-        return arrayButton
+    private func switchButton(from: Int, to: Int) {
+        deactivateButton()
+        activateButton(tag: to)
+    }
+    
+    private func activateButton(tag: Int) {
+        self.itemTapped?(tag)
+        self.activeItem = tag
+    }
+    
+    private func deactivateButton() {
+        historicalButton.isSelected = false
+        any1Button.isSelected = false
+        any2Button.isSelected = false
+        any3Button.isSelected = false
     }
 
-
-    
-    @objc func handleTap1(_ sender: EMTNeumorphicButton) {
-        switchTab(from: activeItem, to: sender.tag)
-        firstButton.isSelected = true
+    @objc private func pressHistorical(_ button: EMTNeumorphicButton) {
+        switchButton(from: activeItem, to: button.tag)
+        historicalButton.isSelected = true
     }
     
-    @objc func handleTap2(_ sender: EMTNeumorphicButton) {
-        switchTab(from: activeItem, to: sender.tag)
-        secondButton.isSelected = true
+    @objc private func handleTap2(_ sender: EMTNeumorphicButton) {
+        switchButton(from: activeItem, to: sender.tag)
+        any1Button.isSelected = true
     }
     
-    @objc func handleTap3(_ sender: EMTNeumorphicButton) {
-        switchTab(from: activeItem, to: sender.tag)
-        thirdButton.isSelected = true
+    @objc private func handleTap3(_ sender: EMTNeumorphicButton) {
+        switchButton(from: activeItem, to: sender.tag)
+        any2Button.isSelected = true
     }
     
-    @objc func handleTap4(_ sender: EMTNeumorphicButton) {
-        switchTab(from: activeItem, to: sender.tag)
-        fourthButton.isSelected = true
-    }
-    
-    func switchTab(from: Int, to: Int) {
-        deactivateTab(tab: from)
-        activateTab(tab: to)
-    }
-    
-    func activateTab(tab: Int) {
-        self.itemTapped?(tab)
-        self.activeItem = tab
-    }
-
-    
-    func deactivateTab(tab: Int) {
-        firstButton.isSelected = false
-        secondButton.isSelected = false
-        thirdButton.isSelected = false
-        fourthButton.isSelected = false
+    @objc private func handleTap4(_ sender: EMTNeumorphicButton) {
+        switchButton(from: activeItem, to: sender.tag)
+        any3Button.isSelected = true
     }
 }
