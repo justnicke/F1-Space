@@ -21,7 +21,7 @@ final class HistoricalPickerViewController: UIViewController {
         button.setTitle("DONE", for: .normal)
         button.titleLabel?.font = UIFont(name: "AvenirNext-Bold", size: 18)
         button.tintColor = .red
-        button.neumorphicLayer?.elementBackgroundColor = #colorLiteral(red: 0.1770213544, green: 0.1959984004, blue: 0.2182722688, alpha: 1)
+        button.neumorphicLayer?.elementBackgroundColor = UIColor.mainDark.cgColor
         button.neumorphicLayer?.cornerRadius = 15
         button.neumorphicLayer?.depthType = .convex
         button.neumorphicLayer?.elementDepth = 5
@@ -54,16 +54,14 @@ final class HistoricalPickerViewController: UIViewController {
 
         view.layer.cornerRadius = 25
         view.layer.masksToBounds = true
-        view.backgroundColor = #colorLiteral(red: 0.1770213544, green: 0.1959984004, blue: 0.2182722688, alpha: 1)
+        view.backgroundColor = .mainDark
         
-       
-
         setupUI()
         updateViewModel()
         
         picker.addSubview(neumorphicView)
         
-        neumorphicView.neumorphicLayer?.elementBackgroundColor = #colorLiteral(red: 0.1770213544, green: 0.1959984004, blue: 0.2182722688, alpha: 1)
+        neumorphicView.neumorphicLayer?.elementBackgroundColor = view.backgroundColor?.cgColor ?? UIColor.mainDark.cgColor
         neumorphicView.neumorphicLayer?.cornerRadius = 15
         neumorphicView.neumorphicLayer?.depthType = .concave
         neumorphicView.neumorphicLayer?.elementDepth = 5
@@ -162,7 +160,7 @@ extension HistoricalPickerViewController: UIPickerViewDataSource, UIPickerViewDe
             lineSubview.frame = frame
             neumorphicView.frame = lineSubview.frame
             lineSubview.backgroundColor = UIColor
-                .init(red: 0.1770213544, green: 0.1959984004, blue: 0.2182722688, alpha: 1).withAlphaComponent(0.01)
+                .init(red: 0.180019021, green: 0.2043099701, blue: 0.2299311161, alpha: 1).withAlphaComponent(0.01)
         }
 
         var label = view as! UILabel?
@@ -183,7 +181,7 @@ extension HistoricalPickerViewController: UIPickerViewDataSource, UIPickerViewDe
         
         return label ?? UIView()
     }
-    
+
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
         return 50
     }

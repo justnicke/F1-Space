@@ -88,7 +88,6 @@ extension HistoricalPickerViewModel: PickerViewModelRequestType {
     }
 }
 
-
 // MARK: - Extension PickerViewModelType
 
 extension HistoricalPickerViewModel: PickerViewModelType {

@@ -8,29 +8,30 @@
 
 import UIKit
 
-final class HistoricalCell: UITableViewCell {
+
+
+final class HistoricalCell: UITableViewCell, HistoricalViewType {
     
     // MARK: - Public Properties
     
     static let reuseId = String(describing: HistoricalCell.self)
+    var historicalStandingsStrategy: HistoricalStandingsStrategy?
     
     // MARK: - Private Properties
     
-    private var historicalStandingsStrategy: HistoricalStandingsStrategy?
+    private(set) var firstLabel  = UILabel()
+    private(set) var secondLabel = UILabel()
+    private(set) var thirdLabel  = UILabel()
+    private(set) var fouthLabel  = UILabel()
+    private(set) var fifthLabel  = UILabel()
+    private(set) var sixthLabel  = UILabel()
     
-    private let firstLabel  = UILabel()
-    private let secondLabel = UILabel()
-    private let thirdLabel  = UILabel()
-    private let fouthLabel  = UILabel()
-    private let fifthLabel  = UILabel()
-    private let sixthLabel  = UILabel()
-        
-    private lazy var firstWidth  = firstLabel.widthAnchor.constraint(equalToConstant: 0)
-    private lazy var secondWidth = secondLabel.widthAnchor.constraint(equalToConstant: 0)
-    private lazy var thirdWidth  = thirdLabel.widthAnchor.constraint(equalToConstant: 0)
-    private lazy var fourthWidth = fouthLabel.widthAnchor.constraint(equalToConstant: 0)
-    private lazy var fifthWidth  = fifthLabel.widthAnchor.constraint(equalToConstant: 0)
-    private lazy var sixthWidth  = sixthLabel.widthAnchor.constraint(equalToConstant: 0)
+    private(set) lazy var firstWidth  = firstLabel.widthAnchor.constraint(equalToConstant: 0)
+    private(set) lazy var secondWidth = secondLabel.widthAnchor.constraint(equalToConstant: 0)
+    private(set) lazy var thirdWidth  = thirdLabel.widthAnchor.constraint(equalToConstant: 0)
+    private(set) lazy var fourthWidth = fouthLabel.widthAnchor.constraint(equalToConstant: 0)
+    private(set) lazy var fifthWidth  = fifthLabel.widthAnchor.constraint(equalToConstant: 0)
+    private(set) lazy var sixthWidth  = sixthLabel.widthAnchor.constraint(equalToConstant: 0)
     
     // MARK: - Constructors
     
@@ -46,37 +47,21 @@ final class HistoricalCell: UITableViewCell {
     
     // MARK: - Public Methods
     
-    func configureCell(viewModel: HistoricalCellViewModel?, byFrame rootView: UIView, and category: String?, id: String?) {
-        if category?.lowercased() == HistoricalCategory.drivers.rawValue {
-            if id == "All" {
-                historicalStandingsStrategy = HistoricalDriverStrategy()
-                historicalStandingsStrategy?.setupUI(for: group().labels, withAdjustable: group().widths, byFrame: rootView)
-                historicalStandingsStrategy?.configureCell(viewModel: viewModel, for: group().labels)
-            } else {
-                historicalStandingsStrategy = HistoricalDriverDetailStrategy()
-                historicalStandingsStrategy?.setupUI(for: group().labels, withAdjustable: group().widths, byFrame: rootView)
-                historicalStandingsStrategy?.configureCell(viewModel: viewModel, for: group().labels)
-            }
-        } else if category?.lowercased() == HistoricalCategory.teams.rawValue {
-            if id == "All" {
-                historicalStandingsStrategy = HistoricalConstructorStrategy()
-                historicalStandingsStrategy?.setupUI(for: group().labels, withAdjustable: group().widths, byFrame: rootView)
-                historicalStandingsStrategy?.configureCell(viewModel: viewModel, for: group().labels)
-            } else {
-                historicalStandingsStrategy = HistoricalConstructorDetailStrategy()
-                historicalStandingsStrategy?.setupUI(for: group().labels, withAdjustable: group().widths, byFrame: rootView)
-                historicalStandingsStrategy?.configureCell(viewModel: viewModel, for: group().labels)
-            }
-        } else {
-            if id == "All" {
-                historicalStandingsStrategy = HistoricalRaceStrategy()
-                historicalStandingsStrategy?.setupUI(for: group().labels, withAdjustable: group().widths, byFrame: rootView)
-                historicalStandingsStrategy?.configureCell(viewModel: viewModel, for: group().labels)
-            } else {
-                historicalStandingsStrategy = HistoricalRaceDetailStrategy()
-                historicalStandingsStrategy?.setupUI(for: group().labels, withAdjustable: group().widths, byFrame: rootView)
-                historicalStandingsStrategy?.configureCell(viewModel: viewModel, for: group().labels)
-            }
+    func configure(_ viewModel: HistoricalCellViewModel?, byFrame superview: UIView, category: HistoricalCategory.RawValue?, and id: String?) {
+        let insideCategory = HistoricalCategory(rawValue: category.unwrap.lowercased())
+        
+        switch insideCategory {
+        case .drivers:
+            configureDriver(id: id)
+            applyStrategy(viewModel, byFrame: superview, selected: .cell)
+        case .teams:
+            configureConstructor(id: id)
+            applyStrategy(viewModel, byFrame: superview, selected: .cell)
+        case .races:
+            configureRace(id: id)
+            applyStrategy(viewModel, byFrame: superview, selected: .cell)
+        default:
+            fatalError("This shouldn't happen at all! Func: \(#function)")
         }
     }
     
@@ -95,17 +80,6 @@ final class HistoricalCell: UITableViewCell {
             leading: leadingAnchor,
             bottom: bottomAnchor,
             trailing: trailingAnchor
-        )
-        
-        group().labels.forEach {
-            $0.backgroundColor = .mainDark
-        }
-    }
-    
-    private func group() -> (labels: [UILabel], widths: [NSLayoutConstraint?]) {
-        return (
-            labels: [firstLabel, secondLabel, thirdLabel, fouthLabel, fifthLabel, sixthLabel],
-            widths: [firstWidth, secondWidth, thirdWidth, fourthWidth, fifthWidth, sixthWidth]
         )
     }
 }

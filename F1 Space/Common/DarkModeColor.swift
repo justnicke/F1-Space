@@ -13,12 +13,12 @@ import EMTNeumorphicView
 extension UIColor {
     /// The color is intended for the TabBar, including all elements on it
     static let tabBarDark = UIColor.init(red: 0.1330153346, green: 0.1570890248, blue: 0.1913200021, alpha: 1)
-//    var tets = #colorLiteral(red: 0.1613953412, green: 0.1643126309, blue: 0.1867728829, alpha: 1)
+//    var tets = #colorLiteral(red: 0.180019021, green: 0.2043099701, blue: 0.2299311161, alpha: 1)
 }
 
 extension UIColor {
     /// Main color in a dark theme
-    static let mainDark = UIColor.init(red: 0.1701667905, green: 0.1634520888, blue: 0.2283932865, alpha: 1)
+    static let mainDark = UIColor.init(red: 0.180019021, green: 0.2043099701, blue: 0.2299311161, alpha: 1)
 }
 
 extension EMTNeumorphicButton {
@@ -39,6 +39,17 @@ extension EMTNeumorphicView {
         self.neumorphicLayer?.elementDepth = 5
         self.neumorphicLayer?.darkShadowOpacity = 0.5
         self.neumorphicLayer?.lightShadowOpacity = 0.05
-
     }
 }
+
+extension EMTNeumorphicButton {
+    func setDesignForFilterButton() {
+        self.neumorphicLayer?.elementBackgroundColor = UIColor.mainDark.cgColor
+        self.neumorphicLayer?.cornerRadius = 15
+        self.neumorphicLayer?.depthType = .convex
+        self.neumorphicLayer?.elementDepth = 5
+        self.neumorphicLayer?.darkShadowOpacity = 0.5
+        self.neumorphicLayer?.lightShadowOpacity = 0.07
+    }
+}
+

@@ -11,7 +11,7 @@ import Foundation
 protocol HistoricalViewModelType: HistoricalPropertyPassetable {
     func numberOfRows() -> Int
     func cellForRowAt(indexPath: IndexPath) -> HistoricalCellViewModel?
-    func viewForHeader(in section: Int) -> HistoricalHeaderViewModel?
+    func viewForHeader() -> HistoricalHeaderViewModel?
 }
 
 protocol HistoricalPropertyPassetable {
@@ -74,21 +74,21 @@ extension HistoricalViewModelType {
 // MARK: - Extension ViewForHeaderInSection
 
 extension HistoricalViewModelType {
-    func viewForHeaderDriver(in section: Int) -> HistoricalHeaderViewModel? {
+    func viewForHeaderDriver() -> HistoricalHeaderViewModel? {
         switch id.isAll() {
         case true:  return HistoricalHeaderViewModel(for: take.driverStandingsHeader, by: category, and: id)
         case false: return HistoricalHeaderViewModel(for: take.racesDetailDriverHeader, by: category, and: id)
         }
     }
     
-    func viewForHeaderConstructor(in section: Int) -> HistoricalHeaderViewModel? {
+    func viewForHeaderConstructor() -> HistoricalHeaderViewModel? {
         switch id.isAll() {
         case true:  return HistoricalHeaderViewModel(for: take.constructorStandingsHeader, by: category, and: id)
         case false: return HistoricalHeaderViewModel(for: take.racesDetailConstructorHeader, by: category, and: id)
         }
     }
     
-    func viewForHeaderRace(in section: Int) -> HistoricalHeaderViewModel? {
+    func viewForHeaderRace() -> HistoricalHeaderViewModel? {
         switch id.isAll() {
         case true:  return HistoricalHeaderViewModel(for: take.firstPlaceResultInRaceHeader, by: category, and: id)
         case false: return HistoricalHeaderViewModel(for: take.racesDetailHeader, by: category, and: id)

@@ -34,7 +34,6 @@ final class HistoricalViewController: UIViewController {
     let transition = PanelTransition()
     let header = HistoricalHeaderView()
     var historicalViewModel: HistoricalViewModel!
-    
     let canvasView = EMTNeumorphicView()
     
     // MARK: - Public Methods
@@ -64,22 +63,26 @@ extension HistoricalViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: HistoricalCell.reuseId, for: indexPath) as! HistoricalCell
         let viewModelCell = historicalViewModel.cellForRowAt(indexPath: indexPath)
-        cell.configureCell(viewModel: viewModelCell, byFrame: view, and: type().category, id: type().id)
+        cell.configure(viewModelCell, byFrame: view, category: type().category, and: type().id)
+        
+        let colors = [#colorLiteral(red: 0.1770535707, green: 0.1963185668, blue: 0.2220225334, alpha: 1), .mainDark]
+        cell.backgroundColor = colors[indexPath.row % colors.count]
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
-    
+        
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let viewModelHeader = historicalViewModel.viewForHeader(in: section)
-        header.configureHeader(viewModel: viewModelHeader, byFrame: view, and: type().category, id: type().id)
+        let viewModelHeader = historicalViewModel.viewForHeader()
+        header.configure(viewModelHeader, byFrame: view, category: type().category, and: type().id)
         return header
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
+        return 40
     }
 }
 

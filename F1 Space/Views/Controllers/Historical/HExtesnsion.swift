@@ -10,6 +10,7 @@ import UIKit
 import EMTNeumorphicView
 
 extension HistoricalViewController {
+    
     func set(for buttons: [EMTNeumorphicButton]) {
         buttons.forEach {
             $0.backgroundColor = .mainDark
@@ -18,36 +19,11 @@ extension HistoricalViewController {
             $0.titleLabel?.textAlignment = .center
             $0.tintColor = .white
             $0.clipsToBounds = true
-//            $0.layer.cornerRadius = 15
-            $0.setNeumorphic()
+            $0.setDesignForFilterButton()
         }
     }
     
-    
-    
     func setupTableView() {
-//        view.addSubview(canvasView)
-//        canvasView.designSetup2()
-//        canvasView.neumorphicLayer?.elementBackgroundColor = #colorLiteral(red: 0.1770213544, green: 0.1959984004, blue: 0.2182722688, alpha: 1)
-        //view.backgroundColor?.cgColor ?? #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
-//        canvasView.neumorphicLayer?.elementBackgroundColor = UIColor.testColor.cgColor
-//        canvasView.neumorphicLayer?.cornerRadius = 15
-//        canvasView.neumorphicLayer?.depthType = .convex
-//        canvasView.neumorphicLayer?.elementDepth = 7
-//        canvasView.neumorphicLayer?.darkShadowOpacity = 0
-//        canvasView.neumorphicLayer?.lightShadowOpacity = 0.03
-
-//        canvasView.layer.masksToBounds = true
-//        canvasView.neumorphicLayer?.masksToBounds = false
-        
-        
-//        canvasView.anchor(top: topView.bottomAnchor,
-//                      leading: view.leadingAnchor,
-//                      bottom: view.bottomAnchor,
-//                      trailing: view.trailingAnchor,
-//                      padding: .init(top: 15, left: 0, bottom: 0, right: 0))
-//
-        
         tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tableView)
@@ -55,29 +31,17 @@ extension HistoricalViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = .none
-//        tableView.tableFooterView = UIView()
-        tableView.showsVerticalScrollIndicator = false
-        tableView.bounces = false
-        tableView.alwaysBounceVertical = true
-        tableView.layer.cornerRadius = 15
-
-        tableView.anchor(top: topView.bottomAnchor,
-                      leading: view.leadingAnchor,
-                      bottom: view.bottomAnchor,
-                      trailing: view.trailingAnchor,
-                      padding: .init(top: 15, left: 0, bottom: 0, right: 0))
         
-//        tableView.topAnchor.constraint(equalTo: canvasView.topAnchor, constant: 10).isActive = true
-//        tableView.leadingAnchor.constraint(equalTo: canvasView.leadingAnchor, constant: 5).isActive = true
-//        tableView.bottomAnchor.constraint(equalTo: canvasView.bottomAnchor, constant: -74).isActive = true
-//        tableView.trailingAnchor.constraint(equalTo: canvasView.trailingAnchor, constant: -5).isActive = true
+        tableView.anchor(top: topView.bottomAnchor,
+                         leading: view.leadingAnchor,
+                         bottom: view.safeAreaLayoutGuide.bottomAnchor,
+                         trailing: view.trailingAnchor,
+                         padding: .init(top: 5, left: 0, bottom: 30, right: 0))
+        
         tableView.register(HistoricalCell.self, forCellReuseIdentifier: HistoricalCell.reuseId)
     }
     
-    
-    // MARK: - Private Methods
-    
-     func setupTopView() {
+    func setupTopView() {
         view.addSubview(topView)
         topView.backgroundColor = .mainDark
         topView.anchor(
@@ -106,14 +70,13 @@ extension HistoricalViewController {
         )
     }
     
-     func initViewModel() {
-        historicalViewModel = HistoricalViewModel(
-            year: type().year,
-            category: type().category,
-            id: type().id)
+    func initViewModel() {
+        historicalViewModel = HistoricalViewModel(year: type().year,
+                                                  category: type().category,
+                                                  id: type().id)
     }
-
-     func requestViewModel() {
+    
+    func requestViewModel() {
         initViewModel()
         
         historicalViewModel.request() { [weak self] in
@@ -125,7 +88,7 @@ extension HistoricalViewController {
     }
     
     /// Quick access to the current state of the button text or identity
-     func type() -> (year: String?, category: HistoricalCategory.RawValue?, detailed: String?, id: String?) {
+    func type() -> (year: String?, category: HistoricalCategory.RawValue?, detailed: String?, id: String?) {
         return (
             yearButton.titleLabel?.text,
             categoryButton.titleLabel?.text,
@@ -134,7 +97,7 @@ extension HistoricalViewController {
         )
     }
     
-     func openTransition(state: HistoricalPickerSelected, currentValues: [String?]) {
+    func openTransition(state: HistoricalPickerSelected, currentValues: [String?]) {
         let historicalPickerView = HistoricalPickerViewController(currentValues: currentValues, by: state)
         historicalPickerView.giveDelegate(for: self)
         historicalPickerView.transitioningDelegate = transition
@@ -153,91 +116,51 @@ extension HistoricalViewController {
     @objc  func detailResultButtonPressed() {
         openTransition(state: .detailedResult, currentValues: [type().year, type().detailed, type().category])
     }
-}
-
-// MARK: - Extension HistoricalPickerSelectedDelegate
-
-extension HistoricalViewController: HistoricalPickerSelectedDelegate {
     
-    func checkCorrectId(_ oldYear: String?) {
+    private func checkCorrectId(_ oldYear: String?) {
         if type().category == "Races" && type().detailed != "All" && type().year != oldYear {
             detailResultButton.setTitle("All", for: .normal)
             detailResultID = "All"
         }
     }
     
-    func checkCorrectYearForTeam() {
+    private func checkCorrectYearForTeam() {
         if type().category == "Teams" && type().year.unwrap < "1958" {
             yearButton.setTitle("1958", for: .normal)
         }
     }
-    
+}
+
+// MARK: - Extension HistoricalPickerSelectedDelegate
+
+extension HistoricalViewController: HistoricalPickerSelectedDelegate {
     func year(currentСhampionship: String) {
         let oldYear = yearButton.titleLabel?.text
         
         yearButton.setTitle(String(currentСhampionship), for: .normal)
         
         checkCorrectId(oldYear)
-        
         requestViewModel()
     }
     
     func category(current: String) {
         categoryButton.setTitle(current, for: .normal)
-    
+        
         detailResultButton.setTitle("All", for: .normal)
         detailResultID = "All"
         
         checkCorrectYearForTeam()
-        
         requestViewModel()
     }
     
     func detailed(currentResult: String, id: String?) {
         detailResultButton.setTitle(currentResult, for: .normal)
         detailResultID = id ?? "All"
-        
         requestViewModel()
     }
-}
-
-extension EMTNeumorphicButton{
-    func setNeumorphic() {
-//        self.neumorphicLayer?.elementBackgroundColor = #colorLiteral(red: 0.1770213544, green: 0.1959984004, blue: 0.2182722688, alpha: 1)
-//        self.neumorphicLayer?.cornerRadius = 15
-//        self.neumorphicLayer?.depthType = .convex
-//        self.neumorphicLayer?.elementDepth = 7
-//        self.neumorphicLayer?.darkShadowOpacity = 0.9
-//        self.neumorphicLayer?.lightShadowOpacity = 0.05
-        
-        self.neumorphicLayer?.elementBackgroundColor = UIColor.mainDark.cgColor
-        self.neumorphicLayer?.cornerRadius = 15
-//        self.neumorphicLayer?.cornerType = .topRow
-        self.neumorphicLayer?.depthType = .convex
-        self.neumorphicLayer?.elementDepth = 5
-        self.neumorphicLayer?.darkShadowOpacity = 0.5
-        self.neumorphicLayer?.lightShadowOpacity = 0.07
-    }
-}
-
-extension EMTNeumorphicView {
-    func designSetup() {
-        self.neumorphicLayer?.elementBackgroundColor = UIColor.mainDark.cgColor
-        self.neumorphicLayer?.cornerRadius = 15
-//        self.neumorphicLayer?.cornerType
-        self.neumorphicLayer?.depthType = .convex
-        self.neumorphicLayer?.elementDepth = 7
-        self.neumorphicLayer?.darkShadowOpacity = 0.7
-        self.neumorphicLayer?.lightShadowOpacity = 0.08
-    }
     
-    func designSetup2() {
-        self.neumorphicLayer?.elementBackgroundColor = UIColor.mainDark.cgColor
-//        self.neumorphicLayer?.cornerRadius = 15
-        self.neumorphicLayer?.cornerType = .topRow
-        self.neumorphicLayer?.depthType = .convex
-        self.neumorphicLayer?.elementDepth = 7
-        self.neumorphicLayer?.darkShadowOpacity = 0.5
-        self.neumorphicLayer?.lightShadowOpacity = 0.07
-    }
+  
 }
+
+
+

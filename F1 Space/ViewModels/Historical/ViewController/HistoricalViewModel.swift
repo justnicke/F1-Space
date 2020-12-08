@@ -210,11 +210,11 @@ extension HistoricalViewModel: HistoricalViewModelType {
         }
     }
     
-    func viewForHeader(in section: Int) -> HistoricalHeaderViewModel? {
+    func viewForHeader() -> HistoricalHeaderViewModel? {
         switch category {
-        case .drivers: return viewForHeaderDriver(in: section)
-        case .teams:   return viewForHeaderConstructor(in: section)
-        case .races:   return viewForHeaderRace(in: section)
+        case .drivers: return viewForHeaderDriver()
+        case .teams:   return viewForHeaderConstructor()
+        case .races:   return viewForHeaderRace()
         default:       return nil
         }
     }

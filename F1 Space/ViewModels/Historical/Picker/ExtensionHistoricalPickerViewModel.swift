@@ -15,6 +15,8 @@ import Foundation
     
     /// Auxiliary index for providing a value from the "currentValues" array
     enum HIndex: Int {
+        /// Picker Year
+        case year = 0
         /// Picker Detail
         case detail = 1
         /// Picker Category
@@ -172,9 +174,6 @@ import Foundation
         }
     }
  }
-
-
-
 
 // MARK: - Detailed Result Picker (3)
 

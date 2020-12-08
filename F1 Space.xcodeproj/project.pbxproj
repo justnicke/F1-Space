@@ -14,7 +14,6 @@
 		5E05CD9024BF2B8F00EB2EF3 /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E05CD8F24BF2B8F00EB2EF3 /* Driver.swift */; };
 		5E05CD9424BF354A00EB2EF3 /* ConstructorStandingsGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E05CD9324BF354A00EB2EF3 /* ConstructorStandingsGroup.swift */; };
 		5E14A14424BCA1A90058305B /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E14A14324BCA1A90058305B /* API.swift */; };
-		5E26F1E4250F60490065907A /* AutoSizeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E26F1E3250F60490065907A /* AutoSizeButton.swift */; };
 		5E40ECF624B7400700E3AF1F /* StandingConstructorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E40ECF524B7400700E3AF1F /* StandingConstructorCell.swift */; };
 		5E40ECF824B74B8100E3AF1F /* ConstructorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E40ECF724B74B8100E3AF1F /* ConstructorViewController.swift */; };
 		5E40ECFA24B74BA100E3AF1F /* ConstructorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E40ECF924B74BA100E3AF1F /* ConstructorCell.swift */; };
@@ -81,6 +80,7 @@
 		5E8E01B3255155BD00A52CDD /* HistoricalRaceDetailStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8E01B2255155BD00A52CDD /* HistoricalRaceDetailStrategy.swift */; };
 		5E90F96F255AC5900088EAAD /* ConstructorParticipated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E90F96E255AC5900088EAAD /* ConstructorParticipated.swift */; };
 		5E90F97D255AD24D0088EAAD /* TwoOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E90F97C255AD24D0088EAAD /* TwoOptions.swift */; };
+		5E912FA8257F9D6A00F48A07 /* HistoricalViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E912FA7257F9D6A00F48A07 /* HistoricalViewType.swift */; };
 		5E9EB95224C2D99A00023668 /* StandingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9EB95124C2D99A00023668 /* StandingsViewModel.swift */; };
 		5E9EB95424C2DA2D00023668 /* StandingsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9EB95324C2DA2D00023668 /* StandingsCellViewModel.swift */; };
 		5EA886F224D164F30079EDDC /* RSS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA886F124D164F30079EDDC /* RSS.swift */; };
@@ -130,7 +130,6 @@
 		5E05CD8F24BF2B8F00EB2EF3 /* Driver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Driver.swift; sourceTree = "<group>"; };
 		5E05CD9324BF354A00EB2EF3 /* ConstructorStandingsGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorStandingsGroup.swift; sourceTree = "<group>"; };
 		5E14A14324BCA1A90058305B /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
-		5E26F1E3250F60490065907A /* AutoSizeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSizeButton.swift; sourceTree = "<group>"; };
 		5E40ECF524B7400700E3AF1F /* StandingConstructorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingConstructorCell.swift; sourceTree = "<group>"; };
 		5E40ECF724B74B8100E3AF1F /* ConstructorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorViewController.swift; sourceTree = "<group>"; };
 		5E40ECF924B74BA100E3AF1F /* ConstructorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorCell.swift; sourceTree = "<group>"; };
@@ -202,6 +201,7 @@
 		5E8E01B2255155BD00A52CDD /* HistoricalRaceDetailStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalRaceDetailStrategy.swift; sourceTree = "<group>"; };
 		5E90F96E255AC5900088EAAD /* ConstructorParticipated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorParticipated.swift; sourceTree = "<group>"; };
 		5E90F97C255AD24D0088EAAD /* TwoOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoOptions.swift; sourceTree = "<group>"; };
+		5E912FA7257F9D6A00F48A07 /* HistoricalViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalViewType.swift; sourceTree = "<group>"; };
 		5E9EB95124C2D99A00023668 /* StandingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsViewModel.swift; sourceTree = "<group>"; };
 		5E9EB95324C2DA2D00023668 /* StandingsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsCellViewModel.swift; sourceTree = "<group>"; };
 		5EA886F124D164F30079EDDC /* RSS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSS.swift; sourceTree = "<group>"; };
@@ -269,7 +269,6 @@
 			isa = PBXGroup;
 			children = (
 				5ECFB2982501132800ED94EA /* Transition */,
-				5E26F1E3250F60490065907A /* AutoSizeButton.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -602,6 +601,7 @@
 				5E50BEEF2510D9340025963F /* HistoricalPickerSelectedDelegate.swift */,
 				5E4CA6E32519FD1B0035E6F6 /* PickerViewModelType.swift */,
 				5E4793302535AA5B00332FB4 /* HistoricalViewModelType.swift */,
+				5E912FA7257F9D6A00F48A07 /* HistoricalViewType.swift */,
 				5E4C64B02563B9A8002DC545 /* HistoricalCellViewModelType.swift */,
 				5E6A1329252EE8FF0012CFEC /* HistoricalStandingsStrategy.swift */,
 			);
@@ -928,7 +928,6 @@
 				5E536140257902E900307425 /* DarkModeColor.swift in Sources */,
 				5ECFB2AB2501132800ED94EA /* DarkenedPresentationController.swift in Sources */,
 				5E419EF124B5B433006421F6 /* Layout.swift in Sources */,
-				5E26F1E4250F60490065907A /* AutoSizeButton.swift in Sources */,
 				5E82B52024C5D6A100377859 /* ConstructorViewModel.swift in Sources */,
 				5E4A6A9624D7EE100077CDBC /* NewsViewModel.swift in Sources */,
 				5ECFB2A72501132800ED94EA /* CGPoint + Velocity.swift in Sources */,
@@ -936,6 +935,7 @@
 				5EA886F424D165DD0079EDDC /* Article.swift in Sources */,
 				5E4CA6E42519FD1B0035E6F6 /* PickerViewModelType.swift in Sources */,
 				5EEE76DE25013F7C00D7D530 /* PanGestureRecognizer.swift in Sources */,
+				5E912FA8257F9D6A00F48A07 /* HistoricalViewType.swift in Sources */,
 				5ECFB2AC2501132800ED94EA /* PresentAnimation.swift in Sources */,
 				5E40ECFA24B74BA100E3AF1F /* ConstructorCell.swift in Sources */,
 				5E4A6A9924D7EEB30077CDBC /* NewsCellViewModel.swift in Sources */,

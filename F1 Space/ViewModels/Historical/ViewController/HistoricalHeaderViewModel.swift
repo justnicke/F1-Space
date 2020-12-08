@@ -46,44 +46,48 @@ final class HistoricalHeaderViewModel {
     private func driverHeader(by id: String?) {
         switch id.isAll() {
         case true:
-            first = historicalStandingsHeader?.firstHead
-            second = historicalStandingsHeader?.secondHead
-            third = historicalStandingsHeader?.thirdHead
-            fourth = historicalStandingsHeader?.fourthHead
+            definingNumber(4)
         case false:
-            first = historicalStandingsHeader?.firstHead
-            second = historicalStandingsHeader?.secondHead
-            third = historicalStandingsHeader?.thirdHead
-            fourth = historicalStandingsHeader?.fourthHead
+            definingNumber(4)
         }
     }
     
     private func constructorHeader(by id: String?) {
         switch id.isAll() {
         case true:
-            first = historicalStandingsHeader?.firstHead
-            second = historicalStandingsHeader?.secondHead
-            third = historicalStandingsHeader?.thirdHead
+            definingNumber(3)
         case false:
-            first = historicalStandingsHeader?.firstHead
-            second = historicalStandingsHeader?.secondHead
-            third = historicalStandingsHeader?.thirdHead
-            fourth = historicalStandingsHeader?.fourthHead
-            fifth = historicalStandingsHeader?.fifthHead
+            definingNumber(5)
         }
     }
     
     private func raceHeader(by id: String?) {
         switch id.isAll() {
         case true:
-            first = historicalStandingsHeader?.firstHead
-            second = historicalStandingsHeader?.secondHead
-            third = historicalStandingsHeader?.thirdHead
+            definingNumber(3)
         case false:
+            definingNumber(4)
+        }
+    }
+    
+    private func definingNumber(_ values: Int) {
+        switch values {
+        case _:
             first = historicalStandingsHeader?.firstHead
             second = historicalStandingsHeader?.secondHead
             third = historicalStandingsHeader?.thirdHead
-            fourth = historicalStandingsHeader?.thirdHead
+            if values == 3 { break }
+            else { fallthrough }
+        case 4:
+            fourth = historicalStandingsHeader?.fourthHead
+            if values == 5 || values == 6 { fallthrough }
+        case 5:
+            fifth = historicalStandingsHeader?.fifthHead
+            if values == 6 { fallthrough }
+        case 6:
+            sixth = historicalStandingsHeader?.sixthHead
+        default:
+            fatalError("This shouldn't happen at all! Func: \(#function)")
         }
     }
 }
