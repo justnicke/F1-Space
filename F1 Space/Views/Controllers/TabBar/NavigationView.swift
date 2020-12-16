@@ -22,7 +22,19 @@ final class NavigationView: UIView {
     private let decorationView = EMTNeumorphicView()
     private var activeItem: Int = 0
     
-    private let historicalButton = EMTNeumorphicButton(type: .custom)
+    private let historicalButton: EMTNeumorphicButton = {
+        let button = EMTNeumorphicButton(type: .custom)
+        
+//        "book"
+        
+        let boldConfig = UIImage.SymbolConfiguration(weight: .thin)
+        let convImage = UIImage(systemName: "book", withConfiguration: boldConfig)!
+        
+//        button.setImage(convImage, for: .normal)
+        button.setImage(#imageLiteral(resourceName: "Thin-M"), for: .normal)
+//        Optional((9.000000000000002, 11.333333333333334, 21.666666666666668, 17.333333333333332))
+        return button
+    }()
     private let any1Button = EMTNeumorphicButton(type: .custom)
     private let any2Button = EMTNeumorphicButton(type: .custom)
     private let any3Button = EMTNeumorphicButton(type: .custom)
@@ -51,6 +63,8 @@ final class NavigationView: UIView {
         any1Button.addTarget(self, action: #selector(handleTap2(_:)), for: .touchUpInside)
         any2Button.addTarget(self, action: #selector(handleTap3(_:)), for: .touchUpInside)
         any3Button.addTarget(self, action: #selector(handleTap4(_:)), for: .touchUpInside)
+        
+        print(historicalButton.imageView?.frame)
     }
     
     // MARK: - Private Methods

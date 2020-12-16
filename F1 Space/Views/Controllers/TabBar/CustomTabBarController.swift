@@ -15,7 +15,7 @@ final class CustomTabBarController: UITabBarController {
     private let controllerType: [ControllerType] = [.historical, .standings, .news, .any]
     private var navigationView: NavigationView!
     private var barHeight: CGFloat = 74
-        
+
     // MARK: - Public Methods
     
     override func viewDidLoad() {
@@ -39,6 +39,8 @@ final class CustomTabBarController: UITabBarController {
         tabBar.isHidden = true
 
         navigationView = NavigationView(items: controllerType, frame: frame)
+        
+        navigationView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         
         view.addSubview(navigationView)
         navigationView.clipsToBounds = true

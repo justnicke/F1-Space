@@ -34,7 +34,6 @@ final class HistoricalViewController: UIViewController {
     let transition = PanelTransition()
     let header = HistoricalHeaderView()
     var historicalViewModel: HistoricalViewModel!
-    let canvasView = EMTNeumorphicView()
     
     // MARK: - Public Methods
     
@@ -73,16 +72,6 @@ extension HistoricalViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
-    }
-        
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let viewModelHeader = historicalViewModel.viewForHeader()
-        header.configure(viewModelHeader, byFrame: view, category: type().category, and: type().id)
-        return header
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40
     }
 }
 

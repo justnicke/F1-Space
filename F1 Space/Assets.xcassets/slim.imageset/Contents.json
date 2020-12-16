@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "standingFalse.png",
+      "filename" : "slim.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "slim@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "slim@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
