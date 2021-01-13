@@ -9,12 +9,12 @@
 import UIKit
 import EMTNeumorphicView
 
-
 final class HistoricalPickerViewController: UIViewController {
     
     // MARK: - Private Properties
+    
     private var count = HistoricalPickerSelected(rawValue: .zero)
-    private var currentValues: [String?] = []
+    var currentValues: [String?] = []
     private var picker = UIPickerView()
     private var doneButton: EMTNeumorphicButton = {
         let button = EMTNeumorphicButton(type: .custom)
@@ -42,11 +42,11 @@ final class HistoricalPickerViewController: UIViewController {
         self.currentValues = currentValues
         self.count = state
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - Public Methods
     
     override func viewDidLoad() {

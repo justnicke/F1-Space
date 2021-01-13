@@ -63,8 +63,6 @@ final class NavigationView: UIView {
         any1Button.addTarget(self, action: #selector(handleTap2(_:)), for: .touchUpInside)
         any2Button.addTarget(self, action: #selector(handleTap3(_:)), for: .touchUpInside)
         any3Button.addTarget(self, action: #selector(handleTap4(_:)), for: .touchUpInside)
-        
-        print(historicalButton.imageView?.frame)
     }
     
     // MARK: - Private Methods
