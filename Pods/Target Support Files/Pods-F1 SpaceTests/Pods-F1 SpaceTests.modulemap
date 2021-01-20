@@ -1,6 +1,0 @@
-framework module Pods_F1_SpaceTests {
-  umbrella header "Pods-F1 SpaceTests-umbrella.h"
-
-  export *
-  module * { export * }
-}
