@@ -21,7 +21,7 @@ final class HistoricalDriverStrategy: HistoricalStandingsStrategy {
             $0.textAlignment = .center
             $0.font = UIFont(name: "AvenirNext-Medium", size: 13)
             $0.numberOfLines = 2
-            $0.textColor = .cellTintColor
+            $0.textColor = .black
         }
 
         width[forThe.third]?.isActive = false

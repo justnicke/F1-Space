@@ -34,11 +34,11 @@ final class TabBarController: UITabBarController {
         navigationController.tabBarItem.imageInsets = .zero
         let titleFontAttrs = [
             NSAttributedString.Key.font: UIFont(name: "Formula1-Display-Bold", size: 25)!,
-            NSAttributedString.Key.foregroundColor: UIColor.black
+            NSAttributedString.Key.foregroundColor: UIColor.white
         ]
         
         let appearance = UINavigationBarAppearance()
-        appearance.backgroundColor = .milkyGrey
+        appearance.backgroundColor = .topH
         appearance.titleTextAttributes = titleFontAttrs
         appearance.shadowColor = UIColor.clear
         

@@ -29,8 +29,6 @@ final class HistoricalHeaderView: UIView, HistoricalViewType {
     private(set) lazy var fourthWidth = fouthLabel.widthAnchor.constraint(equalToConstant: 0)
     private(set) lazy var fifthWidth  = fifthLabel.widthAnchor.constraint(equalToConstant: 0)
     private(set) lazy var sixthWidth  = sixthLabel.widthAnchor.constraint(equalToConstant: 0)
-    
-//    private let lineView = UIView()
         
     // MARK: - Constructors
     
@@ -62,6 +60,8 @@ final class HistoricalHeaderView: UIView, HistoricalViewType {
         default:
             fatalError("This shouldn't happen at all! Func: \(#function)")
         }
+        
+        firstLabel.tintColor = .white
     }
     
     // MARK: - Private Methods
@@ -80,15 +80,5 @@ final class HistoricalHeaderView: UIView, HistoricalViewType {
             bottom: bottomAnchor,
             trailing: trailingAnchor
         )
-        
-//        self.addSubview(lineView)
-//        lineView.backgroundColor = .gray
-//        lineView.anchor(
-//            top: topAnchor,
-//            leading: leadingAnchor,
-//            bottom: nil,
-//            trailing: trailingAnchor,
-//            size: .init(width: 0, height: 0.5)
-//        )
     }
 }

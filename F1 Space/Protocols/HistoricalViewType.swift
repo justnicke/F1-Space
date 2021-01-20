@@ -66,6 +66,12 @@ extension HistoricalViewType {
             historicalStandingsStrategy?.configureCell(viewModel: viewModel as? HistoricalCellViewModel, for: group().labels)
         case .header:
             historicalStandingsStrategy?.configureHeader(viewModel: viewModel as? HistoricalHeaderViewModel, for: group().labels)
+            
+            for l in group().labels {
+                if l.backgroundColor != .white {
+                    l.textColor = .white
+                }
+            }
         }
     }
     

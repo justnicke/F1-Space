@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+
 extension HistoricalViewController {
     
     func set(for buttons: [CustomButton]) {
@@ -21,45 +23,28 @@ extension HistoricalViewController {
             $0.layer.cornerRadius = 15
         }
     }
-    
-    func setupHeaderView() {
-        view.addSubview(header)
-        header.anchor(
-            top: topView.bottomAnchor,
-            leading: view.leadingAnchor,
-            bottom: tableView.topAnchor,
-            trailing: view.trailingAnchor,
-            padding: .init(top: 5, left: 0, bottom: 0, right: 0),
-            size: .init(width: 0, height: 40)
-        )
         
-        let viewModelHeader = historicalViewModel.viewForHeader()
-        header.configure(viewModelHeader, byFrame: view, category: type().category, and: type().id)
-    }
-    
     func setupTableView() {
         tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tableView)
-        tableView.backgroundColor = .milkyGrey
+        tableView.backgroundColor = .clear
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.separatorStyle = .none
+        tableView.tableFooterView = UIView()
+        tableView.separatorStyle = .singleLine
         
-        setupHeaderView()
-    
-        tableView.anchor(top: header.bottomAnchor,
+        tableView.anchor(top: topView.bottomAnchor,
                          leading: view.leadingAnchor,
-                         bottom: view.bottomAnchor,
-                         trailing: view.trailingAnchor,
-                         padding: .init(top: 0, left: 0, bottom: 0, right: 0))
+                         bottom: view.safeAreaLayoutGuide.bottomAnchor,
+                         trailing: view.trailingAnchor)
         
         tableView.register(HistoricalCell.self, forCellReuseIdentifier: HistoricalCell.reuseId)
     }
     
     func setupTopView() {
         view.addSubview(topView)
-        topView.backgroundColor = .milkyGrey
+        topView.backgroundColor = .topH
         topView.anchor(
             top: view.safeAreaLayoutGuide.topAnchor,
             leading: view.leadingAnchor,
@@ -100,6 +85,7 @@ extension HistoricalViewController {
             
             self?.tableView.reloadData()
             self?.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
+            self?.view.setGradient()
         }
     }
     
@@ -174,9 +160,4 @@ extension HistoricalViewController: HistoricalPickerSelectedDelegate {
         detailResultID = id ?? "All"
         requestViewModel()
     }
-    
-  
 }
-
-
-
