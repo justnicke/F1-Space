@@ -53,7 +53,7 @@ final class HistoricalPickerViewController: UIViewController {
 
         view.layer.cornerRadius = 25
         view.layer.masksToBounds = true
-        view.backgroundColor = .offWhite
+        view.backgroundColor = .milkyGrey
         
         setupUI()
         updateViewModel()

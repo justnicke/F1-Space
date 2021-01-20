@@ -21,7 +21,7 @@ final class HistoricalConstructorDetailStrategy: HistoricalStandingsStrategy {
             $0.textAlignment = . center
             $0.font = UIFont(name: "AvenirNext-Medium", size: 11)
             $0.numberOfLines = 2
-            $0.textColor = .white
+            $0.textColor = .cellTintColor
         }
         
         //  общие перед

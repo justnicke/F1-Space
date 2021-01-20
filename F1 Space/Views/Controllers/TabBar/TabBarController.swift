@@ -15,6 +15,7 @@ final class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBar.isTranslucent = false
+        self.tabBar.barTintColor = .milkyGrey
         
         viewControllers = [
             createNavController(vc: HistoricalViewController(), title: "History F1", image: .historical),
@@ -33,11 +34,11 @@ final class TabBarController: UITabBarController {
         navigationController.tabBarItem.imageInsets = .zero
         let titleFontAttrs = [
             NSAttributedString.Key.font: UIFont(name: "Formula1-Display-Bold", size: 25)!,
-            NSAttributedString.Key.foregroundColor: UIColor.white
+            NSAttributedString.Key.foregroundColor: UIColor.black
         ]
         
         let appearance = UINavigationBarAppearance()
-        appearance.backgroundColor = .offWhite
+        appearance.backgroundColor = .milkyGrey
         appearance.titleTextAttributes = titleFontAttrs
         appearance.shadowColor = UIColor.clear
         

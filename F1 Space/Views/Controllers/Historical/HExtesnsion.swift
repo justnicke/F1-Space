@@ -10,14 +10,15 @@ import UIKit
 
 extension HistoricalViewController {
     
-    func set(for buttons: [UIButton]) {
+    func set(for buttons: [CustomButton]) {
         buttons.forEach {
-            $0.backgroundColor = .black
+            $0.backgroundColor = .milkyGrey
             $0.titleLabel?.font = UIFont(name: "AvenirNext-Medium", size: 13)
             $0.titleLabel?.numberOfLines = 1
             $0.titleLabel?.textAlignment = .center
-            $0.tintColor = .white
+            $0.tintColor = .black
             $0.clipsToBounds = true
+            $0.layer.cornerRadius = 15
         }
     }
     
@@ -40,7 +41,7 @@ extension HistoricalViewController {
         tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tableView)
-        tableView.backgroundColor = .clear
+        tableView.backgroundColor = .milkyGrey
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = .none
@@ -51,14 +52,14 @@ extension HistoricalViewController {
                          leading: view.leadingAnchor,
                          bottom: view.bottomAnchor,
                          trailing: view.trailingAnchor,
-                         padding: .init(top: 0, left: 0, bottom: 74, right: 0))
+                         padding: .init(top: 0, left: 0, bottom: 0, right: 0))
         
         tableView.register(HistoricalCell.self, forCellReuseIdentifier: HistoricalCell.reuseId)
     }
     
     func setupTopView() {
         view.addSubview(topView)
-        topView.backgroundColor = .offWhite
+        topView.backgroundColor = .milkyGrey
         topView.anchor(
             top: view.safeAreaLayoutGuide.topAnchor,
             leading: view.leadingAnchor,
