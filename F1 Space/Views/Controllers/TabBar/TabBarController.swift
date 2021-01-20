@@ -15,7 +15,7 @@ final class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBar.isTranslucent = false
-        self.tabBar.barTintColor = .milkyGrey
+        self.tabBar.barTintColor = .white
         
         viewControllers = [
             createNavController(vc: HistoricalViewController(), title: "History F1", image: .historical),

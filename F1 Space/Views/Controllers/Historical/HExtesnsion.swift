@@ -14,7 +14,7 @@ extension HistoricalViewController {
     
     func set(for buttons: [CustomButton]) {
         buttons.forEach {
-            $0.backgroundColor = .milkyGrey
+            $0.backgroundColor = .white
             $0.titleLabel?.font = UIFont(name: "AvenirNext-Medium", size: 13)
             $0.titleLabel?.numberOfLines = 1
             $0.titleLabel?.textAlignment = .center

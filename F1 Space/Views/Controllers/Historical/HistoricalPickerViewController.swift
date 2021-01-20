@@ -19,21 +19,14 @@ final class HistoricalPickerViewController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("DONE", for: .normal)
         button.titleLabel?.font = UIFont(name: "AvenirNext-Bold", size: 18)
-        button.tintColor = .red
-//        button.neumorphicLayer?.elementBackgroundColor = UIColor.mainDark.cgColor
-//        button.neumorphicLayer?.cornerRadius = 15
-//        button.neumorphicLayer?.depthType = .convex
-//        button.neumorphicLayer?.elementDepth = 5
-//        button.neumorphicLayer?.darkShadowOpacity = 0.9
-//        button.neumorphicLayer?.lightShadowOpacity = 0.08
-        button.alpha = 0.5
+        button.tintColor = .white
+        button.backgroundColor = #colorLiteral(red: 0.333333075, green: 0.3061279655, blue: 0.9117060304, alpha: 1)
+        button.layer.cornerRadius = 15
         return button
     }()
     private let handleDismissView = UIView()
     private lazy var historicalPickerViewModel = HistoricalPickerViewModel(currentValues: currentValues, by: count)
-    
-    let neumorphicView = UIView()
-    
+        
     // MARK: - Constructors
     
     init(currentValues: [String?], by state: HistoricalPickerSelected?) {
@@ -50,24 +43,13 @@ final class HistoricalPickerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         view.layer.cornerRadius = 25
         view.layer.masksToBounds = true
-        view.backgroundColor = .milkyGrey
+        view.backgroundColor = .white
         
         setupUI()
         updateViewModel()
         
-        picker.addSubview(neumorphicView)
-        
-//        neumorphicView.neumorphicLayer?.elementBackgroundColor = view.backgroundColor?.cgColor ?? UIColor.mainDark.cgColor
-//        neumorphicView.neumorphicLayer?.cornerRadius = 15
-//        neumorphicView.neumorphicLayer?.depthType = .concave
-//        neumorphicView.neumorphicLayer?.elementDepth = 5
-//        neumorphicView.neumorphicLayer?.darkShadowOpacity = 0.9
-//        neumorphicView.neumorphicLayer?.lightShadowOpacity = 0.08
-        neumorphicView.alpha = 0.5
-
         doneButton.addTarget(self, action: #selector(handleReturnValue), for: .touchUpInside)
     }
     
@@ -78,7 +60,7 @@ final class HistoricalPickerViewController: UIViewController {
     // MARK: - Private Methods
     
     private func setupUI() {
-        handleDismissView.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
+        handleDismissView.backgroundColor = #colorLiteral(red: 0.333333075, green: 0.3061279655, blue: 0.9117060304, alpha: 1)
         
         view.addSubview(handleDismissView)
         handleDismissView.anchor(
@@ -153,15 +135,6 @@ extension HistoricalPickerViewController: UIPickerViewDataSource, UIPickerViewDe
     }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        for lineSubview in pickerView.subviews {
-            var frame = lineSubview.frame
-            frame.size.height = 52
-            lineSubview.frame = frame
-            neumorphicView.frame = lineSubview.frame
-            lineSubview.backgroundColor = UIColor
-                .init(red: 0.180019021, green: 0.2043099701, blue: 0.2299311161, alpha: 1).withAlphaComponent(0.01)
-        }
-
         var label = view as! UILabel?
         
         if label == nil {
@@ -175,7 +148,7 @@ extension HistoricalPickerViewController: UIPickerViewDataSource, UIPickerViewDe
             with: title,
             and: [NSAttributedString.Key.font: UIFont(name: "AvenirNext-Bold", size: 22)!]
         )
-        label?.textColor = .white
+        label?.textColor = .black
         label?.textAlignment = .center
         
         return label ?? UIView()
