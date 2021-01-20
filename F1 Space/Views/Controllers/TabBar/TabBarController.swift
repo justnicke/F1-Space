@@ -37,7 +37,7 @@ final class TabBarController: UITabBarController {
         ]
         
         let appearance = UINavigationBarAppearance()
-        appearance.backgroundColor = .mainDark
+        appearance.backgroundColor = .offWhite
         appearance.titleTextAttributes = titleFontAttrs
         appearance.shadowColor = UIColor.clear
         

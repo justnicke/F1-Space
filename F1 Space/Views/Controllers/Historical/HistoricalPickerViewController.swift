@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import EMTNeumorphicView
 
 final class HistoricalPickerViewController: UIViewController {
     
@@ -16,24 +15,24 @@ final class HistoricalPickerViewController: UIViewController {
     private var count = HistoricalPickerSelected(rawValue: .zero)
     var currentValues: [String?] = []
     private var picker = UIPickerView()
-    private var doneButton: EMTNeumorphicButton = {
-        let button = EMTNeumorphicButton(type: .custom)
+    private var doneButton: UIButton = {
+        let button = UIButton(type: .system)
         button.setTitle("DONE", for: .normal)
         button.titleLabel?.font = UIFont(name: "AvenirNext-Bold", size: 18)
         button.tintColor = .red
-        button.neumorphicLayer?.elementBackgroundColor = UIColor.mainDark.cgColor
-        button.neumorphicLayer?.cornerRadius = 15
-        button.neumorphicLayer?.depthType = .convex
-        button.neumorphicLayer?.elementDepth = 5
-        button.neumorphicLayer?.darkShadowOpacity = 0.9
-        button.neumorphicLayer?.lightShadowOpacity = 0.08
+//        button.neumorphicLayer?.elementBackgroundColor = UIColor.mainDark.cgColor
+//        button.neumorphicLayer?.cornerRadius = 15
+//        button.neumorphicLayer?.depthType = .convex
+//        button.neumorphicLayer?.elementDepth = 5
+//        button.neumorphicLayer?.darkShadowOpacity = 0.9
+//        button.neumorphicLayer?.lightShadowOpacity = 0.08
         button.alpha = 0.5
         return button
     }()
     private let handleDismissView = UIView()
     private lazy var historicalPickerViewModel = HistoricalPickerViewModel(currentValues: currentValues, by: count)
     
-    let neumorphicView = EMTNeumorphicView()
+    let neumorphicView = UIView()
     
     // MARK: - Constructors
     
@@ -54,19 +53,19 @@ final class HistoricalPickerViewController: UIViewController {
 
         view.layer.cornerRadius = 25
         view.layer.masksToBounds = true
-        view.backgroundColor = .mainDark
+        view.backgroundColor = .offWhite
         
         setupUI()
         updateViewModel()
         
         picker.addSubview(neumorphicView)
         
-        neumorphicView.neumorphicLayer?.elementBackgroundColor = view.backgroundColor?.cgColor ?? UIColor.mainDark.cgColor
-        neumorphicView.neumorphicLayer?.cornerRadius = 15
-        neumorphicView.neumorphicLayer?.depthType = .concave
-        neumorphicView.neumorphicLayer?.elementDepth = 5
-        neumorphicView.neumorphicLayer?.darkShadowOpacity = 0.9
-        neumorphicView.neumorphicLayer?.lightShadowOpacity = 0.08
+//        neumorphicView.neumorphicLayer?.elementBackgroundColor = view.backgroundColor?.cgColor ?? UIColor.mainDark.cgColor
+//        neumorphicView.neumorphicLayer?.cornerRadius = 15
+//        neumorphicView.neumorphicLayer?.depthType = .concave
+//        neumorphicView.neumorphicLayer?.elementDepth = 5
+//        neumorphicView.neumorphicLayer?.darkShadowOpacity = 0.9
+//        neumorphicView.neumorphicLayer?.lightShadowOpacity = 0.08
         neumorphicView.alpha = 0.5
 
         doneButton.addTarget(self, action: #selector(handleReturnValue), for: .touchUpInside)

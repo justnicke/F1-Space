@@ -7,19 +7,17 @@
 //
 
 import UIKit
-import EMTNeumorphicView
 
 extension HistoricalViewController {
     
-    func set(for buttons: [EMTNeumorphicButton]) {
+    func set(for buttons: [UIButton]) {
         buttons.forEach {
-            $0.backgroundColor = .mainDark
+            $0.backgroundColor = .black
             $0.titleLabel?.font = UIFont(name: "AvenirNext-Medium", size: 13)
             $0.titleLabel?.numberOfLines = 1
             $0.titleLabel?.textAlignment = .center
             $0.tintColor = .white
             $0.clipsToBounds = true
-            $0.setDesignForFilterButton()
         }
     }
     
@@ -60,7 +58,7 @@ extension HistoricalViewController {
     
     func setupTopView() {
         view.addSubview(topView)
-        topView.backgroundColor = .mainDark
+        topView.backgroundColor = .offWhite
         topView.anchor(
             top: view.safeAreaLayoutGuide.topAnchor,
             leading: view.leadingAnchor,

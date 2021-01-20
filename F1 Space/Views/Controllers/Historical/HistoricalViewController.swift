@@ -7,25 +7,24 @@
 //
 
 import UIKit
-import EMTNeumorphicView
 
 final class HistoricalViewController: UIViewController {
     
     // MARK: - Private Properties
     
     let topView = UIScrollView()
-    let yearButton: EMTNeumorphicButton = {
-        let button = EMTNeumorphicButton(type: .custom)
+    let yearButton: UIButton = {
+        let button = UIButton(type: .system)
         button.setTitle("2020", for: .normal)
         return button
     }()
-    let categoryButton: EMTNeumorphicButton = {
-        let button = EMTNeumorphicButton(type: .custom)
+    let categoryButton: UIButton = {
+        let button = UIButton(type: .system)
         button.setTitle("Drivers", for: .normal)
         return button
     }()
-    let detailResultButton: EMTNeumorphicButton = {
-        let button = EMTNeumorphicButton()
+    let detailResultButton: UIButton = {
+        let button = UIButton(type: .system)
         button.setTitle("All", for: .normal)
         return button
     }()
@@ -40,7 +39,7 @@ final class HistoricalViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .mainDark
+        view.backgroundColor = .offWhite
         
         setupTopView()
         requestViewModel()
@@ -64,7 +63,7 @@ extension HistoricalViewController: UITableViewDataSource, UITableViewDelegate {
         let viewModelCell = historicalViewModel.cellForRowAt(indexPath: indexPath)
         cell.configure(viewModelCell, byFrame: view, category: type().category, and: type().id)
         
-        let colors = [#colorLiteral(red: 0.1770535707, green: 0.1963185668, blue: 0.2220225334, alpha: 1), .mainDark]
+        let colors = [#colorLiteral(red: 0.1770535707, green: 0.1963185668, blue: 0.2220225334, alpha: 1), .offWhite]
         cell.backgroundColor = colors[indexPath.row % colors.count]
         
         return cell
