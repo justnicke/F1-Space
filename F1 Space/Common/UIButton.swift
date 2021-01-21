@@ -22,15 +22,16 @@ final class CustomButton: UIButton {
         super.layoutSubviews()
         
         UIView.animate(withDuration: 0.2, animations: {
+            
             self.maskLayer.frame = self.bounds
             self.maskLayer.path = UIBezierPath(roundedRect: self.bounds,
-                                     byRoundingCorners: .allCorners,
-                                     cornerRadii: CGSize(width: 15, height: 15)).cgPath
+                                               byRoundingCorners: .allCorners,
+                                               cornerRadii: CGSize(width: 15, height: 15)).cgPath
             self.layer.mask = self.maskLayer
-
+            
             self.border.path = self.maskLayer.path
             self.border.fillColor = UIColor.clear.cgColor
-            self.border.strokeColor = UIColor.gray.cgColor
+            self.border.strokeColor = UIColor.white.cgColor
             self.border.lineWidth = 1
             self.border.frame = self.bounds
             self.layer.addSublayer(self.border)
