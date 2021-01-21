@@ -12,13 +12,27 @@ final class TabBarController: UITabBarController {
     
     // MARK: - Public Methods
     
+    var str: String
+    
+    init(str: String) {
+        self.str = str
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBar.isTranslucent = false
         self.tabBar.barTintColor = .white
         
+        let vc = HistoricalViewController()
+        vc.firstYear = str
+        
         viewControllers = [
-            createNavController(vc: HistoricalViewController(), title: "History F1", image: .historical),
+            createNavController(vc: vc, title: "History F1", image: .historical),
             createNavController(vc: StandingsViewController(), title: "Standings", image: .standings)
         ]
     }

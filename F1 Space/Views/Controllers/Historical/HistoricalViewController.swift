@@ -7,14 +7,16 @@
 //
 
 import UIKit
+import Combine
 
 final class HistoricalViewController: UIViewController {
     
     // MARK: - Private Properties
+    
     let topView = UIScrollView()
     let yearButton: CustomButton = {
         let button = CustomButton(type: .custom)
-        button.setTitle("2020", for: .normal)
+//        button.setTitle("2020", for: .normal)
         return button
     }()
     let categoryButton: CustomButton = {
@@ -34,12 +36,14 @@ final class HistoricalViewController: UIViewController {
     let header = HistoricalHeaderView()
     var historicalViewModel: HistoricalViewModel!
     
+    var firstYear: String?
+        
     // MARK: - Public Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        
+        yearButton.setTitle(firstYear, for: .normal)
         setupTopView()
         requestViewModel()
         setupTableView()
@@ -47,6 +51,12 @@ final class HistoricalViewController: UIViewController {
         yearButton.addTarget(self, action: #selector(yearButtonPressed), for: .touchUpInside)
         categoryButton.addTarget(self, action: #selector(typeSearchButtonPressed), for: .touchUpInside)
         detailResultButton.addTarget(self, action: #selector(detailResultButtonPressed), for: .touchUpInside)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        
     }
     
     

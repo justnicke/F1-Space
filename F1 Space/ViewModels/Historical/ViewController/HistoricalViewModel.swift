@@ -158,7 +158,6 @@ final class HistoricalViewModel {
                         .races else {
                     return
                 }
-                
                 self?.take.firstPlaceResultInRace = raceInfo
                 
                 DispatchQueue.main.async {
