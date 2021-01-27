@@ -16,7 +16,6 @@ final class HistoricalViewController: UIViewController {
     let topView = UIScrollView()
     let yearButton: CustomButton = {
         let button = CustomButton(type: .custom)
-//        button.setTitle("2020", for: .normal)
         return button
     }()
     let categoryButton: CustomButton = {
@@ -36,14 +35,14 @@ final class HistoricalViewController: UIViewController {
     let header = HistoricalHeaderView()
     var historicalViewModel: HistoricalViewModel!
     
-    var firstYear: String?
+    var firstYear: [String: Bool]?
         
     // MARK: - Public Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        yearButton.setTitle(firstYear, for: .normal)
+        yearButton.setTitle(firstYear?.keys.first, for: .normal)
         setupTopView()
         requestViewModel()
         setupTableView()
@@ -52,13 +51,6 @@ final class HistoricalViewController: UIViewController {
         categoryButton.addTarget(self, action: #selector(typeSearchButtonPressed), for: .touchUpInside)
         detailResultButton.addTarget(self, action: #selector(detailResultButtonPressed), for: .touchUpInside)
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        
-    }
-    
     
     func set(for buttons: [CustomButton]) {
         buttons.forEach {
@@ -158,7 +150,7 @@ final class HistoricalViewController: UIViewController {
     }
     
     @objc  func yearButtonPressed() {
-        openTransition(state: .yearChampionship, currentValues: [type().year, type().id, type().category])
+        openTransition(state: .yearChampionship, currentValues: [type().year, type().id, type().category, String((firstYear?.values.first)!)])
     }
     
     @objc  func typeSearchButtonPressed() {

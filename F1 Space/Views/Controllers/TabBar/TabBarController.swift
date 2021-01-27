@@ -12,10 +12,10 @@ final class TabBarController: UITabBarController {
     
     // MARK: - Public Methods
     
-    var str: String
+    var point: [String: Bool]
     
-    init(str: String) {
-        self.str = str
+    init(point: [String: Bool]) {
+        self.point = point
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -29,7 +29,7 @@ final class TabBarController: UITabBarController {
         self.tabBar.barTintColor = .white
         
         let vc = HistoricalViewController()
-        vc.firstYear = str
+        vc.firstYear = point
         
         viewControllers = [
             createNavController(vc: vc, title: "History F1", image: .historical),

@@ -66,6 +66,7 @@
 		5E82ACA525387A9C0015A168 /* HistoricalRaceStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E82ACA425387A9C0015A168 /* HistoricalRaceStrategy.swift */; };
 		5E82B52024C5D6A100377859 /* ConstructorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E82B51F24C5D6A100377859 /* ConstructorViewModel.swift */; };
 		5E82B52224C5D6AC00377859 /* ConstructorCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E82B52124C5D6AC00377859 /* ConstructorCellViewModel.swift */; };
+		5E83481425C1580000392D46 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E83481325C1580000392D46 /* Array.swift */; };
 		5E8467CF25B8166200D6B559 /* Formula1-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E8467CB25B8166200D6B559 /* Formula1-Bold.ttf */; };
 		5E8467D025B8166200D6B559 /* Formula1-Wide.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E8467CC25B8166200D6B559 /* Formula1-Wide.ttf */; };
 		5E8467D125B8166200D6B559 /* Formula1-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E8467CD25B8166200D6B559 /* Formula1-Black.ttf */; };
@@ -183,6 +184,7 @@
 		5E82ACA425387A9C0015A168 /* HistoricalRaceStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalRaceStrategy.swift; sourceTree = "<group>"; };
 		5E82B51F24C5D6A100377859 /* ConstructorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorViewModel.swift; sourceTree = "<group>"; };
 		5E82B52124C5D6AC00377859 /* ConstructorCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorCellViewModel.swift; sourceTree = "<group>"; };
+		5E83481325C1580000392D46 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		5E8467CB25B8166200D6B559 /* Formula1-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Formula1-Bold.ttf"; sourceTree = "<group>"; };
 		5E8467CC25B8166200D6B559 /* Formula1-Wide.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Formula1-Wide.ttf"; sourceTree = "<group>"; };
 		5E8467CD25B8166200D6B559 /* Formula1-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Formula1-Black.ttf"; sourceTree = "<group>"; };
@@ -360,6 +362,7 @@
 				5EA886F824D1A9A60079EDDC /* Formatter.swift */,
 				5E05CD8924BEF23900EB2EF3 /* ConstructorsColor.swift */,
 				5E4CA1BD255D3A8900EA9F72 /* Optional.swift */,
+				5E83481325C1580000392D46 /* Array.swift */,
 				5E5361432579031D00307425 /* Colors.swift */,
 				5E5C0D4F25B817CB006306EF /* UIButton.swift */,
 				5E9F90DC25B723DA00040EC9 /* UIImage.swift */,
@@ -791,6 +794,7 @@
 				5E5361442579031D00307425 /* Colors.swift in Sources */,
 				5E9F90D925B7230E00040EC9 /* TabBarIconSetting.swift in Sources */,
 				5E4CA6E22519E1AB0035E6F6 /* HistoricalViewModel.swift in Sources */,
+				5E83481425C1580000392D46 /* Array.swift in Sources */,
 				5E05CD8C24BF28E600EB2EF3 /* DriverStandingsGroup.swift in Sources */,
 				5EFD898724FE251E00A39838 /* HistoricalViewController.swift in Sources */,
 				5E7DB98024D05A6E0029C0EE /* NewsCell.swift in Sources */,

@@ -19,16 +19,14 @@ final class StandingsViewModel: DataSourceViewModelType {
     
     func requestData(compeletion: @escaping () -> (Void)) {
         API.requestDriverStandings(year: "2020") { [weak self] (driver, err) in
-            let drivers = driver?.driverStandingsData.driverStandingsTable.driverStandingsLists.compactMap { $0.driverStandings }
-            let convertedDrivers = drivers?.reduce([], +)
-            self?.drivers = convertedDrivers
+            let drivers = driver?.driverStandingsData.driverStandingsTable.driverStandingsLists.flatMap { $0.driverStandings }
+            self?.drivers = drivers
             compeletion()
         }
         
         API.requestConstructorStandings(year: "2020") { [weak self] (constructor, err) in
-            let constructors = constructor?.constructorStandingsData.constructorStandingsTable.constructorStandingsLists.compactMap { $0.constructorStandings }
-            let convertedconstructors = constructors?.reduce([], +)
-            self?.constructors = convertedconstructors
+            let constructors = constructor?.constructorStandingsData.constructorStandingsTable.constructorStandingsLists.flatMap { $0.constructorStandings }
+            self?.constructors = constructors
             compeletion()
         }
     }

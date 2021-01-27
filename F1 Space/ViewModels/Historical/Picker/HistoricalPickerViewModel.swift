@@ -11,7 +11,7 @@ import Foundation
 final class HistoricalPickerViewModel {
     
     // MARK: - Public Properties
-    
+
     weak var delegate: HistoricalPickerSelectedDelegate?
     
     var pickerResult = HistoricalPickerResult(

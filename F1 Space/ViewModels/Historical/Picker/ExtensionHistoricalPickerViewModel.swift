@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 // MARK: - Year Picker (1)
 
  extension HistoricalPickerViewModel {
@@ -21,6 +20,8 @@ import Foundation
         case detail = 1
         /// Picker Category
         case category = 2
+        /// Validity of the first race
+        case startSeason
     }
     
     func requestSeason(completion: @escaping () -> (Void)) {
@@ -43,10 +44,21 @@ import Foundation
         let calendar = Calendar.current
         let currentYear = calendar.component(.year, from: date)
         
-        if let string = pickerResult.totalSeasons, let convertedYearCount = Int(string) {
-            for i in 0...convertedYearCount - num {
-                let year = currentYear - i
-                pickerResult.championships.append(String(year))
+        if currentValues[HIndex.startSeason.rawValue] == "false"  {
+            if let string = pickerResult.totalSeasons, let convertedYearCount = Int(string) {
+                for i in 1..<convertedYearCount + num {
+                    let year = currentYear - i
+                    
+                    pickerResult.championships.append(String(year))
+                }
+            }
+        } else {
+            if let string = pickerResult.totalSeasons, let convertedYearCount = Int(string) {
+                for i in 0..<convertedYearCount + num {
+                    let year = currentYear - i
+                    
+                    pickerResult.championships.append(String(year))
+                }
             }
         }
     }
@@ -56,8 +68,9 @@ import Foundation
         case true:
             API.requestSeasons { [weak self] (totalYears, error) in
                 self?.pickerResult.totalSeasons = totalYears?.championshipData.total
-                self?.getChampionshipYear(num: 1)
+                self?.getChampionshipYear(num: 0)
                 completion()
+
             }
         case false:
             let identity = currentValues[HIndex.detail.rawValue].unwrap.lowercased()
@@ -75,7 +88,7 @@ import Foundation
                     .currentDriverStandingsTable
                     .currentDriverStandingsLists.first?
                     .season
-                
+            
                 if checkID.unwrap.contains(identity) {
                     API.requestDriverParticipated(id: identity) { [weak self] (participated, err) in
                         var correctTakePartDriverYear = [String]()
@@ -84,17 +97,18 @@ import Foundation
                             .driverParticipatedTable
                             .driverParticipatedList
                             .compactMap({ $0.season })
-                            .sorted(by: { $0 > $1 })
-                        
+
                         correctTakePartDriverYear.append(checkedCurrentSeason.unwrap)
                         correctTakePartDriverYear.append(contentsOf: currentTakePartDriver.unwrap)
                         
-                        self?.pickerResult.championships = correctTakePartDriverYear
+                        self?.pickerResult.championships = correctTakePartDriverYear.dropDuplicates().sorted(by: { $0 > $1 })
                         completion()
                     }
-                } else {
+                }
+                else {
                     API.requestDriverParticipated(id: identity) { [weak self] (participated, err) in
-                        let currentTakePartDriver = participated?.twoOptionsData
+                        let currentTakePartDriver = participated?
+                            .twoOptionsData
                             .driverParticipatedTable
                             .driverParticipatedList
                             .compactMap({ $0.season })
@@ -113,7 +127,7 @@ import Foundation
         case true:
             API.requestSeasonsOfficialConstructorsCup { [weak self] (totalYears, error) in
                 self?.pickerResult.totalSeasons = totalYears?.twoOptionsData.total
-                self?.getChampionshipYear(num: 0)
+                self?.getChampionshipYear(num: 1)
                 completion()
             }
         case false:
@@ -141,12 +155,11 @@ import Foundation
                             .constructorParticipatedTable
                             .constructorParticipatedList
                             .compactMap({ $0.season })
-                            .sorted(by: { $0 > $1 })
                         
                         correctTakePartConstructorYear.append(checkedCurrentSeason.unwrap)
                         correctTakePartConstructorYear.append(contentsOf: currentTakePartConstructor.unwrap)
                         
-                        self?.pickerResult.championships = correctTakePartConstructorYear
+                        self?.pickerResult.championships = correctTakePartConstructorYear.dropDuplicates().sorted(by: { $0 > $1 })
                         completion()
                     }
                 } else {
@@ -169,7 +182,7 @@ import Foundation
     private func requestYearDataForRace(completion: @escaping () -> (Void)) {
         API.requestSeasons { [weak self] (totalYears, error) in
             self?.pickerResult.totalSeasons = totalYears?.championshipData.total
-            self?.getChampionshipYear(num: 1)
+            self?.getChampionshipYear(num: 0)
             completion()
         }
     }
@@ -199,8 +212,7 @@ extension HistoricalPickerViewModel {
                 .driverStandingsData
                 .driverStandingsTable
                 .driverStandingsLists
-                .compactMap({ $0.driverStandings })
-                .reduce([], +)
+                .flatMap({ $0.driverStandings })
             
             let driversFullName = ds?.compactMap { $0.driver.givenName + " " + $0.driver.familyName }
             let driversID = ds?.compactMap { $0.driver.driverID }
@@ -220,8 +232,7 @@ extension HistoricalPickerViewModel {
             let constructors = constructorStandings?
                 .constructorStandingsData
                 .constructorStandingsTable
-                .constructorStandingsLists.compactMap({ $0.constructorStandings })
-                .reduce([], +)
+                .constructorStandingsLists.flatMap({ $0.constructorStandings })
             
             let constructorsName = constructors?.compactMap { $0.constructor.name }
             let constructorsID = constructors?.compactMap { $0.constructor.constructorID }

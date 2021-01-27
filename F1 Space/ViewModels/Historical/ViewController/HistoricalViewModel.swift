@@ -58,8 +58,7 @@ final class HistoricalViewModel {
                         .driverStandingsData
                         .driverStandingsTable
                         .driverStandingsLists
-                        .compactMap({ $0.driverStandings })
-                        .reduce([], +) else {
+                        .flatMap({ $0.driverStandings }) else {
                     return
                 }
                 
@@ -107,8 +106,7 @@ final class HistoricalViewModel {
                         .constructorStandingsData
                         .constructorStandingsTable
                         .constructorStandingsLists
-                        .compactMap({ $0.constructorStandings })
-                        .reduce([], +) else {
+                        .flatMap({ $0.constructorStandings }) else {
                     return
                 }
                 
@@ -174,8 +172,7 @@ final class HistoricalViewModel {
                         .racesDetailData
                         .racesDetaiTable
                         .races
-                        .compactMap({ $0.results })
-                        .reduce([], +) else {
+                        .flatMap({ $0.results }) else {
                     return
                 }
                 self?.take.racesDetail = results
