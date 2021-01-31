@@ -169,7 +169,7 @@
 		5E4A6A9A24D82E210077CDBC /* DetailNewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNewsViewModel.swift; sourceTree = "<group>"; };
 		5E4C1D59254AF76C00C1A3BB /* CurrentConstructorStandings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentConstructorStandings.swift; sourceTree = "<group>"; };
 		5E4C64B02563B9A8002DC545 /* HistoricalCellViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalCellViewModelType.swift; sourceTree = "<group>"; };
-		5E4C64B8256402A4002DC545 /* ExtensionHistoricalPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionHistoricalPickerViewModel.swift; sourceTree = "<group>"; };
+		5E4C64B8256402A4002DC545 /* ExtensionHistoricalPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ExtensionHistoricalPickerViewModel.swift; path = ../OldModules/Views/ExtensionHistoricalPickerViewModel.swift; sourceTree = "<group>"; };
 		5E4CA1BD255D3A8900EA9F72 /* Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Optional.swift; sourceTree = "<group>"; };
 		5E4CA6E12519E1AB0035E6F6 /* HistoricalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalViewModel.swift; sourceTree = "<group>"; };
 		5E50BEED2510D81A0025963F /* HistoricalPickerResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalPickerResult.swift; sourceTree = "<group>"; };
@@ -181,7 +181,7 @@
 		5E5F1B3124D5600200F81366 /* CustromActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustromActivityIndicator.swift; sourceTree = "<group>"; };
 		5E5F1B3724D5DDE300F81366 /* CustomAnimationActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnimationActivityIndicator.swift; sourceTree = "<group>"; };
 		5E5F1B3924D5F37F00F81366 /* RefreshView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshView.swift; sourceTree = "<group>"; };
-		5E5FCB612513438F00618534 /* HistoricalPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalPickerViewModel.swift; sourceTree = "<group>"; };
+		5E5FCB612513438F00618534 /* HistoricalPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HistoricalPickerViewModel.swift; path = ../OldModules/Views/HistoricalPickerViewModel.swift; sourceTree = "<group>"; };
 		5E65123824EFBB6700008D67 /* RaceResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceResult.swift; sourceTree = "<group>"; };
 		5E6932BE252DA1BD0045E030 /* HistoricalHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalHeader.swift; sourceTree = "<group>"; };
 		5E6A1329252EE8FF0012CFEC /* HistoricalStandingsStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalStandingsStrategy.swift; sourceTree = "<group>"; };
@@ -240,7 +240,7 @@
 		5EEE76DD25013F7C00D7D530 /* PanGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanGestureRecognizer.swift; sourceTree = "<group>"; };
 		5EF191D52548340D0045FD7C /* HistoricalConstructorDetailStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalConstructorDetailStrategy.swift; sourceTree = "<group>"; };
 		5EFD898624FE251E00A39838 /* HistoricalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalViewController.swift; sourceTree = "<group>"; };
-		5EFD898824FE458200A39838 /* HistoricalPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalPickerViewController.swift; sourceTree = "<group>"; };
+		5EFD898824FE458200A39838 /* HistoricalPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HistoricalPickerViewController.swift; path = ../OldModules/Views/HistoricalPickerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -277,27 +277,6 @@
 			path = Custom;
 			sourceTree = "<group>";
 		};
-		5E36135225C6C71E00A461AE /* Modules */ = {
-			isa = PBXGroup;
-			children = (
-				5E36138F25C6FC1500A461AE /* TabBarModule */,
-				5E36135325C6C79C00A461AE /* HistoricalModules */,
-			);
-			name = Modules;
-			path = Views;
-			sourceTree = "<group>";
-		};
-		5E36135325C6C79C00A461AE /* HistoricalModules */ = {
-			isa = PBXGroup;
-			children = (
-				5E36135425C6C7C600A461AE /* HistoricalStatsModule */,
-				5E36135625C6C84F00A461AE /* HistoricalStatsDetailModule */,
-				5E36135525C6C83400A461AE /* HistoricalPickerModule */,
-				5E4793492535AF3C00332FB4 /* HelpingEntities */,
-			);
-			name = HistoricalModules;
-			sourceTree = "<group>";
-		};
 		5E36135425C6C7C600A461AE /* HistoricalStatsModule */ = {
 			isa = PBXGroup;
 			children = (
@@ -305,24 +284,8 @@
 				5E36135725C6C88000A461AE /* ViewModels */,
 				5E36135825C6C8D100A461AE /* Views */,
 			);
-			path = HistoricalStatsModule;
-			sourceTree = "<group>";
-		};
-		5E36135525C6C83400A461AE /* HistoricalPickerModule */ = {
-			isa = PBXGroup;
-			children = (
-				5E36136C25C6E01200A461AE /* Protocols */,
-				5E36136D25C6E02100A461AE /* ViewModels */,
-				5E36136E25C6E03200A461AE /* Views */,
-			);
-			name = HistoricalPickerModule;
-			sourceTree = "<group>";
-		};
-		5E36135625C6C84F00A461AE /* HistoricalStatsDetailModule */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = HistoricalStatsDetailModule;
+			name = HistoricalStatsModule;
+			path = ../OldModules/Views/HistoricalStatsModule;
 			sourceTree = "<group>";
 		};
 		5E36135725C6C88000A461AE /* ViewModels */ = {
@@ -370,24 +333,8 @@
 				5E36137B25C6F31E00A461AE /* HistoricalPickerViewModelRequest.swift */,
 				5E50BEEF2510D9340025963F /* HistoricalPickerSelectedDelegate.swift */,
 			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
-		5E36136D25C6E02100A461AE /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				5E5FCB612513438F00618534 /* HistoricalPickerViewModel.swift */,
-				5E4C64B8256402A4002DC545 /* ExtensionHistoricalPickerViewModel.swift */,
-			);
-			name = ViewModels;
-			sourceTree = "<group>";
-		};
-		5E36136E25C6E03200A461AE /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				5EFD898824FE458200A39838 /* HistoricalPickerViewController.swift */,
-			);
-			name = Views;
+			name = Protocols;
+			path = ../OldModules/Views/Protocols;
 			sourceTree = "<group>";
 		};
 		5E36138F25C6FC1500A461AE /* TabBarModule */ = {
@@ -396,7 +343,8 @@
 				5E9F90CE25B7195600040EC9 /* TabBarController.swift */,
 				5E9F90D825B7230E00040EC9 /* TabBarIconSetting.swift */,
 			);
-			path = TabBarModule;
+			name = TabBarModule;
+			path = ../OldModules/Views/TabBarModule;
 			sourceTree = "<group>";
 		};
 		5E36139025C6FC8A00A461AE /* OldModules */ = {
@@ -428,6 +376,53 @@
 				5EA886F124D164F30079EDDC /* RSS.swift */,
 			);
 			name = Services;
+			sourceTree = "<group>";
+		};
+		5E3613BF25C7076500A461AE /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				5E36138F25C6FC1500A461AE /* TabBarModule */,
+				5E3613C125C707E200A461AE /* HistoricalModules */,
+			);
+			name = Modules;
+			path = Models;
+			sourceTree = "<group>";
+		};
+		5E3613C125C707E200A461AE /* HistoricalModules */ = {
+			isa = PBXGroup;
+			children = (
+				5E36135425C6C7C600A461AE /* HistoricalStatsModule */,
+				5E3613C225C708A300A461AE /* HistoricalPickerModule */,
+				5E4793492535AF3C00332FB4 /* HelpingEntities */,
+			);
+			name = HistoricalModules;
+			sourceTree = "<group>";
+		};
+		5E3613C225C708A300A461AE /* HistoricalPickerModule */ = {
+			isa = PBXGroup;
+			children = (
+				5E36136C25C6E01200A461AE /* Protocols */,
+				5E3613C325C708D700A461AE /* ViewModels */,
+				5E3613C425C7098D00A461AE /* Views */,
+			);
+			name = HistoricalPickerModule;
+			sourceTree = "<group>";
+		};
+		5E3613C325C708D700A461AE /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				5E5FCB612513438F00618534 /* HistoricalPickerViewModel.swift */,
+				5E4C64B8256402A4002DC545 /* ExtensionHistoricalPickerViewModel.swift */,
+			);
+			name = ViewModels;
+			sourceTree = "<group>";
+		};
+		5E3613C425C7098D00A461AE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5EFD898824FE458200A39838 /* HistoricalPickerViewController.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		5E40ECFB24B7551500E3AF1F /* Cells */ = {
@@ -486,8 +481,8 @@
 				5E419EF224B5B44A006421F6 /* Common */,
 				5E47BBFF24C07BB6002D8261 /* Services */,
 				5E14A14224BCA18C0058305B /* Models */,
-				5E36135225C6C71E00A461AE /* Modules */,
 				5E36139025C6FC8A00A461AE /* OldModules */,
+				5E3613BF25C7076500A461AE /* Modules */,
 				5E419ECF24B5A858006421F6 /* Assets.xcassets */,
 				5E419EC624B5A855006421F6 /* AppDelegate.swift */,
 				5E419EC824B5A855006421F6 /* SceneDelegate.swift */,
@@ -558,7 +553,8 @@
 				5E6A1336252F002F0012CFEC /* HistoricalStandingsHeader.swift */,
 				5E4630A0255ECF6700635A3F /* Collector.swift */,
 			);
-			path = HelpingEntities;
+			name = HelpingEntities;
+			path = ../OldModules/Views/HelpingEntities;
 			sourceTree = "<group>";
 		};
 		5E47BBFF24C07BB6002D8261 /* Services */ = {
