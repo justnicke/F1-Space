@@ -50,6 +50,24 @@ final class HistoricalViewController: UIViewController {
         yearButton.addTarget(self, action: #selector(yearButtonPressed), for: .touchUpInside)
         categoryButton.addTarget(self, action: #selector(typeSearchButtonPressed), for: .touchUpInside)
         detailResultButton.addTarget(self, action: #selector(detailResultButtonPressed), for: .touchUpInside)
+        
+        
+        API.requestConstructorDetailResult(year: "2020", id: "mercedes") { (const, err) in
+            guard let results = const?.constructorDetailData.constructorDetailTable.races.map({ $0.results }) else { return }
+            
+            let needValues = results.map ({ $0.map{$0.points}})
+            
+            print(needValues)
+            
+//            if driverID.contains("bottas") {
+//                let bottasInfo = const?.constructorDetailData.constructorDetailTable.races.flatMap({ $0.results })
+//                print(bottasInfo)
+//            }
+            
+            
+            
+            
+        }
     }
     
     func set(for buttons: [CustomButton]) {
@@ -194,7 +212,7 @@ extension HistoricalViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return CGFloat(historicalViewModel.heightForRow())
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -205,7 +223,7 @@ extension HistoricalViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40
+        return CGFloat(historicalViewModel.heightForHeader())
     }
 }
 

@@ -14,7 +14,7 @@ enum HistoricalSelectedViewType {
 }
 
 /// Properties for the historical cell and header
-protocol HistoricalViewPropertyble: class {
+protocol HistoricalViewProperty: class {
     var firstLabel:  UILabel { get }
     var secondLabel: UILabel { get }
     var thirdLabel:  UILabel { get }
@@ -30,7 +30,8 @@ protocol HistoricalViewPropertyble: class {
     var sixthWidth:  NSLayoutConstraint { get }
 }
 
-protocol HistoricalViewType: HistoricalViewPropertyble {
+protocol HistoricalViewType: HistoricalViewProperty {
+    /// Cell or Header
     associatedtype HistoricalViewModel
     var historicalStandingsStrategy: HistoricalStandingsStrategy? { get set }
     func configure(_ viewModel: HistoricalViewModel?, byFrame superview: UIView, category: HistoricalCategory.RawValue?, and id: String?)
@@ -67,9 +68,9 @@ extension HistoricalViewType {
         case .header:
             historicalStandingsStrategy?.configureHeader(viewModel: viewModel as? HistoricalHeaderViewModel, for: group().labels)
             
-            for l in group().labels {
-                if l.backgroundColor != .white {
-                    l.textColor = .white
+            for label in group().labels {
+                if label.backgroundColor != .white {
+                    label.textColor = .white
                 }
             }
         }

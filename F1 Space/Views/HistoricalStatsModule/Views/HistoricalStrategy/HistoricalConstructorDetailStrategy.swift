@@ -24,24 +24,19 @@ final class HistoricalConstructorDetailStrategy: HistoricalStandingsStrategy {
             $0.textColor = .cellTintColor
         }
         
-        //  общие перед
         width[forThe.second]?.isActive = false
         labels[forThe.fourth].isHidden = false
         labels[forThe.fifth].isHidden = false
         
-        // 1
         width[forThe.first]?.isActive = true
         width[forThe.first]?.constant = rootView.frame.width / 5
 
-        // 3
         width[forThe.third]?.constant = rootView.frame.width / 8
         width[forThe.third]?.isActive = true
 
-        // 4
         width[forThe.fourth]?.constant = rootView.frame.width / 3.7
         width[forThe.fourth]?.isActive = true
         
-        // 5
         width[forThe.fifth]?.constant = rootView.frame.width / 8
         width[forThe.fifth]?.isActive = true
         

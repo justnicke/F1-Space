@@ -188,6 +188,7 @@ final class HistoricalViewModel {
 // MARK: - Extension HistoricalViewModelType
 
 extension HistoricalViewModel: HistoricalViewModelType {
+    // Table
     func numberOfRows() -> Int {
         switch category {
         case .drivers: return numberOfRowsDrivers()
@@ -206,6 +207,11 @@ extension HistoricalViewModel: HistoricalViewModelType {
         }
     }
     
+    func heightForRow() -> Int {
+        return 50
+    }
+    
+    // Header
     func viewForHeader() -> HistoricalHeaderViewModel? {
         switch category {
         case .drivers: return viewForHeaderDriver()
@@ -214,5 +220,8 @@ extension HistoricalViewModel: HistoricalViewModelType {
         default:       return nil
         }
     }
+    
+    func heightForHeader() -> Int {
+        return 40
+    }
 }
-

@@ -13,6 +13,9 @@
 		5E05CD9024BF2B8F00EB2EF3 /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E05CD8F24BF2B8F00EB2EF3 /* Driver.swift */; };
 		5E05CD9424BF354A00EB2EF3 /* ConstructorStandingsGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E05CD9324BF354A00EB2EF3 /* ConstructorStandingsGroup.swift */; };
 		5E14A14424BCA1A90058305B /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E14A14324BCA1A90058305B /* API.swift */; };
+		5E36135D25C6D28C00A461AE /* HistoricalViewModelDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E36135C25C6D28C00A461AE /* HistoricalViewModelDataSource.swift */; };
+		5E36136125C6D2B000A461AE /* HistoricalViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E36136025C6D2B000A461AE /* HistoricalViewModelDelegate.swift */; };
+		5E36136525C6D2EF00A461AE /* HistoricalViewModelProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E36136425C6D2EF00A461AE /* HistoricalViewModelProperty.swift */; };
 		5E40ECF624B7400700E3AF1F /* StandingConstructorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E40ECF524B7400700E3AF1F /* StandingConstructorCell.swift */; };
 		5E40ECF824B74B8100E3AF1F /* ConstructorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E40ECF724B74B8100E3AF1F /* ConstructorViewController.swift */; };
 		5E40ECFA24B74BA100E3AF1F /* ConstructorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E40ECF924B74BA100E3AF1F /* ConstructorCell.swift */; };
@@ -127,6 +130,9 @@
 		5E05CD8F24BF2B8F00EB2EF3 /* Driver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Driver.swift; sourceTree = "<group>"; };
 		5E05CD9324BF354A00EB2EF3 /* ConstructorStandingsGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorStandingsGroup.swift; sourceTree = "<group>"; };
 		5E14A14324BCA1A90058305B /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		5E36135C25C6D28C00A461AE /* HistoricalViewModelDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalViewModelDataSource.swift; sourceTree = "<group>"; };
+		5E36136025C6D2B000A461AE /* HistoricalViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalViewModelDelegate.swift; sourceTree = "<group>"; };
+		5E36136425C6D2EF00A461AE /* HistoricalViewModelProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalViewModelProperty.swift; sourceTree = "<group>"; };
 		5E40ECF524B7400700E3AF1F /* StandingConstructorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingConstructorCell.swift; sourceTree = "<group>"; };
 		5E40ECF724B74B8100E3AF1F /* ConstructorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorViewController.swift; sourceTree = "<group>"; };
 		5E40ECF924B74BA100E3AF1F /* ConstructorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorCell.swift; sourceTree = "<group>"; };
@@ -265,12 +271,89 @@
 			path = Custom;
 			sourceTree = "<group>";
 		};
+		5E36135225C6C71E00A461AE /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				5E36135325C6C79C00A461AE /* HistoricalModules */,
+			);
+			name = Modules;
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5E36135325C6C79C00A461AE /* HistoricalModules */ = {
+			isa = PBXGroup;
+			children = (
+				5E36135425C6C7C600A461AE /* HistoricalStatsModule */,
+				5E36135625C6C84F00A461AE /* HistoricalStatsDetailModule */,
+				5E36135525C6C83400A461AE /* HistoricalPickerModule */,
+			);
+			name = HistoricalModules;
+			sourceTree = "<group>";
+		};
+		5E36135425C6C7C600A461AE /* HistoricalStatsModule */ = {
+			isa = PBXGroup;
+			children = (
+				5E36135925C6C91700A461AE /* Protocols */,
+				5E36135725C6C88000A461AE /* ViewModels */,
+				5E36135825C6C8D100A461AE /* Views */,
+			);
+			path = HistoricalStatsModule;
+			sourceTree = "<group>";
+		};
+		5E36135525C6C83400A461AE /* HistoricalPickerModule */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = HistoricalPickerModule;
+			sourceTree = "<group>";
+		};
+		5E36135625C6C84F00A461AE /* HistoricalStatsDetailModule */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = HistoricalStatsDetailModule;
+			sourceTree = "<group>";
+		};
+		5E36135725C6C88000A461AE /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				5E4CA6E12519E1AB0035E6F6 /* HistoricalViewModel.swift */,
+				5E47933D2535ADBD00332FB4 /* HistoricalCellViewModel.swift */,
+				5E82AC9D253838C40015A168 /* HistoricalHeaderViewModel.swift */,
+			);
+			name = ViewModels;
+			sourceTree = "<group>";
+		};
+		5E36135825C6C8D100A461AE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5EFD898624FE251E00A39838 /* HistoricalViewController.swift */,
+				5E510D17251C833100584EE2 /* HistoricalCell.swift */,
+				5E6932BE252DA1BD0045E030 /* HistoricalHeader.swift */,
+				5E6A1328252EE8970012CFEC /* HistoricalStrategy */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5E36135925C6C91700A461AE /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				5E6A1329252EE8FF0012CFEC /* HistoricalStandingsStrategy.swift */,
+				5E4793302535AA5B00332FB4 /* HistoricalViewModelType.swift */,
+				5E36136425C6D2EF00A461AE /* HistoricalViewModelProperty.swift */,
+				5E36135C25C6D28C00A461AE /* HistoricalViewModelDataSource.swift */,
+				5E36136025C6D2B000A461AE /* HistoricalViewModelDelegate.swift */,
+				5E4C64B02563B9A8002DC545 /* HistoricalCellViewModelType.swift */,
+				5E912FA7257F9D6A00F48A07 /* HistoricalViewType.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
 		5E40ECFB24B7551500E3AF1F /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				5E4793462535AE1100332FB4 /* News */,
 				5E40ECFC24B7552500E3AF1F /* Standings */,
-				5E4793452535ADFE00332FB4 /* Historical */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -325,6 +408,7 @@
 				5EAC214824C8245D00A65A7A /* Protocols */,
 				5EC60D6924C18DF7009C66CC /* ViewModels */,
 				5E419EF724B5DC7B006421F6 /* Views */,
+				5E36135225C6C71E00A461AE /* Modules */,
 				5E419ECF24B5A858006421F6 /* Assets.xcassets */,
 				5E419EC624B5A855006421F6 /* AppDelegate.swift */,
 				5E419EC824B5A855006421F6 /* SceneDelegate.swift */,
@@ -384,17 +468,7 @@
 		5E4793362535AB8B00332FB4 /* Historical */ = {
 			isa = PBXGroup;
 			children = (
-				5E4B49542566A17900E65508 /* ViewController */,
 				5E4B49512566A15500E65508 /* Picker */,
-			);
-			path = Historical;
-			sourceTree = "<group>";
-		};
-		5E4793452535ADFE00332FB4 /* Historical */ = {
-			isa = PBXGroup;
-			children = (
-				5E510D17251C833100584EE2 /* HistoricalCell.swift */,
-				5E6A1328252EE8970012CFEC /* HistoricalStrategy */,
 			);
 			path = Historical;
 			sourceTree = "<group>";
@@ -431,7 +505,6 @@
 		5E49EEBF252DF9280058B78D /* Historical */ = {
 			isa = PBXGroup;
 			children = (
-				5EFD898624FE251E00A39838 /* HistoricalViewController.swift */,
 				5EFD898824FE458200A39838 /* HistoricalPickerViewController.swift */,
 			);
 			path = Historical;
@@ -452,7 +525,6 @@
 			children = (
 				5E5F1B3924D5F37F00F81366 /* RefreshView.swift */,
 				5E4A6A9E24D84D800077CDBC /* ActivityIndicator */,
-				5E6932BE252DA1BD0045E030 /* HistoricalHeader.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -473,16 +545,6 @@
 				5E4C64B8256402A4002DC545 /* ExtensionHistoricalPickerViewModel.swift */,
 			);
 			path = Picker;
-			sourceTree = "<group>";
-		};
-		5E4B49542566A17900E65508 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				5E4CA6E12519E1AB0035E6F6 /* HistoricalViewModel.swift */,
-				5E47933D2535ADBD00332FB4 /* HistoricalCellViewModel.swift */,
-				5E82AC9D253838C40015A168 /* HistoricalHeaderViewModel.swift */,
-			);
-			path = ViewController;
 			sourceTree = "<group>";
 		};
 		5E6A1328252EE8970012CFEC /* HistoricalStrategy */ = {
@@ -591,10 +653,6 @@
 				5EAC214624C8244F00A65A7A /* DataSourceViewModelType.swift */,
 				5E50BEEF2510D9340025963F /* HistoricalPickerSelectedDelegate.swift */,
 				5E4CA6E32519FD1B0035E6F6 /* PickerViewModelType.swift */,
-				5E4793302535AA5B00332FB4 /* HistoricalViewModelType.swift */,
-				5E912FA7257F9D6A00F48A07 /* HistoricalViewType.swift */,
-				5E4C64B02563B9A8002DC545 /* HistoricalCellViewModelType.swift */,
-				5E6A1329252EE8FF0012CFEC /* HistoricalStandingsStrategy.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -812,6 +870,7 @@
 				5E4A6A9B24D82E210077CDBC /* DetailNewsViewModel.swift in Sources */,
 				5E5F1B3A24D5F37F00F81366 /* RefreshView.swift in Sources */,
 				5E6A133F252F04D30012CFEC /* AuxiliaryNumbering.swift in Sources */,
+				5E36136525C6D2EF00A461AE /* HistoricalViewModelProperty.swift in Sources */,
 				5E4793312535AA5B00332FB4 /* HistoricalViewModelType.swift in Sources */,
 				5E6A132A252EE8FF0012CFEC /* HistoricalStandingsStrategy.swift in Sources */,
 				5EAC214724C8244F00A65A7A /* DataSourceViewModelType.swift in Sources */,
@@ -820,6 +879,7 @@
 				5E419EC924B5A855006421F6 /* SceneDelegate.swift in Sources */,
 				5EA886FB24D1FE270079EDDC /* DetailNewsViewController.swift in Sources */,
 				5E5F1B3824D5DDE300F81366 /* CustomAnimationActivityIndicator.swift in Sources */,
+				5E36135D25C6D28C00A461AE /* HistoricalViewModelDataSource.swift in Sources */,
 				5E5C0D5025B817CB006306EF /* UIButton.swift in Sources */,
 				5E4C64B9256402A4002DC545 /* ExtensionHistoricalPickerViewModel.swift in Sources */,
 				5E419EFB24B5F3C3006421F6 /* DriversCell.swift in Sources */,
@@ -867,6 +927,7 @@
 				5E90F96F255AC5900088EAAD /* ConstructorParticipated.swift in Sources */,
 				5EC60D6C24C1FD4E009C66CC /* DriverCellViewModel.swift in Sources */,
 				5E05CD9024BF2B8F00EB2EF3 /* Driver.swift in Sources */,
+				5E36136125C6D2B000A461AE /* HistoricalViewModelDelegate.swift in Sources */,
 				5EFD898924FE458200A39838 /* HistoricalPickerViewController.swift in Sources */,
 				5E9EB95224C2D99A00023668 /* StandingsViewModel.swift in Sources */,
 				5E14A14424BCA1A90058305B /* API.swift in Sources */,

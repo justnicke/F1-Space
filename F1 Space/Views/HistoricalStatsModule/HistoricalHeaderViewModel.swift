@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 final class HistoricalHeaderViewModel {
     
     // MARK: - Public Properties
@@ -31,7 +30,6 @@ final class HistoricalHeaderViewModel {
         setup(category: category, id: id)
     }
 
-    
     // MARK: Private Methods
     
     private func setup(category: HistoricalCategory?, id: String?) {

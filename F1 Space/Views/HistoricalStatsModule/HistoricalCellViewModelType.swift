@@ -69,7 +69,6 @@ extension HistoricalCellViewModelType {
     }
 }
 
-
 // MARK: - Extension HistoricalCellViewModelType Helper
 
 extension HistoricalCellViewModelType {
@@ -115,4 +114,3 @@ extension HistoricalCellViewModelType {
         return statusDriversTheSameTeam.joined(separator: "\n")
     }
 }
-

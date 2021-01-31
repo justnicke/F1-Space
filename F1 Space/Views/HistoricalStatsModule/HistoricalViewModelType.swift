@@ -8,18 +8,11 @@
 
 import Foundation
 
-protocol HistoricalViewModelType: HistoricalPropertyPassetable {
-    func numberOfRows() -> Int
-    func cellForRowAt(indexPath: IndexPath) -> HistoricalCellViewModel?
-    func viewForHeader() -> HistoricalHeaderViewModel?
-}
-
-protocol HistoricalPropertyPassetable {
-    var year: String? { get }
-    var category: HistoricalCategory? { get }
-    var id: String? { get }
-    var take: Collector { get }
-}
+/// Common interface ViewModel for properties, delegate, and dataSource
+protocol HistoricalViewModelType:
+    HistoricalViewModelProperty,
+    HistoricalViewModelDelegate,
+    HistoricalViewModelDataSource {}
 
 // MARK: - Extension NumberOfRows
 

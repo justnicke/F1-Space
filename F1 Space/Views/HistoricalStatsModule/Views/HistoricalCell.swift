@@ -8,8 +8,6 @@
 
 import UIKit
 
-
-
 final class HistoricalCell: UITableViewCell, HistoricalViewType {
     
     // MARK: - Public Properties
@@ -26,12 +24,12 @@ final class HistoricalCell: UITableViewCell, HistoricalViewType {
     private(set) var fifthLabel  = UILabel()
     private(set) var sixthLabel  = UILabel()
     
-     lazy var firstWidth  = firstLabel.widthAnchor.constraint(equalToConstant: 0)
-     lazy var secondWidth = secondLabel.widthAnchor.constraint(equalToConstant: 0)
-     lazy var thirdWidth  = thirdLabel.widthAnchor.constraint(equalToConstant: 0)
-     lazy var fourthWidth = fouthLabel.widthAnchor.constraint(equalToConstant: 0)
-     lazy var fifthWidth  = fifthLabel.widthAnchor.constraint(equalToConstant: 0)
-     lazy var sixthWidth  = sixthLabel.widthAnchor.constraint(equalToConstant: 0)
+    lazy var firstWidth  = firstLabel.widthAnchor.constraint(equalToConstant: 0)
+    lazy var secondWidth = secondLabel.widthAnchor.constraint(equalToConstant: 0)
+    lazy var thirdWidth  = thirdLabel.widthAnchor.constraint(equalToConstant: 0)
+    lazy var fourthWidth = fouthLabel.widthAnchor.constraint(equalToConstant: 0)
+    lazy var fifthWidth  = fifthLabel.widthAnchor.constraint(equalToConstant: 0)
+    lazy var sixthWidth  = sixthLabel.widthAnchor.constraint(equalToConstant: 0)
     
     // MARK: - Constructors
     
