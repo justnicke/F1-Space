@@ -36,7 +36,7 @@ final class HistoricalPickerViewModel {
 
 // MARK: - Extension PickerViewModelRequestType
 
-extension HistoricalPickerViewModel: PickerViewModelRequestType {
+extension HistoricalPickerViewModel: HistoricalPickerViewModelRequest {
     func sendValueFromPicker(row: Int) {
         switch state {
         case .yearChampionship:
@@ -91,6 +91,11 @@ extension HistoricalPickerViewModel: PickerViewModelRequestType {
 // MARK: - Extension PickerViewModelType
 
 extension HistoricalPickerViewModel: PickerViewModelType {
+    
+    func numberOfComponents() -> Int {
+        return 1
+    }
+    
     func numberOfRowsInComponent(_ component: Int) -> Int {
         switch state {
         case .yearChampionship: return pickerResult.championships.count
@@ -125,5 +130,9 @@ extension HistoricalPickerViewModel: PickerViewModelType {
             return title
         default: fatalError("This shouldn't happen at all! Func: \(#function)")
         }
+    }
+    
+    func rowHeightForComponent() -> Int {
+        return 50
     }
 }

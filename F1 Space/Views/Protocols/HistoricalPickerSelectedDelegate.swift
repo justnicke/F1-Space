@@ -13,4 +13,3 @@ protocol HistoricalPickerSelectedDelegate: class {
     func category(current: String)
     func detailed(currentResult: String, id: String?)
 }
-

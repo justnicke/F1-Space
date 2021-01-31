@@ -153,7 +153,7 @@ extension HistoricalPickerViewController: UIPickerViewDataSource, UIPickerViewDe
         
         return label ?? UIView()
     }
-
+    
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
         return 50
     }

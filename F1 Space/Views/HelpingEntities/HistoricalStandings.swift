@@ -26,5 +26,3 @@ struct HistoricalStandings {
         self.constructorStandings = constructorStandings
     }
 }
-
-

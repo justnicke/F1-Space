@@ -16,6 +16,11 @@
 		5E36135D25C6D28C00A461AE /* HistoricalViewModelDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E36135C25C6D28C00A461AE /* HistoricalViewModelDataSource.swift */; };
 		5E36136125C6D2B000A461AE /* HistoricalViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E36136025C6D2B000A461AE /* HistoricalViewModelDelegate.swift */; };
 		5E36136525C6D2EF00A461AE /* HistoricalViewModelProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E36136425C6D2EF00A461AE /* HistoricalViewModelProperty.swift */; };
+		5E36137025C6E0C500A461AE /* HistoricalPickerViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E36136F25C6E0C500A461AE /* HistoricalPickerViewModelType.swift */; };
+		5E36137825C6F1B800A461AE /* HistoricalPickerProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E36137725C6F1B800A461AE /* HistoricalPickerProperty.swift */; };
+		5E36137C25C6F31E00A461AE /* HistoricalPickerViewModelRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E36137B25C6F31E00A461AE /* HistoricalPickerViewModelRequest.swift */; };
+		5E36138025C6F69600A461AE /* HistoricalPickerViewModelDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E36137F25C6F69600A461AE /* HistoricalPickerViewModelDataSource.swift */; };
+		5E36138425C6F6AF00A461AE /* HistoricalPickerViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E36138325C6F6AF00A461AE /* HistoricalPickerViewModelDelegate.swift */; };
 		5E40ECF624B7400700E3AF1F /* StandingConstructorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E40ECF524B7400700E3AF1F /* StandingConstructorCell.swift */; };
 		5E40ECF824B74B8100E3AF1F /* ConstructorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E40ECF724B74B8100E3AF1F /* ConstructorViewController.swift */; };
 		5E40ECFA24B74BA100E3AF1F /* ConstructorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E40ECF924B74BA100E3AF1F /* ConstructorCell.swift */; };
@@ -42,7 +47,6 @@
 		5E4C64B9256402A4002DC545 /* ExtensionHistoricalPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4C64B8256402A4002DC545 /* ExtensionHistoricalPickerViewModel.swift */; };
 		5E4CA1BE255D3A8900EA9F72 /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4CA1BD255D3A8900EA9F72 /* Optional.swift */; };
 		5E4CA6E22519E1AB0035E6F6 /* HistoricalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4CA6E12519E1AB0035E6F6 /* HistoricalViewModel.swift */; };
-		5E4CA6E42519FD1B0035E6F6 /* PickerViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4CA6E32519FD1B0035E6F6 /* PickerViewModelType.swift */; };
 		5E50BEEE2510D81A0025963F /* HistoricalPickerResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E50BEED2510D81A0025963F /* HistoricalPickerResult.swift */; };
 		5E50BEF02510D9340025963F /* HistoricalPickerSelectedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E50BEEF2510D9340025963F /* HistoricalPickerSelectedDelegate.swift */; };
 		5E510D18251C833100584EE2 /* HistoricalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E510D17251C833100584EE2 /* HistoricalCell.swift */; };
@@ -133,6 +137,11 @@
 		5E36135C25C6D28C00A461AE /* HistoricalViewModelDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalViewModelDataSource.swift; sourceTree = "<group>"; };
 		5E36136025C6D2B000A461AE /* HistoricalViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalViewModelDelegate.swift; sourceTree = "<group>"; };
 		5E36136425C6D2EF00A461AE /* HistoricalViewModelProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalViewModelProperty.swift; sourceTree = "<group>"; };
+		5E36136F25C6E0C500A461AE /* HistoricalPickerViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalPickerViewModelType.swift; sourceTree = "<group>"; };
+		5E36137725C6F1B800A461AE /* HistoricalPickerProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalPickerProperty.swift; sourceTree = "<group>"; };
+		5E36137B25C6F31E00A461AE /* HistoricalPickerViewModelRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalPickerViewModelRequest.swift; sourceTree = "<group>"; };
+		5E36137F25C6F69600A461AE /* HistoricalPickerViewModelDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalPickerViewModelDataSource.swift; sourceTree = "<group>"; };
+		5E36138325C6F6AF00A461AE /* HistoricalPickerViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalPickerViewModelDelegate.swift; sourceTree = "<group>"; };
 		5E40ECF524B7400700E3AF1F /* StandingConstructorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingConstructorCell.swift; sourceTree = "<group>"; };
 		5E40ECF724B74B8100E3AF1F /* ConstructorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorViewController.swift; sourceTree = "<group>"; };
 		5E40ECF924B74BA100E3AF1F /* ConstructorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorCell.swift; sourceTree = "<group>"; };
@@ -163,7 +172,6 @@
 		5E4C64B8256402A4002DC545 /* ExtensionHistoricalPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionHistoricalPickerViewModel.swift; sourceTree = "<group>"; };
 		5E4CA1BD255D3A8900EA9F72 /* Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Optional.swift; sourceTree = "<group>"; };
 		5E4CA6E12519E1AB0035E6F6 /* HistoricalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalViewModel.swift; sourceTree = "<group>"; };
-		5E4CA6E32519FD1B0035E6F6 /* PickerViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewModelType.swift; sourceTree = "<group>"; };
 		5E50BEED2510D81A0025963F /* HistoricalPickerResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalPickerResult.swift; sourceTree = "<group>"; };
 		5E50BEEF2510D9340025963F /* HistoricalPickerSelectedDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalPickerSelectedDelegate.swift; sourceTree = "<group>"; };
 		5E510D17251C833100584EE2 /* HistoricalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalCell.swift; sourceTree = "<group>"; };
@@ -258,7 +266,6 @@
 			children = (
 				5E90F98A255AD72F0088EAAD /* ErgastAPI */,
 				5EA886F524D165EB0079EDDC /* News */,
-				5E4793492535AF3C00332FB4 /* Historical */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -286,6 +293,7 @@
 				5E36135425C6C7C600A461AE /* HistoricalStatsModule */,
 				5E36135625C6C84F00A461AE /* HistoricalStatsDetailModule */,
 				5E36135525C6C83400A461AE /* HistoricalPickerModule */,
+				5E4793492535AF3C00332FB4 /* HelpingEntities */,
 			);
 			name = HistoricalModules;
 			sourceTree = "<group>";
@@ -303,6 +311,9 @@
 		5E36135525C6C83400A461AE /* HistoricalPickerModule */ = {
 			isa = PBXGroup;
 			children = (
+				5E36136C25C6E01200A461AE /* Protocols */,
+				5E36136D25C6E02100A461AE /* ViewModels */,
+				5E36136E25C6E03200A461AE /* Views */,
 			);
 			name = HistoricalPickerModule;
 			sourceTree = "<group>";
@@ -338,15 +349,45 @@
 		5E36135925C6C91700A461AE /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				5E6A1329252EE8FF0012CFEC /* HistoricalStandingsStrategy.swift */,
 				5E4793302535AA5B00332FB4 /* HistoricalViewModelType.swift */,
 				5E36136425C6D2EF00A461AE /* HistoricalViewModelProperty.swift */,
 				5E36135C25C6D28C00A461AE /* HistoricalViewModelDataSource.swift */,
 				5E36136025C6D2B000A461AE /* HistoricalViewModelDelegate.swift */,
 				5E4C64B02563B9A8002DC545 /* HistoricalCellViewModelType.swift */,
 				5E912FA7257F9D6A00F48A07 /* HistoricalViewType.swift */,
+				5E6A1329252EE8FF0012CFEC /* HistoricalStandingsStrategy.swift */,
 			);
 			name = Protocols;
+			sourceTree = "<group>";
+		};
+		5E36136C25C6E01200A461AE /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				5E36136F25C6E0C500A461AE /* HistoricalPickerViewModelType.swift */,
+				5E36137725C6F1B800A461AE /* HistoricalPickerProperty.swift */,
+				5E36137F25C6F69600A461AE /* HistoricalPickerViewModelDataSource.swift */,
+				5E36138325C6F6AF00A461AE /* HistoricalPickerViewModelDelegate.swift */,
+				5E36137B25C6F31E00A461AE /* HistoricalPickerViewModelRequest.swift */,
+				5E50BEEF2510D9340025963F /* HistoricalPickerSelectedDelegate.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		5E36136D25C6E02100A461AE /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				5E5FCB612513438F00618534 /* HistoricalPickerViewModel.swift */,
+				5E4C64B8256402A4002DC545 /* ExtensionHistoricalPickerViewModel.swift */,
+			);
+			name = ViewModels;
+			sourceTree = "<group>";
+		};
+		5E36136E25C6E03200A461AE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5EFD898824FE458200A39838 /* HistoricalPickerViewController.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		5E40ECFB24B7551500E3AF1F /* Cells */ = {
@@ -465,14 +506,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		5E4793362535AB8B00332FB4 /* Historical */ = {
-			isa = PBXGroup;
-			children = (
-				5E4B49512566A15500E65508 /* Picker */,
-			);
-			path = Historical;
-			sourceTree = "<group>";
-		};
 		5E4793462535AE1100332FB4 /* News */ = {
 			isa = PBXGroup;
 			children = (
@@ -481,7 +514,7 @@
 			path = News;
 			sourceTree = "<group>";
 		};
-		5E4793492535AF3C00332FB4 /* Historical */ = {
+		5E4793492535AF3C00332FB4 /* HelpingEntities */ = {
 			isa = PBXGroup;
 			children = (
 				5E47931F25359CC500332FB4 /* HistoricalEnums.swift */,
@@ -490,7 +523,7 @@
 				5E6A1336252F002F0012CFEC /* HistoricalStandingsHeader.swift */,
 				5E4630A0255ECF6700635A3F /* Collector.swift */,
 			);
-			path = Historical;
+			path = HelpingEntities;
 			sourceTree = "<group>";
 		};
 		5E47BBFF24C07BB6002D8261 /* Services */ = {
@@ -505,7 +538,6 @@
 		5E49EEBF252DF9280058B78D /* Historical */ = {
 			isa = PBXGroup;
 			children = (
-				5EFD898824FE458200A39838 /* HistoricalPickerViewController.swift */,
 			);
 			path = Historical;
 			sourceTree = "<group>";
@@ -536,15 +568,6 @@
 				5E5F1B3724D5DDE300F81366 /* CustomAnimationActivityIndicator.swift */,
 			);
 			path = ActivityIndicator;
-			sourceTree = "<group>";
-		};
-		5E4B49512566A15500E65508 /* Picker */ = {
-			isa = PBXGroup;
-			children = (
-				5E5FCB612513438F00618534 /* HistoricalPickerViewModel.swift */,
-				5E4C64B8256402A4002DC545 /* ExtensionHistoricalPickerViewModel.swift */,
-			);
-			path = Picker;
 			sourceTree = "<group>";
 		};
 		5E6A1328252EE8970012CFEC /* HistoricalStrategy */ = {
@@ -651,8 +674,6 @@
 			isa = PBXGroup;
 			children = (
 				5EAC214624C8244F00A65A7A /* DataSourceViewModelType.swift */,
-				5E50BEEF2510D9340025963F /* HistoricalPickerSelectedDelegate.swift */,
-				5E4CA6E32519FD1B0035E6F6 /* PickerViewModelType.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -699,7 +720,6 @@
 			children = (
 				5E4A6A9724D7EE1C0077CDBC /* News */,
 				5EAC214924C824A900A65A7A /* Standings */,
-				5E4793362535AB8B00332FB4 /* Historical */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -857,6 +877,7 @@
 				5EFD898724FE251E00A39838 /* HistoricalViewController.swift in Sources */,
 				5E7DB98024D05A6E0029C0EE /* NewsCell.swift in Sources */,
 				5E4C1D5A254AF76C00C1A3BB /* CurrentConstructorStandings.swift in Sources */,
+				5E36137025C6E0C500A461AE /* HistoricalPickerViewModelType.swift in Sources */,
 				5EA886F724D191730079EDDC /* String.swift in Sources */,
 				5EB470872541BC6900FB93B9 /* ConstructorDetail.swift in Sources */,
 				5ECFB2AE2501132800ED94EA /* TransitionDirection.swift in Sources */,
@@ -865,8 +886,10 @@
 				5E5F1B3224D5600200F81366 /* CustromActivityIndicator.swift in Sources */,
 				5E419EC724B5A855006421F6 /* AppDelegate.swift in Sources */,
 				5E419EF924B5DEC7006421F6 /* DriverViewController.swift in Sources */,
+				5E36138425C6F6AF00A461AE /* HistoricalPickerViewModelDelegate.swift in Sources */,
 				5E50BEF02510D9340025963F /* HistoricalPickerSelectedDelegate.swift in Sources */,
 				5EF191D62548340D0045FD7C /* HistoricalConstructorDetailStrategy.swift in Sources */,
+				5E36137825C6F1B800A461AE /* HistoricalPickerProperty.swift in Sources */,
 				5E4A6A9B24D82E210077CDBC /* DetailNewsViewModel.swift in Sources */,
 				5E5F1B3A24D5F37F00F81366 /* RefreshView.swift in Sources */,
 				5E6A133F252F04D30012CFEC /* AuxiliaryNumbering.swift in Sources */,
@@ -879,6 +902,7 @@
 				5E419EC924B5A855006421F6 /* SceneDelegate.swift in Sources */,
 				5EA886FB24D1FE270079EDDC /* DetailNewsViewController.swift in Sources */,
 				5E5F1B3824D5DDE300F81366 /* CustomAnimationActivityIndicator.swift in Sources */,
+				5E36137C25C6F31E00A461AE /* HistoricalPickerViewModelRequest.swift in Sources */,
 				5E36135D25C6D28C00A461AE /* HistoricalViewModelDataSource.swift in Sources */,
 				5E5C0D5025B817CB006306EF /* UIButton.swift in Sources */,
 				5E4C64B9256402A4002DC545 /* ExtensionHistoricalPickerViewModel.swift in Sources */,
@@ -899,7 +923,6 @@
 				5E9F90DD25B723DA00040EC9 /* UIImage.swift in Sources */,
 				5E82B52224C5D6AC00377859 /* ConstructorCellViewModel.swift in Sources */,
 				5EA886F424D165DD0079EDDC /* Article.swift in Sources */,
-				5E4CA6E42519FD1B0035E6F6 /* PickerViewModelType.swift in Sources */,
 				5E9F90CF25B7195600040EC9 /* TabBarController.swift in Sources */,
 				5EEE76DE25013F7C00D7D530 /* PanGestureRecognizer.swift in Sources */,
 				5E912FA8257F9D6A00F48A07 /* HistoricalViewType.swift in Sources */,
@@ -928,6 +951,7 @@
 				5EC60D6C24C1FD4E009C66CC /* DriverCellViewModel.swift in Sources */,
 				5E05CD9024BF2B8F00EB2EF3 /* Driver.swift in Sources */,
 				5E36136125C6D2B000A461AE /* HistoricalViewModelDelegate.swift in Sources */,
+				5E36138025C6F69600A461AE /* HistoricalPickerViewModelDataSource.swift in Sources */,
 				5EFD898924FE458200A39838 /* HistoricalPickerViewController.swift in Sources */,
 				5E9EB95224C2D99A00023668 /* StandingsViewModel.swift in Sources */,
 				5E14A14424BCA1A90058305B /* API.swift in Sources */,

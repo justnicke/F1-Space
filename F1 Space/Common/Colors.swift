@@ -14,6 +14,5 @@ extension UIColor {
     static let cellTintColor = UIColor.black
     
     static let topH = UIColor.init(red: 0.333333075, green: 0.3061279655, blue: 0.9117060304, alpha: 1)
-//    #colorLiteral(red: 0.333333075, green: 0.3061279655, blue: 0.9117060304, alpha: 1)
 }
 
