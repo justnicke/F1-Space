@@ -369,6 +369,7 @@
 		5E3613BF25C7076500A461AE /* TestModules */ = {
 			isa = PBXGroup;
 			children = (
+				5E4793492535AF3C00332FB4 /* HelpingEntities */,
 				5E4645D825C70D5F00A407B0 /* TabBarModule */,
 				5E3613C125C707E200A461AE /* HistoricalModules */,
 			);
@@ -380,7 +381,6 @@
 			children = (
 				5E36135425C6C7C600A461AE /* HistoricalStatsModule */,
 				5E3613C225C708A300A461AE /* HistoricalPickerModule */,
-				5E4793492535AF3C00332FB4 /* HelpingEntities */,
 			);
 			name = HistoricalModules;
 			sourceTree = "<group>";
@@ -402,6 +402,7 @@
 				5E4C64B8256402A4002DC545 /* ExtensionHistoricalPickerViewModel.swift */,
 			);
 			name = ViewModels;
+			path = HistoricalPickerModule/ViewModels;
 			sourceTree = "<group>";
 		};
 		5E3613C425C7098D00A461AE /* Views */ = {
@@ -410,6 +411,7 @@
 				5EFD898824FE458200A39838 /* HistoricalPickerViewController.swift */,
 			);
 			name = Views;
+			path = HistoricalPickerModule/View;
 			sourceTree = "<group>";
 		};
 		5E40ECFB24B7551500E3AF1F /* Cells */ = {
