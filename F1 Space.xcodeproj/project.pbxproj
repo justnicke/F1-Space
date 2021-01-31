@@ -366,13 +366,13 @@
 			name = Services;
 			sourceTree = "<group>";
 		};
-		5E3613BF25C7076500A461AE /* Modules */ = {
+		5E3613BF25C7076500A461AE /* TestModules */ = {
 			isa = PBXGroup;
 			children = (
 				5E4645D825C70D5F00A407B0 /* TabBarModule */,
 				5E3613C125C707E200A461AE /* HistoricalModules */,
 			);
-			path = Modules;
+			path = TestModules;
 			sourceTree = "<group>";
 		};
 		5E3613C125C707E200A461AE /* HistoricalModules */ = {
@@ -469,7 +469,7 @@
 				5E47BBFF24C07BB6002D8261 /* Services */,
 				5E14A14224BCA18C0058305B /* Models */,
 				5E36139025C6FC8A00A461AE /* OldModules */,
-				5E3613BF25C7076500A461AE /* Modules */,
+				5E3613BF25C7076500A461AE /* TestModules */,
 				5E419ECF24B5A858006421F6 /* Assets.xcassets */,
 				5E419EC624B5A855006421F6 /* AppDelegate.swift */,
 				5E419EC824B5A855006421F6 /* SceneDelegate.swift */,
