@@ -335,7 +335,7 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
-		5E36139025C6FC8A00A461AE /* OldModules */ = {
+		5E36139025C6FC8A00A461AE /* Old */ = {
 			isa = PBXGroup;
 			children = (
 				5EA886F624D191730079EDDC /* String.swift */,
@@ -347,7 +347,7 @@
 				5EC60D6924C18DF7009C66CC /* ViewModels */,
 				5E419EF724B5DC7B006421F6 /* Views */,
 			);
-			path = OldModules;
+			path = Old;
 			sourceTree = "<group>";
 		};
 		5E36139125C6FCA600A461AE /* Models */ = {
@@ -468,7 +468,7 @@
 				5E419EF224B5B44A006421F6 /* Common */,
 				5E47BBFF24C07BB6002D8261 /* Services */,
 				5E14A14224BCA18C0058305B /* Models */,
-				5E36139025C6FC8A00A461AE /* OldModules */,
+				5E36139025C6FC8A00A461AE /* Old */,
 				5E3613BF25C7076500A461AE /* TestModules */,
 				5E419ECF24B5A858006421F6 /* Assets.xcassets */,
 				5E419EC624B5A855006421F6 /* AppDelegate.swift */,
