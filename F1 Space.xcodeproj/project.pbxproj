@@ -303,14 +303,14 @@
 			path = Custom;
 			sourceTree = "<group>";
 		};
-		5E36135425C6C7C600A461AE /* HistoricalStatsModule */ = {
+		5E36135425C6C7C600A461AE /* MainModule */ = {
 			isa = PBXGroup;
 			children = (
 				5E36135925C6C91700A461AE /* Protocols */,
 				5E36135725C6C88000A461AE /* ViewModels */,
 				5E36135825C6C8D100A461AE /* Views */,
 			);
-			path = HistoricalStatsModule;
+			path = MainModule;
 			sourceTree = "<group>";
 		};
 		5E36135725C6C88000A461AE /* ViewModels */ = {
@@ -406,7 +406,7 @@
 		5E3613C125C707E200A461AE /* HistoricalModules */ = {
 			isa = PBXGroup;
 			children = (
-				5E36135425C6C7C600A461AE /* HistoricalStatsModule */,
+				5E36135425C6C7C600A461AE /* MainModule */,
 				5E3613C225C708A300A461AE /* HistoricalPickerModule */,
 				5E4E00B625C96BF5009416DC /* DetailModule */,
 			);
