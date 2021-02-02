@@ -9,7 +9,9 @@
 import Foundation
 
 protocol HistoricalViewModelDelegate {
+    associatedtype DetailViewModel
     func heightForRow() -> Int
     func viewForHeader() -> HistoricalHeaderViewModel?
     func heightForHeader() -> Int
+    func didSelectRowAt(indexPath: IndexPath) -> DetailViewModel
 }

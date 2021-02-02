@@ -52,22 +52,14 @@ final class HistoricalViewController: UIViewController {
         detailResultButton.addTarget(self, action: #selector(detailResultButtonPressed), for: .touchUpInside)
         
         
-        API.requestConstructorDetailResult(year: "2020", id: "mercedes") { (const, err) in
-            guard let results = const?.constructorDetailData.constructorDetailTable.races.map({ $0.results }) else { return }
-            
-            let needValues = results.map ({ $0.map{$0.points}})
-            
-            print(needValues)
-            
-//            if driverID.contains("bottas") {
-//                let bottasInfo = const?.constructorDetailData.constructorDetailTable.races.flatMap({ $0.results })
-//                print(bottasInfo)
-//            }
-            
-            
-            
-            
-        }
+//        API.requestConstructorDetailResult(year: "2020", id: "mercedes") { (const, err) in
+//            guard let results = const?.constructorDetailData.constructorDetailTable.races.map({ $0.results }) else { return }
+//
+//            let needValues = results.map ({ $0.map{$0.points}})
+//
+//            print(needValues)
+//
+//        }
     }
     
     func set(for buttons: [CustomButton]) {
@@ -224,6 +216,47 @@ extension HistoricalViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return CGFloat(historicalViewModel.heightForHeader())
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let category = HistoricalCategory(rawValue: type().category.unwrap.lowercased())
+        
+        switch category {
+        case .drivers:
+            switch type().detailed.isAll() {
+            case true:
+                let detailViewModel = historicalViewModel.didSelectRowAt(indexPath: indexPath)
+                let vc = HistoricalDriverStandingsViewController(viewModel: detailViewModel as? HistoricalDriverStandingsViewModel)
+                navigationController?.pushViewController(vc, animated: true)
+            case false:
+                let detailViewModel = historicalViewModel.didSelectRowAt(indexPath: indexPath)
+                let vc = HistoricalDriverDetailViewController(viewModel: detailViewModel as? HistoricalDriverDetailViewModel)
+                navigationController?.pushViewController(vc, animated: true)
+            }
+        case .teams:
+            switch type().detailed.isAll() {
+            case true:
+                let detailViewModel = historicalViewModel.didSelectRowAt(indexPath: indexPath)
+                let vc = HistoricalConstructorStandingsViewController(viewModel: detailViewModel as? HistoricalConstructorStandingsViewModel)
+                navigationController?.pushViewController(vc, animated: true)
+            case false:
+                let detailViewModel = historicalViewModel.didSelectRowAt(indexPath: indexPath)
+                let vc = HistoricalConstructorDetailViewController(viewModel: detailViewModel as? HistoricalConstructorDetailViewModel)
+                navigationController?.pushViewController(vc, animated: true)
+            }
+        case .races:
+            switch type().detailed.isAll() {
+            case true:
+                let detailViewModel = historicalViewModel.didSelectRowAt(indexPath: indexPath)
+                let vc = HistoricalRacesViewController(viewModel: detailViewModel as? HistoricalRacesViewModel)
+                navigationController?.pushViewController(vc, animated: true)
+            case false:
+                let detailViewModel = historicalViewModel.didSelectRowAt(indexPath: indexPath)
+                let vc = HistoricalRaceDetailViewController(viewModel: detailViewModel as? HistoricalRaceDetailViewModel)
+                navigationController?.pushViewController(vc, animated: true)
+            }
+        default: fatalError("This shouldn't happen at all! Func: \(#function)")
+        }
     }
 }
 

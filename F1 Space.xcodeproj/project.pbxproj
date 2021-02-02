@@ -49,6 +49,19 @@
 		5E4C64B9256402A4002DC545 /* ExtensionHistoricalPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4C64B8256402A4002DC545 /* ExtensionHistoricalPickerViewModel.swift */; };
 		5E4CA1BE255D3A8900EA9F72 /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4CA1BD255D3A8900EA9F72 /* Optional.swift */; };
 		5E4CA6E22519E1AB0035E6F6 /* HistoricalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4CA6E12519E1AB0035E6F6 /* HistoricalViewModel.swift */; };
+		5E4E00BB25C96D3E009416DC /* HistoricalDriverStandingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4E00BA25C96D3E009416DC /* HistoricalDriverStandingsViewModel.swift */; };
+		5E4E00BF25C96DEC009416DC /* HistoricalDetailViewModelVariety.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4E00BE25C96DEC009416DC /* HistoricalDetailViewModelVariety.swift */; };
+		5E4E00C325C96E1D009416DC /* HistoricalDriverDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4E00C225C96E1D009416DC /* HistoricalDriverDetailViewModel.swift */; };
+		5E4E00C725C96E7E009416DC /* HistoricalConstructorStandingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4E00C625C96E7E009416DC /* HistoricalConstructorStandingsViewModel.swift */; };
+		5E4E00CB25C96EBB009416DC /* HistoricalConstructorDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4E00CA25C96EBB009416DC /* HistoricalConstructorDetailViewModel.swift */; };
+		5E4E00D125C96FE3009416DC /* HistoricalRacesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4E00D025C96FE3009416DC /* HistoricalRacesViewModel.swift */; };
+		5E4E00D525C9700A009416DC /* HistoricalRaceDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4E00D425C9700A009416DC /* HistoricalRaceDetailViewModel.swift */; };
+		5E4E00D925C9705B009416DC /* HistoricalDriverStandingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4E00D825C9705B009416DC /* HistoricalDriverStandingsViewController.swift */; };
+		5E4E00DD25C970BA009416DC /* HistoricalDriverDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4E00DC25C970BA009416DC /* HistoricalDriverDetailViewController.swift */; };
+		5E4E00E125C970DE009416DC /* HistoricalConstructorStandingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4E00E025C970DE009416DC /* HistoricalConstructorStandingsViewController.swift */; };
+		5E4E00E525C97110009416DC /* HistoricalConstructorDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4E00E425C97110009416DC /* HistoricalConstructorDetailViewController.swift */; };
+		5E4E00E925C97124009416DC /* HistoricalRacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4E00E825C97124009416DC /* HistoricalRacesViewController.swift */; };
+		5E4E00ED25C97145009416DC /* HistoricalRaceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4E00EC25C97145009416DC /* HistoricalRaceDetailViewController.swift */; };
 		5E50BEEE2510D81A0025963F /* HistoricalPickerResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E50BEED2510D81A0025963F /* HistoricalPickerResult.swift */; };
 		5E50BEF02510D9340025963F /* HistoricalPickerSelectedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E50BEEF2510D9340025963F /* HistoricalPickerSelectedDelegate.swift */; };
 		5E510D18251C833100584EE2 /* HistoricalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E510D17251C833100584EE2 /* HistoricalCell.swift */; };
@@ -174,6 +187,19 @@
 		5E4C64B8256402A4002DC545 /* ExtensionHistoricalPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionHistoricalPickerViewModel.swift; sourceTree = "<group>"; };
 		5E4CA1BD255D3A8900EA9F72 /* Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Optional.swift; sourceTree = "<group>"; };
 		5E4CA6E12519E1AB0035E6F6 /* HistoricalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalViewModel.swift; sourceTree = "<group>"; };
+		5E4E00BA25C96D3E009416DC /* HistoricalDriverStandingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalDriverStandingsViewModel.swift; sourceTree = "<group>"; };
+		5E4E00BE25C96DEC009416DC /* HistoricalDetailViewModelVariety.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalDetailViewModelVariety.swift; sourceTree = "<group>"; };
+		5E4E00C225C96E1D009416DC /* HistoricalDriverDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalDriverDetailViewModel.swift; sourceTree = "<group>"; };
+		5E4E00C625C96E7E009416DC /* HistoricalConstructorStandingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalConstructorStandingsViewModel.swift; sourceTree = "<group>"; };
+		5E4E00CA25C96EBB009416DC /* HistoricalConstructorDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalConstructorDetailViewModel.swift; sourceTree = "<group>"; };
+		5E4E00D025C96FE3009416DC /* HistoricalRacesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalRacesViewModel.swift; sourceTree = "<group>"; };
+		5E4E00D425C9700A009416DC /* HistoricalRaceDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalRaceDetailViewModel.swift; sourceTree = "<group>"; };
+		5E4E00D825C9705B009416DC /* HistoricalDriverStandingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalDriverStandingsViewController.swift; sourceTree = "<group>"; };
+		5E4E00DC25C970BA009416DC /* HistoricalDriverDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalDriverDetailViewController.swift; sourceTree = "<group>"; };
+		5E4E00E025C970DE009416DC /* HistoricalConstructorStandingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalConstructorStandingsViewController.swift; sourceTree = "<group>"; };
+		5E4E00E425C97110009416DC /* HistoricalConstructorDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalConstructorDetailViewController.swift; sourceTree = "<group>"; };
+		5E4E00E825C97124009416DC /* HistoricalRacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalRacesViewController.swift; sourceTree = "<group>"; };
+		5E4E00EC25C97145009416DC /* HistoricalRaceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalRaceDetailViewController.swift; sourceTree = "<group>"; };
 		5E50BEED2510D81A0025963F /* HistoricalPickerResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalPickerResult.swift; sourceTree = "<group>"; };
 		5E50BEEF2510D9340025963F /* HistoricalPickerSelectedDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalPickerSelectedDelegate.swift; sourceTree = "<group>"; };
 		5E510D17251C833100584EE2 /* HistoricalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalCell.swift; sourceTree = "<group>"; };
@@ -382,6 +408,7 @@
 			children = (
 				5E36135425C6C7C600A461AE /* HistoricalStatsModule */,
 				5E3613C225C708A300A461AE /* HistoricalPickerModule */,
+				5E4E00B625C96BF5009416DC /* DetailModule */,
 			);
 			name = HistoricalModules;
 			sourceTree = "<group>";
@@ -589,6 +616,51 @@
 				5E5F1B3724D5DDE300F81366 /* CustomAnimationActivityIndicator.swift */,
 			);
 			path = ActivityIndicator;
+			sourceTree = "<group>";
+		};
+		5E4E00B625C96BF5009416DC /* DetailModule */ = {
+			isa = PBXGroup;
+			children = (
+				5E4E00B725C96C48009416DC /* Protocols */,
+				5E4E00B825C96C55009416DC /* ViewModels */,
+				5E4E00B925C96C61009416DC /* Views */,
+			);
+			name = DetailModule;
+			path = "/Users/justnicke/Desktop/Project/F1-Space/F1 Space/AppModules/DetailModule";
+			sourceTree = "<absolute>";
+		};
+		5E4E00B725C96C48009416DC /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				5E4E00BE25C96DEC009416DC /* HistoricalDetailViewModelVariety.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		5E4E00B825C96C55009416DC /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				5E4E00BA25C96D3E009416DC /* HistoricalDriverStandingsViewModel.swift */,
+				5E4E00C225C96E1D009416DC /* HistoricalDriverDetailViewModel.swift */,
+				5E4E00C625C96E7E009416DC /* HistoricalConstructorStandingsViewModel.swift */,
+				5E4E00CA25C96EBB009416DC /* HistoricalConstructorDetailViewModel.swift */,
+				5E4E00D025C96FE3009416DC /* HistoricalRacesViewModel.swift */,
+				5E4E00D425C9700A009416DC /* HistoricalRaceDetailViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		5E4E00B925C96C61009416DC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5E4E00D825C9705B009416DC /* HistoricalDriverStandingsViewController.swift */,
+				5E4E00DC25C970BA009416DC /* HistoricalDriverDetailViewController.swift */,
+				5E4E00E025C970DE009416DC /* HistoricalConstructorStandingsViewController.swift */,
+				5E4E00E425C97110009416DC /* HistoricalConstructorDetailViewController.swift */,
+				5E4E00E825C97124009416DC /* HistoricalRacesViewController.swift */,
+				5E4E00EC25C97145009416DC /* HistoricalRaceDetailViewController.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		5E6A1328252EE8970012CFEC /* HistoricalStrategy */ = {
@@ -874,6 +946,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E6932BF252DA1BD0045E030 /* HistoricalHeader.swift in Sources */,
+				5E4E00E925C97124009416DC /* HistoricalRacesViewController.swift in Sources */,
 				5E65123924EFBB6700008D67 /* RaceResult.swift in Sources */,
 				5E82ACA525387A9C0015A168 /* HistoricalRaceStrategy.swift in Sources */,
 				5E510D18251C833100584EE2 /* HistoricalCell.swift in Sources */,
@@ -882,9 +955,11 @@
 				5E5361442579031D00307425 /* Colors.swift in Sources */,
 				5E4CA6E22519E1AB0035E6F6 /* HistoricalViewModel.swift in Sources */,
 				5E83481425C1580000392D46 /* Array.swift in Sources */,
+				5E4E00CB25C96EBB009416DC /* HistoricalConstructorDetailViewModel.swift in Sources */,
 				5E05CD8C24BF28E600EB2EF3 /* DriverStandingsGroup.swift in Sources */,
 				5EFD898724FE251E00A39838 /* HistoricalViewController.swift in Sources */,
 				5E7DB98024D05A6E0029C0EE /* NewsCell.swift in Sources */,
+				5E4E00BB25C96D3E009416DC /* HistoricalDriverStandingsViewModel.swift in Sources */,
 				5E4C1D5A254AF76C00C1A3BB /* CurrentConstructorStandings.swift in Sources */,
 				5E36137025C6E0C500A461AE /* HistoricalPickerViewModelType.swift in Sources */,
 				5EA886F724D191730079EDDC /* String.swift in Sources */,
@@ -895,11 +970,14 @@
 				5E5F1B3224D5600200F81366 /* CustromActivityIndicator.swift in Sources */,
 				5E419EC724B5A855006421F6 /* AppDelegate.swift in Sources */,
 				5E419EF924B5DEC7006421F6 /* DriverViewController.swift in Sources */,
+				5E4E00ED25C97145009416DC /* HistoricalRaceDetailViewController.swift in Sources */,
 				5E36138425C6F6AF00A461AE /* HistoricalPickerViewModelDelegate.swift in Sources */,
 				5E50BEF02510D9340025963F /* HistoricalPickerSelectedDelegate.swift in Sources */,
 				5EF191D62548340D0045FD7C /* HistoricalConstructorDetailStrategy.swift in Sources */,
 				5E36137825C6F1B800A461AE /* HistoricalPickerProperty.swift in Sources */,
 				5E4A6A9B24D82E210077CDBC /* DetailNewsViewModel.swift in Sources */,
+				5E4E00D125C96FE3009416DC /* HistoricalRacesViewModel.swift in Sources */,
+				5E4E00C725C96E7E009416DC /* HistoricalConstructorStandingsViewModel.swift in Sources */,
 				5E5F1B3A24D5F37F00F81366 /* RefreshView.swift in Sources */,
 				5E6A133F252F04D30012CFEC /* AuxiliaryNumbering.swift in Sources */,
 				5E36136525C6D2EF00A461AE /* HistoricalViewModelProperty.swift in Sources */,
@@ -915,6 +993,7 @@
 				5E36135D25C6D28C00A461AE /* HistoricalViewModelDataSource.swift in Sources */,
 				5E5C0D5025B817CB006306EF /* UIButton.swift in Sources */,
 				5E4C64B9256402A4002DC545 /* ExtensionHistoricalPickerViewModel.swift in Sources */,
+				5E4E00D525C9700A009416DC /* HistoricalRaceDetailViewModel.swift in Sources */,
 				5E419EFB24B5F3C3006421F6 /* DriversCell.swift in Sources */,
 				5E9EB95424C2DA2D00023668 /* StandingsCellViewModel.swift in Sources */,
 				5ECFB2AA2501132800ED94EA /* PresentationController.swift in Sources */,
@@ -923,6 +1002,7 @@
 				5EA886F924D1A9A60079EDDC /* Formatter.swift in Sources */,
 				5E05CD9424BF354A00EB2EF3 /* ConstructorStandingsGroup.swift in Sources */,
 				5E05CD8A24BEF23900EB2EF3 /* ConstructorsColor.swift in Sources */,
+				5E4E00DD25C970BA009416DC /* HistoricalDriverDetailViewController.swift in Sources */,
 				5E74F75C253EC799005C67C0 /* DriverDetail.swift in Sources */,
 				5ECFB2AB2501132800ED94EA /* DarkenedPresentationController.swift in Sources */,
 				5E419EF124B5B433006421F6 /* Layout.swift in Sources */,
@@ -943,6 +1023,7 @@
 				5E90F97D255AD24D0088EAAD /* TwoOptions.swift in Sources */,
 				5E47933E2535ADBD00332FB4 /* HistoricalCellViewModel.swift in Sources */,
 				5E50BEEE2510D81A0025963F /* HistoricalPickerResult.swift in Sources */,
+				5E4E00E525C97110009416DC /* HistoricalConstructorDetailViewController.swift in Sources */,
 				5E05CD8E24BF2B8700EB2EF3 /* Constructor.swift in Sources */,
 				5E419F0A24B60E1F006421F6 /* StackView.swift in Sources */,
 				5E6A1349252F0D4D0012CFEC /* HistoricalConstructorStrategy.swift in Sources */,
@@ -954,7 +1035,9 @@
 				5E4CA1BE255D3A8900EA9F72 /* Optional.swift in Sources */,
 				5E4630A1255ECF6700635A3F /* Collector.swift in Sources */,
 				5EB4707D2541A44B00FB93B9 /* CurrentDriverStandings.swift in Sources */,
+				5E4E00E125C970DE009416DC /* HistoricalConstructorStandingsViewController.swift in Sources */,
 				5E419EF624B5DBB0006421F6 /* StandingDriverCell.swift in Sources */,
+				5E4E00C325C96E1D009416DC /* HistoricalDriverDetailViewModel.swift in Sources */,
 				5E6A133B252F01E80012CFEC /* Season.swift in Sources */,
 				5E90F96F255AC5900088EAAD /* ConstructorParticipated.swift in Sources */,
 				5EC60D6C24C1FD4E009C66CC /* DriverCellViewModel.swift in Sources */,
@@ -962,6 +1045,7 @@
 				5E36136125C6D2B000A461AE /* HistoricalViewModelDelegate.swift in Sources */,
 				5E36138025C6F69600A461AE /* HistoricalPickerViewModelDataSource.swift in Sources */,
 				5EFD898924FE458200A39838 /* HistoricalPickerViewController.swift in Sources */,
+				5E4E00BF25C96DEC009416DC /* HistoricalDetailViewModelVariety.swift in Sources */,
 				5E9EB95224C2D99A00023668 /* StandingsViewModel.swift in Sources */,
 				5E14A14424BCA1A90058305B /* API.swift in Sources */,
 				5E4645DC25C70D5F00A407B0 /* TabBarController.swift in Sources */,
@@ -970,6 +1054,7 @@
 				5EB470832541AA5B00FB93B9 /* HistoricalDriverDetailStrategy.swift in Sources */,
 				5ECFB2A62501132800ED94EA /* TransitionDriver.swift in Sources */,
 				5E40ECF824B74B8100E3AF1F /* ConstructorViewController.swift in Sources */,
+				5E4E00D925C9705B009416DC /* HistoricalDriverStandingsViewController.swift in Sources */,
 				5E6A6DBC25B86E8100EC79E1 /* UIVIewGradient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

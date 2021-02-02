@@ -188,13 +188,14 @@ final class HistoricalViewModel {
 // MARK: - Extension HistoricalViewModelType
 
 extension HistoricalViewModel: HistoricalViewModelType {
+    
     // Table
     func numberOfRows() -> Int {
         switch category {
         case .drivers: return numberOfRowsDrivers()
         case .teams:   return numberOfRowsConstructors()
         case .races:   return numberOfRowsRaces()
-        default:       return 0
+        default:       fatalError("This shouldn't happen at all! Func: \(#function)")
         }
     }
     
@@ -203,7 +204,7 @@ extension HistoricalViewModel: HistoricalViewModelType {
         case .drivers: return cellForRowDriver(at: indexPath)
         case .teams:   return cellForRowConstructor(at: indexPath)
         case .races:   return cellForRowRace(at: indexPath)
-        default:       return nil
+        default:       fatalError("This shouldn't happen at all! Func: \(#function)")
         }
     }
     
@@ -211,13 +212,23 @@ extension HistoricalViewModel: HistoricalViewModelType {
         return 50
     }
     
+    func didSelectRowAt(indexPath: IndexPath) -> HistoricalDetailViewModelVariety? {
+        switch category {
+        case .drivers: return didSelectRowDriver(at: indexPath)
+        case .teams:   return didSelectRowConstructor(at: indexPath)
+        case .races:   return didSelectRowRace(at: indexPath)
+        default:       fatalError("This shouldn't happen at all! Func: \(#function)")
+            
+        }
+    }
+
     // Header
     func viewForHeader() -> HistoricalHeaderViewModel? {
         switch category {
         case .drivers: return viewForHeaderDriver()
         case .teams:   return viewForHeaderConstructor()
         case .races:   return viewForHeaderRace()
-        default:       return nil
+        default:       fatalError("This shouldn't happen at all! Func: \(#function)")
         }
     }
     

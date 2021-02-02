@@ -64,6 +64,31 @@ extension HistoricalViewModelType {
     }
 }
 
+// MARK: - Extension DidSelectRowAtIndexPath
+
+extension HistoricalViewModelType {
+    func didSelectRowDriver(at indexPath: IndexPath) -> HistoricalDetailViewModelVariety {
+        switch id.isAll() {
+        case true:  return HistoricalDriverStandingsViewModel(someValue: take.driverStandings[indexPath.row].driver.driverID)
+        case false: return HistoricalDriverDetailViewModel(someValue: take.racesDetailDriver[indexPath.row].raceName)
+        }
+    }
+    
+    func didSelectRowConstructor(at indexPath: IndexPath) -> HistoricalDetailViewModelVariety {
+        switch id.isAll() {
+        case true:  return HistoricalConstructorStandingsViewModel()
+        case false: return HistoricalConstructorDetailViewModel()
+        }
+    }
+    
+    func didSelectRowRace(at indexPath: IndexPath) -> HistoricalDetailViewModelVariety {
+        switch id.isAll() {
+        case true:  return HistoricalRacesViewModel()
+        case false: return HistoricalRaceDetailViewModel()
+        }
+    }
+}
+
 // MARK: - Extension ViewForHeaderInSection
 
 extension HistoricalViewModelType {
