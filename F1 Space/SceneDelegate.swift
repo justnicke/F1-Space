@@ -16,31 +16,37 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
-        let currentYear = Calendar.current.component(.year, from: Date())
-        
-        API.requestFirstPlaceResultInSeason(year: String(currentYear)) { [weak self] (round, error) in
-            DispatchQueue.global().async {
-                let firstRound = round?
-                    .raceResultData
-                    .raceResultTable
-                    .races
-                
-                if firstRound != nil && !(firstRound?.isEmpty ?? true) {
-                    DispatchQueue.main.async { self?.send?([String(currentYear): true]) }
-                } else {
-                    DispatchQueue.main.async { self?.send?([String(currentYear - 1): false]) }
-                    
-                }
-            }
-        }
+//        let currentYear = Calendar.current.component(.year, from: Date())
+//
+//        API.requestFirstPlaceResultInSeason(year: String(currentYear)) { [weak self] (round, error) in
+//            DispatchQueue.global().async {
+//                let firstRound = round?
+//                    .raceResultData
+//                    .raceResultTable
+//                    .races
+//
+//                if firstRound != nil && !(firstRound?.isEmpty ?? true) {
+//                    DispatchQueue.main.async { self?.send?([String(currentYear): true]) }
+//                } else {
+//                    DispatchQueue.main.async { self?.send?([String(currentYear - 1): false]) }
+//
+//                }
+//            }
+//        }
+//
+//        guard let windowScene = (scene as? UIWindowScene) else { return }
+//
+//        send = {  [weak self] (point) in
+//            self?.window = UIWindow(frame: windowScene.coordinateSpace.bounds)
+//            self?.window?.windowScene = windowScene
+//            self?.window?.rootViewController = TabBarController(point: point)
+//            self?.window?.makeKeyAndVisible()
+//        }
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        
-        send = {  [weak self] (point) in
-            self?.window = UIWindow(frame: windowScene.coordinateSpace.bounds)
-            self?.window?.windowScene = windowScene
-            self?.window?.rootViewController = TabBarController(point: point)
-            self?.window?.makeKeyAndVisible()
-        }
+        self.window = UIWindow(frame: windowScene.coordinateSpace.bounds)
+        self.window?.windowScene = windowScene
+        self.window?.rootViewController = HistoricalDriverStandingsViewController()
+        self.window?.makeKeyAndVisible()
     }
 }

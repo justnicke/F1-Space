@@ -44,6 +44,8 @@
 		5E4A6A9624D7EE100077CDBC /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A6A9524D7EE100077CDBC /* NewsViewModel.swift */; };
 		5E4A6A9924D7EEB30077CDBC /* NewsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A6A9824D7EEB30077CDBC /* NewsCellViewModel.swift */; };
 		5E4A6A9B24D82E210077CDBC /* DetailNewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A6A9A24D82E210077CDBC /* DetailNewsViewModel.swift */; };
+		5E4C03DA25CBDAA700612345 /* DuelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4C03D925CBDAA700612345 /* DuelView.swift */; };
+		5E4C03E025CBDC5E00612345 /* DuelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E4C03DF25CBDC5E00612345 /* DuelView.xib */; };
 		5E4C1D5A254AF76C00C1A3BB /* CurrentConstructorStandings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4C1D59254AF76C00C1A3BB /* CurrentConstructorStandings.swift */; };
 		5E4C64B12563B9A8002DC545 /* HistoricalCellViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4C64B02563B9A8002DC545 /* HistoricalCellViewModelType.swift */; };
 		5E4C64B9256402A4002DC545 /* ExtensionHistoricalPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4C64B8256402A4002DC545 /* ExtensionHistoricalPickerViewModel.swift */; };
@@ -182,6 +184,8 @@
 		5E4A6A9524D7EE100077CDBC /* NewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewModel.swift; sourceTree = "<group>"; };
 		5E4A6A9824D7EEB30077CDBC /* NewsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCellViewModel.swift; sourceTree = "<group>"; };
 		5E4A6A9A24D82E210077CDBC /* DetailNewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNewsViewModel.swift; sourceTree = "<group>"; };
+		5E4C03D925CBDAA700612345 /* DuelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuelView.swift; sourceTree = "<group>"; };
+		5E4C03DF25CBDC5E00612345 /* DuelView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DuelView.xib; sourceTree = "<group>"; };
 		5E4C1D59254AF76C00C1A3BB /* CurrentConstructorStandings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentConstructorStandings.swift; sourceTree = "<group>"; };
 		5E4C64B02563B9A8002DC545 /* HistoricalCellViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalCellViewModelType.swift; sourceTree = "<group>"; };
 		5E4C64B8256402A4002DC545 /* ExtensionHistoricalPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionHistoricalPickerViewModel.swift; sourceTree = "<group>"; };
@@ -774,6 +778,8 @@
 			isa = PBXGroup;
 			children = (
 				5E4E00D825C9705B009416DC /* HistoricalDriverStandingsViewController.swift */,
+				5E4C03D925CBDAA700612345 /* DuelView.swift */,
+				5E4C03DF25CBDC5E00612345 /* DuelView.xib */,
 				5E4E00DC25C970BA009416DC /* HistoricalDriverDetailViewController.swift */,
 				5E4E00E025C970DE009416DC /* HistoricalConstructorStandingsViewController.swift */,
 				5E4E00E425C97110009416DC /* HistoricalConstructorDetailViewController.swift */,
@@ -923,6 +929,7 @@
 				5E419ED024B5A858006421F6 /* Assets.xcassets in Resources */,
 				5E8467D025B8166200D6B559 /* Formula1-Wide.ttf in Resources */,
 				5E8467CF25B8166200D6B559 /* Formula1-Bold.ttf in Resources */,
+				5E4C03E025CBDC5E00612345 /* DuelView.xib in Resources */,
 				5E8662CF24E2CE9500064D4E /* AppIncludes.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -971,6 +978,7 @@
 				5E50BEF02510D9340025963F /* HistoricalPickerSelectedDelegate.swift in Sources */,
 				5EF191D62548340D0045FD7C /* HistoricalConstructorDetailStrategy.swift in Sources */,
 				5E36137825C6F1B800A461AE /* HistoricalPickerProperty.swift in Sources */,
+				5E4C03DA25CBDAA700612345 /* DuelView.swift in Sources */,
 				5E4A6A9B24D82E210077CDBC /* DetailNewsViewModel.swift in Sources */,
 				5E4E00D125C96FE3009416DC /* HistoricalRacesViewModel.swift in Sources */,
 				5E4E00C725C96E7E009416DC /* HistoricalConstructorStandingsViewModel.swift in Sources */,

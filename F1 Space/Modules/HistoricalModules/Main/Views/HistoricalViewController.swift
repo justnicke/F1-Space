@@ -225,9 +225,10 @@ extension HistoricalViewController: UITableViewDataSource, UITableViewDelegate {
         case .drivers:
             switch type().detailed.isAll() {
             case true:
-                let detailViewModel = historicalViewModel.didSelectRowAt(indexPath: indexPath)
-                let vc = HistoricalDriverStandingsViewController(viewModel: detailViewModel as? HistoricalDriverStandingsViewModel)
-                navigationController?.pushViewController(vc, animated: true)
+                break
+//                let detailViewModel = historicalViewModel.didSelectRowAt(indexPath: indexPath)
+//                let vc = HistoricalDriverStandingsViewController(viewModel: detailViewModel as? HistoricalDriverStandingsViewModel)
+//                navigationController?.pushViewController(vc, animated: true)
             case false:
                 let detailViewModel = historicalViewModel.didSelectRowAt(indexPath: indexPath)
                 let vc = HistoricalDriverDetailViewController(viewModel: detailViewModel as? HistoricalDriverDetailViewModel)
