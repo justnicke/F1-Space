@@ -22,8 +22,7 @@ final class HistoricalDriverStandingsViewController: UIViewController {
 //        fatalError("init(coder:) has not been implemented")
 //    }
   
-    var bottasDuel = ["hamilton": ["qualification": 5, "race": 4], "russel": ["qualification": 1, "race": 1]]
-    var teammates  = ["hamilton": ["qualification": 11, "race": 12], "russel": ["qualification": 0, "race": 0]]
+    
     
     let duelView = DuelView()
 
@@ -39,16 +38,6 @@ final class HistoricalDriverStandingsViewController: UIViewController {
                         size: .init(width: 0, height: 120))
         
 //        viewModel = HistoricalDriverStandingsViewModel()
-        
-        //                Хэмилтон - Боттас
-        //                  Квалификация
-        //                       11—5
-        //                      Гонка
-        //                       12—4
-        
-        
-        
-        
-        
+
     }
 }

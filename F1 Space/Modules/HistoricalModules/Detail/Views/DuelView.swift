@@ -33,20 +33,21 @@ final class DuelView: UIView {
     
     // Layer and precent
     let qualiDriverLayer = CAShapeLayer()
-    let qualiDriverPercent: CGFloat = 0.5
+    var qualiDriverPercent: CGFloat = 0.0
     let raceDriverLayer = CAShapeLayer()
-    let raceDriverPercent: CGFloat = 0.5
+    var raceDriverPercent: CGFloat = 0.0
     
     let qualiTeammateLayer = CAShapeLayer()
-    let qualiTeammatePercent: CGFloat = 0.5
+    var qualiTeammatePercent: CGFloat = 0.0
     let raceTeammateLayer = CAShapeLayer()
-    let raceTeammatePercent: CGFloat = 0.5
+    var raceTeammatePercent: CGFloat = 0.0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         commonInit()
         setupUIElements()
+        configure()
         
     }
     
@@ -148,13 +149,47 @@ final class DuelView: UIView {
     }
     
     func configure() {
+        // name
+        driverNameLabel.text = names["bottas"]?.capitalized
+        teammateNameLabel.text = names["hamilton"]?.capitalized
         
+        // quali
+        guard let quiliDriver = items["qualification"].map ({ $0.first?["bottas"] }) else { return }
+        driverQualiScoreLabel.text = String(quiliDriver!)
+        
+        guard let quiliteammate = items["qualification"].map ({ $0.first?["hamilton"] }) else { return }
+        teammateQualiScoreLabel.text = String(quiliteammate!)
+        
+        // race
+        guard let raceDriver = items["race"].map ({ $0.first?["bottas"] }) else { return }
+        driverRaceScoreLabel.text = String(raceDriver!)
+        
+        guard let raceteammate = items["race"].map ({ $0.first?["hamilton"] }) else { return }
+        teammateRaceScoreLabel.text = String(raceteammate!)
+        
+        // lines
+        qualiDriverPercent = makingPercentageForLines(driver: quiliDriver!, teammate: quiliteammate!).driver
+        qualiTeammatePercent = makingPercentageForLines(driver: quiliDriver!, teammate: quiliteammate!).teammate
+        
+        raceDriverPercent = makingPercentageForLines(driver: raceDriver!, teammate: raceteammate!).driver
+        raceTeammatePercent = makingPercentageForLines(driver: raceDriver!, teammate: raceteammate!).teammate
     }
     
-//    var items = ["russel": ["qualification": 0]]
+    var names = ["bottas": "bottas", "hamilton": "hamilton", "russel": "russel"]
+    
+    var items = [
+        "qualification": [["bottas": 5, "hamilton": 11], ["bottas": 1, "russel": 0]],
+        "race": [["bottas": 4, "hamilton": 12], ["bottas": 1, "russel": 0]]
+    ]
+    
+    func makingPercentageForLines(driver: Int, teammate: Int) -> (teammate: CGFloat, driver: CGFloat) {
+        let sum = driver + teammate
+        let driverPrecent = CGFloat(driver * 100 / sum) / 100
+        let teammatePrecent: CGFloat = 1.0 - driverPrecent
+        // the layers are curves so we swap the values for the driver and teammate
+        return (driverPrecent, teammatePrecent)
+    }
 }
-
-
 
 
 
