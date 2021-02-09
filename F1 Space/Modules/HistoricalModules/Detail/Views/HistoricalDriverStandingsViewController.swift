@@ -26,12 +26,12 @@ final class HistoricalDriverStandingsViewController: UIViewController {
     var teammates  = ["hamilton": ["qualification": 11, "race": 12], "russel": ["qualification": 0, "race": 0]]
     
     let duelView = DuelView()
-    let duelView2 = UIView()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = #colorLiteral(red: 0.866422236, green: 0.9141893983, blue: 0.9915274978, alpha: 1)
+        view.backgroundColor = .white
         
         view.addSubview(duelView)
         duelView.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor,
