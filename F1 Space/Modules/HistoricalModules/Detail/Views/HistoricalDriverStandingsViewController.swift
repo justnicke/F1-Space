@@ -53,6 +53,62 @@ final class HistoricalDriverStandingsViewController: UIViewController {
                 
                 for res in results {
                     
+                    // statistics of current season
+                    for i in res {
+                        if i.driver.driverID.contains(driver) {
+                            // position
+                            if i.position == "1" {
+                                self?.winCount += 1
+                                self?.podiumCount += 1
+                            } else if i.position == "2" || i.position == "3" {
+                                self?.podiumCount += 1
+                            }
+                            
+                            // pole or grid
+                            if i.grid == "1" {
+                                self?.poleCount += 1
+                            }
+                            
+                            // bestGrid
+                            if let bestG = Int(i.grid) {
+                                if self?.bestGrid == 0 {
+                                    self?.bestGrid = bestG
+                                } else if bestG != 0 && self!.bestGrid > bestG {
+                                    self?.bestGrid = bestG
+                                }
+                            }
+                            
+                            // bestFinish
+                            if let bestF = Int(i.position) {
+                                if self?.bestFinish == 0 {
+                                    self?.bestFinish = bestF
+                                } else if self!.bestFinish > bestF {
+                                    self?.bestFinish = bestF
+                                }
+                            }
+                            
+                            // retire
+                            if i.positionText == "R" {
+                                self?.numOfRetire += 1
+                            }
+                            
+                            
+                            // permanentNumber
+                            self?.permanentNumber = i.driver.permanentNumber
+                            
+                            // nationality
+                            self?.nationality = i.driver.nationality
+                            
+                            // fastestLap
+                            if i.fastestLap?.rank == "1" {
+                                self?.fastestLapCount += 1
+                            }
+                            
+                            
+                        }
+                    }
+                    
+                    // Get data with selected driver and teammate
                     let trueOrFalse = res.compactMap ({ $0.driver.driverID.contains(driver) })
                     
                     if trueOrFalse.contains(true) {
@@ -64,12 +120,33 @@ final class HistoricalDriverStandingsViewController: UIViewController {
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) {
-            print(self.arrays.map{$0.map{$0.driver.driverID}})
-            print(self.numOfRace)
+//            print(self.arrays.map{$0.map{$0.grid}})
+//            print(self.numOfRace)
+//            print(self.winCount)
+//            print(self.podiumCount)
+//            print(self.poleCount)
+//            print(self.bestFinish)
+//            print(self.numOfRetire)
+//            print(self.bestGrid)
+//            print(self.nationality)
+//            print(self.fastestLapCount)
+            
+            self.testDict(res: self.arrays)
+            print(self.items)
+
         }
     }
     
     var numOfRace = 0
+    var winCount = 0
+    var podiumCount = 0
+    var poleCount = 0
+    var bestFinish = 0
+    var bestGrid = 0
+    var numOfRetire = 0
+    var permanentNumber = ""
+    var nationality = ""
+    var fastestLapCount = 0
     
     // name
     var driver: String
@@ -79,52 +156,52 @@ final class HistoricalDriverStandingsViewController: UIViewController {
     var driverQuali = 0
     var teammateQuali = 0
     
-//    func testDict(res: [[ResultF1]]) {
-//        for (_, array) in res.enumerated() {
-//            for i in array {
-//                if i.driver.name == "bottas" {
-//                    driver = i.driver.name
-//                    driverQuali = i.position
-//                } else {
-//                    teammate = i.driver.name
-//                    teammateQuali = i.position
-//                }
-//            }
-//
-//            if driverQuali < teammateQuali {
-//                driverQuali = 0
-//                teammateQuali = 0
-//                driverQuali += 1
-//            } else {
-//                teammateQuali = 0
-//                driverQuali = 0
-//                teammateQuali += 1
-//            }
-//
-//            if items.isEmpty {
-//                items["qualification"] = [[driver : driverQuali, teammate: teammateQuali]]
-//                // print("If is empty: \(items)")
-//            } else {
-//                if var compare = items["qualification"].map ({ $0.map ({ $0.keys.contains(teammate) }) })  {
-//
-//
-//                    if compare.count > 1 {
-//                        compare.remove(at: 1)
-//                        // print(compare)
-//                    }
-//
-//                    for (index, bool) in compare.enumerated() {
-//                        if bool {
-//                            items["qualification"]![0][driver]! += driverQuali
-//                            items["qualification"]![0][teammate]! += teammateQuali
-//                            // print("num true \(index): \(items)")
-//                        } else {
-//                            items["qualification"]?.append([driver : driverQuali, teammate: teammateQuali])
-//                            // print("num false \(index): \(items)")
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }
+    func testDict(res: [[ResultF1]]) {
+        for (_, array) in res.enumerated() {
+            for i in array {
+                if i.driver.driverID == driver {
+                    driver = i.driver.driverID
+                    driverQuali = Int(i.grid) ?? 0
+                } else {
+                    teammate = i.driver.driverID
+                    teammateQuali = Int(i.grid) ?? 0
+                }
+            }
+
+            if driverQuali < teammateQuali {
+                driverQuali = 0
+                teammateQuali = 0
+                driverQuali += 1
+            } else {
+                teammateQuali = 0
+                driverQuali = 0
+                teammateQuali += 1
+            }
+
+            if items.isEmpty {
+                items["qualification"] = [[driver : driverQuali, teammate: teammateQuali]]
+                // print("If is empty: \(items)")
+            } else {
+                if var compare = items["qualification"].map ({ $0.map ({ $0.keys.contains(teammate) }) })  {
+
+
+                    if compare.count > 1 {
+                        compare.remove(at: 1)
+                        // print(compare)
+                    }
+
+                    for (_, bool) in compare.enumerated() {
+                        if bool {
+                            items["qualification"]![0][driver]! += driverQuali
+                            items["qualification"]![0][teammate]! += teammateQuali
+                            // print("num true \(index): \(items)")
+                        } else {
+                            items["qualification"]?.append([driver : driverQuali, teammate: teammateQuali])
+                            // print("num false \(index): \(items)")
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

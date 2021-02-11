@@ -47,22 +47,37 @@ struct Race: Codable {
 
 struct ResultF1: Codable {
     let position: String
+    let grid: String
     let points: String
+    let positionText: String
     let driver: Driver
     let constructor: Constructor
     let resultTime: ResultTime?
     let finishStatus: String
+    let fastestLap: FastestLap?
     
     enum CodingKeys: String, CodingKey {
         case position = "position"
+        case grid = "grid"
         case points = "points"
+        case positionText = "positionText"
         case driver = "Driver"
         case constructor = "Constructor"
         case resultTime = "Time"
         case finishStatus = "status"
+        case fastestLap = "FastestLap"
     }
 }
 
 struct ResultTime: Codable {
     let time: String
 }
+
+struct FastestLap: Codable {
+    let rank: String
+    
+    enum CodingKeys: String, CodingKey {
+           case rank
+    }
+}
+
