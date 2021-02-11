@@ -69,7 +69,9 @@ extension HistoricalViewModelType {
 extension HistoricalViewModelType {
     func didSelectRowDriver(at indexPath: IndexPath) -> HistoricalDetailViewModelVariety {
         switch id.isAll() {
-        case true:  return HistoricalDriverStandingsViewModel(someValue: take.driverStandings[indexPath.row].driver.driverID)
+        case true:  return HistoricalDriverStandingsViewModel(
+            someValue: take.driverStandings[indexPath.row].driver.driverID,
+            constructorsID: take.driverStandings[indexPath.row].constructors.map { $0.constructorID})
         case false: return HistoricalDriverDetailViewModel(someValue: take.racesDetailDriver[indexPath.row].raceName)
         }
     }

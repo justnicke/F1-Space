@@ -51,15 +51,26 @@ final class HistoricalViewController: UIViewController {
         categoryButton.addTarget(self, action: #selector(typeSearchButtonPressed), for: .touchUpInside)
         detailResultButton.addTarget(self, action: #selector(detailResultButtonPressed), for: .touchUpInside)
         
+        /*
+         
+         - Год -> ConstructorDetail-constructorDetailData-constructorDetailTable-season  = [V]
+         - Кол-во проведенных гонок -> пройтись по массиву массивов и указать столько    = [V]
+         - 
+         
+         
+         
+         */
         
-//        API.requestConstructorDetailResult(year: "2020", id: "mercedes") { (const, err) in
-//            guard let results = const?.constructorDetailData.constructorDetailTable.races.map({ $0.results }) else { return }
-//
-//            let needValues = results.map ({ $0.map{$0.points}})
-//
-//            print(needValues)
-//
-//        }
+        
+        API.requestConstructorDetailResult(year: "2019", id: "russel") { [weak self] (const, err) in
+            let results = const?.constructorDetailData.constructorDetailTable.races.map({ $0.results })
+            let test = const?.constructorDetailData.constructorDetailTable.season
+//            print(results.map { $0.})
+            
+        }
+        
+        
+        
     }
     
     func set(for buttons: [CustomButton]) {
@@ -225,10 +236,9 @@ extension HistoricalViewController: UITableViewDataSource, UITableViewDelegate {
         case .drivers:
             switch type().detailed.isAll() {
             case true:
-                break
-//                let detailViewModel = historicalViewModel.didSelectRowAt(indexPath: indexPath)
-//                let vc = HistoricalDriverStandingsViewController(viewModel: detailViewModel as? HistoricalDriverStandingsViewModel)
-//                navigationController?.pushViewController(vc, animated: true)
+                let detailViewModel = historicalViewModel.didSelectRowAt(indexPath: indexPath)
+                let vc = HistoricalDriverStandingsViewController(viewModel: detailViewModel as? HistoricalDriverStandingsViewModel)
+                navigationController?.pushViewController(vc, animated: true)
             case false:
                 let detailViewModel = historicalViewModel.didSelectRowAt(indexPath: indexPath)
                 let vc = HistoricalDriverDetailViewController(viewModel: detailViewModel as? HistoricalDriverDetailViewModel)

@@ -26,9 +26,11 @@ struct ConstructorDetailData: Codable {
 }
 
 struct ConstructorDetailTable: Codable {
+    let season: String
     let races: [Race]
     
     enum CodingKeys: String, CodingKey {
+        case season = "season"
         case races = "Races"
     }
 }

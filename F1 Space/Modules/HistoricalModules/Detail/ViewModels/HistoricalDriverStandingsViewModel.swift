@@ -10,10 +10,12 @@ import Foundation
 
 final class HistoricalDriverStandingsViewModel: HistoricalDetailViewModelVariety {
     var driverID: String?
+    var constructorsID: [String]?
     
-    init(someValue: String) {
+    init(someValue: String, constructorsID: [String]) {
         self.driverID = someValue
+        self.constructorsID = constructorsID
     }
     
-    init() {}
+    init() { }
 }
