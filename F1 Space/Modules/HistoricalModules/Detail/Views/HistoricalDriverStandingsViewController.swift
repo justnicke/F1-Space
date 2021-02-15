@@ -8,20 +8,17 @@
 
 import UIKit
 
-final class HistoricalDriverStandingsViewController: UIViewController {
+final class HistoricalDriverStandingsViewController: BaseHistoricalDetailViewController<HistoricalDriverStandingsViewModel> {
     
-    var viewModel: HistoricalDriverStandingsViewModel?
-
-    init(viewModel: HistoricalDriverStandingsViewModel?) {
-        self.viewModel = viewModel
+    override init(viewModel: HistoricalDriverStandingsViewModel?) {
         self.driver = viewModel?.driverID ?? ""
-        super.init(nibName: nil, bundle: nil)
+        super.init(viewModel: viewModel)
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-  
+    
     var arrays = [[ResultF1]]()
     var items: [String : [[String : Int]]] = [:]
     
@@ -36,16 +33,32 @@ final class HistoricalDriverStandingsViewController: UIViewController {
         duelView.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor,
                         padding: .init(top: 200, left: 20, bottom: 0, right: 20),
                         size: .init(width: 0, height: 120))
+        
+        print(driver)
+        
+        DispatchQueue.main.async {
+            self.testFunc()
+        }
+        
+        DispatchQueue.main.async {
+            self.test2()
+        }
+        
+        
+    }
     
-        testFunc()
+    
+    func test2() {
+//            testFunc()
+ 
+            print(self.arrays.map{$0.map{$0.driver.driverID}})
         
     }
     
     func testFunc(){
+        
         guard let driver = viewModel?.driverID else { return }
         guard let constID = viewModel?.constructorsID else { return }
-        
-//        var arrays = [[ResultF1]]()
         
         for id in constID {
             API.requestConstructorDetailResult(year: "2020", id: id) { [weak self] (const, err) in
@@ -117,24 +130,26 @@ final class HistoricalDriverStandingsViewController: UIViewController {
                     }
                 }
             }
+            
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) {
-//            print(self.arrays.map{$0.map{$0.grid}})
-//            print(self.numOfRace)
-//            print(self.winCount)
-//            print(self.podiumCount)
-//            print(self.poleCount)
-//            print(self.bestFinish)
-//            print(self.numOfRetire)
-//            print(self.bestGrid)
-//            print(self.nationality)
-//            print(self.fastestLapCount)
-            
-            self.testDict(res: self.arrays)
-            print(self.items)
-
-        }
+        
+//        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) {
+//            print(self.arrays.map{$0.map{$0.driver.driverID}})
+////            print(self.numOfRace)
+////            print(self.winCount)
+////            print(self.podiumCount)
+////            print(self.poleCount)
+////            print(self.bestFinish)
+////            print(self.numOfRetire)
+////            print(self.bestGrid)
+////            print(self.nationality)
+////            print(self.fastestLapCount)
+//
+////            self.testDict(res: self.arrays)
+////            print(self.items)
+//
+//        }
     }
     
     var numOfRace = 0
@@ -155,6 +170,11 @@ final class HistoricalDriverStandingsViewController: UIViewController {
     // quali
     var driverQuali = 0
     var teammateQuali = 0
+    // race
+    var driverRace = 0
+    var teammateRace = 0
+    
+    var a = 0
     
     func testDict(res: [[ResultF1]]) {
         for (_, array) in res.enumerated() {
@@ -162,12 +182,14 @@ final class HistoricalDriverStandingsViewController: UIViewController {
                 if i.driver.driverID == driver {
                     driver = i.driver.driverID
                     driverQuali = Int(i.grid) ?? 0
+                    driverRace = Int(i.position) ?? 0
                 } else {
                     teammate = i.driver.driverID
                     teammateQuali = Int(i.grid) ?? 0
+                    teammateRace = Int(i.position) ?? 0
                 }
             }
-
+            
             if driverQuali < teammateQuali {
                 driverQuali = 0
                 teammateQuali = 0
@@ -177,29 +199,45 @@ final class HistoricalDriverStandingsViewController: UIViewController {
                 driverQuali = 0
                 teammateQuali += 1
             }
-
+            
+            if driverRace < teammateRace {
+                driverRace = 0
+                teammateRace = 0
+                driverRace += 1
+            } else {
+                teammateRace = 0
+                driverRace = 0
+                teammateRace += 1
+            }
+            
             if items.isEmpty {
                 items["qualification"] = [[driver : driverQuali, teammate: teammateQuali]]
-                // print("If is empty: \(items)")
+                items["race"] = [[driver : driverRace, teammate: teammateRace]]
+                //        print("If is empty: \(items)")
             } else {
                 if var compare = items["qualification"].map ({ $0.map ({ $0.keys.contains(teammate) }) })  {
-
-
-                    if compare.count > 1 {
-                        compare.remove(at: 1)
-                        // print(compare)
-                    }
-
-                    for (_, bool) in compare.enumerated() {
-                        if bool {
-                            items["qualification"]![0][driver]! += driverQuali
-                            items["qualification"]![0][teammate]! += teammateQuali
-                            // print("num true \(index): \(items)")
-                        } else {
-                            items["qualification"]?.append([driver : driverQuali, teammate: teammateQuali])
-                            // print("num false \(index): \(items)")
-                        }
-                    }
+                    
+//                    a += 1
+//                    print(a)
+//                    print(compare)
+//                    if compare.count > 1 {
+//                        compare.remove(at: 1)
+//                        print(compare)
+//                    }
+                    
+//                    for (_, bool) in compare.enumerated() {
+//                        if bool {
+//                            items["qualification"]![0][driver]! += driverQuali
+//                            items["qualification"]![0][teammate]! += teammateQuali
+////                            print(items["qualification"])
+//
+//                            items["race"]![0][driver]! += driverRace
+//                            items["race"]![0][teammate]! += teammateRace
+//                        } else {
+//                            items["qualification"]?.append([driver : driverQuali, teammate: teammateQuali])
+//                            items["race"]?.append([driver : driverRace, teammate: teammateRace])
+//                        }
+//                    }
                 }
             }
         }

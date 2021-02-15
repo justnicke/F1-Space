@@ -194,6 +194,10 @@ final class HistoricalViewController: UIViewController {
             yearButton.setTitle("1958", for: .normal)
         }
     }
+    
+    func push<ViewModel>(for viewController: BaseHistoricalDetailViewController<ViewModel>) {
+        navigationController?.pushViewController(viewController, animated: true)
+    }
 }
 
 // MARK: - Extension UITableViewDataSource & UITableViewDelegate
@@ -231,40 +235,23 @@ extension HistoricalViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let category = HistoricalCategory(rawValue: type().category.unwrap.lowercased())
+        let detailViewModel = historicalViewModel.didSelectRowAt(indexPath: indexPath)
         
         switch category {
         case .drivers:
             switch type().detailed.isAll() {
-            case true:
-                let detailViewModel = historicalViewModel.didSelectRowAt(indexPath: indexPath)
-                let vc = HistoricalDriverStandingsViewController(viewModel: detailViewModel as? HistoricalDriverStandingsViewModel)
-                navigationController?.pushViewController(vc, animated: true)
-            case false:
-                let detailViewModel = historicalViewModel.didSelectRowAt(indexPath: indexPath)
-                let vc = HistoricalDriverDetailViewController(viewModel: detailViewModel as? HistoricalDriverDetailViewModel)
-                navigationController?.pushViewController(vc, animated: true)
+            case true:  push(for: HistoricalDriverStandingsViewController(viewModel: detailViewModel as? HistoricalDriverStandingsViewModel))
+            case false: push(for: HistoricalDriverDetailViewController(viewModel: detailViewModel as? HistoricalDriverDetailViewModel))
             }
         case .teams:
             switch type().detailed.isAll() {
-            case true:
-                let detailViewModel = historicalViewModel.didSelectRowAt(indexPath: indexPath)
-                let vc = HistoricalConstructorStandingsViewController(viewModel: detailViewModel as? HistoricalConstructorStandingsViewModel)
-                navigationController?.pushViewController(vc, animated: true)
-            case false:
-                let detailViewModel = historicalViewModel.didSelectRowAt(indexPath: indexPath)
-                let vc = HistoricalConstructorDetailViewController(viewModel: detailViewModel as? HistoricalConstructorDetailViewModel)
-                navigationController?.pushViewController(vc, animated: true)
+            case true:  push(for: HistoricalConstructorStandingsViewController(viewModel: detailViewModel as? HistoricalConstructorStandingsViewModel))
+            case false: push(for: HistoricalConstructorDetailViewController(viewModel: detailViewModel as? HistoricalConstructorDetailViewModel))
             }
         case .races:
             switch type().detailed.isAll() {
-            case true:
-                let detailViewModel = historicalViewModel.didSelectRowAt(indexPath: indexPath)
-                let vc = HistoricalRacesViewController(viewModel: detailViewModel as? HistoricalRacesViewModel)
-                navigationController?.pushViewController(vc, animated: true)
-            case false:
-                let detailViewModel = historicalViewModel.didSelectRowAt(indexPath: indexPath)
-                let vc = HistoricalRaceDetailViewController(viewModel: detailViewModel as? HistoricalRaceDetailViewModel)
-                navigationController?.pushViewController(vc, animated: true)
+            case true:  push(for: HistoricalRacesViewController(viewModel: detailViewModel as? HistoricalRacesViewModel))
+            case false: push(for: HistoricalRaceDetailViewController(viewModel: detailViewModel as? HistoricalRaceDetailViewModel))
             }
         default: fatalError("This shouldn't happen at all! Func: \(#function)")
         }

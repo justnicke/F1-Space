@@ -8,19 +8,7 @@
 
 import UIKit
 
-final class HistoricalRaceDetailViewController: UIViewController {
-    
-    var viewModel: HistoricalRaceDetailViewModel?
-    
-    init(viewModel: HistoricalRaceDetailViewModel?) {
-        self.viewModel = viewModel
-        
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+final class HistoricalRaceDetailViewController: BaseHistoricalDetailViewController<HistoricalRaceDetailViewModel> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +16,5 @@ final class HistoricalRaceDetailViewController: UIViewController {
         print("hello \(self)")
         view.backgroundColor = .yellow
         
-        viewModel = HistoricalRaceDetailViewModel()
     }
 }

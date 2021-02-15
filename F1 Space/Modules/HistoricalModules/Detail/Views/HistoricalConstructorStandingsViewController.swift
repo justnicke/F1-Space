@@ -8,27 +8,13 @@
 
 import UIKit
 
-final class HistoricalConstructorStandingsViewController: UIViewController {
-    
-    var viewModel: HistoricalConstructorStandingsViewModel?
-    
-    init(viewModel: HistoricalConstructorStandingsViewModel?) {
-        self.viewModel = viewModel
+final class HistoricalConstructorStandingsViewController: BaseHistoricalDetailViewController<HistoricalConstructorStandingsViewModel> {
         
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         print("hello \(self)")
         view.backgroundColor = .blue
-        
-        viewModel = HistoricalConstructorStandingsViewModel()
         
     }
 }
