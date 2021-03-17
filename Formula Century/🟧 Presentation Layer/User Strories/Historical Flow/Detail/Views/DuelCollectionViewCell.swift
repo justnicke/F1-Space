@@ -43,7 +43,7 @@ final class DuelCollectionViewCell: UICollectionViewCell {
     let qualiTeammateLayer = CAShapeLayer()
     var qualiTeammatePercent: CGFloat = 0.0
     let raceTeammateLayer = CAShapeLayer()
-    var raceTeammatePercent: CGFloat = 0.0
+    var raceTeammatePercent: CGFloat = 0.0 
     
     override init(frame: CGRect) {
         super.init(frame: frame)
