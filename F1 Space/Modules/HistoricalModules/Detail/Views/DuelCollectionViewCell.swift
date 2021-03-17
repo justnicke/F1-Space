@@ -8,9 +8,12 @@
 
 import UIKit
 
-final class DuelView: UIView {
+final class DuelCollectionViewCell: UICollectionViewCell {
+    
+    static let reuseId = String(describing: DuelCollectionViewCell.self)
+    
     // Container
-    @IBOutlet var contentView: UIView!
+    @IBOutlet var containerView: UIView!
     // Top
     @IBOutlet var driverNameLabel: UILabel!
     @IBOutlet var teammateNameLabel: UILabel!
@@ -56,13 +59,13 @@ final class DuelView: UIView {
     }
     
     private func commonInit() {
-        Bundle.main.loadNibNamed("DuelView", owner: self, options: nil)
+        Bundle.main.loadNibNamed("DuelCollectionViewCell", owner: self, options: nil)
         self.backgroundColor = .clear
-        addSubview(contentView)
-        contentView.frame = self.bounds
-        contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        contentView.backgroundColor = .topH
-        contentView.layer.cornerRadius = 10
+        addSubview(containerView)
+        containerView.frame = self.bounds
+        containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        containerView.backgroundColor = .topH
+        containerView.layer.cornerRadius = 10
     }
     
     private func setupUIElements() {
@@ -150,15 +153,15 @@ final class DuelView: UIView {
     
     func configure() {
         // name
-        driverNameLabel.text = names["bottas"]?.capitalized
-        teammateNameLabel.text = names["hamilton"]?.capitalized
+//        driverNameLabel.text = names["bottas"]?.capitalized
+//        teammateNameLabel.text = names["hamilton"]?.capitalized
         
         // quali
-        guard let quiliDriver = items["qualification"].map ({ $0.first?["bottas"] }) else { return }
-        driverQualiScoreLabel.text = String(quiliDriver!)
-        
-        guard let quiliteammate = items["qualification"].map ({ $0.first?["hamilton"] }) else { return }
-        teammateQualiScoreLabel.text = String(quiliteammate!)
+//        guard let quiliDriver = items["qualification"].map ({ $0.first?["bottas"] }) else { return }
+//        driverQualiScoreLabel.text = String(quiliDriver!)
+//
+//        guard let quiliteammate = items["qualification"].map ({ $0.first?["hamilton"] }) else { return }
+//        teammateQualiScoreLabel.text = String(quiliteammate!)
         
         // race
         guard let raceDriver = items["race"].map ({ $0.first?["bottas"] }) else { return }
@@ -168,8 +171,8 @@ final class DuelView: UIView {
         teammateRaceScoreLabel.text = String(raceteammate!)
         
         // lines
-        qualiDriverPercent = makingPercentageForLines(driver: quiliDriver!, teammate: quiliteammate!).driver
-        qualiTeammatePercent = makingPercentageForLines(driver: quiliDriver!, teammate: quiliteammate!).teammate
+//        qualiDriverPercent = makingPercentageForLines(driver: quiliDriver!, teammate: quiliteammate!).driver
+//        qualiTeammatePercent = makingPercentageForLines(driver: quiliDriver!, teammate: quiliteammate!).teammate
         
         raceDriverPercent = makingPercentageForLines(driver: raceDriver!, teammate: raceteammate!).driver
         raceTeammatePercent = makingPercentageForLines(driver: raceDriver!, teammate: raceteammate!).teammate
@@ -190,13 +193,6 @@ final class DuelView: UIView {
         return (driverPrecent, teammatePrecent)
     }
 }
-
-
-
-
-
-
-
 
 extension UIView {
     func customizeGraphForDuelViewLeft() {

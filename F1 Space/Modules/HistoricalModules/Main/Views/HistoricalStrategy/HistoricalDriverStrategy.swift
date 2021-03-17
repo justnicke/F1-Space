@@ -23,7 +23,7 @@ final class HistoricalDriverStrategy: HistoricalStandingsStrategy {
             $0.numberOfLines = 2
             $0.textColor = .black
         }
-
+        
         width[forThe.third]?.isActive = false
         labels[forThe.fourth].isHidden = false
         

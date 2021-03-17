@@ -10,6 +10,36 @@ import UIKit
 
 final class HistoricalDriverStandingsViewController: BaseHistoricalDetailViewController<HistoricalDriverStandingsViewModel> {
     
+    var items: [String : [[String : Int]]] = [:]
+    var res = [[ResultF1]]()
+    var names = ["hamilton", "russel"]
+    
+    var numOfRace = 0
+    var winCount = 0
+    var podiumCount = 0
+    var poleCount = 0
+    var bestFinish = 0
+    var bestGrid = 0
+    var numOfRetire = 0
+    var permanentNumber = ""
+    var nationality = ""
+    var fastestLapCount = 0
+    
+    // name
+    var driver: String
+    var teammate = ""
+
+    // quali
+    var driverQuali = 0
+    var teammateQuali = 0
+    // race
+    var driverRace = 0
+    var teammateRace = 0
+    
+    let semaphore = DispatchSemaphore(value: 0)
+    
+    var collectionView: UICollectionView!
+    
     override init(viewModel: HistoricalDriverStandingsViewModel?) {
         self.driver = viewModel?.driverID ?? ""
         super.init(viewModel: viewModel)
@@ -19,28 +49,29 @@ final class HistoricalDriverStandingsViewController: BaseHistoricalDetailViewCon
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-    var items: [String : [[String : Int]]] = [:]
-    
-    var res = [[ResultF1]]()
-    
-    let duelView = DuelView()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .white
-        view.addSubview(duelView)
-        duelView.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor,
-                        padding: .init(top: 200, left: 20, bottom: 0, right: 20),
-                        size: .init(width: 0, height: 120))
         
-
+        setupCollectionView()
+        
         testFunc()
     }
     
-    let semaphore = DispatchSemaphore(value: 0)
+    private func setupCollectionView() {
+        collectionView = UICollectionView(frame: view.frame, collectionViewLayout: UICollectionViewFlowLayout())
+        collectionView.backgroundColor = .systemBlue
+        collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        view.addSubview(collectionView)
+        
+        collectionView.register(DuelCollectionViewCell.self, forCellWithReuseIdentifier: DuelCollectionViewCell.reuseId)
+    }
 
+    
+    
     func testFunc() {
         guard let driver = self.viewModel?.driverID else { return }
         guard let constID = self.viewModel?.constructorsID else { return }
@@ -124,33 +155,13 @@ final class HistoricalDriverStandingsViewController: BaseHistoricalDetailViewCon
             
             self.semaphore.wait()
             self.testDict(res: self.res)
-            print(self.items)
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+//            print(self.items)
         }
     }
-    
-    var numOfRace = 0
-    var winCount = 0
-    var podiumCount = 0
-    var poleCount = 0
-    var bestFinish = 0
-    var bestGrid = 0
-    var numOfRetire = 0
-    var permanentNumber = ""
-    var nationality = ""
-    var fastestLapCount = 0
-    
-    // name
-    var driver: String
-    var teammate = ""
 
-    // quali
-    var driverQuali = 0
-    var teammateQuali = 0
-    // race
-    var driverRace = 0
-    var teammateRace = 0
-    
-    
     func testDict(res: [[ResultF1]]) {
         var supprots: [String] = []
         
@@ -218,5 +229,52 @@ final class HistoricalDriverStandingsViewController: BaseHistoricalDetailViewCon
                 }
             }
         }
+    }
+}
+
+// MARK: - Extension UICollectionViewDataSource & UICollectionViewDelegate
+
+extension HistoricalDriverStandingsViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return items["qualification"]?.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DuelCollectionViewCell.reuseId, for: indexPath) as! DuelCollectionViewCell
+
+        cell.driverNameLabel.text = driver.capitalized
+        cell.teammateNameLabel.text = names[indexPath.item].capitalized
+        
+        var aa = items["qualification"]?[indexPath.item].keys
+            
+        print(indexPath.row)
+        
+        var raceteammate = items["race"].map ({ $0})
+        var raceteammate2 = items["race"].map ({ $0[indexPath.row]})
+        
+        cell.driverQualiScoreLabel.text = String((items["qualification"]?[indexPath.item][driver])!)
+//        cell.teammateQualiScoreLabel.text = String((items["qualification"]?[indexPath.item][names[indexPath.item]])!)
+        
+//        guard let quiliDriver = items["qualification"].map ({ $0.first?[driver] }) else { return }
+//        driverQualiScoreLabel.text = String(quiliDriver!)
+//
+//        guard let quiliteammate = items["qualification"].map ({ $0.first?["hamilton"] }) else { return }
+//        teammateQualiScoreLabel.text = String(quiliteammate!)
+        
+        return cell
+    }
+}
+
+extension HistoricalDriverStandingsViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return .init(width: view.frame.width - 40, height: 120)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 5
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return .init(top: 10, left: 0, bottom: 10, right: 0)
     }
 }

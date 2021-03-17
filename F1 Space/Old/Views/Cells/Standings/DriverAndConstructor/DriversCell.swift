@@ -33,7 +33,7 @@ final class DriversCell: UICollectionViewCell {
     }()
     private let firstNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Lando"
+        label.text = "Lando" 
         label.font = UIFont(name: "Formula1-Display-Regular", size: 16)
         label.textColor = .black
         return label

@@ -13,6 +13,6 @@ struct AuxiliaryNumbering {
     let second: Int
     let third:  Int
     let fourth: Int
-    let fifth:  Int
-    let sixth:  Int
+    let fifth: Int
+    let sixth: Int
 }
