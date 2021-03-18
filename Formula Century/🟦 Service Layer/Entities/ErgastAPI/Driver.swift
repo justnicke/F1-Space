@@ -16,7 +16,7 @@ struct Driver: Codable {
     let familyName: String
     let dateOfBirth: String
     let nationality: String
-    let permanentNumber: String
+    var permanentNumber: String?
 
     enum CodingKeys: String, CodingKey {
         case driverID = "driverId"

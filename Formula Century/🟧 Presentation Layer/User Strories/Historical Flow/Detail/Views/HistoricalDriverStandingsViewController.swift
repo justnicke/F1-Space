@@ -28,6 +28,7 @@ final class HistoricalDriverStandingsViewController: BaseHistoricalDetailViewCon
     // name
     var driver: String
     var teammate = ""
+    var season: String
 
     // quali
     var driverQuali = 0
@@ -42,6 +43,7 @@ final class HistoricalDriverStandingsViewController: BaseHistoricalDetailViewCon
     
     override init(viewModel: HistoricalDriverStandingsViewModel?) {
         self.driver = viewModel?.driverID ?? ""
+        self.season = viewModel?.season ?? "2021"
         super.init(viewModel: viewModel)
     }
     
@@ -79,7 +81,8 @@ final class HistoricalDriverStandingsViewController: BaseHistoricalDetailViewCon
         
         DispatchQueue.global(qos: .utility).async {
             for id in constID {
-                API.requestConstructorDetailResult(year: "2020", id: id) { [weak self] (const, err) in
+                // TODO: - Разрешить этот запросв только от 1986 года, иначе не предоставлять доступ на этот экран
+                API.requestConstructorDetailResult(year: self.season, id: id) { [weak self] (const, err) in
                     
                     guard let results = const?.constructorDetailData.constructorDetailTable.races.map({ $0.results }) else { return }
                     
@@ -124,7 +127,7 @@ final class HistoricalDriverStandingsViewController: BaseHistoricalDetailViewCon
                                 }
                                 
                                 // permanentNumber
-                                self?.permanentNumber = i.driver.permanentNumber
+                                self?.permanentNumber = i.driver.permanentNumber ?? ""
                                 
                                 // nationality
                                 self?.nationality = i.driver.nationality
@@ -138,7 +141,6 @@ final class HistoricalDriverStandingsViewController: BaseHistoricalDetailViewCon
                         
                         // Get data with selected driver and teammate
                         let trueOrFalse = res.compactMap ({ $0.driver.driverID.contains(driver) })
-                        
                         if trueOrFalse.contains(true) {
                             self?.numOfRace += 1
                             self?.res.append(res)
@@ -159,6 +161,7 @@ final class HistoricalDriverStandingsViewController: BaseHistoricalDetailViewCon
                 self.collectionView.reloadData()
             }
 //            print(self.items)
+//            print(self.numOfRace)
         }
     }
 
@@ -190,6 +193,7 @@ final class HistoricalDriverStandingsViewController: BaseHistoricalDetailViewCon
          
                 if i.driver.driverID == driver {
                     driver = i.driver.driverID
+//                    print(Int(i.grid))
                     driverQuali = Int(i.grid) ?? 0
                     driverRace = Int(i.position) ?? 0
                 } else {
@@ -199,7 +203,10 @@ final class HistoricalDriverStandingsViewController: BaseHistoricalDetailViewCon
                 }
             }
             
-            if driverQuali < teammateQuali {
+            if driverQuali == teammateQuali {
+                driverQuali = 0
+                teammateQuali = 0
+            } else if driverQuali < teammateQuali {
                 driverQuali = 0
                 teammateQuali = 0
                 driverQuali += 1
@@ -208,7 +215,7 @@ final class HistoricalDriverStandingsViewController: BaseHistoricalDetailViewCon
                 driverQuali = 0
                 teammateQuali += 1
             }
-            
+                        
             if driverRace < teammateRace {
                 driverRace = 0
                 teammateRace = 0
@@ -231,8 +238,8 @@ final class HistoricalDriverStandingsViewController: BaseHistoricalDetailViewCon
         }
     }
     
-    func getTeammates(indexPath: IndexPath) -> [String] {
-        guard var teammates = items["qualification"]?[indexPath.item].map ({ String($0.key) }) else {
+    func getTeammates(indexPath: IndexPath, mainKey: String) -> [String] {
+        guard var teammates = items[mainKey]?[indexPath.item].map ({ String($0.key) }) else {
             return []
         }
         
@@ -241,6 +248,9 @@ final class HistoricalDriverStandingsViewController: BaseHistoricalDetailViewCon
                 teammates.remove(at: i)
             }
         }
+        
+        let correctName = String(teammate.first ?? "X").replacingOccurrences(of: "_", with: " ").capitalized
+ 
         
         return teammates
     }
@@ -256,25 +266,17 @@ extension HistoricalDriverStandingsViewController: UICollectionViewDataSource, U
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DuelCollectionViewCell.reuseId, for: indexPath) as! DuelCollectionViewCell
         
-//        var aaa = items["qualification"]?[indexPath.item].map { String($0.key) }
-
-
-        cell.driverNameLabel.text = driver.capitalized
-        cell.teammateNameLabel.text = getTeammates(indexPath: indexPath).first
+        cell.driverNameLabel.text = driver.replacingOccurrences(of: "_", with: " ").capitalized
+        cell.teammateNameLabel.text = getTeammates(indexPath: indexPath, mainKey: "qualification").first?.replacingOccurrences(of: "_", with: " ").capitalized
         
   
         cell.driverQualiScoreLabel.text = String(items["qualification"]?[indexPath.item][driver] ?? 0)
-        cell.teammateQualiScoreLabel.text = String(items["qualification"]?[indexPath.item][getTeammates(indexPath: indexPath).first ?? ""] ?? 0)
+        cell.teammateQualiScoreLabel.text = String(items["qualification"]?[indexPath.item][getTeammates(indexPath: indexPath, mainKey: "qualification").first ?? ""] ?? 0)
         
-
-    
+        cell.driverRaceScoreLabel.text = String(items["race"]?[indexPath.item][driver] ?? 0)
+        cell.teammateRaceScoreLabel.text = String(items["race"]?[indexPath.item][getTeammates(indexPath: indexPath, mainKey: "race").first ?? ""] ?? 0)
         
-  
-        
-//        cell.driverQualiScoreLabel =
-        
-        
-        
+        cell.configure()
         
         return cell
     }

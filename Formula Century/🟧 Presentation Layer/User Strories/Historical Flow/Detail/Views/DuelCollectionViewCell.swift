@@ -85,8 +85,8 @@ final class DuelCollectionViewCell: UICollectionViewCell {
         
         
     }
-
-    override func layoutSubviews() {
+    
+    func startAinmation() {
         set(
             shape: qualiDriverLayer,
             typeView: driverQualiScoreView,
@@ -95,7 +95,7 @@ final class DuelCollectionViewCell: UICollectionViewCell {
             addX: driverQualiScoreView.bounds.width,
             color: #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
             )
-        
+
         set(
             shape: raceDriverLayer,
             typeView: driverRaceScoreView,
@@ -104,7 +104,7 @@ final class DuelCollectionViewCell: UICollectionViewCell {
             addX: driverRaceScoreView.bounds.width,
             color: #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
             )
-        
+
         set(
             shape: qualiTeammateLayer,
             typeView: teammateQualiScoreView,
@@ -113,7 +113,7 @@ final class DuelCollectionViewCell: UICollectionViewCell {
             addX: 0,
             color: #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
             )
-        
+
         set(
             shape: raceTeammateLayer,
             typeView: teammateRaceScoreView,
@@ -126,6 +126,7 @@ final class DuelCollectionViewCell: UICollectionViewCell {
     
     func set(shape: CAShapeLayer, typeView: UIView, precent: CGFloat, moveX: CGFloat, addX: CGFloat, color: UIColor) {
         let path = UIBezierPath()
+        
         path.move(to: CGPoint(x: moveX, y: typeView.bounds.midY))
         path.addLine(to: CGPoint(x: addX, y: typeView.bounds.midY))
         
@@ -139,11 +140,12 @@ final class DuelCollectionViewCell: UICollectionViewCell {
         typeView.clipsToBounds = true
         
         shape.add(startAnimation(precent: precent), forKey: "strokeStart")
+        
     }
     
     private func startAnimation(precent: CGFloat) -> CABasicAnimation {
         let animation = CABasicAnimation(keyPath: "strokeStart")
-        animation.duration = 3
+        animation.duration = 2
         animation.fromValue = 1
         animation.toValue = precent // 0.1 это 90% - 0.9 это 10%
         animation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
@@ -152,45 +154,35 @@ final class DuelCollectionViewCell: UICollectionViewCell {
     }
     
     func configure() {
-        // name
-//        driverNameLabel.text = names["bottas"]?.capitalized
-//        teammateNameLabel.text = names["hamilton"]?.capitalized
+        guard let quileD = Int(driverQualiScoreLabel.text ?? "0") else { return }
+        guard let quileT = Int(teammateQualiScoreLabel.text ?? "0") else { return }
+    
+        qualiDriverPercent = makingPercentageForLines(driver: quileD, teammate: quileT).driver
+        qualiTeammatePercent = makingPercentageForLines(driver: quileD, teammate: quileT).teammate
         
-        // quali
-//        guard let quiliDriver = items["qualification"].map ({ $0.first?["bottas"] }) else { return }
-//        driverQualiScoreLabel.text = String(quiliDriver!)
-//
-//        guard let quiliteammate = items["qualification"].map ({ $0.first?["hamilton"] }) else { return }
-//        teammateQualiScoreLabel.text = String(quiliteammate!)
+        guard let raceD = Int(driverRaceScoreLabel.text ?? "0") else { return }
+        guard let raceT = Int(teammateRaceScoreLabel.text ?? "0") else { return }
         
-        // race
-        guard let raceDriver = items["race"].map ({ $0.first?["bottas"] }) else { return }
-        driverRaceScoreLabel.text = String(raceDriver!)
+        raceDriverPercent = makingPercentageForLines(driver: raceD, teammate: raceT).driver
+        raceTeammatePercent = makingPercentageForLines(driver: raceD, teammate: raceT).teammate
         
-        guard let raceteammate = items["race"].map ({ $0.first?["hamilton"] }) else { return }
-        teammateRaceScoreLabel.text = String(raceteammate!)
-        
-        // lines
-//        qualiDriverPercent = makingPercentageForLines(driver: quiliDriver!, teammate: quiliteammate!).driver
-//        qualiTeammatePercent = makingPercentageForLines(driver: quiliDriver!, teammate: quiliteammate!).teammate
-        
-        raceDriverPercent = makingPercentageForLines(driver: raceDriver!, teammate: raceteammate!).driver
-        raceTeammatePercent = makingPercentageForLines(driver: raceDriver!, teammate: raceteammate!).teammate
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+            self.startAinmation()
+        }
     }
-    
-    var names = ["bottas": "bottas", "hamilton": "hamilton", "russel": "russel"]
-    
-    var items = [
-        "qualification": [["bottas": 5, "hamilton": 11], ["bottas": 1, "russel": 0]],
-        "race": [["bottas": 4, "hamilton": 12], ["bottas": 1, "russel": 0]]
-    ]
     
     func makingPercentageForLines(driver: Int, teammate: Int) -> (teammate: CGFloat, driver: CGFloat) {
         let sum = driver + teammate
-        let driverPrecent = CGFloat(driver * 100 / sum) / 100
-        let teammatePrecent: CGFloat = 1.0 - driverPrecent
+        let driverPrecent = Double(driver * 100 / sum) / 100
+        let teammatePrecent: Double = 1.0 - driverPrecent
         // the layers are curves so we swap the values for the driver and teammate
-        return (driverPrecent, teammatePrecent)
+        return (driverPrecent.testFunc(), teammatePrecent.testFunc())
+    }
+}
+
+extension Double {
+    func testFunc() -> CGFloat {
+        return CGFloat((self * 10).rounded() / 10)
     }
 }
 
