@@ -230,6 +230,20 @@ final class HistoricalDriverStandingsViewController: BaseHistoricalDetailViewCon
             }
         }
     }
+    
+    func getTeammates(indexPath: IndexPath) -> [String] {
+        guard var teammates = items["qualification"]?[indexPath.item].map ({ String($0.key) }) else {
+            return []
+        }
+        
+        for (i, e) in teammates.enumerated() {
+            if e == driver {
+                teammates.remove(at: i)
+            }
+        }
+        
+        return teammates
+    }
 }
 
 // MARK: - Extension UICollectionViewDataSource & UICollectionViewDelegate
@@ -241,25 +255,26 @@ extension HistoricalDriverStandingsViewController: UICollectionViewDataSource, U
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DuelCollectionViewCell.reuseId, for: indexPath) as! DuelCollectionViewCell
+        
+//        var aaa = items["qualification"]?[indexPath.item].map { String($0.key) }
+
 
         cell.driverNameLabel.text = driver.capitalized
-        cell.teammateNameLabel.text = names[indexPath.item].capitalized
+        cell.teammateNameLabel.text = getTeammates(indexPath: indexPath).first
         
-        var aa = items["qualification"]?[indexPath.item].keys
-            
-        print(indexPath.row)
+  
+        cell.driverQualiScoreLabel.text = String(items["qualification"]?[indexPath.item][driver] ?? 0)
+        cell.teammateQualiScoreLabel.text = String(items["qualification"]?[indexPath.item][getTeammates(indexPath: indexPath).first ?? ""] ?? 0)
         
-        var raceteammate = items["race"].map ({ $0})
-        var raceteammate2 = items["race"].map ({ $0[indexPath.row]})
+
+    
         
-        cell.driverQualiScoreLabel.text = String((items["qualification"]?[indexPath.item][driver])!)
-//        cell.teammateQualiScoreLabel.text = String((items["qualification"]?[indexPath.item][names[indexPath.item]])!)
+  
         
-//        guard let quiliDriver = items["qualification"].map ({ $0.first?[driver] }) else { return }
-//        driverQualiScoreLabel.text = String(quiliDriver!)
-//
-//        guard let quiliteammate = items["qualification"].map ({ $0.first?["hamilton"] }) else { return }
-//        teammateQualiScoreLabel.text = String(quiliteammate!)
+//        cell.driverQualiScoreLabel =
+        
+        
+        
         
         return cell
     }
