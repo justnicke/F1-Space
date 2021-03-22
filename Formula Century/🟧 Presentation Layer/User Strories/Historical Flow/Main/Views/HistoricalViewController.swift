@@ -50,26 +50,7 @@ final class HistoricalViewController: UIViewController {
         yearButton.addTarget(self, action: #selector(yearButtonPressed), for: .touchUpInside)
         categoryButton.addTarget(self, action: #selector(typeSearchButtonPressed), for: .touchUpInside)
         detailResultButton.addTarget(self, action: #selector(detailResultButtonPressed), for: .touchUpInside)
-        
-        /*
-         
-         - Год -> ConstructorDetail-constructorDetailData-constructorDetailTable-season  = [V]
-         - Кол-во проведенных гонок -> пройтись по массиву массивов и указать столько    = [V]
-         - 
-         
-         
-         
-         */
-        
-        
-        API.requestConstructorDetailResult(year: "2019", id: "russel") { [weak self] (const, err) in
-            let results = const?.constructorDetailData.constructorDetailTable.races.map({ $0.results })
-            let test = const?.constructorDetailData.constructorDetailTable.season
-//            print(results.map { $0.})
-            
-        }
-        
-        
+
         
     }
     

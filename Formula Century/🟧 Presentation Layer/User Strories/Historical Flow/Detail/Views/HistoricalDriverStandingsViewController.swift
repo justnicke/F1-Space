@@ -12,7 +12,6 @@ final class HistoricalDriverStandingsViewController: BaseHistoricalDetailViewCon
     
     var items: [String : [[String : Int]]] = [:]
     var res = [[ResultF1]]()
-    var names = ["hamilton", "russel"]
     
     var numOfRace = 0
     var winCount = 0
@@ -42,7 +41,9 @@ final class HistoricalDriverStandingsViewController: BaseHistoricalDetailViewCon
     var collectionView: UICollectionView!
     
     override init(viewModel: HistoricalDriverStandingsViewModel?) {
-        self.driver = viewModel?.driverID ?? ""
+//        print(viewModel?.driverStandings)
+        self.driver = viewModel?.driverStandings.driver.driverID ?? ""
+//        self.driver = viewModel?.driverStandings.driver.driverID ?? "unknown"
         self.season = viewModel?.season ?? "2021"
         super.init(viewModel: viewModel)
     }
@@ -55,10 +56,13 @@ final class HistoricalDriverStandingsViewController: BaseHistoricalDetailViewCon
         super.viewDidLoad()
         
         view.backgroundColor = .white
-        
+        viewModel?.reload()
         setupCollectionView()
         
         testFunc()
+        
+        
+        
     }
     
     private func setupCollectionView() {
@@ -75,8 +79,7 @@ final class HistoricalDriverStandingsViewController: BaseHistoricalDetailViewCon
     
     
     func testFunc() {
-        guard let driver = self.viewModel?.driverID else { return }
-        guard let constID = self.viewModel?.constructorsID else { return }
+        guard let constID = self.viewModel?.driverStandings.constructors.map({ $0.constructorID }) else { return }
         var counter = 0
         
         DispatchQueue.global(qos: .utility).async {
@@ -89,7 +92,7 @@ final class HistoricalDriverStandingsViewController: BaseHistoricalDetailViewCon
                     for (_, res) in results.enumerated() {
                         // statistics of current season
                         for i in res {
-                            if i.driver.driverID.contains(driver) {
+                            if i.driver.driverID.contains(self?.driver ?? "") {
                                 // position
                                 if i.position == "1" {
                                     self?.winCount += 1
@@ -140,7 +143,7 @@ final class HistoricalDriverStandingsViewController: BaseHistoricalDetailViewCon
                         }
                         
                         // Get data with selected driver and teammate
-                        let trueOrFalse = res.compactMap ({ $0.driver.driverID.contains(driver) })
+                        let trueOrFalse = res.compactMap ({ $0.driver.driverID.contains(self?.driver ?? "") })
                         if trueOrFalse.contains(true) {
                             self?.numOfRace += 1
                             self?.res.append(res)
@@ -193,7 +196,6 @@ final class HistoricalDriverStandingsViewController: BaseHistoricalDetailViewCon
          
                 if i.driver.driverID == driver {
                     driver = i.driver.driverID
-//                    print(Int(i.grid))
                     driverQuali = Int(i.grid) ?? 0
                     driverRace = Int(i.position) ?? 0
                 } else {
@@ -249,9 +251,6 @@ final class HistoricalDriverStandingsViewController: BaseHistoricalDetailViewCon
             }
         }
         
-        let correctName = String(teammate.first ?? "X").replacingOccurrences(of: "_", with: " ").capitalized
- 
-        
         return teammates
     }
 }
@@ -268,8 +267,7 @@ extension HistoricalDriverStandingsViewController: UICollectionViewDataSource, U
         
         cell.driverNameLabel.text = driver.replacingOccurrences(of: "_", with: " ").capitalized
         cell.teammateNameLabel.text = getTeammates(indexPath: indexPath, mainKey: "qualification").first?.replacingOccurrences(of: "_", with: " ").capitalized
-        
-  
+
         cell.driverQualiScoreLabel.text = String(items["qualification"]?[indexPath.item][driver] ?? 0)
         cell.teammateQualiScoreLabel.text = String(items["qualification"]?[indexPath.item][getTeammates(indexPath: indexPath, mainKey: "qualification").first ?? ""] ?? 0)
         
