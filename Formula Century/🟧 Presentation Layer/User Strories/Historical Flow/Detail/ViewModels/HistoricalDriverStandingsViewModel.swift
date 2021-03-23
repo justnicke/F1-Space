@@ -54,9 +54,7 @@ extension HistoricalDriverStandingsViewModel: HistoricalDriverStandingsViewModel
 // Данные загружаются в отдельный словарь а не в один, проблема в структуре
 extension HistoricalDriverStandingsViewModel: DriverStandingsOutput {
     func loaded(model: ReadyModel) {
-        print(model.bottom.win)
-        print(model.bottom.podium)
-        print(model.bottom.bestFinish)
+        print(model.middle.driverItems)
     }
     
     func getError(_ error: Error?) {

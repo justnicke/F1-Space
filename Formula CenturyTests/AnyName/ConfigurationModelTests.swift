@@ -11,7 +11,7 @@ import XCTest
 
 class ConfigurationModelTests: XCTestCase {
 
-    var sut: CheckingType?
+    var sut: DriverStandingsResultConfigurable?
     
     override func setUpWithError() throws {
         sut = ConfigurationModelMock()

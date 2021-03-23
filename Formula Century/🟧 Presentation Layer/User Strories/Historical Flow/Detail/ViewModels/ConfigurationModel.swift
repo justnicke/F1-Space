@@ -8,33 +8,46 @@
 
 import Foundation
 
-final class ConfigurationModel {
+final class ConfigurationModel: DriverStandingsConfiguratorType {
     
     // MARK: - Public Properties
     
-    var filteredResults = [[ResultF1]]()
-    var raceCounter = 0
-    var winCounter = 0
-    var podiumCounter = 0
-    var poleCounter = 0
+    // MARK: - DriverStandingsResultCounterable
+    
+    var raceCounter       = 0
+    var winCounter        = 0
+    var podiumCounter     = 0
+    var poleCounter       = 0
     var bestFinishCounter = 0
-    var bestGridCounter = 0
-    var retireCounter = 0
+    var bestGridCounter   = 0
+    var retireCounter     = 0
     var fastestLapCounter = 0
+    var filteredResults = [[ResultF1]]()
+    
+    // MARK: - DriverStandingsItemsCounterable
+    
+    var driverQualiCounter   = 0
+    var teammateQualiCounter = 0
+    var driverRaceCounter    = 0
+    var teammateRaceCounter  = 0
+    var teammate = ""
+    
+    // MARK: - DriverStandingsProperty
+    
+    var driverID: String
+    var items: [String : [[String : Int]]] = [:]
     
     // MARK: - Private Properties
 
     private var season: String
-    private var driverID: String
     private var driverFullName: String
     private var nationality: String
     private var number: String
     private var dateOfBirth: String
     private var constructors: String
-    private var items: [String : [[String : Int]]] = [:]
     private var results: [[ResultF1]]
         
-    // MARK: - Constructor
+    // MARK: - Constructors
     
     init(results: [[ResultF1]], season: String, driverStandings: DriverStandings) {
         self.results        = results
@@ -48,6 +61,8 @@ final class ConfigurationModel {
         
         self.executeAlgorithm()
     }
+    
+    // MARK: - Public Methods
     
     func setup() -> ReadyModel {
         let top = Top(
@@ -75,6 +90,8 @@ final class ConfigurationModel {
         return ReadyModel(top: top, middle: middle, bottom: bottom)
     }
     
+    // MARK: - Private Methods
+    
     private func executeAlgorithm() {
         self.configureResult()
         self.configureComparison(self.filteredResults)
@@ -97,165 +114,22 @@ final class ConfigurationModel {
         }
     }
     
-    
-    
     /// Dictionary configuration for comparing a driver with teammates
-    private func configureComparison(_ result: [[ResultF1]]) {
-        // вспомогательные свойствва и счетчики
-        var supprots: [String] = []
-        var teammate = ""
-
-        // quali
-        var driverQuali = 0
-        var teammateQuali = 0
-        // race
-        var driverRace = 0
-        var teammateRace = 0
+    private func configureComparison(_ results: [[ResultF1]]) {
+        let teammates = self.getTeammate(from: results).dropDuplicates()
         
-        for (_, array) in result.enumerated() {
-            for i in array {
-                if i.driver.driverID != self.driverID {
-                    supprots.append(i.driver.driverID)
-                }
-            }
-        }
+        self.addedValueForItems(from: teammates)
         
-        let teammates = supprots.dropDuplicates()
-        
-        for (_, teammate) in teammates.enumerated() {
-            if self.items.isEmpty {
-                self.items["qualification"] = [[self.driverID : driverQuali, teammate: teammateQuali]]
-                self.items["race"] = [[self.driverID : driverRace, teammate: teammateRace]]
-            } else {
-                self.items["qualification"]?.append([self.driverID : driverQuali, teammate: teammateQuali])
-                self.items["race"]?.append([self.driverID : driverRace, teammate: teammateRace])
-            }
-        }
+        for res in results {
+            self.getValueCounters(from: res)
+            self.calculateQualifications()
+            self.calculateRaces()
             
-        for (_, array) in result.enumerated() {
-            for i in array {
-         
-                if i.driver.driverID == self.driverID {
-                    self.driverID = i.driver.driverID
-                    driverQuali = Int(i.grid) ?? 0
-                    driverRace = Int(i.position) ?? 0
-                } else {
-                    teammate = i.driver.driverID
-                    teammateQuali = Int(i.grid) ?? 0
-                    teammateRace = Int(i.position) ?? 0
-                }
+            guard let items = self.items[AppKey.qualification.rawValue]?.enumerated() else {
+                return
             }
             
-            if driverQuali == teammateQuali {
-                driverQuali = 0
-                teammateQuali = 0
-            } else if driverQuali < teammateQuali {
-                driverQuali = 0
-                teammateQuali = 0
-                driverQuali += 1
-            } else {
-                teammateQuali = 0
-                driverQuali = 0
-                teammateQuali += 1
-            }
-                        
-            if driverRace < teammateRace {
-                driverRace = 0
-                teammateRace = 0
-                driverRace += 1
-            } else {
-                teammateRace = 0
-                driverRace = 0
-                teammateRace += 1
-            }
-            
-            for (i,e) in self.items["qualification"]!.enumerated()  {
-                if e.keys.contains(teammate) {
-                    self.items["qualification"]?[i][self.driverID]! += driverQuali
-                    self.items["qualification"]?[i][teammate]! += teammateQuali
-                    
-                    self.items["race"]?[i][self.driverID]! += driverRace
-                    self.items["race"]?[i][teammate]! += teammateRace
-                }
-            }
+            self.reloadItems(items)
         }
     }
 }
-
-protocol CheckingType: ConfigurationCounterable {
-    func getPolePosition(_ grid: String)
-    func getFastestLap(_ rank: String)
-    func getRetire(_ positionText: String)
-    func getBestFinish(_ position: Int)
-    func getBestGrid(_ grid: Int)
-    func getCurrentAchievement(_ position: String)
-    /// Get data with selected driver and teammate
-    func getDataWith(driver results: [ResultF1])
-}
-
-protocol ConfigurationCounterable {
-    var raceCounter: Int { get }
-    var winCounter: Int { get }
-    var podiumCounter: Int { get }
-    var poleCounter: Int { get }
-    var bestFinishCounter: Int { get set }
-    var bestGridCounter: Int { get set }
-    var retireCounter: Int { get }
-    var fastestLapCounter: Int { get }
-    var filteredResults: [[ResultF1]] { get }
-}
-
-extension ConfigurationModel: CheckingType {
-    func getPolePosition(_ grid: String) {
-        if grid == "1" {
-            self.poleCounter += 1
-        }
-    }
-    
-    func getFastestLap(_ rank: String) {
-        if rank == "1" {
-            self.fastestLapCounter += 1
-        }
-    }
-    
-    func getRetire(_ positionText: String) {
-        if positionText == "R" {
-            self.retireCounter += 1
-        }
-    }
-    
-    func getBestFinish(_ position: Int) {
-        if self.bestFinishCounter == 0 {
-            self.bestFinishCounter = position
-        } else if self.bestFinishCounter > position {
-            self.bestFinishCounter = position
-        }
-    }
-    
-    func getBestGrid(_ grid: Int) {
-        if self.bestGridCounter == 0 {
-            self.bestGridCounter = grid
-        } else if grid != 0 && self.bestGridCounter > grid {
-            self.bestGridCounter = grid
-        }
-    }
-    
-    func getCurrentAchievement(_ position: String) {
-        if position == "1" {
-            self.winCounter += 1
-            self.podiumCounter += 1
-        } else if position == "2" || position == "3" {
-            self.podiumCounter += 1
-        }
-    }
-    
-    func getDataWith(driver results: [ResultF1]) {
-        let trueOrFalse = results.compactMap ({ $0.driver.driverID.contains(self.driverID) })
-        if trueOrFalse.contains(true) {
-            self.raceCounter += 1
-            self.filteredResults.append(results)
-        }
-    }
-}
-
-

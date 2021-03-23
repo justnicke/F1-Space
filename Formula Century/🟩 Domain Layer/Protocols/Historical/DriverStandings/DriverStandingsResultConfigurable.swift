@@ -1,6 +1,6 @@
 //
-//  MockConfigurationModel.swift
-//  Formula CenturyTests
+//  DriverStandingsResultConfigurable.swift
+//  Formula Century
 //
 //  Created by Nikita Sukachev on 23.03.2021.
 //  Copyright © 2021 Nikita Sukachev. All rights reserved.
@@ -8,19 +8,18 @@
 
 import Foundation
 
-class ConfigurationModelMock: DriverStandingsResultConfigurable {
-    var items: [String : [[String : Int]]] = [:]
-    var driverID: String = ""
-    var raceCounter: Int = 0
-    var winCounter: Int = 0
-    var podiumCounter: Int = 0
-    var poleCounter: Int = 0
-    var bestFinishCounter: Int = 0
-    var bestGridCounter: Int = 0
-    var retireCounter: Int = 0
-    var fastestLapCounter: Int = 0
-    var filteredResults: [[ResultF1]] = [[]]
-    
+protocol DriverStandingsResultConfigurable: DriverStandingsResultCounterable, DriverStandingsProperty {
+    func getPolePosition(_ grid: String)
+    func getFastestLap(_ rank: String)
+    func getRetire(_ positionText: String)
+    func getBestFinish(_ position: Int)
+    func getBestGrid(_ grid: Int)
+    func getCurrentAchievement(_ position: String)
+    /// Get data with selected driver and teammate
+    func getDataWith(driver results: [ResultF1])
+}
+
+extension DriverStandingsResultConfigurable {
     func getPolePosition(_ grid: String) {
         if grid == "1" {
             self.poleCounter += 1
@@ -41,7 +40,7 @@ class ConfigurationModelMock: DriverStandingsResultConfigurable {
     
     func getBestFinish(_ position: Int) {
         if self.bestFinishCounter == 0 {
-            self.bestFinishCounter = position
+            bestFinishCounter = position
         } else if self.bestFinishCounter > position {
             self.bestFinishCounter = position
         }
@@ -65,12 +64,10 @@ class ConfigurationModelMock: DriverStandingsResultConfigurable {
     }
     
     func getDataWith(driver results: [ResultF1]) {
-        if results.isEmpty {
-            let trueOrFalse = [true, false]
-            if trueOrFalse.contains(true) {
-                self.raceCounter += 1
-                self.filteredResults.append(results)
-            }
+        let trueOrFalse = results.compactMap ({ $0.driver.driverID.contains(self.driverID) })
+        if trueOrFalse.contains(true) {
+            self.raceCounter += 1
+            self.filteredResults.append(results)
         }
     }
 }
