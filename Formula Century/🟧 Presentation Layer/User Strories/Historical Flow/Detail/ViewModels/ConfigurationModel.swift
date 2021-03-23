@@ -10,11 +10,20 @@ import Foundation
 
 final class ConfigurationModel {
     
-    // MARK: - Private Properties
+    // MARK: - Public Properties
     
-    private var items: [String : [[String : Int]]] = [:]
-    private var results: [[ResultF1]]
-    private var filteredResults = [[ResultF1]]()
+    var filteredResults = [[ResultF1]]()
+    var raceCounter = 0
+    var winCounter = 0
+    var podiumCounter = 0
+    var poleCounter = 0
+    var bestFinishCounter = 0
+    var bestGridCounter = 0
+    var retireCounter = 0
+    var fastestLapCounter = 0
+    
+    // MARK: - Private Properties
+
     private var season: String
     private var driverID: String
     private var driverFullName: String
@@ -22,14 +31,8 @@ final class ConfigurationModel {
     private var number: String
     private var dateOfBirth: String
     private var constructors: String
-    private var raceCounter = 0
-    private var winCounter = 0
-    private var podiumCounter = 0
-    private var poleCounter = 0
-    private var bestFinishCounter = 0
-    private var bestGridCounter = 0
-    private var retireCounter = 0
-    private var fastestLapCounter = 0
+    private var items: [String : [[String : Int]]] = [:]
+    private var results: [[ResultF1]]
         
     // MARK: - Constructor
     
@@ -179,7 +182,7 @@ final class ConfigurationModel {
     }
 }
 
-protocol CheckingType {
+protocol CheckingType: ConfigurationCounterable {
     func getPolePosition(_ grid: String)
     func getFastestLap(_ rank: String)
     func getRetire(_ positionText: String)
@@ -188,6 +191,18 @@ protocol CheckingType {
     func getCurrentAchievement(_ position: String)
     /// Get data with selected driver and teammate
     func getDataWith(driver results: [ResultF1])
+}
+
+protocol ConfigurationCounterable {
+    var raceCounter: Int { get }
+    var winCounter: Int { get }
+    var podiumCounter: Int { get }
+    var poleCounter: Int { get }
+    var bestFinishCounter: Int { get set }
+    var bestGridCounter: Int { get set }
+    var retireCounter: Int { get }
+    var fastestLapCounter: Int { get }
+    var filteredResults: [[ResultF1]] { get }
 }
 
 extension ConfigurationModel: CheckingType {
