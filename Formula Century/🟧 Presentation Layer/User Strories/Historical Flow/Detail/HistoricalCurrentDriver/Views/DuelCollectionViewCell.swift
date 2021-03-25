@@ -153,6 +153,19 @@ final class DuelCollectionViewCell: UICollectionViewCell {
         return animation
     }
     
+    func configure(viewModel cell: DuelViewModelCell) {
+        driverNameLabel.text = cell.driverName
+        teammateNameLabel.text = cell.teammateName
+        
+        driverQualiScoreLabel.text = cell.driverQualiScore
+        teammateQualiScoreLabel.text = cell.teammateQualiScore
+        
+        driverRaceScoreLabel.text = cell.driverRaceScore
+        teammateRaceScoreLabel.text = cell.teammateRaceScore
+        
+        configure()
+    }
+    
     func configure() {
         guard let quileD = Int(driverQualiScoreLabel.text ?? "0") else { return }
         guard let quileT = Int(teammateQualiScoreLabel.text ?? "0") else { return }

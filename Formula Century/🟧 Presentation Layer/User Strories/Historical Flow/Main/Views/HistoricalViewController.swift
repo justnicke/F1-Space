@@ -221,7 +221,7 @@ extension HistoricalViewController: UITableViewDataSource, UITableViewDelegate {
         switch category {
         case .drivers:
             switch type().detailed.isAll() {
-            case true:  push(for: HistoricalDriverStandingsViewController(viewModel: detailViewModel as? HistoricalDriverStandingsViewModel))
+            case true:  push(for: HistoricalCurrentDriverViewController(viewModel: detailViewModel as? HistoricalCurrentDriverViewModel))
             case false: push(for: HistoricalDriverDetailViewController(viewModel: detailViewModel as? HistoricalDriverDetailViewModel))
             }
         case .teams:
